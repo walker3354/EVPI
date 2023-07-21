@@ -149,9 +149,7 @@ void StartUITask(void *argument)
   /* Infinite loop */
   for (;;)
   {
-    steering_value = (voltage * 22.5) - 45;
-    steering_value *= 100;
-    OD_PERSIST_COMM.x6000_steering = steering_value;
+    
     OD_set_u16(OD_find(OD, 0x6000), 0x000, OD_PERSIST_COMM.x6000_steering, false);
     CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
     osDelay(1000);
@@ -181,10 +179,13 @@ void canopen_task(void *argument)
   {
     canopen_app_process();
     HAL_ADC_Start(&hadc1);
-    HAL_ADC_PollForConversion(&hadc1, 10);
+    HAL_ADC_PollForConversion(&hadc1, 1);
     voltage = HAL_ADC_GetValue(&hadc1);
     voltage = ((voltage / 4096) * 3.3);
-    osDelay(100);
+    steering_value = (voltage * 22.5) - 45;
+    steering_value *= 100;
+    OD_PERSIST_COMM.x6000_steering = steering_value;
+    vTaskDelay(1);
   }
   /* USER CODE END canopen_task */
 }
