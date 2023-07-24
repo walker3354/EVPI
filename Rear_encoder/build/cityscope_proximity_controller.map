@@ -3724,86 +3724,86 @@ LOAD c:/program files (x86)/gnu arm embedded toolchain/10 2021.10/bin/../lib/gcc
  .debug_line    0x0001fe5c      0x166 build/OD.o
  .debug_line    0x0001ffc2       0x76 build/startup_stm32f303x8.o
 
-.debug_str      0x00000000     0xb9ec
+.debug_str      0x00000000     0xba16
  .debug_str     0x00000000     0x1ebc build/main.o
                                0x22df (size before relaxing)
  .debug_str     0x00001ebc      0x10e build/gpio.o
                                 0x2a1 (size before relaxing)
- .debug_str     0x00001fca      0x583 build/freertos.o
-                               0x2595 (size before relaxing)
- .debug_str     0x0000254d      0x378 build/can.o
+ .debug_str     0x00001fca      0x5ad build/freertos.o
+                               0x259b (size before relaxing)
+ .debug_str     0x00002577      0x378 build/can.o
                                 0xa05 (size before relaxing)
- .debug_str     0x000028c5      0x1b2 build/flashROM.o
+ .debug_str     0x000028ef      0x1b2 build/flashROM.o
                                 0x3c5 (size before relaxing)
- .debug_str     0x00002a77      0x24c build/tim.o
+ .debug_str     0x00002aa1      0x24c build/tim.o
                                 0xff3 (size before relaxing)
- .debug_str     0x00002cc3      0x118 build/stm32f3xx_it.o
+ .debug_str     0x00002ced      0x118 build/stm32f3xx_it.o
                                 0xdc2 (size before relaxing)
- .debug_str     0x00002ddb       0x29 build/stm32f3xx_hal_msp.o
+ .debug_str     0x00002e05       0x29 build/stm32f3xx_hal_msp.o
                                 0x4e9 (size before relaxing)
- .debug_str     0x00002e04      0x449 build/stm32f3xx_hal_timebase_tim.o
+ .debug_str     0x00002e2e      0x449 build/stm32f3xx_hal_timebase_tim.o
                                0x114f (size before relaxing)
- .debug_str     0x0000324d      0x769 build/stm32f3xx_hal_can.o
+ .debug_str     0x00003277      0x769 build/stm32f3xx_hal_can.o
                                 0xd95 (size before relaxing)
- .debug_str     0x000039b6      0x2af build/stm32f3xx_hal.o
+ .debug_str     0x000039e0      0x2af build/stm32f3xx_hal.o
                                 0x840 (size before relaxing)
- .debug_str     0x00003c65      0x1c2 build/stm32f3xx_hal_rcc.o
+ .debug_str     0x00003c8f      0x1c2 build/stm32f3xx_hal_rcc.o
                                 0x660 (size before relaxing)
- .debug_str     0x00003e27      0x17f build/stm32f3xx_hal_gpio.o
+ .debug_str     0x00003e51      0x17f build/stm32f3xx_hal_gpio.o
                                 0x485 (size before relaxing)
- .debug_str     0x00003fa6      0x36a build/stm32f3xx_hal_cortex.o
+ .debug_str     0x00003fd0      0x36a build/stm32f3xx_hal_cortex.o
                                 0x8cd (size before relaxing)
- .debug_str     0x00004310      0x23d build/stm32f3xx_hal_flash.o
+ .debug_str     0x0000433a      0x23d build/stm32f3xx_hal_flash.o
                                 0x505 (size before relaxing)
- .debug_str     0x0000454d      0xd80 build/stm32f3xx_hal_tim.o
+ .debug_str     0x00004577      0xd80 build/stm32f3xx_hal_tim.o
                                0x1c99 (size before relaxing)
- .debug_str     0x000052cd      0x5b4 build/stm32f3xx_hal_tim_ex.o
+ .debug_str     0x000052f7      0x5b4 build/stm32f3xx_hal_tim_ex.o
                                0x114f (size before relaxing)
- .debug_str     0x00005881       0x5c build/system_stm32f3xx.o
+ .debug_str     0x000058ab       0x5c build/system_stm32f3xx.o
                                 0x2b8 (size before relaxing)
- .debug_str     0x000058dd      0x14d build/list.o
+ .debug_str     0x00005907      0x14d build/list.o
                                 0x2e0 (size before relaxing)
- .debug_str     0x00005a2a      0x9ab build/queue.o
+ .debug_str     0x00005a54      0x9ab build/queue.o
                                 0xc5e (size before relaxing)
- .debug_str     0x000063d5      0xc40 build/tasks.o
+ .debug_str     0x000063ff      0xc40 build/tasks.o
                                0x125a (size before relaxing)
- .debug_str     0x00007015      0x5a0 build/timers.o
+ .debug_str     0x0000703f      0x5a0 build/timers.o
                                 0xbd1 (size before relaxing)
- .debug_str     0x000075b5      0xa39 build/cmsis_os2.o
+ .debug_str     0x000075df      0xa39 build/cmsis_os2.o
                                0x18d6 (size before relaxing)
- .debug_str     0x00007fee      0x1ce build/heap_4.o
+ .debug_str     0x00008018      0x1ce build/heap_4.o
                                 0x3c9 (size before relaxing)
- .debug_str     0x000081bc      0x18d build/port.o
+ .debug_str     0x000081e6      0x18d build/port.o
                                 0x45c (size before relaxing)
- .debug_str     0x00008349      0x1ab build/CO_ODinterface.o
+ .debug_str     0x00008373      0x1ab build/CO_ODinterface.o
                                 0x5fb (size before relaxing)
- .debug_str     0x000084f4      0x828 build/CO_NMT_Heartbeat.o
+ .debug_str     0x0000851e      0x828 build/CO_NMT_Heartbeat.o
                                0x10d8 (size before relaxing)
- .debug_str     0x00008d1c      0x655 build/CO_HBconsumer.o
+ .debug_str     0x00008d46      0x655 build/CO_HBconsumer.o
                                0x14ec (size before relaxing)
- .debug_str     0x00009371      0x2e5 build/CO_Emergency.o
+ .debug_str     0x0000939b      0x2e5 build/CO_Emergency.o
                                0x14f5 (size before relaxing)
- .debug_str     0x00009656      0xac7 build/CO_SDOserver.o
+ .debug_str     0x00009680      0xac7 build/CO_SDOserver.o
                                0x18da (size before relaxing)
- .debug_str     0x0000a11d       0xb4 build/CO_TIME.o
+ .debug_str     0x0000a147       0xb4 build/CO_TIME.o
                                 0x914 (size before relaxing)
- .debug_str     0x0000a1d1      0x156 build/CO_SYNC.o
+ .debug_str     0x0000a1fb      0x156 build/CO_SYNC.o
                                0x130e (size before relaxing)
- .debug_str     0x0000a327      0x348 build/CO_PDO.o
+ .debug_str     0x0000a351      0x348 build/CO_PDO.o
                                0x176a (size before relaxing)
- .debug_str     0x0000a66f      0x12e build/CO_LEDs.o
+ .debug_str     0x0000a699      0x12e build/CO_LEDs.o
                                 0x5a4 (size before relaxing)
- .debug_str     0x0000a79d      0x403 build/CO_LSSslave.o
+ .debug_str     0x0000a7c7      0x403 build/CO_LSSslave.o
                                 0xcb8 (size before relaxing)
- .debug_str     0x0000aba0      0x259 build/CANopen.o
+ .debug_str     0x0000abca      0x259 build/CANopen.o
                                0x2105 (size before relaxing)
- .debug_str     0x0000adf9      0x771 build/CO_app_STM32.o
+ .debug_str     0x0000ae23      0x771 build/CO_app_STM32.o
                                0x2c6c (size before relaxing)
- .debug_str     0x0000b56a      0x125 build/CO_driver_STM32.o
+ .debug_str     0x0000b594      0x125 build/CO_driver_STM32.o
                                0x272d (size before relaxing)
- .debug_str     0x0000b68f      0x339 build/OD.o
+ .debug_str     0x0000b6b9      0x339 build/OD.o
                                 0xb97 (size before relaxing)
- .debug_str     0x0000b9c8       0x24 build/startup_stm32f303x8.o
+ .debug_str     0x0000b9f2       0x24 build/startup_stm32f303x8.o
                                  0x48 (size before relaxing)
 
 .comment        0x00000000       0x49
