@@ -1,0 +1,5 @@
+[streeing]
+config_file = "./sensor/Steering_encoder_D301.eds"
+
+[[streeing.nodes]]
+node_id = 

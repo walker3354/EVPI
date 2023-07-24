@@ -1,0 +1,9 @@
+{
+    "cortex-debug.openocdPath.windows":"C:/msys64/mingw64/bin/openocd.exe",
+    "cortex-debug.gdbPath.windows": "C:/msys64/mingw64/bin/arm-none-eabi-gdb.exe",
+    "cortex-debug.variableUseNaturalFormat": true,
+    "files.associations": {
+        "gpio.h": "c",
+        "co_app_stm32.h": "c"
+    }
+}

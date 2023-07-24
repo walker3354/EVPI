@@ -1,0 +1,31 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Cortex Debug", //名稱可以自訂
+            "cwd": "${workspaceFolder}", //不要做更動
+            "executable": "./build/cityscope_proximity_controller.elf", //請改為編譯出來的elf檔位置
+            "request": "launch", //不要做更動
+            "type": "cortex-debug", //不要做更動
+            "servertype": "openocd", //不要做更動
+            "device": "STM32F303K8", //改為使用的STM32晶片名稱
+            "windows":{
+                "configFiles": [
+                    
+                    "C:/msys64/mingw64/share/openocd/scripts/interface/stlink.cfg",
+                    "C:/msys64/mingw64/share/openocd/scripts/target/stm32f3x.cfg"
+                    //因為使用STLink當作燒錄和除錯器所以使用stlink.cfg檔
+                    //因為使用STM32L432KC所以選擇stm32l4x.cfg檔
+                    //若是用其他不同型號晶片則須修改成其他的.cfg檔
+                    
+                    //也可以把.cfg檔從msys2資料夾複製一份到專案資料夾底下
+                    //"${workspaceFolder}/configs/stlink.cfg",
+                    //"${workspaceFolder}/configs/stm32l4x.cfg",
+
+                ],
+            },
+            "preLaunchCommands": ["make -j 12"],//加了這行，除錯前會進行重新編譯
+        }
+    ]
+}

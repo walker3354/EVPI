@@ -1,0 +1,590 @@
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"freertos.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.StartReadDistance,"ax",%progbits
+  20              		.align	1
+  21              		.global	StartReadDistance
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	StartReadDistance:
+  27              	.LFB169:
+  28              		.file 1 "Core/Src/freertos.c"
+   1:Core/Src/freertos.c **** /* USER CODE BEGIN Header */
+   2:Core/Src/freertos.c **** /**
+   3:Core/Src/freertos.c ****  ******************************************************************************
+   4:Core/Src/freertos.c ****  * File Name          : freertos.c
+   5:Core/Src/freertos.c ****  * Description        : Code for freertos applications
+   6:Core/Src/freertos.c ****  ******************************************************************************
+   7:Core/Src/freertos.c ****  * @attention
+   8:Core/Src/freertos.c ****  *
+   9:Core/Src/freertos.c ****  * Copyright (c) 2023 STMicroelectronics.
+  10:Core/Src/freertos.c ****  * All rights reserved.
+  11:Core/Src/freertos.c ****  *
+  12:Core/Src/freertos.c ****  * This software is licensed under terms that can be found in the LICENSE file
+  13:Core/Src/freertos.c ****  * in the root directory of this software component.
+  14:Core/Src/freertos.c ****  * If no LICENSE file comes with this software, it is provided AS-IS.
+  15:Core/Src/freertos.c ****  *
+  16:Core/Src/freertos.c ****  ******************************************************************************
+  17:Core/Src/freertos.c ****  */
+  18:Core/Src/freertos.c **** /* USER CODE END Header */
+  19:Core/Src/freertos.c **** 
+  20:Core/Src/freertos.c **** /* Includes ------------------------------------------------------------------*/
+  21:Core/Src/freertos.c **** #include "FreeRTOS.h"
+  22:Core/Src/freertos.c **** #include "task.h"
+  23:Core/Src/freertos.c **** #include "main.h"
+  24:Core/Src/freertos.c **** #include "cmsis_os.h"
+  25:Core/Src/freertos.c **** 
+  26:Core/Src/freertos.c **** /* Private includes ----------------------------------------------------------*/
+  27:Core/Src/freertos.c **** /* USER CODE BEGIN Includes */
+  28:Core/Src/freertos.c **** #include "CO_app_STM32.h"
+  29:Core/Src/freertos.c **** #include "OD.h"
+  30:Core/Src/freertos.c **** #include "tim.h"
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s 			page 2
+
+
+  31:Core/Src/freertos.c **** #include "comment.h"
+  32:Core/Src/freertos.c **** #include "can.h"
+  33:Core/Src/freertos.c **** /* USER CODE END Includes */
+  34:Core/Src/freertos.c **** 
+  35:Core/Src/freertos.c **** /* Private typedef -----------------------------------------------------------*/
+  36:Core/Src/freertos.c **** /* USER CODE BEGIN PTD */
+  37:Core/Src/freertos.c **** 
+  38:Core/Src/freertos.c **** /* USER CODE END PTD */
+  39:Core/Src/freertos.c **** 
+  40:Core/Src/freertos.c **** /* Private define ------------------------------------------------------------*/
+  41:Core/Src/freertos.c **** /* USER CODE BEGIN PD */
+  42:Core/Src/freertos.c **** 
+  43:Core/Src/freertos.c **** /* USER CODE END PD */
+  44:Core/Src/freertos.c **** 
+  45:Core/Src/freertos.c **** /* Private macro -------------------------------------------------------------*/
+  46:Core/Src/freertos.c **** /* USER CODE BEGIN PM */
+  47:Core/Src/freertos.c **** 
+  48:Core/Src/freertos.c **** /* USER CODE END PM */
+  49:Core/Src/freertos.c **** 
+  50:Core/Src/freertos.c **** /* Private variables ---------------------------------------------------------*/
+  51:Core/Src/freertos.c **** /* USER CODE BEGIN Variables */
+  52:Core/Src/freertos.c **** /* USER CODE END Variables */
+  53:Core/Src/freertos.c **** /* Definitions for ReadDistance */
+  54:Core/Src/freertos.c **** osThreadId_t ReadDistanceHandle;
+  55:Core/Src/freertos.c **** const osThreadAttr_t ReadDistance_attributes = {
+  56:Core/Src/freertos.c ****     .name = "ReadDistance",
+  57:Core/Src/freertos.c ****     .stack_size = 128 * 4,
+  58:Core/Src/freertos.c ****     .priority = (osPriority_t)osPriorityHigh,
+  59:Core/Src/freertos.c **** };
+  60:Core/Src/freertos.c **** /* Definitions for UITask */
+  61:Core/Src/freertos.c **** osThreadId_t UITaskHandle;
+  62:Core/Src/freertos.c **** const osThreadAttr_t UITask_attributes = {
+  63:Core/Src/freertos.c ****     .name = "UITask",
+  64:Core/Src/freertos.c ****     .stack_size = 128 * 4,
+  65:Core/Src/freertos.c ****     .priority = (osPriority_t)osPriorityNormal,
+  66:Core/Src/freertos.c **** };
+  67:Core/Src/freertos.c **** /* Definitions for canopenTask */
+  68:Core/Src/freertos.c **** osThreadId_t canopenTaskHandle;
+  69:Core/Src/freertos.c **** const osThreadAttr_t canopenTask_attributes = {
+  70:Core/Src/freertos.c ****     .name = "canopenTask",
+  71:Core/Src/freertos.c ****     .stack_size = 128 * 4,
+  72:Core/Src/freertos.c ****     .priority = (osPriority_t)osPriorityRealtime,
+  73:Core/Src/freertos.c **** };
+  74:Core/Src/freertos.c **** 
+  75:Core/Src/freertos.c **** /* Private function prototypes -----------------------------------------------*/
+  76:Core/Src/freertos.c **** /* USER CODE BEGIN FunctionPrototypes */
+  77:Core/Src/freertos.c **** 
+  78:Core/Src/freertos.c **** /* USER CODE END FunctionPrototypes */
+  79:Core/Src/freertos.c **** 
+  80:Core/Src/freertos.c **** void StartReadDistance(void *argument);
+  81:Core/Src/freertos.c **** void StartUITask(void *argument);
+  82:Core/Src/freertos.c **** void canopen_task(void *argument);
+  83:Core/Src/freertos.c **** 
+  84:Core/Src/freertos.c **** void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
+  85:Core/Src/freertos.c **** 
+  86:Core/Src/freertos.c **** /**
+  87:Core/Src/freertos.c ****  * @brief  FreeRTOS initialization
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s 			page 3
+
+
+  88:Core/Src/freertos.c ****  * @param  None
+  89:Core/Src/freertos.c ****  * @retval None
+  90:Core/Src/freertos.c ****  */
+  91:Core/Src/freertos.c **** void MX_FREERTOS_Init(void)
+  92:Core/Src/freertos.c **** {
+  93:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
+  94:Core/Src/freertos.c **** 
+  95:Core/Src/freertos.c ****   /* USER CODE END Init */
+  96:Core/Src/freertos.c **** 
+  97:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_MUTEX */
+  98:Core/Src/freertos.c ****   /* add mutexes, ... */
+  99:Core/Src/freertos.c ****   /* USER CODE END RTOS_MUTEX */
+ 100:Core/Src/freertos.c **** 
+ 101:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_SEMAPHORES */
+ 102:Core/Src/freertos.c ****   /* add semaphores, ... */
+ 103:Core/Src/freertos.c ****   /* USER CODE END RTOS_SEMAPHORES */
+ 104:Core/Src/freertos.c **** 
+ 105:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_TIMERS */
+ 106:Core/Src/freertos.c ****   /* start timers, add new ones, ... */
+ 107:Core/Src/freertos.c ****   /* USER CODE END RTOS_TIMERS */
+ 108:Core/Src/freertos.c **** 
+ 109:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_QUEUES */
+ 110:Core/Src/freertos.c ****   /* add queues, ... */
+ 111:Core/Src/freertos.c ****   /* USER CODE END RTOS_QUEUES */
+ 112:Core/Src/freertos.c **** 
+ 113:Core/Src/freertos.c ****   /* Create the thread(s) */
+ 114:Core/Src/freertos.c ****   /* creation of ReadDistance */
+ 115:Core/Src/freertos.c ****   ReadDistanceHandle = osThreadNew(StartReadDistance, NULL, &ReadDistance_attributes);
+ 116:Core/Src/freertos.c **** 
+ 117:Core/Src/freertos.c ****   /* creation of UITask */
+ 118:Core/Src/freertos.c ****   UITaskHandle = osThreadNew(StartUITask, NULL, &UITask_attributes);
+ 119:Core/Src/freertos.c **** 
+ 120:Core/Src/freertos.c ****   /* creation of canopenTask */
+ 121:Core/Src/freertos.c ****   canopenTaskHandle = osThreadNew(canopen_task, NULL, &canopenTask_attributes);
+ 122:Core/Src/freertos.c **** 
+ 123:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_THREADS */
+ 124:Core/Src/freertos.c ****   /* add threads, ... */
+ 125:Core/Src/freertos.c ****   /* USER CODE END RTOS_THREADS */
+ 126:Core/Src/freertos.c **** 
+ 127:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_EVENTS */
+ 128:Core/Src/freertos.c ****   /* add events, ... */
+ 129:Core/Src/freertos.c ****   /* USER CODE END RTOS_EVENTS */
+ 130:Core/Src/freertos.c **** }
+ 131:Core/Src/freertos.c **** 
+ 132:Core/Src/freertos.c **** /* USER CODE BEGIN Header_StartReadDistance */
+ 133:Core/Src/freertos.c **** /**
+ 134:Core/Src/freertos.c ****  * @brief  Function implementing the ReadDistance thread.
+ 135:Core/Src/freertos.c ****  * @param  argument: Not used
+ 136:Core/Src/freertos.c ****  * @retval None
+ 137:Core/Src/freertos.c ****  */
+ 138:Core/Src/freertos.c **** /* USER CODE END Header_StartReadDistance */
+ 139:Core/Src/freertos.c **** void StartReadDistance(void *argument)
+ 140:Core/Src/freertos.c **** {
+  29              		.loc 1 140 1 view -0
+  30              		.cfi_startproc
+  31              		@ Volatile: function does not return.
+  32              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s 			page 4
+
+
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              	.LVL0:
+  35              		.loc 1 140 1 is_stmt 0 view .LVU1
+  36 0000 08B5     		push	{r3, lr}
+  37              	.LCFI0:
+  38              		.cfi_def_cfa_offset 8
+  39              		.cfi_offset 3, -8
+  40              		.cfi_offset 14, -4
+  41              	.LVL1:
+  42              	.L2:
+ 141:Core/Src/freertos.c ****   /* USER CODE BEGIN StartReadDistance */
+ 142:Core/Src/freertos.c ****   /* Infinite loop */
+ 143:Core/Src/freertos.c ****   for (;;)
+  43              		.loc 1 143 3 is_stmt 1 discriminator 1 view .LVU2
+ 144:Core/Src/freertos.c ****   {
+ 145:Core/Src/freertos.c ****     osDelay(1);
+  44              		.loc 1 145 5 discriminator 1 view .LVU3
+  45 0002 0120     		movs	r0, #1
+  46 0004 FFF7FEFF 		bl	osDelay
+  47              	.LVL2:
+ 143:Core/Src/freertos.c ****   {
+  48              		.loc 1 143 9 discriminator 1 view .LVU4
+  49 0008 FBE7     		b	.L2
+  50              		.cfi_endproc
+  51              	.LFE169:
+  53              		.section	.text.StartUITask,"ax",%progbits
+  54              		.align	1
+  55              		.global	StartUITask
+  56              		.syntax unified
+  57              		.thumb
+  58              		.thumb_func
+  60              	StartUITask:
+  61              	.LFB170:
+ 146:Core/Src/freertos.c ****   }
+ 147:Core/Src/freertos.c ****   /* USER CODE END StartReadDistance */
+ 148:Core/Src/freertos.c **** }
+ 149:Core/Src/freertos.c **** 
+ 150:Core/Src/freertos.c **** /* USER CODE BEGIN Header_StartUITask */
+ 151:Core/Src/freertos.c **** /**
+ 152:Core/Src/freertos.c ****  * @brief Function implementing the UITask thread.
+ 153:Core/Src/freertos.c ****  * @param argument: Not used
+ 154:Core/Src/freertos.c ****  * @retval None
+ 155:Core/Src/freertos.c ****  */
+ 156:Core/Src/freertos.c **** /* USER CODE END Header_StartUITask */
+ 157:Core/Src/freertos.c **** void StartUITask(void *argument)
+ 158:Core/Src/freertos.c **** {
+  62              		.loc 1 158 1 view -0
+  63              		.cfi_startproc
+  64              		@ Volatile: function does not return.
+  65              		@ args = 0, pretend = 0, frame = 0
+  66              		@ frame_needed = 0, uses_anonymous_args = 0
+  67              	.LVL3:
+  68              		.loc 1 158 1 is_stmt 0 view .LVU6
+  69 0000 08B5     		push	{r3, lr}
+  70              	.LCFI1:
+  71              		.cfi_def_cfa_offset 8
+  72              		.cfi_offset 3, -8
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s 			page 5
+
+
+  73              		.cfi_offset 14, -4
+  74              	.LVL4:
+  75              	.L5:
+ 159:Core/Src/freertos.c ****   /* USER CODE BEGIN StartUITask */
+ 160:Core/Src/freertos.c ****   /* Infinite loop */
+ 161:Core/Src/freertos.c ****   for (;;)
+  76              		.loc 1 161 3 is_stmt 1 discriminator 1 view .LVU7
+ 162:Core/Src/freertos.c ****   {
+ 163:Core/Src/freertos.c ****     get_counter();
+  77              		.loc 1 163 5 discriminator 1 view .LVU8
+  78 0002 FFF7FEFF 		bl	get_counter
+  79              	.LVL5:
+ 161:Core/Src/freertos.c ****   {
+  80              		.loc 1 161 9 discriminator 1 view .LVU9
+  81 0006 FCE7     		b	.L5
+  82              		.cfi_endproc
+  83              	.LFE170:
+  85              		.section	.text.canopen_task,"ax",%progbits
+  86              		.align	1
+  87              		.global	canopen_task
+  88              		.syntax unified
+  89              		.thumb
+  90              		.thumb_func
+  92              	canopen_task:
+  93              	.LVL6:
+  94              	.LFB171:
+ 164:Core/Src/freertos.c ****   }
+ 165:Core/Src/freertos.c ****   /* USER CODE END StartUITask */
+ 166:Core/Src/freertos.c **** }
+ 167:Core/Src/freertos.c **** 
+ 168:Core/Src/freertos.c **** /* USER CODE BEGIN Header_canopen_task */
+ 169:Core/Src/freertos.c **** /**
+ 170:Core/Src/freertos.c ****  * @brief Function implementing the canopenTask thread.
+ 171:Core/Src/freertos.c ****  * @param argument: Not used
+ 172:Core/Src/freertos.c ****  * @retval None
+ 173:Core/Src/freertos.c ****  */
+ 174:Core/Src/freertos.c **** /* USER CODE END Header_canopen_task */
+ 175:Core/Src/freertos.c **** void canopen_task(void *argument)
+ 176:Core/Src/freertos.c **** {
+  95              		.loc 1 176 1 view -0
+  96              		.cfi_startproc
+  97              		@ Volatile: function does not return.
+  98              		@ args = 0, pretend = 0, frame = 24
+  99              		@ frame_needed = 0, uses_anonymous_args = 0
+ 100              		.loc 1 176 1 is_stmt 0 view .LVU11
+ 101 0000 00B5     		push	{lr}
+ 102              	.LCFI2:
+ 103              		.cfi_def_cfa_offset 4
+ 104              		.cfi_offset 14, -4
+ 105 0002 87B0     		sub	sp, sp, #28
+ 106              	.LCFI3:
+ 107              		.cfi_def_cfa_offset 32
+ 177:Core/Src/freertos.c ****   /* USER CODE BEGIN canopen_task */
+ 178:Core/Src/freertos.c ****   CANopenNodeSTM32 canOpenNodeSTM32;
+ 108              		.loc 1 178 3 is_stmt 1 view .LVU12
+ 179:Core/Src/freertos.c ****   canOpenNodeSTM32.CANHandle = &hcan;
+ 109              		.loc 1 179 3 view .LVU13
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s 			page 6
+
+
+ 110              		.loc 1 179 30 is_stmt 0 view .LVU14
+ 111 0004 0A4B     		ldr	r3, .L10
+ 112 0006 0293     		str	r3, [sp, #8]
+ 180:Core/Src/freertos.c ****   canOpenNodeSTM32.HWInitFunction = MX_CAN_Init;
+ 113              		.loc 1 180 3 is_stmt 1 view .LVU15
+ 114              		.loc 1 180 35 is_stmt 0 view .LVU16
+ 115 0008 0A4B     		ldr	r3, .L10+4
+ 116 000a 0393     		str	r3, [sp, #12]
+ 181:Core/Src/freertos.c ****   canOpenNodeSTM32.timerHandle = &htim17;
+ 117              		.loc 1 181 3 is_stmt 1 view .LVU17
+ 118              		.loc 1 181 32 is_stmt 0 view .LVU18
+ 119 000c 0A4B     		ldr	r3, .L10+8
+ 120 000e 0193     		str	r3, [sp, #4]
+ 182:Core/Src/freertos.c ****   canOpenNodeSTM32.desiredNodeID = (uint8_t)get_NodeID();
+ 121              		.loc 1 182 3 is_stmt 1 view .LVU19
+ 122              		.loc 1 182 45 is_stmt 0 view .LVU20
+ 123 0010 FFF7FEFF 		bl	get_NodeID
+ 124              	.LVL7:
+ 125              		.loc 1 182 34 view .LVU21
+ 126 0014 8DF80000 		strb	r0, [sp]
+ 183:Core/Src/freertos.c ****   canOpenNodeSTM32.baudrate = 125;
+ 127              		.loc 1 183 3 is_stmt 1 view .LVU22
+ 128              		.loc 1 183 29 is_stmt 0 view .LVU23
+ 129 0018 7D23     		movs	r3, #125
+ 130 001a 8DF80230 		strb	r3, [sp, #2]
+ 184:Core/Src/freertos.c ****   canopen_app_init(&canOpenNodeSTM32);
+ 131              		.loc 1 184 3 is_stmt 1 view .LVU24
+ 132 001e 6846     		mov	r0, sp
+ 133 0020 FFF7FEFF 		bl	canopen_app_init
+ 134              	.LVL8:
+ 135              	.L8:
+ 185:Core/Src/freertos.c ****   /* Infinite loop */
+ 186:Core/Src/freertos.c ****   for (;;)
+ 136              		.loc 1 186 3 discriminator 1 view .LVU25
+ 187:Core/Src/freertos.c ****   {
+ 188:Core/Src/freertos.c ****     canopen_app_process();
+ 137              		.loc 1 188 5 discriminator 1 view .LVU26
+ 138 0024 FFF7FEFF 		bl	canopen_app_process
+ 139              	.LVL9:
+ 189:Core/Src/freertos.c ****     vTaskDelay(1);
+ 140              		.loc 1 189 5 discriminator 1 view .LVU27
+ 141 0028 0120     		movs	r0, #1
+ 142 002a FFF7FEFF 		bl	vTaskDelay
+ 143              	.LVL10:
+ 186:Core/Src/freertos.c ****   {
+ 144              		.loc 1 186 9 discriminator 1 view .LVU28
+ 145 002e F9E7     		b	.L8
+ 146              	.L11:
+ 147              		.align	2
+ 148              	.L10:
+ 149 0030 00000000 		.word	hcan
+ 150 0034 00000000 		.word	MX_CAN_Init
+ 151 0038 00000000 		.word	htim17
+ 152              		.cfi_endproc
+ 153              	.LFE171:
+ 155              		.section	.text.MX_FREERTOS_Init,"ax",%progbits
+ 156              		.align	1
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s 			page 7
+
+
+ 157              		.global	MX_FREERTOS_Init
+ 158              		.syntax unified
+ 159              		.thumb
+ 160              		.thumb_func
+ 162              	MX_FREERTOS_Init:
+ 163              	.LFB168:
+  92:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
+ 164              		.loc 1 92 1 view -0
+ 165              		.cfi_startproc
+ 166              		@ args = 0, pretend = 0, frame = 0
+ 167              		@ frame_needed = 0, uses_anonymous_args = 0
+ 168 0000 08B5     		push	{r3, lr}
+ 169              	.LCFI4:
+ 170              		.cfi_def_cfa_offset 8
+ 171              		.cfi_offset 3, -8
+ 172              		.cfi_offset 14, -4
+ 115:Core/Src/freertos.c **** 
+ 173              		.loc 1 115 3 view .LVU30
+ 115:Core/Src/freertos.c **** 
+ 174              		.loc 1 115 24 is_stmt 0 view .LVU31
+ 175 0002 0B4A     		ldr	r2, .L14
+ 176 0004 0021     		movs	r1, #0
+ 177 0006 0B48     		ldr	r0, .L14+4
+ 178 0008 FFF7FEFF 		bl	osThreadNew
+ 179              	.LVL11:
+ 115:Core/Src/freertos.c **** 
+ 180              		.loc 1 115 22 view .LVU32
+ 181 000c 0A4B     		ldr	r3, .L14+8
+ 182 000e 1860     		str	r0, [r3]
+ 118:Core/Src/freertos.c **** 
+ 183              		.loc 1 118 3 is_stmt 1 view .LVU33
+ 118:Core/Src/freertos.c **** 
+ 184              		.loc 1 118 18 is_stmt 0 view .LVU34
+ 185 0010 0A4A     		ldr	r2, .L14+12
+ 186 0012 0021     		movs	r1, #0
+ 187 0014 0A48     		ldr	r0, .L14+16
+ 188 0016 FFF7FEFF 		bl	osThreadNew
+ 189              	.LVL12:
+ 118:Core/Src/freertos.c **** 
+ 190              		.loc 1 118 16 view .LVU35
+ 191 001a 0A4B     		ldr	r3, .L14+20
+ 192 001c 1860     		str	r0, [r3]
+ 121:Core/Src/freertos.c **** 
+ 193              		.loc 1 121 3 is_stmt 1 view .LVU36
+ 121:Core/Src/freertos.c **** 
+ 194              		.loc 1 121 23 is_stmt 0 view .LVU37
+ 195 001e 0A4A     		ldr	r2, .L14+24
+ 196 0020 0021     		movs	r1, #0
+ 197 0022 0A48     		ldr	r0, .L14+28
+ 198 0024 FFF7FEFF 		bl	osThreadNew
+ 199              	.LVL13:
+ 121:Core/Src/freertos.c **** 
+ 200              		.loc 1 121 21 view .LVU38
+ 201 0028 094B     		ldr	r3, .L14+32
+ 202 002a 1860     		str	r0, [r3]
+ 130:Core/Src/freertos.c **** 
+ 203              		.loc 1 130 1 view .LVU39
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s 			page 8
+
+
+ 204 002c 08BD     		pop	{r3, pc}
+ 205              	.L15:
+ 206 002e 00BF     		.align	2
+ 207              	.L14:
+ 208 0030 00000000 		.word	.LANCHOR0
+ 209 0034 00000000 		.word	StartReadDistance
+ 210 0038 00000000 		.word	.LANCHOR1
+ 211 003c 00000000 		.word	.LANCHOR2
+ 212 0040 00000000 		.word	StartUITask
+ 213 0044 00000000 		.word	.LANCHOR3
+ 214 0048 00000000 		.word	.LANCHOR4
+ 215 004c 00000000 		.word	canopen_task
+ 216 0050 00000000 		.word	.LANCHOR5
+ 217              		.cfi_endproc
+ 218              	.LFE168:
+ 220              		.global	canopenTask_attributes
+ 221              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 222              		.align	2
+ 223              	.LC0:
+ 224 0000 63616E6F 		.ascii	"canopenTask\000"
+ 224      70656E54 
+ 224      61736B00 
+ 225              		.global	canopenTaskHandle
+ 226              		.global	UITask_attributes
+ 227              		.align	2
+ 228              	.LC1:
+ 229 000c 55495461 		.ascii	"UITask\000"
+ 229      736B00
+ 230              		.global	UITaskHandle
+ 231              		.global	ReadDistance_attributes
+ 232 0013 00       		.align	2
+ 233              	.LC2:
+ 234 0014 52656164 		.ascii	"ReadDistance\000"
+ 234      44697374 
+ 234      616E6365 
+ 234      00
+ 235              		.global	ReadDistanceHandle
+ 236              		.section	.bss.ReadDistanceHandle,"aw",%nobits
+ 237              		.align	2
+ 238              		.set	.LANCHOR1,. + 0
+ 241              	ReadDistanceHandle:
+ 242 0000 00000000 		.space	4
+ 243              		.section	.bss.UITaskHandle,"aw",%nobits
+ 244              		.align	2
+ 245              		.set	.LANCHOR3,. + 0
+ 248              	UITaskHandle:
+ 249 0000 00000000 		.space	4
+ 250              		.section	.bss.canopenTaskHandle,"aw",%nobits
+ 251              		.align	2
+ 252              		.set	.LANCHOR5,. + 0
+ 255              	canopenTaskHandle:
+ 256 0000 00000000 		.space	4
+ 257              		.section	.rodata.ReadDistance_attributes,"a"
+ 258              		.align	2
+ 259              		.set	.LANCHOR0,. + 0
+ 262              	ReadDistance_attributes:
+ 263 0000 14000000 		.word	.LC2
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s 			page 9
+
+
+ 264 0004 00000000 		.space	16
+ 264      00000000 
+ 264      00000000 
+ 264      00000000 
+ 265 0014 00020000 		.word	512
+ 266 0018 28000000 		.word	40
+ 267 001c 00000000 		.space	8
+ 267      00000000 
+ 268              		.section	.rodata.UITask_attributes,"a"
+ 269              		.align	2
+ 270              		.set	.LANCHOR2,. + 0
+ 273              	UITask_attributes:
+ 274 0000 0C000000 		.word	.LC1
+ 275 0004 00000000 		.space	16
+ 275      00000000 
+ 275      00000000 
+ 275      00000000 
+ 276 0014 00020000 		.word	512
+ 277 0018 18000000 		.word	24
+ 278 001c 00000000 		.space	8
+ 278      00000000 
+ 279              		.section	.rodata.canopenTask_attributes,"a"
+ 280              		.align	2
+ 281              		.set	.LANCHOR4,. + 0
+ 284              	canopenTask_attributes:
+ 285 0000 00000000 		.word	.LC0
+ 286 0004 00000000 		.space	16
+ 286      00000000 
+ 286      00000000 
+ 286      00000000 
+ 287 0014 00020000 		.word	512
+ 288 0018 30000000 		.word	48
+ 289 001c 00000000 		.space	8
+ 289      00000000 
+ 290              		.text
+ 291              	.Letext0:
+ 292              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 293              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 294              		.file 4 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 295              		.file 5 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h"
+ 296              		.file 6 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f3xx.h"
+ 297              		.file 7 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
+ 298              		.file 8 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h"
+ 299              		.file 9 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_can.h"
+ 300              		.file 10 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h"
+ 301              		.file 11 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
+ 302              		.file 12 "Middlewares/Third_Party/CANopenNode_STM32/CO_driver_target.h"
+ 303              		.file 13 "Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h"
+ 304              		.file 14 "Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h"
+ 305              		.file 15 "Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h"
+ 306              		.file 16 "Middlewares/Third_Party/CANopenNode/301/CO_HBconsumer.h"
+ 307              		.file 17 "Middlewares/Third_Party/CANopenNode/301/CO_SDOserver.h"
+ 308              		.file 18 "Middlewares/Third_Party/CANopenNode/301/CO_SYNC.h"
+ 309              		.file 19 "Middlewares/Third_Party/CANopenNode/301/CO_PDO.h"
+ 310              		.file 20 "Middlewares/Third_Party/CANopenNode/301/CO_TIME.h"
+ 311              		.file 21 "Middlewares/Third_Party/CANopenNode/303/CO_LEDs.h"
+ 312              		.file 22 "Middlewares/Third_Party/CANopenNode/305/CO_LSS.h"
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s 			page 10
+
+
+ 313              		.file 23 "Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h"
+ 314              		.file 24 "Middlewares/Third_Party/CANopenNode/CANopen.h"
+ 315              		.file 25 "Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.h"
+ 316              		.file 26 "Core/Inc/tim.h"
+ 317              		.file 27 "Core/Inc/can.h"
+ 318              		.file 28 "Core/Inc/main.h"
+ 319              		.file 29 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 freertos.c
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:20     .text.StartReadDistance:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:26     .text.StartReadDistance:00000000 StartReadDistance
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:54     .text.StartUITask:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:60     .text.StartUITask:00000000 StartUITask
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:86     .text.canopen_task:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:92     .text.canopen_task:00000000 canopen_task
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:149    .text.canopen_task:00000030 $d
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:156    .text.MX_FREERTOS_Init:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:162    .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:208    .text.MX_FREERTOS_Init:00000030 $d
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:284    .rodata.canopenTask_attributes:00000000 canopenTask_attributes
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:222    .rodata.str1.4:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:255    .bss.canopenTaskHandle:00000000 canopenTaskHandle
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:273    .rodata.UITask_attributes:00000000 UITask_attributes
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:248    .bss.UITaskHandle:00000000 UITaskHandle
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:262    .rodata.ReadDistance_attributes:00000000 ReadDistance_attributes
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:241    .bss.ReadDistanceHandle:00000000 ReadDistanceHandle
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:237    .bss.ReadDistanceHandle:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:244    .bss.UITaskHandle:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:251    .bss.canopenTaskHandle:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:258    .rodata.ReadDistance_attributes:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:269    .rodata.UITask_attributes:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc7hdMU3.s:280    .rodata.canopenTask_attributes:00000000 $d
+
+UNDEFINED SYMBOLS
+osDelay
+get_counter
+get_NodeID
+canopen_app_init
+canopen_app_process
+vTaskDelay
+hcan
+MX_CAN_Init
+htim17
+osThreadNew
