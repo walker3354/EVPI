@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
   28:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****  *
   29:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****  * Implementation Author:               Tilen Majerle <tilen@majerle.eu>
   30:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****  */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 2
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 2
 
 
   31:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c **** #include "301/CO_driver.h"
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
   85:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c **** 
   86:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****     /* Configure object variables */
   87:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****     CANmodule->rxArray = rxArray;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 3
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 3
 
 
   88:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****     CANmodule->rxSize = rxSize;
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  142:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****     FilterConfig.FilterMode = CAN_FILTERMODE_IDMASK;
  143:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****     FilterConfig.FilterScale = CAN_FILTERSCALE_32BIT;
  144:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****     FilterConfig.FilterIdHigh = 0x0;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 4
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 4
 
 
  145:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****     FilterConfig.FilterIdLow = 0x0;
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  199:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c **** 
  200:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****     if (CANmodule != NULL && object != NULL && CANrx_callback != NULL && index < CANmodule->rxSize)
  201:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****         CO_CANrx_t* buffer = &CANmodule->rxArray[index];
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 5
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 5
 
 
  202:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c **** 
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
   32              		@ frame_needed = 0, uses_anonymous_args = 0
   33              		.loc 1 252 69 is_stmt 0 view .LVU1
   34 0000 30B5     		push	{r4, r5, lr}
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 6
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 6
 
 
   35              	.LCFI0:
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  295:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****             case 7:
  296:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****                 tx_hdr.DataLength = FDCAN_DLC_BYTES_7;
  297:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****                 break;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 7
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 7
 
 
  298:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****             case 8:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
   64              		.loc 1 333 1 is_stmt 0 view .LVU11
   65 0014 03B0     		add	sp, sp, #12
   66              	.LCFI2:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 8
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 8
 
 
   67              		.cfi_remember_state
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  105              		.loc 1 324 9 is_stmt 1 view .LVU27
  327:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****                                        &TxMailboxNum)
  106              		.loc 1 327 9 view .LVU28
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 9
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 9
 
 
  327:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****                                        &TxMailboxNum)
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  356:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****         CANmodule->bufferInhibitFlag = buffer->syncFlag;
  357:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****     } else {
  358:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****         buffer->bufferFull = true;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 10
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 10
 
 
  359:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****         CANmodule->CANtxCount++;
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  413:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c **** 
  414:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****     if (CANmodule->errOld != err) {
  415:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 11
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 11
 
 
  416:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****         uint16_t status = CANmodule->CANerrorStatus;
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  470:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****         }
  471:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c **** 
  472:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****         CANmodule->CANerrorStatus = status;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 12
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 12
 
 
  473:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****     }
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  507:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****     rcvMsg.ident = rx_hdr.Identifier | (rx_hdr.RxFrameType == FDCAN_REMOTE_FRAME ? FLAG_RTR : 0x00)
  508:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****     switch (rx_hdr.DataLength) {
  509:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****         case FDCAN_DLC_BYTES_0:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 13
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 13
 
 
  510:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****             rcvMsg.dlc = 0;
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  172 0014 1C68     		ldr	r4, [r3]
  173              		.loc 1 548 42 view .LVU47
  174 0016 DB68     		ldr	r3, [r3, #12]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 14
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 14
 
 
  175              		.loc 1 548 76 view .LVU48
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  574:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****     if (messageFound && buffer != NULL && buffer->CANrx_callback != NULL) {
  204              		.loc 1 574 5 view .LVU59
  205              	.LVL13:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 15
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 15
 
 
  206              		.thumb
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  245 004a 0142     		tst	r1, r0
  246 004c 03D0     		beq	.L18
  565:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****             if (((rcvMsgIdent ^ buffer->ident) & buffer->mask) == 0U) {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 16
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 16
 
 
  247              		.loc 1 565 59 is_stmt 1 discriminator 2 view .LVU73
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  291              		.section	.text.CO_CANsetConfigurationMode,"ax",%progbits
  292              		.align	1
  293              		.global	CO_CANsetConfigurationMode
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 17
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 17
 
 
  294              		.syntax unified
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
   56:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****     /* Put CAN module in normal mode */
  343              		.loc 1 56 48 is_stmt 1 view -0
  344              		.cfi_startproc
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 18
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 18
 
 
  345              		@ args = 0, pretend = 0, frame = 0
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  388              		.global	CO_CANmodule_init
  389              		.syntax unified
  390              		.thumb
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 19
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 19
 
 
  391              		.thumb_func
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
   87:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****     CANmodule->rxSize = rxSize;
  435              		.loc 1 87 5 is_stmt 1 view .LVU117
   87:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****     CANmodule->rxSize = rxSize;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 20
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 20
 
 
  436              		.loc 1 87 24 is_stmt 0 view .LVU118
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  100:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****         rxArray[i].ident = 0U;
  470              		.loc 1 100 5 is_stmt 1 view .LVU139
  471              	.LBB23:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 21
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 21
 
 
  100:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****         rxArray[i].ident = 0U;
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  106:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****         txArray[i].bufferFull = false;
  510              		.loc 1 106 19 view .LVU156
  511 0066 0023     		movs	r3, #0
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 22
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 22
 
 
  512              	.LVL39:
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  142:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****     FilterConfig.FilterScale = CAN_FILTERSCALE_32BIT;
  550              		.loc 1 142 29 is_stmt 0 view .LVU173
  551 0086 0693     		str	r3, [sp, #24]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 23
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 23
 
 
  143:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****     FilterConfig.FilterIdHigh = 0x0;
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  586              		.loc 1 170 5 is_stmt 1 view .LVU193
  170:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****                                                                                  | CAN_IT_RX_FIFO1_
  587              		.loc 1 170 9 is_stmt 0 view .LVU194
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 24
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 24
 
 
  588 00a6 1321     		movs	r1, #19
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  632              		.loc 1 174 16 view .LVU204
  633 00cc 4FF0FF30 		mov	r0, #-1
  634 00d0 EEE7     		b	.L36
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 25
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 25
 
 
  635              	.L48:
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  682              		.cfi_restore 3
  683              		.cfi_restore 14
  192:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 26
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 26
 
 
  684              		.loc 1 192 1 view .LVU214
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  201:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c **** 
  730              		.loc 1 201 40 is_stmt 0 view .LVU225
  731 0014 DCF80400 		ldr	r0, [ip, #4]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 27
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 27
 
 
  201:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c **** 
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  768              		.loc 1 216 22 is_stmt 0 discriminator 4 view .LVU243
  769 0042 DCF81830 		ldr	r3, [ip, #24]
  216:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****             __NOP();
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 28
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 28
 
 
  770              		.loc 1 216 12 discriminator 4 view .LVU244
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  814 0068 00E0     		b	.L56
  815              	.LVL73:
  816              	.L63:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 29
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 29
 
 
  198:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c **** 
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  862              		.cfi_def_cfa_offset 4
  863              		.cfi_offset 4, -4
  233:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 30
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 30
 
 
  864              		.loc 1 233 9 is_stmt 1 view .LVU266
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  902 003a 5DF8044B 		ldr	r4, [sp], #4
  903              	.LCFI20:
  904              		.cfi_restore 4
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 31
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 31
 
 
  905              		.cfi_def_cfa_offset 0
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  951 0006 0B69     		ldr	r3, [r1, #16]
  341:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****         if (!CANmodule->firstCANtxMessage) {
  952              		.loc 1 341 8 view .LVU293
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 32
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 32
 
 
  953 0008 43B1     		cbz	r3, .L80
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
   22:Drivers/CMSIS/Include/cmsis_gcc.h ****  * limitations under the License.
   23:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
   24:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 33
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 33
 
 
   25:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __CMSIS_GCC_H
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
   79:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
   80:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
   81:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 34
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 34
 
 
   82:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT16_WRITE { uint16_t v; };
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  136:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Disable IRQ Interrupts
  137:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Disables IRQ interrupts by setting the I-bit in the CPSR.
  138:Drivers/CMSIS/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 35
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 35
 
 
  139:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  193:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __TZ_set_CONTROL_NS(uint32_t control)
  194:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  195:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MSR control_ns, %0" : : "r" (control) : "memory");
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 36
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 36
 
 
  196:Drivers/CMSIS/Include/cmsis_gcc.h **** }
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  250:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  251:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, psp"  : "=r" (result) );
  252:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 37
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 37
 
 
  253:Drivers/CMSIS/Include/cmsis_gcc.h **** }
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  307:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  308:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  309:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 38
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 38
 
 
  310:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (defined (__ARM_FEATURE_CMSE ) && (__ARM_FEATURE_CMSE == 3))
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  364:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  365:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  366:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Stack Pointer (non-secure)
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 39
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 39
 
 
  367:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Assigns the given value to the non-secure Stack Pointer (SP) when in secure state.
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  1006              	.LBE30:
  1007              	.LBE29:
  354:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****     if (prv_send_can_message(CANmodule, buffer)) {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 40
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 40
 
 
  1008              		.loc 1 354 5 view .LVU312
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  409:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Assigns the given value to the Priority Mask Register.
  410:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    priMask  Priority Mask
  411:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 41
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 41
 
 
  412:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __set_PRIMASK(uint32_t priMask)
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  1076              		.thumb
  1077              		.thumb_func
  1079              	CO_CANclearPendingSyncPDOs:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 42
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 42
 
 
  1080              	.LVL97:
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  1120              		.loc 2 142 3 view .LVU346
  1121              		.syntax unified
  1122              	@ 142 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 43
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 43
 
 
  1123 0008 72B6     		cpsid i
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  381:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****             if (CANmodule->txArray[i].bufferFull) {
  1162              		.loc 1 381 54 is_stmt 1 discriminator 2 view .LVU362
  1163 001e 013B     		subs	r3, r3, #1
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 44
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 44
 
 
  1164              	.LVL105:
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  1201              		.loc 1 386 21 is_stmt 1 view .LVU379
  1202              	.LVL107:
  386:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****                 }
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 45
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 45
 
 
  1203              		.loc 1 386 33 is_stmt 0 view .LVU380
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  1249              		.align	1
  1250              		.global	CO_CANmodule_process
  1251              		.syntax unified
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 46
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 46
 
 
  1252              		.thumb
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  453:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****             status |= CO_CAN_ERRTX_BUS_OFF;
  1291              		.loc 1 453 12 is_stmt 0 view .LVU408
  1292 0016 12F0040F 		tst	r2, #4
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 47
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 47
 
 
  1293 001a 03D0     		beq	.L93
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  467:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****                 status |= CO_CAN_ERRRX_PASSIVE | CO_CAN_ERRTX_PASSIVE;
  1332              		.loc 1 467 16 is_stmt 0 view .LVU424
  1333 003c 12F0020F 		tst	r2, #2
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 48
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 48
 
 
  1334 0040 EED0     		beq	.L94
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  606:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c **** /**
  607:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****  * \brief           TX buffer has been well transmitted callback
  608:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****  * \param[in]       hfdcan: pointer to an FDCAN_HandleTypeDef structure that contains
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 49
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 49
 
 
  609:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****  *                      the configuration information for the specified FDCAN.
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  1367              		.cfi_offset 14, -4
  654:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****     prv_read_can_received_msg(hcan, CAN_RX_FIFO0, 0);
  1368              		.loc 1 654 5 is_stmt 1 view .LVU431
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 50
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 50
 
 
  1369 0002 0022     		movs	r2, #0
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  1416              	.LVL128:
  1417              	.LFB177:
  666:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 51
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 51
 
 
  667:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c **** /**
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  688:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c **** 		 *  then no need to lock interrupts..)
  689:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c **** 		 */
  690:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****         CO_LOCK_CAN_SEND(CANmodule);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 52
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 52
 
 
  1450              		.loc 1 690 9 view .LVU449
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  1496              	.LVL133:
  1497              		.loc 1 691 45 is_stmt 0 discriminator 2 view .LVU465
  1498 0020 A4B2     		uxth	r4, r4
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 53
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 53
 
 
  1499              	.LVL134:
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  703:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c ****             CANmodule->CANtxCount = 0U;
  1542              		.loc 1 703 13 view .LVU484
  1543              		.loc 1 703 35 is_stmt 0 view .LVU485
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 54
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 54
 
 
  1544 004c 0023     		movs	r3, #0
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  1592              		@ args = 0, pretend = 0, frame = 0
  1593              		@ frame_needed = 0, uses_anonymous_args = 0
  1594              		.loc 1 710 61 is_stmt 0 view .LVU493
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 55
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 55
 
 
  1595 0000 08B5     		push	{r3, lr}
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  717:Middlewares/Third_Party/CANopenNode_STM32/CO_driver_STM32.c **** }
  1645              		.loc 1 717 1 view .LVU501
  1646 000c 08BD     		pop	{r3, pc}
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 56
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 56
 
 
  1647              	.L117:
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  1703              	rx_hdr.0:
  1704 0000 00000000 		.space	28
  1704      00000000 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 57
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 57
 
 
  1704      00000000 
@@ -3399,58 +3399,58 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 1
  1735              		.file 24 "Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h"
  1736              		.file 25 "Middlewares/Third_Party/CANopenNode/CANopen.h"
  1737              		.file 26 "Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.h"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 58
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 58
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 CO_driver_STM32.c
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:20     .text.prv_send_can_message:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:25     .text.prv_send_can_message:00000000 prv_send_can_message
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:123    .text.prv_send_can_message:0000004c $d
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:129    .text.prv_read_can_received_msg:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:134    .text.prv_read_can_received_msg:00000000 prv_read_can_received_msg
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:286    .text.prv_read_can_received_msg:00000070 $d
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:292    .text.CO_CANsetConfigurationMode:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:298    .text.CO_CANsetConfigurationMode:00000000 CO_CANsetConfigurationMode
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:334    .text.CO_CANsetNormalMode:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:340    .text.CO_CANsetNormalMode:00000000 CO_CANsetNormalMode
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:387    .text.CO_CANmodule_init:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:393    .text.CO_CANmodule_init:00000000 CO_CANmodule_init
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:638    .text.CO_CANmodule_init:000000d4 $d
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:643    .text.CO_CANmodule_disable:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:649    .text.CO_CANmodule_disable:00000000 CO_CANmodule_disable
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:690    .text.CO_CANrxBufferInit:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:696    .text.CO_CANrxBufferInit:00000000 CO_CANrxBufferInit
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:829    .text.CO_CANrxBufferInit:00000070 $d
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:834    .text.CO_CANtxBufferInit:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:840    .text.CO_CANtxBufferInit:00000000 CO_CANtxBufferInit
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:924    .text.CO_CANsend:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:930    .text.CO_CANsend:00000000 CO_CANsend
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1073   .text.CO_CANclearPendingSyncPDOs:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1079   .text.CO_CANclearPendingSyncPDOs:00000000 CO_CANclearPendingSyncPDOs
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1249   .text.CO_CANmodule_process:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1255   .text.CO_CANmodule_process:00000000 CO_CANmodule_process
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1349   .text.HAL_CAN_RxFifo0MsgPendingCallback:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1355   .text.HAL_CAN_RxFifo0MsgPendingCallback:00000000 HAL_CAN_RxFifo0MsgPendingCallback
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1379   .text.HAL_CAN_RxFifo1MsgPendingCallback:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1385   .text.HAL_CAN_RxFifo1MsgPendingCallback:00000000 HAL_CAN_RxFifo1MsgPendingCallback
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1409   .text.CO_CANinterrupt_TX:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1415   .text.CO_CANinterrupt_TX:00000000 CO_CANinterrupt_TX
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1581   .text.HAL_CAN_TxMailbox0CompleteCallback:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1587   .text.HAL_CAN_TxMailbox0CompleteCallback:00000000 HAL_CAN_TxMailbox0CompleteCallback
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1613   .text.HAL_CAN_TxMailbox0CompleteCallback:00000010 $d
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1618   .text.HAL_CAN_TxMailbox1CompleteCallback:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1624   .text.HAL_CAN_TxMailbox1CompleteCallback:00000000 HAL_CAN_TxMailbox1CompleteCallback
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1650   .text.HAL_CAN_TxMailbox1CompleteCallback:00000010 $d
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1655   .text.HAL_CAN_TxMailbox2CompleteCallback:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1661   .text.HAL_CAN_TxMailbox2CompleteCallback:00000000 HAL_CAN_TxMailbox2CompleteCallback
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1687   .text.HAL_CAN_TxMailbox2CompleteCallback:00000010 $d
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1692   .bss.CANModule_local:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1696   .bss.CANModule_local:00000000 CANModule_local
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1699   .bss.rx_hdr.0:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1703   .bss.rx_hdr.0:00000000 rx_hdr.0
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1706   .bss.tx_hdr.1:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s:1710   .bss.tx_hdr.1:00000000 tx_hdr.1
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:20     .text.prv_send_can_message:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:25     .text.prv_send_can_message:00000000 prv_send_can_message
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:123    .text.prv_send_can_message:0000004c $d
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:129    .text.prv_read_can_received_msg:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:134    .text.prv_read_can_received_msg:00000000 prv_read_can_received_msg
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:286    .text.prv_read_can_received_msg:00000070 $d
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:292    .text.CO_CANsetConfigurationMode:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:298    .text.CO_CANsetConfigurationMode:00000000 CO_CANsetConfigurationMode
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:334    .text.CO_CANsetNormalMode:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:340    .text.CO_CANsetNormalMode:00000000 CO_CANsetNormalMode
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:387    .text.CO_CANmodule_init:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:393    .text.CO_CANmodule_init:00000000 CO_CANmodule_init
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:638    .text.CO_CANmodule_init:000000d4 $d
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:643    .text.CO_CANmodule_disable:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:649    .text.CO_CANmodule_disable:00000000 CO_CANmodule_disable
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:690    .text.CO_CANrxBufferInit:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:696    .text.CO_CANrxBufferInit:00000000 CO_CANrxBufferInit
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:829    .text.CO_CANrxBufferInit:00000070 $d
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:834    .text.CO_CANtxBufferInit:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:840    .text.CO_CANtxBufferInit:00000000 CO_CANtxBufferInit
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:924    .text.CO_CANsend:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:930    .text.CO_CANsend:00000000 CO_CANsend
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1073   .text.CO_CANclearPendingSyncPDOs:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1079   .text.CO_CANclearPendingSyncPDOs:00000000 CO_CANclearPendingSyncPDOs
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1249   .text.CO_CANmodule_process:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1255   .text.CO_CANmodule_process:00000000 CO_CANmodule_process
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1349   .text.HAL_CAN_RxFifo0MsgPendingCallback:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1355   .text.HAL_CAN_RxFifo0MsgPendingCallback:00000000 HAL_CAN_RxFifo0MsgPendingCallback
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1379   .text.HAL_CAN_RxFifo1MsgPendingCallback:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1385   .text.HAL_CAN_RxFifo1MsgPendingCallback:00000000 HAL_CAN_RxFifo1MsgPendingCallback
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1409   .text.CO_CANinterrupt_TX:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1415   .text.CO_CANinterrupt_TX:00000000 CO_CANinterrupt_TX
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1581   .text.HAL_CAN_TxMailbox0CompleteCallback:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1587   .text.HAL_CAN_TxMailbox0CompleteCallback:00000000 HAL_CAN_TxMailbox0CompleteCallback
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1613   .text.HAL_CAN_TxMailbox0CompleteCallback:00000010 $d
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1618   .text.HAL_CAN_TxMailbox1CompleteCallback:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1624   .text.HAL_CAN_TxMailbox1CompleteCallback:00000000 HAL_CAN_TxMailbox1CompleteCallback
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1650   .text.HAL_CAN_TxMailbox1CompleteCallback:00000010 $d
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1655   .text.HAL_CAN_TxMailbox2CompleteCallback:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1661   .text.HAL_CAN_TxMailbox2CompleteCallback:00000000 HAL_CAN_TxMailbox2CompleteCallback
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1687   .text.HAL_CAN_TxMailbox2CompleteCallback:00000010 $d
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1692   .bss.CANModule_local:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1696   .bss.CANModule_local:00000000 CANModule_local
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1699   .bss.rx_hdr.0:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1703   .bss.rx_hdr.0:00000000 rx_hdr.0
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1706   .bss.tx_hdr.1:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cck2gZy2.s:1710   .bss.tx_hdr.1:00000000 tx_hdr.1
 
 UNDEFINED SYMBOLS
 HAL_CAN_GetTxMailboxesFreeLevel
@@ -3459,7 +3459,7 @@ HAL_CAN_GetRxMessage
 HAL_CAN_Stop
 HAL_CAN_Start
 HAL_CAN_ConfigFilter
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccSHcsHe.s 			page 59
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cck2gZy2.s 			page 59
 
 
 HAL_CAN_ActivateNotification

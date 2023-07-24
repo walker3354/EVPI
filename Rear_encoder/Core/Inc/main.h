@@ -55,6 +55,8 @@ void Error_Handler(void);
 /* USER CODE BEGIN EFP */
 uint32_t get_NodeID(void);
 int get_counter(void);
+uint32_t get_timer_counter(void);
+void set_timer_counter(uint16_t time_variable);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/

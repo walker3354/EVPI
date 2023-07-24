@@ -140,9 +140,22 @@ void StartReadDistance(void *argument)
 {
   /* USER CODE BEGIN StartReadDistance */
   /* Infinite loop */
+  volatile int rpm = 0;
+  volatile int16_t pre_wheel_counter = get_counter();
   for (;;)
   {
-    osDelay(1);
+    if (get_timer_counter > 5)
+    {
+      rpm = ((get_counter() - pre_wheel_counter) * 60 * 2) / 600;
+      set_timer_counter(0);
+      pre_wheel_counter = get_counter();
+    }
+    if (get_timer_counter > 0)
+    {
+      OD_PERSIST_COMM.x6000_proximity_data = rpm;
+      OD_set_u16(OD_find(OD, 0x6000), 0x000, OD_PERSIST_COMM.x6000_proximity_data, false);
+      CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
+    }
   }
   /* USER CODE END StartReadDistance */
 }
@@ -158,10 +171,7 @@ void StartUITask(void *argument)
 {
   /* USER CODE BEGIN StartUITask */
   /* Infinite loop */
-  for (;;)
-  {
-    get_counter();
-  }
+
   /* USER CODE END StartUITask */
 }
 
