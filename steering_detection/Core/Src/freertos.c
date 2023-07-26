@@ -55,19 +55,25 @@
 
 /* USER CODE END Variables */
 /* Definitions for ReadDistance */
+osThreadId_t ReadDistanceHandle;
+const osThreadAttr_t ReadDistance_attributes = {
+  .name = "ReadDistance",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityHigh,
+};
 /* Definitions for UITask */
 osThreadId_t UITaskHandle;
 const osThreadAttr_t UITask_attributes = {
-    .name = "UITask",
-    .stack_size = 128 * 4,
-    .priority = (osPriority_t)osPriorityNormal,
+  .name = "UITask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for canopenTask */
 osThreadId_t canopenTaskHandle;
 const osThreadAttr_t canopenTask_attributes = {
-    .name = "canopenTask",
-    .stack_size = 128 * 4,
-    .priority = (osPriority_t)osPriorityRealtime,
+  .name = "canopenTask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityRealtime,
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -78,16 +84,16 @@ const osThreadAttr_t canopenTask_attributes = {
 void StartReadDistance(void *argument);
 void StartUITask(void *argument);
 void canopen_task(void *argument);
-
+double steering_value = 0;
+double voltage = 0;
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /**
- * @brief  FreeRTOS initialization
- * @param  None
- * @retval None
- */
-void MX_FREERTOS_Init(void)
-{
+  * @brief  FreeRTOS initialization
+  * @param  None
+  * @retval None
+  */
+void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
@@ -110,6 +116,7 @@ void MX_FREERTOS_Init(void)
 
   /* Create the thread(s) */
   /* creation of ReadDistance */
+  ReadDistanceHandle = osThreadNew(StartReadDistance, NULL, &ReadDistance_attributes);
 
   /* creation of UITask */
   UITaskHandle = osThreadNew(StartUITask, NULL, &UITask_attributes);
@@ -124,6 +131,7 @@ void MX_FREERTOS_Init(void)
   /* USER CODE BEGIN RTOS_EVENTS */
   /* add events, ... */
   /* USER CODE END RTOS_EVENTS */
+
 }
 
 /* USER CODE BEGIN Header_StartReadDistance */
@@ -133,6 +141,16 @@ void MX_FREERTOS_Init(void)
  * @retval None
  */
 /* USER CODE END Header_StartReadDistance */
+void StartReadDistance(void *argument)
+{
+  /* USER CODE BEGIN StartReadDistance */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END StartReadDistance */
+}
 
 /* USER CODE BEGIN Header_StartUITask */
 /**
@@ -141,8 +159,6 @@ void MX_FREERTOS_Init(void)
  * @retval None
  */
 /* USER CODE END Header_StartUITask */
-double steering_value = 0;
-double voltage = 0;
 void StartUITask(void *argument)
 {
   /* USER CODE BEGIN StartUITask */
@@ -171,7 +187,7 @@ void canopen_task(void *argument)
   canOpenNodeSTM32.CANHandle = &hcan;
   canOpenNodeSTM32.HWInitFunction = MX_CAN_Init;
   canOpenNodeSTM32.timerHandle = &htim17;
-  canOpenNodeSTM32.desiredNodeID = (uint8_t)get_NodeID();
+  canOpenNodeSTM32.desiredNodeID = 17;
   canOpenNodeSTM32.baudrate = 125;
   canopen_app_init(&canOpenNodeSTM32);
   /* Infinite loop */
@@ -194,3 +210,4 @@ void canopen_task(void *argument)
 /* USER CODE BEGIN Application */
 
 /* USER CODE END Application */
+

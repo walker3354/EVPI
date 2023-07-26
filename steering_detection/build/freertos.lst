@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -19,13 +19,13 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
   16              		.text
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
-  19              		.section	.text.StartUITask,"ax",%progbits
+  19              		.section	.text.StartReadDistance,"ax",%progbits
   20              		.align	1
-  21              		.global	StartUITask
+  21              		.global	StartReadDistance
   22              		.syntax unified
   23              		.thumb
   24              		.thumb_func
-  26              	StartUITask:
+  26              	StartReadDistance:
   27              	.LFB169:
   28              		.file 1 "Core/Src/freertos.c"
    1:Core/Src/freertos.c **** /* USER CODE BEGIN Header */
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
   28:Core/Src/freertos.c **** #include "CO_app_STM32.h"
   29:Core/Src/freertos.c **** #include "OD.h"
   30:Core/Src/freertos.c **** #include "tim.h"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 2
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 2
 
 
   31:Core/Src/freertos.c **** #include "comment.h"
@@ -88,122 +88,173 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
   55:Core/Src/freertos.c **** 
   56:Core/Src/freertos.c **** /* USER CODE END Variables */
   57:Core/Src/freertos.c **** /* Definitions for ReadDistance */
-  58:Core/Src/freertos.c **** /* Definitions for UITask */
-  59:Core/Src/freertos.c **** osThreadId_t UITaskHandle;
-  60:Core/Src/freertos.c **** const osThreadAttr_t UITask_attributes = {
-  61:Core/Src/freertos.c ****     .name = "UITask",
-  62:Core/Src/freertos.c ****     .stack_size = 128 * 4,
-  63:Core/Src/freertos.c ****     .priority = (osPriority_t)osPriorityNormal,
-  64:Core/Src/freertos.c **** };
-  65:Core/Src/freertos.c **** /* Definitions for canopenTask */
-  66:Core/Src/freertos.c **** osThreadId_t canopenTaskHandle;
-  67:Core/Src/freertos.c **** const osThreadAttr_t canopenTask_attributes = {
-  68:Core/Src/freertos.c ****     .name = "canopenTask",
-  69:Core/Src/freertos.c ****     .stack_size = 128 * 4,
-  70:Core/Src/freertos.c ****     .priority = (osPriority_t)osPriorityRealtime,
-  71:Core/Src/freertos.c **** };
-  72:Core/Src/freertos.c **** 
-  73:Core/Src/freertos.c **** /* Private function prototypes -----------------------------------------------*/
-  74:Core/Src/freertos.c **** /* USER CODE BEGIN FunctionPrototypes */
-  75:Core/Src/freertos.c **** 
-  76:Core/Src/freertos.c **** /* USER CODE END FunctionPrototypes */
-  77:Core/Src/freertos.c **** 
-  78:Core/Src/freertos.c **** void StartReadDistance(void *argument);
-  79:Core/Src/freertos.c **** void StartUITask(void *argument);
-  80:Core/Src/freertos.c **** void canopen_task(void *argument);
+  58:Core/Src/freertos.c **** osThreadId_t ReadDistanceHandle;
+  59:Core/Src/freertos.c **** const osThreadAttr_t ReadDistance_attributes = {
+  60:Core/Src/freertos.c ****   .name = "ReadDistance",
+  61:Core/Src/freertos.c ****   .stack_size = 128 * 4,
+  62:Core/Src/freertos.c ****   .priority = (osPriority_t) osPriorityHigh,
+  63:Core/Src/freertos.c **** };
+  64:Core/Src/freertos.c **** /* Definitions for UITask */
+  65:Core/Src/freertos.c **** osThreadId_t UITaskHandle;
+  66:Core/Src/freertos.c **** const osThreadAttr_t UITask_attributes = {
+  67:Core/Src/freertos.c ****   .name = "UITask",
+  68:Core/Src/freertos.c ****   .stack_size = 128 * 4,
+  69:Core/Src/freertos.c ****   .priority = (osPriority_t) osPriorityNormal,
+  70:Core/Src/freertos.c **** };
+  71:Core/Src/freertos.c **** /* Definitions for canopenTask */
+  72:Core/Src/freertos.c **** osThreadId_t canopenTaskHandle;
+  73:Core/Src/freertos.c **** const osThreadAttr_t canopenTask_attributes = {
+  74:Core/Src/freertos.c ****   .name = "canopenTask",
+  75:Core/Src/freertos.c ****   .stack_size = 128 * 4,
+  76:Core/Src/freertos.c ****   .priority = (osPriority_t) osPriorityRealtime,
+  77:Core/Src/freertos.c **** };
+  78:Core/Src/freertos.c **** 
+  79:Core/Src/freertos.c **** /* Private function prototypes -----------------------------------------------*/
+  80:Core/Src/freertos.c **** /* USER CODE BEGIN FunctionPrototypes */
   81:Core/Src/freertos.c **** 
-  82:Core/Src/freertos.c **** void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
+  82:Core/Src/freertos.c **** /* USER CODE END FunctionPrototypes */
   83:Core/Src/freertos.c **** 
-  84:Core/Src/freertos.c **** /**
-  85:Core/Src/freertos.c ****  * @brief  FreeRTOS initialization
-  86:Core/Src/freertos.c ****  * @param  None
-  87:Core/Src/freertos.c ****  * @retval None
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 3
+  84:Core/Src/freertos.c **** void StartReadDistance(void *argument);
+  85:Core/Src/freertos.c **** void StartUITask(void *argument);
+  86:Core/Src/freertos.c **** void canopen_task(void *argument);
+  87:Core/Src/freertos.c **** double steering_value = 0;
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 3
 
 
-  88:Core/Src/freertos.c ****  */
-  89:Core/Src/freertos.c **** void MX_FREERTOS_Init(void)
-  90:Core/Src/freertos.c **** {
-  91:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
-  92:Core/Src/freertos.c **** 
-  93:Core/Src/freertos.c ****   /* USER CODE END Init */
-  94:Core/Src/freertos.c **** 
-  95:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_MUTEX */
-  96:Core/Src/freertos.c ****   /* add mutexes, ... */
-  97:Core/Src/freertos.c ****   /* USER CODE END RTOS_MUTEX */
+  88:Core/Src/freertos.c **** double voltage = 0;
+  89:Core/Src/freertos.c **** void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
+  90:Core/Src/freertos.c **** 
+  91:Core/Src/freertos.c **** /**
+  92:Core/Src/freertos.c ****   * @brief  FreeRTOS initialization
+  93:Core/Src/freertos.c ****   * @param  None
+  94:Core/Src/freertos.c ****   * @retval None
+  95:Core/Src/freertos.c ****   */
+  96:Core/Src/freertos.c **** void MX_FREERTOS_Init(void) {
+  97:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
   98:Core/Src/freertos.c **** 
-  99:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_SEMAPHORES */
- 100:Core/Src/freertos.c ****   /* add semaphores, ... */
- 101:Core/Src/freertos.c ****   /* USER CODE END RTOS_SEMAPHORES */
- 102:Core/Src/freertos.c **** 
- 103:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_TIMERS */
- 104:Core/Src/freertos.c ****   /* start timers, add new ones, ... */
- 105:Core/Src/freertos.c ****   /* USER CODE END RTOS_TIMERS */
- 106:Core/Src/freertos.c **** 
- 107:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_QUEUES */
- 108:Core/Src/freertos.c ****   /* add queues, ... */
- 109:Core/Src/freertos.c ****   /* USER CODE END RTOS_QUEUES */
- 110:Core/Src/freertos.c **** 
- 111:Core/Src/freertos.c ****   /* Create the thread(s) */
- 112:Core/Src/freertos.c ****   /* creation of ReadDistance */
- 113:Core/Src/freertos.c **** 
- 114:Core/Src/freertos.c ****   /* creation of UITask */
- 115:Core/Src/freertos.c ****   UITaskHandle = osThreadNew(StartUITask, NULL, &UITask_attributes);
+  99:Core/Src/freertos.c ****   /* USER CODE END Init */
+ 100:Core/Src/freertos.c **** 
+ 101:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_MUTEX */
+ 102:Core/Src/freertos.c ****   /* add mutexes, ... */
+ 103:Core/Src/freertos.c ****   /* USER CODE END RTOS_MUTEX */
+ 104:Core/Src/freertos.c **** 
+ 105:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_SEMAPHORES */
+ 106:Core/Src/freertos.c ****   /* add semaphores, ... */
+ 107:Core/Src/freertos.c ****   /* USER CODE END RTOS_SEMAPHORES */
+ 108:Core/Src/freertos.c **** 
+ 109:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_TIMERS */
+ 110:Core/Src/freertos.c ****   /* start timers, add new ones, ... */
+ 111:Core/Src/freertos.c ****   /* USER CODE END RTOS_TIMERS */
+ 112:Core/Src/freertos.c **** 
+ 113:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_QUEUES */
+ 114:Core/Src/freertos.c ****   /* add queues, ... */
+ 115:Core/Src/freertos.c ****   /* USER CODE END RTOS_QUEUES */
  116:Core/Src/freertos.c **** 
- 117:Core/Src/freertos.c ****   /* creation of canopenTask */
- 118:Core/Src/freertos.c ****   canopenTaskHandle = osThreadNew(canopen_task, NULL, &canopenTask_attributes);
- 119:Core/Src/freertos.c **** 
- 120:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_THREADS */
- 121:Core/Src/freertos.c ****   /* add threads, ... */
- 122:Core/Src/freertos.c ****   /* USER CODE END RTOS_THREADS */
+ 117:Core/Src/freertos.c ****   /* Create the thread(s) */
+ 118:Core/Src/freertos.c ****   /* creation of ReadDistance */
+ 119:Core/Src/freertos.c ****   ReadDistanceHandle = osThreadNew(StartReadDistance, NULL, &ReadDistance_attributes);
+ 120:Core/Src/freertos.c **** 
+ 121:Core/Src/freertos.c ****   /* creation of UITask */
+ 122:Core/Src/freertos.c ****   UITaskHandle = osThreadNew(StartUITask, NULL, &UITask_attributes);
  123:Core/Src/freertos.c **** 
- 124:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_EVENTS */
- 125:Core/Src/freertos.c ****   /* add events, ... */
- 126:Core/Src/freertos.c ****   /* USER CODE END RTOS_EVENTS */
- 127:Core/Src/freertos.c **** }
- 128:Core/Src/freertos.c **** 
- 129:Core/Src/freertos.c **** /* USER CODE BEGIN Header_StartReadDistance */
- 130:Core/Src/freertos.c **** /**
- 131:Core/Src/freertos.c ****  * @brief  Function implementing the ReadDistance thread.
- 132:Core/Src/freertos.c ****  * @param  argument: Not used
- 133:Core/Src/freertos.c ****  * @retval None
- 134:Core/Src/freertos.c ****  */
- 135:Core/Src/freertos.c **** /* USER CODE END Header_StartReadDistance */
+ 124:Core/Src/freertos.c ****   /* creation of canopenTask */
+ 125:Core/Src/freertos.c ****   canopenTaskHandle = osThreadNew(canopen_task, NULL, &canopenTask_attributes);
+ 126:Core/Src/freertos.c **** 
+ 127:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_THREADS */
+ 128:Core/Src/freertos.c ****   /* add threads, ... */
+ 129:Core/Src/freertos.c ****   /* USER CODE END RTOS_THREADS */
+ 130:Core/Src/freertos.c **** 
+ 131:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_EVENTS */
+ 132:Core/Src/freertos.c ****   /* add events, ... */
+ 133:Core/Src/freertos.c ****   /* USER CODE END RTOS_EVENTS */
+ 134:Core/Src/freertos.c **** 
+ 135:Core/Src/freertos.c **** }
  136:Core/Src/freertos.c **** 
- 137:Core/Src/freertos.c **** /* USER CODE BEGIN Header_StartUITask */
+ 137:Core/Src/freertos.c **** /* USER CODE BEGIN Header_StartReadDistance */
  138:Core/Src/freertos.c **** /**
- 139:Core/Src/freertos.c ****  * @brief Function implementing the UITask thread.
- 140:Core/Src/freertos.c ****  * @param argument: Not used
+ 139:Core/Src/freertos.c ****  * @brief  Function implementing the ReadDistance thread.
+ 140:Core/Src/freertos.c ****  * @param  argument: Not used
  141:Core/Src/freertos.c ****  * @retval None
  142:Core/Src/freertos.c ****  */
- 143:Core/Src/freertos.c **** /* USER CODE END Header_StartUITask */
- 144:Core/Src/freertos.c **** double steering_value = 0;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 4
+ 143:Core/Src/freertos.c **** /* USER CODE END Header_StartReadDistance */
+ 144:Core/Src/freertos.c **** void StartReadDistance(void *argument)
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 4
 
 
- 145:Core/Src/freertos.c **** double voltage = 0;
- 146:Core/Src/freertos.c **** void StartUITask(void *argument)
- 147:Core/Src/freertos.c **** {
-  29              		.loc 1 147 1 view -0
+ 145:Core/Src/freertos.c **** {
+  29              		.loc 1 145 1 view -0
   30              		.cfi_startproc
   31              		@ Volatile: function does not return.
-  32              		@ args = 0, pretend = 0, frame = 8
+  32              		@ args = 0, pretend = 0, frame = 0
   33              		@ frame_needed = 0, uses_anonymous_args = 0
   34              	.LVL0:
-  35              		.loc 1 147 1 is_stmt 0 view .LVU1
-  36 0000 00B5     		push	{lr}
+  35              		.loc 1 145 1 is_stmt 0 view .LVU1
+  36 0000 08B5     		push	{r3, lr}
   37              	.LCFI0:
-  38              		.cfi_def_cfa_offset 4
-  39              		.cfi_offset 14, -4
-  40 0002 85B0     		sub	sp, sp, #20
-  41              	.LCFI1:
-  42              		.cfi_def_cfa_offset 24
-  43 0004 06E0     		b	.L3
-  44              	.LVL1:
-  45              	.L5:
-  46              	.LBB6:
-  47              	.LBB7:
-  48              		.file 2 "Middlewares/Third_Party/CANopenNode/301/CO_PDO.h"
+  38              		.cfi_def_cfa_offset 8
+  39              		.cfi_offset 3, -8
+  40              		.cfi_offset 14, -4
+  41              	.LVL1:
+  42              	.L2:
+ 146:Core/Src/freertos.c ****   /* USER CODE BEGIN StartReadDistance */
+ 147:Core/Src/freertos.c ****   /* Infinite loop */
+ 148:Core/Src/freertos.c ****   for(;;)
+  43              		.loc 1 148 3 is_stmt 1 discriminator 1 view .LVU2
+ 149:Core/Src/freertos.c ****   {
+ 150:Core/Src/freertos.c ****     osDelay(1);
+  44              		.loc 1 150 5 discriminator 1 view .LVU3
+  45 0002 0120     		movs	r0, #1
+  46 0004 FFF7FEFF 		bl	osDelay
+  47              	.LVL2:
+ 148:Core/Src/freertos.c ****   {
+  48              		.loc 1 148 8 discriminator 1 view .LVU4
+  49 0008 FBE7     		b	.L2
+  50              		.cfi_endproc
+  51              	.LFE169:
+  53              		.section	.text.StartUITask,"ax",%progbits
+  54              		.align	1
+  55              		.global	StartUITask
+  56              		.syntax unified
+  57              		.thumb
+  58              		.thumb_func
+  60              	StartUITask:
+  61              	.LFB170:
+ 151:Core/Src/freertos.c ****   }
+ 152:Core/Src/freertos.c ****   /* USER CODE END StartReadDistance */
+ 153:Core/Src/freertos.c **** }
+ 154:Core/Src/freertos.c **** 
+ 155:Core/Src/freertos.c **** /* USER CODE BEGIN Header_StartUITask */
+ 156:Core/Src/freertos.c **** /**
+ 157:Core/Src/freertos.c ****  * @brief Function implementing the UITask thread.
+ 158:Core/Src/freertos.c ****  * @param argument: Not used
+ 159:Core/Src/freertos.c ****  * @retval None
+ 160:Core/Src/freertos.c ****  */
+ 161:Core/Src/freertos.c **** /* USER CODE END Header_StartUITask */
+ 162:Core/Src/freertos.c **** void StartUITask(void *argument)
+ 163:Core/Src/freertos.c **** {
+  62              		.loc 1 163 1 view -0
+  63              		.cfi_startproc
+  64              		@ Volatile: function does not return.
+  65              		@ args = 0, pretend = 0, frame = 8
+  66              		@ frame_needed = 0, uses_anonymous_args = 0
+  67              	.LVL3:
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 5
+
+
+  68              		.loc 1 163 1 is_stmt 0 view .LVU6
+  69 0000 00B5     		push	{lr}
+  70              	.LCFI1:
+  71              		.cfi_def_cfa_offset 4
+  72              		.cfi_offset 14, -4
+  73 0002 85B0     		sub	sp, sp, #20
+  74              	.LCFI2:
+  75              		.cfi_def_cfa_offset 24
+  76 0004 06E0     		b	.L6
+  77              	.LVL4:
+  78              	.L8:
+  79              	.LBB6:
+  80              	.LBB7:
+  81              		.file 2 "Middlewares/Third_Party/CANopenNode/301/CO_PDO.h"
    1:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
    2:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * CANopen Process Data Object protocol.
    3:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
@@ -238,9 +289,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
   32:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
   33:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /* default configuration, see CO_config.h */
   34:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #ifndef CO_CONFIG_PDO
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 5
-
-
   35:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #define CO_CONFIG_PDO (CO_CONFIG_RPDO_ENABLE | \
   36:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_TPDO_ENABLE | \
   37:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_RPDO_TIMERS_ENABLE | \
@@ -250,6 +298,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
   41:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_GLOBAL_RT_FLAG_CALLBACK_PRE | \
   42:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_GLOBAL_FLAG_TIMERNEXT | \
   43:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_GLOBAL_FLAG_OD_DYNAMIC)
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 6
+
+
   44:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
   45:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
   46:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & (CO_CONFIG_RPDO_ENABLE | CO_CONFIG_TPDO_ENABLE)) || defined CO_DOXYGEN
@@ -298,9 +349,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
   89:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @anchor CO_PDO_CAN_ID
   90:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * ### CAN identifiers for PDO
   91:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 6
-
-
   92:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Each PDO can be configured with any valid 11-bit CAN identifier. Lower
   93:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * numbers have higher priorities on CAN bus. As a general rule, each CAN
   94:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * message is identified with own CAN-ID, which must be unique and produced by
@@ -310,6 +358,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
   98:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
   99:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * CANopen standard provides pre-defined connection sets for four RPDOs and four
  100:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * TPDOs on each device with specific 7-bit Node-ID. These are default values
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 7
+
+
  101:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * and are usable in configuration, where CANopen network contains a master
  102:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * device, which directly communicates with many slaves. In de-centralized
  103:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * systems, where devices operate without a master, it makes sense to configure
@@ -358,9 +409,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  146:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
  147:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /** Number of CANopen RPDO objects, which uses default CAN indentifiers.
  148:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * By default first four RPDOs have pre-defined CAN identifiers, which depends
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 7
-
-
  149:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * on node-id. This constant may be set to 0 to disable functionality or set
  150:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * to any other value. For example, if there are several logical devices inside
  151:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * single CANopen device, then more than four RPDOs may have pre-defined CAN
@@ -370,6 +418,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  155:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #define CO_RPDO_DEFAULT_CANID_COUNT 4
  156:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
  157:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 8
+
+
  158:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /** Number of CANopen TPDO objects, which uses default CAN indentifiers.
  159:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * If value is more than four, then pre-defined pre-defined CAN identifiers are:
  160:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * TPDO5 has CAN_ID=0x180+NodeId+1, TPDO6 has CAN_ID=0x280+NodeId+1,
@@ -418,9 +469,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  203:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * the variable. mappedLength can be less or equal to the OD_IO.dataLength.
  204:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * mappedLength greater than OD_IO.dataLength indicates erroneous mapping.
  205:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * OD_IO.dataOffset is set to 0 before read/write function call and after
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 8
-
-
  206:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * the call OD_IO.dataOffset is set back to mappedLength. */
  207:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     OD_IO_t OD_IO[CO_PDO_MAX_MAPPED_ENTRIES];
  208:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****   #if OD_FLAGS_PDO_SIZE > 0
@@ -430,6 +478,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  212:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t flagPDObitmask[CO_PDO_MAX_MAPPED_ENTRIES];
  213:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****   #endif
  214:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #else
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 9
+
+
  215:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /* Pointers to data objects inside OD, where PDO will be copied */
  216:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t *mapPointer[CO_PDO_MAX_SIZE];
  217:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****   #if OD_FLAGS_PDO_SIZE > 0
@@ -478,9 +529,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  260:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_PDO_common_t PDO_common;
  261:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Variable indicates, if new PDO message received from CAN bus. */
  262:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     volatile void *CANrxNew[CO_RPDO_CAN_BUFFERS_COUNT];
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 9
-
-
  263:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** CO_PDO_MAX_SIZE data bytes of the received message. */
  264:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t CANrxData[CO_RPDO_CAN_BUFFERS_COUNT][CO_PDO_MAX_SIZE];
  265:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Indication of RPDO length errors, use with CO_PDO_receiveErrors_t */
@@ -490,6 +538,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  269:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_SYNC_t *SYNC;
  270:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** True if transmissionType <= 240 */
  271:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     bool_t synchronous;
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 10
+
+
  272:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
  273:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_RPDO_TIMERS_ENABLE) || defined CO_DOXYGEN
  274:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Maximum timeout time between received PDOs in microseconds. Configurable
@@ -538,9 +589,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  317:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
  318:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               uint16_t preDefinedCanId,
  319:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               OD_entry_t *OD_14xx_RPDOCommPar,
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 10
-
-
  320:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               OD_entry_t *OD_16xx_RPDOMapPar,
  321:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               CO_CANmodule_t *CANdevRx,
  322:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               uint16_t CANdevRxIdx,
@@ -550,6 +598,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  326:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_FLAG_CALLBACK_PRE) || defined CO_DOXYGEN
  327:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
  328:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Initialize RPDO callback function.
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 11
+
+
  329:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
  330:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Function initializes optional callback function, which should immediately
  331:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * start processing of CO_RPDO_process() function.
@@ -598,9 +649,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  374:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * TPDO object.
  375:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
  376:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** typedef struct {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 11
-
-
  377:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** PDO common properties, must be first element in this object */
  378:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_PDO_common_t PDO_common;
  379:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** CAN transmit buffer inside CANdev */
@@ -610,6 +658,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  383:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** If this flag is set and TPDO is event driven (transmission type is 0,
  384:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * 254 or 255), then PDO will be sent by CO_TPDO_process(). */
  385:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     bool_t sendRequest;
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 12
+
+
  386:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_PDO_SYNC_ENABLE) || defined CO_DOXYGEN
  387:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** From CO_TPDO_init() */
  388:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_SYNC_t *SYNC;
@@ -658,9 +709,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  431:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               OD_t *OD,
  432:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               CO_EM_t *em,
  433:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_PDO_SYNC_ENABLE) || defined CO_DOXYGEN
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 12
-
-
  434:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               CO_SYNC_t *SYNC,
  435:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
  436:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               uint16_t preDefinedCanId,
@@ -670,6 +718,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  440:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               uint16_t CANdevTxIdx,
  441:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               uint32_t *errInfo);
  442:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 13
+
+
  443:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
  444:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
  445:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Request transmission of TPDO message.
@@ -682,56 +733,56 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  452:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
  453:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** static inline void CO_TPDOsendRequest(CO_TPDO_t *TPDO) {
  454:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     if (TPDO != NULL) TPDO->sendRequest = true;
-  49              		.loc 2 454 23 is_stmt 1 view .LVU2
-  50              		.loc 2 454 41 is_stmt 0 view .LVU3
-  51 0006 0122     		movs	r2, #1
-  52 0008 C3F85021 		str	r2, [r3, #336]
-  53              	.L2:
-  54              	.LVL2:
-  55              		.loc 2 454 41 view .LVU4
-  56              	.LBE7:
-  57              	.LBE6:
- 148:Core/Src/freertos.c ****   /* USER CODE BEGIN StartUITask */
- 149:Core/Src/freertos.c ****   /* Infinite loop */
- 150:Core/Src/freertos.c ****   for (;;)
- 151:Core/Src/freertos.c ****   {
- 152:Core/Src/freertos.c ****     
- 153:Core/Src/freertos.c ****     OD_set_u16(OD_find(OD, 0x6000), 0x000, OD_PERSIST_COMM.x6000_steering, false);
- 154:Core/Src/freertos.c ****     CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
- 155:Core/Src/freertos.c ****     osDelay(1000);
-  58              		.loc 1 155 5 is_stmt 1 view .LVU5
-  59 000c 4FF47A70 		mov	r0, #1000
-  60 0010 FFF7FEFF 		bl	osDelay
-  61              	.LVL3:
- 150:Core/Src/freertos.c ****   {
-  62              		.loc 1 150 9 view .LVU6
-  63              	.L3:
- 150:Core/Src/freertos.c ****   {
-  64              		.loc 1 150 3 discriminator 1 view .LVU7
- 153:Core/Src/freertos.c ****     CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
-  65              		.loc 1 153 5 discriminator 1 view .LVU8
- 153:Core/Src/freertos.c ****     CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
-  66              		.loc 1 153 16 is_stmt 0 discriminator 1 view .LVU9
-  67 0014 4FF4C041 		mov	r1, #24576
-  68 0018 0B4B     		ldr	r3, .L6
-  69 001a 1868     		ldr	r0, [r3]
-  70 001c FFF7FEFF 		bl	OD_find
-  71              	.LVL4:
- 153:Core/Src/freertos.c ****     CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 13
+  82              		.loc 2 454 23 is_stmt 1 view .LVU7
+  83              		.loc 2 454 41 is_stmt 0 view .LVU8
+  84 0006 0122     		movs	r2, #1
+  85 0008 C3F85021 		str	r2, [r3, #336]
+  86              	.L5:
+  87              	.LVL5:
+  88              		.loc 2 454 41 view .LVU9
+  89              	.LBE7:
+  90              	.LBE6:
+ 164:Core/Src/freertos.c ****   /* USER CODE BEGIN StartUITask */
+ 165:Core/Src/freertos.c ****   /* Infinite loop */
+ 166:Core/Src/freertos.c ****   for (;;)
+ 167:Core/Src/freertos.c ****   {
+ 168:Core/Src/freertos.c ****     
+ 169:Core/Src/freertos.c ****     OD_set_u16(OD_find(OD, 0x6000), 0x000, OD_PERSIST_COMM.x6000_steering, false);
+ 170:Core/Src/freertos.c ****     CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
+ 171:Core/Src/freertos.c ****     osDelay(1000);
+  91              		.loc 1 171 5 is_stmt 1 view .LVU10
+  92 000c 4FF47A70 		mov	r0, #1000
+  93 0010 FFF7FEFF 		bl	osDelay
+  94              	.LVL6:
+ 166:Core/Src/freertos.c ****   {
+  95              		.loc 1 166 9 view .LVU11
+  96              	.L6:
+ 166:Core/Src/freertos.c ****   {
+  97              		.loc 1 166 3 discriminator 1 view .LVU12
+ 169:Core/Src/freertos.c ****     CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
+  98              		.loc 1 169 5 discriminator 1 view .LVU13
+ 169:Core/Src/freertos.c ****     CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
+  99              		.loc 1 169 16 is_stmt 0 discriminator 1 view .LVU14
+ 100 0014 4FF4C041 		mov	r1, #24576
+ 101 0018 0B4B     		ldr	r3, .L9
+ 102 001a 1868     		ldr	r0, [r3]
+ 103 001c FFF7FEFF 		bl	OD_find
+ 104              	.LVL7:
+ 169:Core/Src/freertos.c ****     CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
+ 105              		.loc 1 169 59 discriminator 1 view .LVU15
+ 106 0020 0A4B     		ldr	r3, .L9+4
+ 107 0022 B3F99C30 		ldrsh	r3, [r3, #156]
+ 108              	.LVL8:
+ 169:Core/Src/freertos.c ****     CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
+ 109              		.loc 1 169 59 discriminator 1 view .LVU16
+ 110 0026 ADF80E30 		strh	r3, [sp, #14]	@ movhi
+ 111              	.LVL9:
+ 112              	.LBB9:
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 14
 
 
-  72              		.loc 1 153 59 discriminator 1 view .LVU10
-  73 0020 0A4B     		ldr	r3, .L6+4
-  74 0022 B3F99C30 		ldrsh	r3, [r3, #156]
-  75              	.LVL5:
- 153:Core/Src/freertos.c ****     CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
-  76              		.loc 1 153 59 discriminator 1 view .LVU11
-  77 0026 ADF80E30 		strh	r3, [sp, #14]	@ movhi
-  78              	.LVL6:
-  79              	.LBB9:
-  80              	.LBI9:
-  81              		.file 3 "Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h"
+ 113              	.LBI9:
+ 114              		.file 3 "Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h"
    1:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /**
    2:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * CANopen Object Dictionary interface
    3:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
@@ -778,9 +829,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
   44:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** #ifndef CO_OD_OWN_TYPES
   45:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /** Variable of type OD_size_t contains data length in bytes of OD variable */
   46:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** typedef uint32_t OD_size_t;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 14
-
-
   47:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /** Type (and size) of Object Dictionary attribute */
   48:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** typedef uint8_t OD_attr_t;
   49:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** #endif
@@ -790,6 +838,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
   53:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** #define OD_FLAGS_PDO_SIZE 4
   54:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** #endif
   55:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 15
+
+
   56:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** #ifndef CO_PROGMEM
   57:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /** Modifier for OD objects. This is large amount of data and is specified in
   58:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * Object Dictionary (OD.c file usually) */
@@ -838,9 +889,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  101:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1028_EMCY_CONSUMER      = 0x1028U,/**< Emergency consumer object */
  102:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1029_ERR_BEHAVIOR       = 0x1029U,/**< Error behaviour */
  103:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1200_SDO_SERVER_1_PARAM = 0x1200U,/**< SDO server parameter */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 15
-
-
  104:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1280_SDO_CLIENT_1_PARAM = 0x1280U,/**< SDO client parameter */
  105:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1300_GFC_PARAM          = 0x1300U,/**< Global fail-safe command param */
  106:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1301_SRDO_1_PARAM       = 0x1301U,/**< SRDO communication parameter */
@@ -850,6 +898,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  110:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1400_RXPDO_1_PARAM      = 0x1400U,/**< RXPDO communication parameter */
  111:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1600_RXPDO_1_MAPPING    = 0x1600U,/**< RXPDO mapping parameters */
  112:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1800_TXPDO_1_PARAM      = 0x1800U,/**< TXPDO communication parameter */
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 16
+
+
  113:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1A00_TXPDO_1_MAPPING    = 0x1A00U,/**< TXPDO mapping parameters */
  114:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** } OD_ObjDicId_30x_t;
  115:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
@@ -898,9 +949,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  158:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** SDO abort 0x06020000 - Object does not exist in the object dict. */
  159:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     ODR_IDX_NOT_EXIST = 5,
  160:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** SDO abort 0x06040041 - Object cannot be mapped to the PDO */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 16
-
-
  161:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     ODR_NO_MAP = 6,
  162:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** SDO abort 0x06040042 - PDO length exceeded */
  163:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     ODR_MAP_LEN = 7,
@@ -910,6 +958,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  167:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     ODR_DEV_INCOMPAT = 9,
  168:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** SDO abort 0x06060000 - Access failed due to hardware error */
  169:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     ODR_HW = 10,
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 17
+
+
  170:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** SDO abort 0x06070010 - Data type does not match */
  171:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     ODR_TYPE_MISMATCH = 11,
  172:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** SDO abort 0x06070012 - Data type does not match, length too high */
@@ -958,9 +1009,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  215:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** Pointer to object, passed by @ref OD_extension_init(). Can be used
  216:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * inside read / write functions from IO extension.
  217:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 17
-
-
  218:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     void *object;
  219:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** Data length in bytes or 0, if length is not specified */
  220:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_size_t dataLength;
@@ -970,6 +1018,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  224:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** Attribute bit-field of the OD sub-object, see @ref OD_attributes_t */
  225:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_attr_t attribute;
  226:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** Sub index of the OD sub-object, informative */
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 18
+
+
  227:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     uint8_t subIndex;
  228:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** } OD_stream_t;
  229:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
@@ -1018,9 +1069,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  272:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     ODR_t (*read)(OD_stream_t *stream, void *buf,
  273:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                   OD_size_t count, OD_size_t *countRead);
  274:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /**
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 18
-
-
  275:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * Function pointer for writing value into specified variable inside Object
  276:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * Dictionary. If OD variable is larger than buf, then this function must
  277:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * be called several times. After completed successful write function
@@ -1030,6 +1078,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  281:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * Write can be restarted with @ref OD_rwRestart() function.
  282:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      *
  283:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * At the moment, when Object Dictionary is initialized, every variable has
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 19
+
+
  284:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * assigned the same "write" function, which simply copies data to Object
  285:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * Dictionary variable. Application can bind its own "write" function,
  286:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * similar as it can bind "read" function.
@@ -1078,9 +1129,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  329:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * sent.
  330:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      *
  331:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * @ref OD_FLAGS_PDO_SIZE can have a value from 0 to 32 bytes, which
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 19
-
-
  332:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * corresponds to 0 to 256 available bits. If, for example,
  333:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * @ref OD_FLAGS_PDO_SIZE has value 4, then OD variables with sub index up
  334:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * to 31 will have the TPDO requesting functionality.
@@ -1090,6 +1138,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  338:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** } OD_extension_t;
  339:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  340:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 20
+
+
  341:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /**
  342:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * Object Dictionary entry for one OD object.
  343:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
@@ -1138,9 +1189,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  386:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  387:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  388:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /**
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 20
-
-
  389:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * Write value to original OD location
  390:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
  391:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * This function can be used inside read / write functions, specified by
@@ -1150,6 +1198,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  395:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * also @ref OD_IO_t.
  396:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  */
  397:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** ODR_t OD_writeOriginal(OD_stream_t *stream, const void *buf,
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 21
+
+
  398:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                        OD_size_t count, OD_size_t *countWritten);
  399:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  400:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
@@ -1198,9 +1249,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  443:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  444:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /**
  445:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * Check, if OD variable is mappable to PDO or SRDO.
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 21
-
-
  446:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
  447:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * If OD variable is mappable, then it may be necessary to protect read/write
  448:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * access from mainline function. See @ref CO_critical_sections.
@@ -1210,6 +1258,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  452:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @return true, if OD variable is mappable.
  453:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  */
  454:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** static inline bool_t OD_mappable(OD_stream_t *stream) {
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 22
+
+
  455:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     return (stream != NULL)
  456:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****          ? (stream->attribute & (ODA_TRPDO | ODA_TRSRDO)) != 0 : false;
  457:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
@@ -1258,9 +1309,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  500:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * call. If OD variable is mapped to more than one TPDO with event driven
  501:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * transmission, only the first matched TPDO will be transmitted.
  502:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 22
-
-
  503:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * TPDO event driven transmission is enabled, if TPDO communication parameter,
  504:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * transmission type is set to 0, 254 or 255. For other transmission types
  505:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * (synchronous) flagPDO bit is ignored.
@@ -1270,6 +1318,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  509:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  */
  510:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** static inline void OD_requestTPDO(uint8_t *flagsPDO, uint8_t subIndex) {
  511:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** #if OD_FLAGS_PDO_SIZE > 0
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 23
+
+
  512:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     if (flagsPDO != NULL && subIndex < (OD_FLAGS_PDO_SIZE * 8)) {
  513:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****         /* clear subIndex-th bit */
  514:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****         uint8_t mask = ~(1 << (subIndex & 0x07));
@@ -1318,9 +1369,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  557:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * Extend OD object with own read/write functions and/or flagsPDO
  558:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
  559:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * This function gives application very powerful tool: definition of own IO
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 23
-
-
  560:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * access on OD object. Structure and attributes are the same as defined in
  561:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * original OD object, but data are read directly from (or written directly to)
  562:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * application specified object via custom function calls.
@@ -1330,6 +1378,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  566:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * are accessed from read/write functions specified by extension. (Except when
  567:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * "odOrig" argument to @ref OD_getSub() is set to true.)
  568:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 24
+
+
  569:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * This function must also be used, when flagsPDO needs to be enabled for
  570:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * specific entry.
  571:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
@@ -1378,9 +1429,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  614:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @return Value from @ref ODR_t, "ODR_OK" in case of success. Error, if
  615:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * variable does not exist in object dictionary or it does not have the correct
  616:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * length or other reason.
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 24
-
-
  617:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  */
  618:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** ODR_t OD_get_value(const OD_entry_t *entry, uint8_t subIndex,
  619:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                    void *val, OD_size_t len, bool_t odOrig);
@@ -1390,6 +1438,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  623:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                               int8_t *val, bool_t odOrig)
  624:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** {
  625:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     return OD_get_value(entry, subIndex, val, sizeof(*val), odOrig);
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 25
+
+
  626:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
  627:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  628:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /** Get int16_t variable from Object Dictionary, see @ref OD_get_value */
@@ -1438,9 +1489,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  671:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** static inline ODR_t OD_get_u64(const OD_entry_t *entry, uint8_t subIndex,
  672:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                                uint64_t *val, bool_t odOrig)
  673:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 25
-
-
  674:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     return OD_get_value(entry, subIndex, val, sizeof(*val), odOrig);
  675:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
  676:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
@@ -1450,6 +1498,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  680:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** {
  681:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     return OD_get_value(entry, subIndex, val, sizeof(*val), odOrig);
  682:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 26
+
+
  683:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  684:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /** Get float64_t variable from Object Dictionary, see @ref OD_get_value */
  685:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** static inline ODR_t OD_get_f64(const OD_entry_t *entry, uint8_t subIndex,
@@ -1498,9 +1549,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  728:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  729:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /** Set int32_t variable in Object Dictionary, see @ref OD_set_value */
  730:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** static inline ODR_t OD_set_i64(const OD_entry_t *entry, uint8_t subIndex,
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 26
-
-
  731:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                                int64_t val, bool_t odOrig)
  732:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** {
  733:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     return OD_set_value(entry, subIndex, &val, sizeof(val), odOrig);
@@ -1510,449 +1558,498 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 1
  737:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** static inline ODR_t OD_set_u8(const OD_entry_t *entry, uint8_t subIndex,
  738:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                               uint8_t val, bool_t odOrig)
  739:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** {
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 27
+
+
  740:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     return OD_set_value(entry, subIndex, &val, sizeof(val), odOrig);
  741:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
  742:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  743:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /** Set uint16_t variable in Object Dictionary, see @ref OD_set_value */
  744:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** static inline ODR_t OD_set_u16(const OD_entry_t *entry, uint8_t subIndex,
-  82              		.loc 3 744 21 is_stmt 1 discriminator 1 view .LVU12
-  83              	.LBB10:
+ 115              		.loc 3 744 21 is_stmt 1 discriminator 1 view .LVU17
+ 116              	.LBB10:
  745:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                                uint16_t val, bool_t odOrig)
  746:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** {
  747:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     return OD_set_value(entry, subIndex, &val, sizeof(val), odOrig);
-  84              		.loc 3 747 5 discriminator 1 view .LVU13
-  85              		.loc 3 747 12 is_stmt 0 discriminator 1 view .LVU14
-  86 002a 0021     		movs	r1, #0
-  87 002c 0091     		str	r1, [sp]
-  88 002e 0223     		movs	r3, #2
-  89              	.LVL7:
-  90              		.loc 3 747 12 discriminator 1 view .LVU15
-  91 0030 0DF10E02 		add	r2, sp, #14
-  92              	.LVL8:
-  93              		.loc 3 747 12 discriminator 1 view .LVU16
-  94 0034 FFF7FEFF 		bl	OD_set_value
-  95              	.LVL9:
-  96              		.loc 3 747 12 discriminator 1 view .LVU17
-  97              	.LBE10:
-  98              	.LBE9:
- 154:Core/Src/freertos.c ****     osDelay(1000);
-  99              		.loc 1 154 5 is_stmt 1 discriminator 1 view .LVU18
- 154:Core/Src/freertos.c ****     osDelay(1000);
- 100              		.loc 1 154 41 is_stmt 0 discriminator 1 view .LVU19
- 101 0038 054B     		ldr	r3, .L6+8
- 102 003a 1B68     		ldr	r3, [r3]
- 103 003c 5B69     		ldr	r3, [r3, #20]
- 154:Core/Src/freertos.c ****     osDelay(1000);
- 104              		.loc 1 154 5 discriminator 1 view .LVU20
- 105 003e 5B6B     		ldr	r3, [r3, #52]
- 106              	.LVL10:
- 107              	.LBB11:
- 108              	.LBI6:
+ 117              		.loc 3 747 5 discriminator 1 view .LVU18
+ 118              		.loc 3 747 12 is_stmt 0 discriminator 1 view .LVU19
+ 119 002a 0021     		movs	r1, #0
+ 120 002c 0091     		str	r1, [sp]
+ 121 002e 0223     		movs	r3, #2
+ 122              	.LVL10:
+ 123              		.loc 3 747 12 discriminator 1 view .LVU20
+ 124 0030 0DF10E02 		add	r2, sp, #14
+ 125              	.LVL11:
+ 126              		.loc 3 747 12 discriminator 1 view .LVU21
+ 127 0034 FFF7FEFF 		bl	OD_set_value
+ 128              	.LVL12:
+ 129              		.loc 3 747 12 discriminator 1 view .LVU22
+ 130              	.LBE10:
+ 131              	.LBE9:
+ 170:Core/Src/freertos.c ****     osDelay(1000);
+ 132              		.loc 1 170 5 is_stmt 1 discriminator 1 view .LVU23
+ 170:Core/Src/freertos.c ****     osDelay(1000);
+ 133              		.loc 1 170 41 is_stmt 0 discriminator 1 view .LVU24
+ 134 0038 054B     		ldr	r3, .L9+8
+ 135 003a 1B68     		ldr	r3, [r3]
+ 136 003c 5B69     		ldr	r3, [r3, #20]
+ 170:Core/Src/freertos.c ****     osDelay(1000);
+ 137              		.loc 1 170 5 discriminator 1 view .LVU25
+ 138 003e 5B6B     		ldr	r3, [r3, #52]
+ 139              	.LVL13:
+ 140              	.LBB11:
+ 141              	.LBI6:
  453:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     if (TPDO != NULL) TPDO->sendRequest = true;
- 109              		.loc 2 453 20 is_stmt 1 discriminator 1 view .LVU21
- 110              	.LBB8:
- 111              		.loc 2 454 5 discriminator 1 view .LVU22
- 112              		.loc 2 454 8 is_stmt 0 discriminator 1 view .LVU23
- 113 0040 002B     		cmp	r3, #0
- 114 0042 E0D1     		bne	.L5
- 115 0044 E2E7     		b	.L2
- 116              	.L7:
- 117 0046 00BF     		.align	2
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 27
+ 142              		.loc 2 453 20 is_stmt 1 discriminator 1 view .LVU26
+ 143              	.LBB8:
+ 144              		.loc 2 454 5 discriminator 1 view .LVU27
+ 145              		.loc 2 454 8 is_stmt 0 discriminator 1 view .LVU28
+ 146 0040 002B     		cmp	r3, #0
+ 147 0042 E0D1     		bne	.L8
+ 148 0044 E2E7     		b	.L5
+ 149              	.L10:
+ 150 0046 00BF     		.align	2
+ 151              	.L9:
+ 152 0048 00000000 		.word	OD
+ 153 004c 00000000 		.word	OD_PERSIST_COMM
+ 154 0050 00000000 		.word	canopenNodeSTM32
+ 155              	.LBE8:
+ 156              	.LBE11:
+ 157              		.cfi_endproc
+ 158              	.LFE170:
+ 160              		.global	__aeabi_ui2d
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 28
 
 
- 118              	.L6:
- 119 0048 00000000 		.word	OD
- 120 004c 00000000 		.word	OD_PERSIST_COMM
- 121 0050 00000000 		.word	canopenNodeSTM32
- 122              	.LBE8:
- 123              	.LBE11:
- 124              		.cfi_endproc
- 125              	.LFE169:
- 127              		.global	__aeabi_ui2d
- 128              		.global	__aeabi_dmul
- 129              		.global	__aeabi_dsub
- 130              		.global	__aeabi_d2iz
- 131              		.section	.text.canopen_task,"ax",%progbits
- 132              		.align	1
- 133              		.global	canopen_task
- 134              		.syntax unified
- 135              		.thumb
- 136              		.thumb_func
- 138              	canopen_task:
- 139              	.LVL11:
- 140              	.LFB170:
- 156:Core/Src/freertos.c ****   }
- 157:Core/Src/freertos.c ****   /* USER CODE END StartUITask */
- 158:Core/Src/freertos.c **** }
- 159:Core/Src/freertos.c **** 
- 160:Core/Src/freertos.c **** /* USER CODE BEGIN Header_canopen_task */
- 161:Core/Src/freertos.c **** /**
- 162:Core/Src/freertos.c ****  * @brief Function implementing the canopenTask thread.
- 163:Core/Src/freertos.c ****  * @param argument: Not used
- 164:Core/Src/freertos.c ****  * @retval None
- 165:Core/Src/freertos.c ****  */
- 166:Core/Src/freertos.c **** /* USER CODE END Header_canopen_task */
- 167:Core/Src/freertos.c **** void canopen_task(void *argument)
- 168:Core/Src/freertos.c **** {
- 141              		.loc 1 168 1 is_stmt 1 view -0
- 142              		.cfi_startproc
- 143              		@ Volatile: function does not return.
- 144              		@ args = 0, pretend = 0, frame = 24
- 145              		@ frame_needed = 0, uses_anonymous_args = 0
- 146              		.loc 1 168 1 is_stmt 0 view .LVU25
- 147 0000 00B5     		push	{lr}
- 148              	.LCFI2:
- 149              		.cfi_def_cfa_offset 4
- 150              		.cfi_offset 14, -4
- 151 0002 87B0     		sub	sp, sp, #28
- 152              	.LCFI3:
- 153              		.cfi_def_cfa_offset 32
- 169:Core/Src/freertos.c ****   /* USER CODE BEGIN canopen_task */
- 170:Core/Src/freertos.c ****   CANopenNodeSTM32 canOpenNodeSTM32;
- 154              		.loc 1 170 3 is_stmt 1 view .LVU26
- 171:Core/Src/freertos.c ****   canOpenNodeSTM32.CANHandle = &hcan;
- 155              		.loc 1 171 3 view .LVU27
- 156              		.loc 1 171 30 is_stmt 0 view .LVU28
- 157 0004 2A4B     		ldr	r3, .L11+8
- 158 0006 0293     		str	r3, [sp, #8]
- 172:Core/Src/freertos.c ****   canOpenNodeSTM32.HWInitFunction = MX_CAN_Init;
- 159              		.loc 1 172 3 is_stmt 1 view .LVU29
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 28
+ 161              		.global	__aeabi_dmul
+ 162              		.global	__aeabi_dsub
+ 163              		.global	__aeabi_d2iz
+ 164              		.section	.text.canopen_task,"ax",%progbits
+ 165              		.align	1
+ 166              		.global	canopen_task
+ 167              		.syntax unified
+ 168              		.thumb
+ 169              		.thumb_func
+ 171              	canopen_task:
+ 172              	.LVL14:
+ 173              	.LFB171:
+ 172:Core/Src/freertos.c ****   }
+ 173:Core/Src/freertos.c ****   /* USER CODE END StartUITask */
+ 174:Core/Src/freertos.c **** }
+ 175:Core/Src/freertos.c **** 
+ 176:Core/Src/freertos.c **** /* USER CODE BEGIN Header_canopen_task */
+ 177:Core/Src/freertos.c **** /**
+ 178:Core/Src/freertos.c ****  * @brief Function implementing the canopenTask thread.
+ 179:Core/Src/freertos.c ****  * @param argument: Not used
+ 180:Core/Src/freertos.c ****  * @retval None
+ 181:Core/Src/freertos.c ****  */
+ 182:Core/Src/freertos.c **** /* USER CODE END Header_canopen_task */
+ 183:Core/Src/freertos.c **** void canopen_task(void *argument)
+ 184:Core/Src/freertos.c **** {
+ 174              		.loc 1 184 1 is_stmt 1 view -0
+ 175              		.cfi_startproc
+ 176              		@ Volatile: function does not return.
+ 177              		@ args = 0, pretend = 0, frame = 24
+ 178              		@ frame_needed = 0, uses_anonymous_args = 0
+ 179              		.loc 1 184 1 is_stmt 0 view .LVU30
+ 180 0000 00B5     		push	{lr}
+ 181              	.LCFI3:
+ 182              		.cfi_def_cfa_offset 4
+ 183              		.cfi_offset 14, -4
+ 184 0002 87B0     		sub	sp, sp, #28
+ 185              	.LCFI4:
+ 186              		.cfi_def_cfa_offset 32
+ 185:Core/Src/freertos.c ****   /* USER CODE BEGIN canopen_task */
+ 186:Core/Src/freertos.c ****   CANopenNodeSTM32 canOpenNodeSTM32;
+ 187              		.loc 1 186 3 is_stmt 1 view .LVU31
+ 187:Core/Src/freertos.c ****   canOpenNodeSTM32.CANHandle = &hcan;
+ 188              		.loc 1 187 3 view .LVU32
+ 189              		.loc 1 187 30 is_stmt 0 view .LVU33
+ 190 0004 284B     		ldr	r3, .L14+8
+ 191 0006 0293     		str	r3, [sp, #8]
+ 188:Core/Src/freertos.c ****   canOpenNodeSTM32.HWInitFunction = MX_CAN_Init;
+ 192              		.loc 1 188 3 is_stmt 1 view .LVU34
+ 193              		.loc 1 188 35 is_stmt 0 view .LVU35
+ 194 0008 284B     		ldr	r3, .L14+12
+ 195 000a 0393     		str	r3, [sp, #12]
+ 189:Core/Src/freertos.c ****   canOpenNodeSTM32.timerHandle = &htim17;
+ 196              		.loc 1 189 3 is_stmt 1 view .LVU36
+ 197              		.loc 1 189 32 is_stmt 0 view .LVU37
+ 198 000c 284B     		ldr	r3, .L14+16
+ 199 000e 0193     		str	r3, [sp, #4]
+ 190:Core/Src/freertos.c ****   canOpenNodeSTM32.desiredNodeID = 17;
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 29
 
 
- 160              		.loc 1 172 35 is_stmt 0 view .LVU30
- 161 0008 2A4B     		ldr	r3, .L11+12
- 162 000a 0393     		str	r3, [sp, #12]
- 173:Core/Src/freertos.c ****   canOpenNodeSTM32.timerHandle = &htim17;
- 163              		.loc 1 173 3 is_stmt 1 view .LVU31
- 164              		.loc 1 173 32 is_stmt 0 view .LVU32
- 165 000c 2A4B     		ldr	r3, .L11+16
- 166 000e 0193     		str	r3, [sp, #4]
- 174:Core/Src/freertos.c ****   canOpenNodeSTM32.desiredNodeID = (uint8_t)get_NodeID();
- 167              		.loc 1 174 3 is_stmt 1 view .LVU33
- 168              		.loc 1 174 45 is_stmt 0 view .LVU34
- 169 0010 FFF7FEFF 		bl	get_NodeID
- 170              	.LVL12:
- 171              		.loc 1 174 34 view .LVU35
- 172 0014 8DF80000 		strb	r0, [sp]
- 175:Core/Src/freertos.c ****   canOpenNodeSTM32.baudrate = 125;
- 173              		.loc 1 175 3 is_stmt 1 view .LVU36
- 174              		.loc 1 175 29 is_stmt 0 view .LVU37
- 175 0018 7D23     		movs	r3, #125
- 176 001a 8DF80230 		strb	r3, [sp, #2]
- 176:Core/Src/freertos.c ****   canopen_app_init(&canOpenNodeSTM32);
- 177              		.loc 1 176 3 is_stmt 1 view .LVU38
- 178 001e 6846     		mov	r0, sp
- 179 0020 FFF7FEFF 		bl	canopen_app_init
- 180              	.LVL13:
- 181              	.L9:
- 177:Core/Src/freertos.c ****   /* Infinite loop */
- 178:Core/Src/freertos.c ****   for (;;)
- 182              		.loc 1 178 3 discriminator 1 view .LVU39
- 179:Core/Src/freertos.c ****   {
- 180:Core/Src/freertos.c ****     canopen_app_process();
- 183              		.loc 1 180 5 discriminator 1 view .LVU40
- 184 0024 FFF7FEFF 		bl	canopen_app_process
- 185              	.LVL14:
- 181:Core/Src/freertos.c ****     HAL_ADC_Start(&hadc1);
- 186              		.loc 1 181 5 discriminator 1 view .LVU41
- 187 0028 244C     		ldr	r4, .L11+20
- 188 002a 2046     		mov	r0, r4
- 189 002c FFF7FEFF 		bl	HAL_ADC_Start
- 190              	.LVL15:
- 182:Core/Src/freertos.c ****     HAL_ADC_PollForConversion(&hadc1, 1);
- 191              		.loc 1 182 5 discriminator 1 view .LVU42
- 192 0030 0121     		movs	r1, #1
- 193 0032 2046     		mov	r0, r4
- 194 0034 FFF7FEFF 		bl	HAL_ADC_PollForConversion
- 195              	.LVL16:
- 183:Core/Src/freertos.c ****     voltage = HAL_ADC_GetValue(&hadc1);
- 196              		.loc 1 183 5 discriminator 1 view .LVU43
- 197              		.loc 1 183 15 is_stmt 0 discriminator 1 view .LVU44
- 198 0038 2046     		mov	r0, r4
- 199 003a FFF7FEFF 		bl	HAL_ADC_GetValue
- 200              	.LVL17:
- 201              		.loc 1 183 13 discriminator 1 view .LVU45
- 202 003e FFF7FEFF 		bl	__aeabi_ui2d
- 203              	.LVL18:
- 204 0042 0246     		mov	r2, r0
- 205 0044 0B46     		mov	r3, r1
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 29
+ 200              		.loc 1 190 3 is_stmt 1 view .LVU38
+ 201              		.loc 1 190 34 is_stmt 0 view .LVU39
+ 202 0010 1123     		movs	r3, #17
+ 203 0012 8DF80030 		strb	r3, [sp]
+ 191:Core/Src/freertos.c ****   canOpenNodeSTM32.baudrate = 125;
+ 204              		.loc 1 191 3 is_stmt 1 view .LVU40
+ 205              		.loc 1 191 29 is_stmt 0 view .LVU41
+ 206 0016 7D23     		movs	r3, #125
+ 207 0018 8DF80230 		strb	r3, [sp, #2]
+ 192:Core/Src/freertos.c ****   canopen_app_init(&canOpenNodeSTM32);
+ 208              		.loc 1 192 3 is_stmt 1 view .LVU42
+ 209 001c 6846     		mov	r0, sp
+ 210              	.LVL15:
+ 211              		.loc 1 192 3 is_stmt 0 view .LVU43
+ 212 001e FFF7FEFF 		bl	canopen_app_init
+ 213              	.LVL16:
+ 214              	.L12:
+ 193:Core/Src/freertos.c ****   /* Infinite loop */
+ 194:Core/Src/freertos.c ****   for (;;)
+ 215              		.loc 1 194 3 is_stmt 1 discriminator 1 view .LVU44
+ 195:Core/Src/freertos.c ****   {
+ 196:Core/Src/freertos.c ****     canopen_app_process();
+ 216              		.loc 1 196 5 discriminator 1 view .LVU45
+ 217 0022 FFF7FEFF 		bl	canopen_app_process
+ 218              	.LVL17:
+ 197:Core/Src/freertos.c ****     HAL_ADC_Start(&hadc1);
+ 219              		.loc 1 197 5 discriminator 1 view .LVU46
+ 220 0026 234C     		ldr	r4, .L14+20
+ 221 0028 2046     		mov	r0, r4
+ 222 002a FFF7FEFF 		bl	HAL_ADC_Start
+ 223              	.LVL18:
+ 198:Core/Src/freertos.c ****     HAL_ADC_PollForConversion(&hadc1, 1);
+ 224              		.loc 1 198 5 discriminator 1 view .LVU47
+ 225 002e 0121     		movs	r1, #1
+ 226 0030 2046     		mov	r0, r4
+ 227 0032 FFF7FEFF 		bl	HAL_ADC_PollForConversion
+ 228              	.LVL19:
+ 199:Core/Src/freertos.c ****     voltage = HAL_ADC_GetValue(&hadc1);
+ 229              		.loc 1 199 5 discriminator 1 view .LVU48
+ 230              		.loc 1 199 15 is_stmt 0 discriminator 1 view .LVU49
+ 231 0036 2046     		mov	r0, r4
+ 232 0038 FFF7FEFF 		bl	HAL_ADC_GetValue
+ 233              	.LVL20:
+ 234              		.loc 1 199 13 discriminator 1 view .LVU50
+ 235 003c FFF7FEFF 		bl	__aeabi_ui2d
+ 236              	.LVL21:
+ 237 0040 0246     		mov	r2, r0
+ 238 0042 0B46     		mov	r3, r1
+ 239 0044 1C4C     		ldr	r4, .L14+24
+ 240 0046 C4E90023 		strd	r2, [r4]
+ 200:Core/Src/freertos.c ****     voltage = ((voltage / 4096) * 3.3);
+ 241              		.loc 1 200 5 is_stmt 1 discriminator 1 view .LVU51
+ 242              		.loc 1 200 25 is_stmt 0 discriminator 1 view .LVU52
+ 243 004a 0022     		movs	r2, #0
+ 244 004c 1B4B     		ldr	r3, .L14+28
+ 245 004e FFF7FEFF 		bl	__aeabi_dmul
+ 246              	.LVL22:
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 30
 
 
- 206 0046 1E4C     		ldr	r4, .L11+24
- 207 0048 C4E90023 		strd	r2, [r4]
- 184:Core/Src/freertos.c ****     voltage = ((voltage / 4096) * 3.3);
- 208              		.loc 1 184 5 is_stmt 1 discriminator 1 view .LVU46
- 209              		.loc 1 184 25 is_stmt 0 discriminator 1 view .LVU47
- 210 004c 0022     		movs	r2, #0
- 211 004e 1D4B     		ldr	r3, .L11+28
- 212 0050 FFF7FEFF 		bl	__aeabi_dmul
- 213              	.LVL19:
- 214              		.loc 1 184 33 discriminator 1 view .LVU48
- 215 0054 14A3     		adr	r3, .L11
- 216 0056 D3E90023 		ldrd	r2, [r3]
- 217 005a FFF7FEFF 		bl	__aeabi_dmul
- 218              	.LVL20:
- 219 005e 0246     		mov	r2, r0
- 220 0060 0B46     		mov	r3, r1
- 221              		.loc 1 184 13 discriminator 1 view .LVU49
- 222 0062 C4E90023 		strd	r2, [r4]
- 185:Core/Src/freertos.c ****     steering_value = (voltage * 22.5) - 45;
- 223              		.loc 1 185 5 is_stmt 1 discriminator 1 view .LVU50
- 224              		.loc 1 185 31 is_stmt 0 discriminator 1 view .LVU51
- 225 0066 0022     		movs	r2, #0
- 226 0068 174B     		ldr	r3, .L11+32
- 227 006a FFF7FEFF 		bl	__aeabi_dmul
- 228              	.LVL21:
- 229              		.loc 1 185 39 discriminator 1 view .LVU52
- 230 006e 0022     		movs	r2, #0
- 231 0070 164B     		ldr	r3, .L11+36
- 232 0072 FFF7FEFF 		bl	__aeabi_dsub
- 233              	.LVL22:
- 234 0076 0246     		mov	r2, r0
- 235 0078 0B46     		mov	r3, r1
- 236              		.loc 1 185 20 discriminator 1 view .LVU53
- 237 007a 154C     		ldr	r4, .L11+40
- 238 007c C4E90023 		strd	r2, [r4]
- 186:Core/Src/freertos.c ****     steering_value *= 100;
- 239              		.loc 1 186 5 is_stmt 1 discriminator 1 view .LVU54
- 240              		.loc 1 186 20 is_stmt 0 discriminator 1 view .LVU55
- 241 0080 0022     		movs	r2, #0
- 242 0082 144B     		ldr	r3, .L11+44
- 243 0084 FFF7FEFF 		bl	__aeabi_dmul
- 244              	.LVL23:
- 245 0088 0246     		mov	r2, r0
- 246 008a 0B46     		mov	r3, r1
- 247 008c C4E90023 		strd	r2, [r4]
- 187:Core/Src/freertos.c ****     OD_PERSIST_COMM.x6000_steering = steering_value;
- 248              		.loc 1 187 5 is_stmt 1 discriminator 1 view .LVU56
- 249              		.loc 1 187 36 is_stmt 0 discriminator 1 view .LVU57
- 250 0090 FFF7FEFF 		bl	__aeabi_d2iz
- 251              	.LVL24:
- 252 0094 104B     		ldr	r3, .L11+48
- 253 0096 A3F89C00 		strh	r0, [r3, #156]	@ movhi
- 188:Core/Src/freertos.c ****     vTaskDelay(1);
- 254              		.loc 1 188 5 is_stmt 1 discriminator 1 view .LVU58
- 255 009a 0120     		movs	r0, #1
- 256 009c FFF7FEFF 		bl	vTaskDelay
- 257              	.LVL25:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 30
+ 247              		.loc 1 200 33 discriminator 1 view .LVU53
+ 248 0052 13A3     		adr	r3, .L14
+ 249 0054 D3E90023 		ldrd	r2, [r3]
+ 250 0058 FFF7FEFF 		bl	__aeabi_dmul
+ 251              	.LVL23:
+ 252 005c 0246     		mov	r2, r0
+ 253 005e 0B46     		mov	r3, r1
+ 254              		.loc 1 200 13 discriminator 1 view .LVU54
+ 255 0060 C4E90023 		strd	r2, [r4]
+ 201:Core/Src/freertos.c ****     steering_value = (voltage * 22.5) - 45;
+ 256              		.loc 1 201 5 is_stmt 1 discriminator 1 view .LVU55
+ 257              		.loc 1 201 31 is_stmt 0 discriminator 1 view .LVU56
+ 258 0064 0022     		movs	r2, #0
+ 259 0066 164B     		ldr	r3, .L14+32
+ 260 0068 FFF7FEFF 		bl	__aeabi_dmul
+ 261              	.LVL24:
+ 262              		.loc 1 201 39 discriminator 1 view .LVU57
+ 263 006c 0022     		movs	r2, #0
+ 264 006e 154B     		ldr	r3, .L14+36
+ 265 0070 FFF7FEFF 		bl	__aeabi_dsub
+ 266              	.LVL25:
+ 267 0074 0246     		mov	r2, r0
+ 268 0076 0B46     		mov	r3, r1
+ 269              		.loc 1 201 20 discriminator 1 view .LVU58
+ 270 0078 134C     		ldr	r4, .L14+40
+ 271 007a C4E90023 		strd	r2, [r4]
+ 202:Core/Src/freertos.c ****     steering_value *= 100;
+ 272              		.loc 1 202 5 is_stmt 1 discriminator 1 view .LVU59
+ 273              		.loc 1 202 20 is_stmt 0 discriminator 1 view .LVU60
+ 274 007e 0022     		movs	r2, #0
+ 275 0080 124B     		ldr	r3, .L14+44
+ 276 0082 FFF7FEFF 		bl	__aeabi_dmul
+ 277              	.LVL26:
+ 278 0086 0246     		mov	r2, r0
+ 279 0088 0B46     		mov	r3, r1
+ 280 008a C4E90023 		strd	r2, [r4]
+ 203:Core/Src/freertos.c ****     OD_PERSIST_COMM.x6000_steering = steering_value;
+ 281              		.loc 1 203 5 is_stmt 1 discriminator 1 view .LVU61
+ 282              		.loc 1 203 36 is_stmt 0 discriminator 1 view .LVU62
+ 283 008e FFF7FEFF 		bl	__aeabi_d2iz
+ 284              	.LVL27:
+ 285 0092 0F4B     		ldr	r3, .L14+48
+ 286 0094 A3F89C00 		strh	r0, [r3, #156]	@ movhi
+ 204:Core/Src/freertos.c ****     vTaskDelay(1);
+ 287              		.loc 1 204 5 is_stmt 1 discriminator 1 view .LVU63
+ 288 0098 0120     		movs	r0, #1
+ 289 009a FFF7FEFF 		bl	vTaskDelay
+ 290              	.LVL28:
+ 194:Core/Src/freertos.c ****   {
+ 291              		.loc 1 194 9 discriminator 1 view .LVU64
+ 292 009e C0E7     		b	.L12
+ 293              	.L15:
+ 294              		.align	3
+ 295              	.L14:
+ 296 00a0 66666666 		.word	1717986918
+ 297 00a4 66660A40 		.word	1074423398
+ 298 00a8 00000000 		.word	hcan
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 31
 
 
- 178:Core/Src/freertos.c ****   {
- 258              		.loc 1 178 9 discriminator 1 view .LVU59
- 259 00a0 C0E7     		b	.L9
- 260              	.L12:
- 261 00a2 00BFAFF3 		.align	3
- 261      0080
- 262              	.L11:
- 263 00a8 66666666 		.word	1717986918
- 264 00ac 66660A40 		.word	1074423398
- 265 00b0 00000000 		.word	hcan
- 266 00b4 00000000 		.word	MX_CAN_Init
- 267 00b8 00000000 		.word	htim17
- 268 00bc 00000000 		.word	hadc1
- 269 00c0 00000000 		.word	.LANCHOR0
- 270 00c4 0000303F 		.word	1060110336
- 271 00c8 00803640 		.word	1077313536
- 272 00cc 00804640 		.word	1078362112
- 273 00d0 00000000 		.word	.LANCHOR1
- 274 00d4 00005940 		.word	1079574528
- 275 00d8 00000000 		.word	OD_PERSIST_COMM
- 276              		.cfi_endproc
- 277              	.LFE170:
- 279              		.section	.text.MX_FREERTOS_Init,"ax",%progbits
- 280              		.align	1
- 281              		.global	MX_FREERTOS_Init
- 282              		.syntax unified
- 283              		.thumb
- 284              		.thumb_func
- 286              	MX_FREERTOS_Init:
- 287              	.LFB168:
-  90:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
- 288              		.loc 1 90 1 view -0
- 289              		.cfi_startproc
- 290              		@ args = 0, pretend = 0, frame = 0
- 291              		@ frame_needed = 0, uses_anonymous_args = 0
- 292 0000 08B5     		push	{r3, lr}
- 293              	.LCFI4:
- 294              		.cfi_def_cfa_offset 8
- 295              		.cfi_offset 3, -8
- 296              		.cfi_offset 14, -4
- 115:Core/Src/freertos.c **** 
- 297              		.loc 1 115 3 view .LVU61
- 115:Core/Src/freertos.c **** 
- 298              		.loc 1 115 18 is_stmt 0 view .LVU62
- 299 0002 074A     		ldr	r2, .L15
- 300 0004 0021     		movs	r1, #0
- 301 0006 0748     		ldr	r0, .L15+4
- 302 0008 FFF7FEFF 		bl	osThreadNew
- 303              	.LVL26:
- 115:Core/Src/freertos.c **** 
- 304              		.loc 1 115 16 view .LVU63
- 305 000c 064B     		ldr	r3, .L15+8
- 306 000e 1860     		str	r0, [r3]
- 118:Core/Src/freertos.c **** 
- 307              		.loc 1 118 3 is_stmt 1 view .LVU64
- 118:Core/Src/freertos.c **** 
- 308              		.loc 1 118 23 is_stmt 0 view .LVU65
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 31
+ 299 00ac 00000000 		.word	MX_CAN_Init
+ 300 00b0 00000000 		.word	htim17
+ 301 00b4 00000000 		.word	hadc1
+ 302 00b8 00000000 		.word	.LANCHOR0
+ 303 00bc 0000303F 		.word	1060110336
+ 304 00c0 00803640 		.word	1077313536
+ 305 00c4 00804640 		.word	1078362112
+ 306 00c8 00000000 		.word	.LANCHOR1
+ 307 00cc 00005940 		.word	1079574528
+ 308 00d0 00000000 		.word	OD_PERSIST_COMM
+ 309              		.cfi_endproc
+ 310              	.LFE171:
+ 312              		.section	.text.MX_FREERTOS_Init,"ax",%progbits
+ 313              		.align	1
+ 314              		.global	MX_FREERTOS_Init
+ 315              		.syntax unified
+ 316              		.thumb
+ 317              		.thumb_func
+ 319              	MX_FREERTOS_Init:
+ 320              	.LFB168:
+  96:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
+ 321              		.loc 1 96 29 view -0
+ 322              		.cfi_startproc
+ 323              		@ args = 0, pretend = 0, frame = 0
+ 324              		@ frame_needed = 0, uses_anonymous_args = 0
+ 325 0000 08B5     		push	{r3, lr}
+ 326              	.LCFI5:
+ 327              		.cfi_def_cfa_offset 8
+ 328              		.cfi_offset 3, -8
+ 329              		.cfi_offset 14, -4
+ 119:Core/Src/freertos.c **** 
+ 330              		.loc 1 119 3 view .LVU66
+ 119:Core/Src/freertos.c **** 
+ 331              		.loc 1 119 24 is_stmt 0 view .LVU67
+ 332 0002 0B4A     		ldr	r2, .L18
+ 333 0004 0021     		movs	r1, #0
+ 334 0006 0B48     		ldr	r0, .L18+4
+ 335 0008 FFF7FEFF 		bl	osThreadNew
+ 336              	.LVL29:
+ 119:Core/Src/freertos.c **** 
+ 337              		.loc 1 119 22 view .LVU68
+ 338 000c 0A4B     		ldr	r3, .L18+8
+ 339 000e 1860     		str	r0, [r3]
+ 122:Core/Src/freertos.c **** 
+ 340              		.loc 1 122 3 is_stmt 1 view .LVU69
+ 122:Core/Src/freertos.c **** 
+ 341              		.loc 1 122 18 is_stmt 0 view .LVU70
+ 342 0010 0A4A     		ldr	r2, .L18+12
+ 343 0012 0021     		movs	r1, #0
+ 344 0014 0A48     		ldr	r0, .L18+16
+ 345 0016 FFF7FEFF 		bl	osThreadNew
+ 346              	.LVL30:
+ 122:Core/Src/freertos.c **** 
+ 347              		.loc 1 122 16 view .LVU71
+ 348 001a 0A4B     		ldr	r3, .L18+20
+ 349 001c 1860     		str	r0, [r3]
+ 125:Core/Src/freertos.c **** 
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 32
 
 
- 309 0010 064A     		ldr	r2, .L15+12
- 310 0012 0021     		movs	r1, #0
- 311 0014 0648     		ldr	r0, .L15+16
- 312 0016 FFF7FEFF 		bl	osThreadNew
- 313              	.LVL27:
- 118:Core/Src/freertos.c **** 
- 314              		.loc 1 118 21 view .LVU66
- 315 001a 064B     		ldr	r3, .L15+20
- 316 001c 1860     		str	r0, [r3]
- 127:Core/Src/freertos.c **** 
- 317              		.loc 1 127 1 view .LVU67
- 318 001e 08BD     		pop	{r3, pc}
- 319              	.L16:
- 320              		.align	2
- 321              	.L15:
- 322 0020 00000000 		.word	.LANCHOR2
- 323 0024 00000000 		.word	StartUITask
- 324 0028 00000000 		.word	.LANCHOR3
- 325 002c 00000000 		.word	.LANCHOR4
- 326 0030 00000000 		.word	canopen_task
- 327 0034 00000000 		.word	.LANCHOR5
- 328              		.cfi_endproc
- 329              	.LFE168:
- 331              		.global	voltage
- 332              		.global	steering_value
- 333              		.global	canopenTask_attributes
- 334              		.section	.rodata.str1.4,"aMS",%progbits,1
- 335              		.align	2
- 336              	.LC0:
- 337 0000 63616E6F 		.ascii	"canopenTask\000"
- 337      70656E54 
- 337      61736B00 
- 338              		.global	canopenTaskHandle
- 339              		.global	UITask_attributes
- 340              		.align	2
- 341              	.LC1:
- 342 000c 55495461 		.ascii	"UITask\000"
- 342      736B00
- 343              		.global	UITaskHandle
- 344              		.section	.bss.UITaskHandle,"aw",%nobits
- 345              		.align	2
- 346              		.set	.LANCHOR3,. + 0
- 349              	UITaskHandle:
- 350 0000 00000000 		.space	4
- 351              		.section	.bss.canopenTaskHandle,"aw",%nobits
- 352              		.align	2
- 353              		.set	.LANCHOR5,. + 0
- 356              	canopenTaskHandle:
- 357 0000 00000000 		.space	4
- 358              		.section	.bss.steering_value,"aw",%nobits
- 359              		.align	3
- 360              		.set	.LANCHOR1,. + 0
- 363              	steering_value:
- 364 0000 00000000 		.space	8
- 364      00000000 
- 365              		.section	.bss.voltage,"aw",%nobits
- 366              		.align	3
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 32
+ 350              		.loc 1 125 3 is_stmt 1 view .LVU72
+ 125:Core/Src/freertos.c **** 
+ 351              		.loc 1 125 23 is_stmt 0 view .LVU73
+ 352 001e 0A4A     		ldr	r2, .L18+24
+ 353 0020 0021     		movs	r1, #0
+ 354 0022 0A48     		ldr	r0, .L18+28
+ 355 0024 FFF7FEFF 		bl	osThreadNew
+ 356              	.LVL31:
+ 125:Core/Src/freertos.c **** 
+ 357              		.loc 1 125 21 view .LVU74
+ 358 0028 094B     		ldr	r3, .L18+32
+ 359 002a 1860     		str	r0, [r3]
+ 135:Core/Src/freertos.c **** 
+ 360              		.loc 1 135 1 view .LVU75
+ 361 002c 08BD     		pop	{r3, pc}
+ 362              	.L19:
+ 363 002e 00BF     		.align	2
+ 364              	.L18:
+ 365 0030 00000000 		.word	.LANCHOR2
+ 366 0034 00000000 		.word	StartReadDistance
+ 367 0038 00000000 		.word	.LANCHOR3
+ 368 003c 00000000 		.word	.LANCHOR4
+ 369 0040 00000000 		.word	StartUITask
+ 370 0044 00000000 		.word	.LANCHOR5
+ 371 0048 00000000 		.word	.LANCHOR6
+ 372 004c 00000000 		.word	canopen_task
+ 373 0050 00000000 		.word	.LANCHOR7
+ 374              		.cfi_endproc
+ 375              	.LFE168:
+ 377              		.global	voltage
+ 378              		.global	steering_value
+ 379              		.global	canopenTask_attributes
+ 380              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 381              		.align	2
+ 382              	.LC0:
+ 383 0000 63616E6F 		.ascii	"canopenTask\000"
+ 383      70656E54 
+ 383      61736B00 
+ 384              		.global	canopenTaskHandle
+ 385              		.global	UITask_attributes
+ 386              		.align	2
+ 387              	.LC1:
+ 388 000c 55495461 		.ascii	"UITask\000"
+ 388      736B00
+ 389              		.global	UITaskHandle
+ 390              		.global	ReadDistance_attributes
+ 391 0013 00       		.align	2
+ 392              	.LC2:
+ 393 0014 52656164 		.ascii	"ReadDistance\000"
+ 393      44697374 
+ 393      616E6365 
+ 393      00
+ 394              		.global	ReadDistanceHandle
+ 395              		.section	.bss.ReadDistanceHandle,"aw",%nobits
+ 396              		.align	2
+ 397              		.set	.LANCHOR3,. + 0
+ 400              	ReadDistanceHandle:
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 33
 
 
- 367              		.set	.LANCHOR0,. + 0
- 370              	voltage:
- 371 0000 00000000 		.space	8
- 371      00000000 
- 372              		.section	.rodata.UITask_attributes,"a"
- 373              		.align	2
- 374              		.set	.LANCHOR2,. + 0
- 377              	UITask_attributes:
- 378 0000 0C000000 		.word	.LC1
- 379 0004 00000000 		.space	16
- 379      00000000 
- 379      00000000 
- 379      00000000 
- 380 0014 00020000 		.word	512
- 381 0018 18000000 		.word	24
- 382 001c 00000000 		.space	8
- 382      00000000 
- 383              		.section	.rodata.canopenTask_attributes,"a"
- 384              		.align	2
- 385              		.set	.LANCHOR4,. + 0
- 388              	canopenTask_attributes:
- 389 0000 00000000 		.word	.LC0
- 390 0004 00000000 		.space	16
- 390      00000000 
- 390      00000000 
- 390      00000000 
- 391 0014 00020000 		.word	512
- 392 0018 30000000 		.word	48
- 393 001c 00000000 		.space	8
- 393      00000000 
- 394              		.text
- 395              	.Letext0:
- 396              		.file 4 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 397              		.file 5 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 398              		.file 6 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 399              		.file 7 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h"
- 400              		.file 8 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f3xx.h"
- 401              		.file 9 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
- 402              		.file 10 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h"
- 403              		.file 11 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc_ex.h"
- 404              		.file 12 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h"
- 405              		.file 13 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_can.h"
- 406              		.file 14 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h"
- 407              		.file 15 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
- 408              		.file 16 "Middlewares/Third_Party/CANopenNode_STM32/CO_driver_target.h"
- 409              		.file 17 "Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h"
- 410              		.file 18 "Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h"
- 411              		.file 19 "Middlewares/Third_Party/CANopenNode/301/CO_HBconsumer.h"
- 412              		.file 20 "Middlewares/Third_Party/CANopenNode/301/CO_SDOserver.h"
- 413              		.file 21 "Middlewares/Third_Party/CANopenNode/301/CO_SYNC.h"
- 414              		.file 22 "Middlewares/Third_Party/CANopenNode/301/CO_TIME.h"
- 415              		.file 23 "Middlewares/Third_Party/CANopenNode/303/CO_LEDs.h"
- 416              		.file 24 "Middlewares/Third_Party/CANopenNode/305/CO_LSS.h"
- 417              		.file 25 "Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h"
- 418              		.file 26 "Middlewares/Third_Party/CANopenNode/CANopen.h"
- 419              		.file 27 "Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.h"
- 420              		.file 28 "Middlewares/Third_Party/CANopenNode_STM32/OD.h"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 33
+ 401 0000 00000000 		.space	4
+ 402              		.section	.bss.UITaskHandle,"aw",%nobits
+ 403              		.align	2
+ 404              		.set	.LANCHOR5,. + 0
+ 407              	UITaskHandle:
+ 408 0000 00000000 		.space	4
+ 409              		.section	.bss.canopenTaskHandle,"aw",%nobits
+ 410              		.align	2
+ 411              		.set	.LANCHOR7,. + 0
+ 414              	canopenTaskHandle:
+ 415 0000 00000000 		.space	4
+ 416              		.section	.bss.steering_value,"aw",%nobits
+ 417              		.align	3
+ 418              		.set	.LANCHOR1,. + 0
+ 421              	steering_value:
+ 422 0000 00000000 		.space	8
+ 422      00000000 
+ 423              		.section	.bss.voltage,"aw",%nobits
+ 424              		.align	3
+ 425              		.set	.LANCHOR0,. + 0
+ 428              	voltage:
+ 429 0000 00000000 		.space	8
+ 429      00000000 
+ 430              		.section	.rodata.ReadDistance_attributes,"a"
+ 431              		.align	2
+ 432              		.set	.LANCHOR2,. + 0
+ 435              	ReadDistance_attributes:
+ 436 0000 14000000 		.word	.LC2
+ 437 0004 00000000 		.space	16
+ 437      00000000 
+ 437      00000000 
+ 437      00000000 
+ 438 0014 00020000 		.word	512
+ 439 0018 28000000 		.word	40
+ 440 001c 00000000 		.space	8
+ 440      00000000 
+ 441              		.section	.rodata.UITask_attributes,"a"
+ 442              		.align	2
+ 443              		.set	.LANCHOR4,. + 0
+ 446              	UITask_attributes:
+ 447 0000 0C000000 		.word	.LC1
+ 448 0004 00000000 		.space	16
+ 448      00000000 
+ 448      00000000 
+ 448      00000000 
+ 449 0014 00020000 		.word	512
+ 450 0018 18000000 		.word	24
+ 451 001c 00000000 		.space	8
+ 451      00000000 
+ 452              		.section	.rodata.canopenTask_attributes,"a"
+ 453              		.align	2
+ 454              		.set	.LANCHOR6,. + 0
+ 457              	canopenTask_attributes:
+ 458 0000 00000000 		.word	.LC0
+ 459 0004 00000000 		.space	16
+ 459      00000000 
+ 459      00000000 
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 34
 
 
- 421              		.file 29 "Core/Inc/tim.h"
- 422              		.file 30 "Core/Inc/can.h"
- 423              		.file 31 "Core/Inc/adc.h"
- 424              		.file 32 "Core/Inc/main.h"
- 425              		.file 33 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccdXacDD.s 			page 34
+ 459      00000000 
+ 460 0014 00020000 		.word	512
+ 461 0018 30000000 		.word	48
+ 462 001c 00000000 		.space	8
+ 462      00000000 
+ 463              		.text
+ 464              	.Letext0:
+ 465              		.file 4 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 466              		.file 5 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 467              		.file 6 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 468              		.file 7 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h"
+ 469              		.file 8 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f3xx.h"
+ 470              		.file 9 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
+ 471              		.file 10 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h"
+ 472              		.file 11 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc_ex.h"
+ 473              		.file 12 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h"
+ 474              		.file 13 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_can.h"
+ 475              		.file 14 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h"
+ 476              		.file 15 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
+ 477              		.file 16 "Middlewares/Third_Party/CANopenNode_STM32/CO_driver_target.h"
+ 478              		.file 17 "Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h"
+ 479              		.file 18 "Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h"
+ 480              		.file 19 "Middlewares/Third_Party/CANopenNode/301/CO_HBconsumer.h"
+ 481              		.file 20 "Middlewares/Third_Party/CANopenNode/301/CO_SDOserver.h"
+ 482              		.file 21 "Middlewares/Third_Party/CANopenNode/301/CO_SYNC.h"
+ 483              		.file 22 "Middlewares/Third_Party/CANopenNode/301/CO_TIME.h"
+ 484              		.file 23 "Middlewares/Third_Party/CANopenNode/303/CO_LEDs.h"
+ 485              		.file 24 "Middlewares/Third_Party/CANopenNode/305/CO_LSS.h"
+ 486              		.file 25 "Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h"
+ 487              		.file 26 "Middlewares/Third_Party/CANopenNode/CANopen.h"
+ 488              		.file 27 "Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.h"
+ 489              		.file 28 "Middlewares/Third_Party/CANopenNode_STM32/OD.h"
+ 490              		.file 29 "Core/Inc/tim.h"
+ 491              		.file 30 "Core/Inc/can.h"
+ 492              		.file 31 "Core/Inc/adc.h"
+ 493              		.file 32 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s 			page 35
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 freertos.c
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:20     .text.StartUITask:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:26     .text.StartUITask:00000000 StartUITask
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:119    .text.StartUITask:00000048 $d
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:132    .text.canopen_task:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:138    .text.canopen_task:00000000 canopen_task
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:263    .text.canopen_task:000000a8 $d
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:280    .text.MX_FREERTOS_Init:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:286    .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:322    .text.MX_FREERTOS_Init:00000020 $d
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:370    .bss.voltage:00000000 voltage
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:363    .bss.steering_value:00000000 steering_value
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:388    .rodata.canopenTask_attributes:00000000 canopenTask_attributes
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:335    .rodata.str1.4:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:356    .bss.canopenTaskHandle:00000000 canopenTaskHandle
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:377    .rodata.UITask_attributes:00000000 UITask_attributes
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:349    .bss.UITaskHandle:00000000 UITaskHandle
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:345    .bss.UITaskHandle:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:352    .bss.canopenTaskHandle:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:359    .bss.steering_value:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:366    .bss.voltage:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:373    .rodata.UITask_attributes:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccdXacDD.s:384    .rodata.canopenTask_attributes:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:20     .text.StartReadDistance:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:26     .text.StartReadDistance:00000000 StartReadDistance
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:54     .text.StartUITask:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:60     .text.StartUITask:00000000 StartUITask
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:152    .text.StartUITask:00000048 $d
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:165    .text.canopen_task:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:171    .text.canopen_task:00000000 canopen_task
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:296    .text.canopen_task:000000a0 $d
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:313    .text.MX_FREERTOS_Init:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:319    .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:365    .text.MX_FREERTOS_Init:00000030 $d
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:428    .bss.voltage:00000000 voltage
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:421    .bss.steering_value:00000000 steering_value
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:457    .rodata.canopenTask_attributes:00000000 canopenTask_attributes
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:381    .rodata.str1.4:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:414    .bss.canopenTaskHandle:00000000 canopenTaskHandle
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:446    .rodata.UITask_attributes:00000000 UITask_attributes
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:407    .bss.UITaskHandle:00000000 UITaskHandle
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:435    .rodata.ReadDistance_attributes:00000000 ReadDistance_attributes
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:400    .bss.ReadDistanceHandle:00000000 ReadDistanceHandle
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:396    .bss.ReadDistanceHandle:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:403    .bss.UITaskHandle:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:410    .bss.canopenTaskHandle:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:417    .bss.steering_value:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:424    .bss.voltage:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:431    .rodata.ReadDistance_attributes:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:442    .rodata.UITask_attributes:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccPV9Osg.s:453    .rodata.canopenTask_attributes:00000000 $d
 
 UNDEFINED SYMBOLS
 osDelay
@@ -1965,7 +2062,6 @@ __aeabi_ui2d
 __aeabi_dmul
 __aeabi_dsub
 __aeabi_d2iz
-get_NodeID
 canopen_app_init
 canopen_app_process
 HAL_ADC_Start

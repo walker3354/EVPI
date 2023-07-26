@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # sudo ifconfig can0 txqueuelen 10000
-# sudo ip link set can0 up type can bitrate 1000000
+# sudo ip link set can0 up type can bitrate 500000
 import tomli
 import time
 import canopen
