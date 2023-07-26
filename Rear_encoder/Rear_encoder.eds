@@ -1,5 +1,5 @@
 [FileInfo]
-FileName=DS301_profile_mcu.eds
+FileName=Rear_encoder.eds
 FileVersion=1
 FileRevision=1
 LastEDS=
@@ -8,8 +8,8 @@ Description=
 CreationTime=1:00PM
 CreationDate=11-23-2020
 CreatedBy=Justin Zhang
-ModificationTime=12:57PM
-ModificationDate=03-29-2023
+ModificationTime=9:40AM
+ModificationDate=07-26-2023
 ModifiedBy=
 
 [DeviceInfo]
@@ -551,7 +551,7 @@ ObjectType=0x7
 ;StorageLocation=PERSIST_COMM
 DataType=0x0006
 AccessType=rw
-DefaultValue=0
+DefaultValue=1000
 PDOMapping=0
 
 [1019]
@@ -786,7 +786,7 @@ DefaultValue=0x00000000
 PDOMapping=0
 
 [6000]
-ParameterName=proximity_data
+ParameterName=rpm_data
 ObjectType=0x7
 ;StorageLocation=PERSIST_COMM
 DataType=0x0006

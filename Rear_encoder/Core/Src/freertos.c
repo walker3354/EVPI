@@ -58,12 +58,6 @@ const osThreadAttr_t ReadDistance_attributes = {
     .priority = (osPriority_t)osPriorityHigh,
 };
 /* Definitions for UITask */
-osThreadId_t UITaskHandle;
-const osThreadAttr_t UITask_attributes = {
-    .name = "UITask",
-    .stack_size = 128 * 4,
-    .priority = (osPriority_t)osPriorityNormal,
-};
 /* Definitions for canopenTask */
 osThreadId_t canopenTaskHandle;
 const osThreadAttr_t canopenTask_attributes = {
@@ -115,7 +109,6 @@ void MX_FREERTOS_Init(void)
   ReadDistanceHandle = osThreadNew(StartReadDistance, NULL, &ReadDistance_attributes);
 
   /* creation of UITask */
-  UITaskHandle = osThreadNew(StartUITask, NULL, &UITask_attributes);
 
   /* creation of canopenTask */
   canopenTaskHandle = osThreadNew(canopen_task, NULL, &canopenTask_attributes);
@@ -140,21 +133,24 @@ void StartReadDistance(void *argument)
 {
   /* USER CODE BEGIN StartReadDistance */
   /* Infinite loop */
-  volatile int rpm = 0;
+
+  volatile int rpm = 0; // volatile use to let gdp get value
   volatile int16_t pre_wheel_counter = get_counter();
+  volatile int16_t pre_timer = get_timer_counter();
   for (;;)
   {
-    if (get_timer_counter > 5)
+    if (get_timer_counter() > 5)
     {
       rpm = ((get_counter() - pre_wheel_counter) * 60 * 2) / 600;
       set_timer_counter(0);
       pre_wheel_counter = get_counter();
     }
-    if (get_timer_counter > 0)
+    if (pre_timer - get_timer_counter() > 1)
     {
-      OD_PERSIST_COMM.x6000_proximity_data = rpm;
-      OD_set_u16(OD_find(OD, 0x6000), 0x000, OD_PERSIST_COMM.x6000_proximity_data, false);
+      OD_PERSIST_COMM.x6000_rpm_data = rpm;
+      OD_set_u16(OD_find(OD, 0x6000), 0x000, OD_PERSIST_COMM.x6000_rpm_data, false);
       CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
+      pre_timer = get_timer_counter();
     }
   }
   /* USER CODE END StartReadDistance */
@@ -167,13 +163,6 @@ void StartReadDistance(void *argument)
  * @retval None
  */
 /* USER CODE END Header_StartUITask */
-void StartUITask(void *argument)
-{
-  /* USER CODE BEGIN StartUITask */
-  /* Infinite loop */
-
-  /* USER CODE END StartUITask */
-}
 
 /* USER CODE BEGIN Header_canopen_task */
 /**
