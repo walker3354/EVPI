@@ -1,0 +1,92 @@
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccm5n5qE.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"comment.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.delay_us,"ax",%progbits
+  20              		.align	1
+  21              		.global	delay_us
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	delay_us:
+  27              	.LVL0:
+  28              	.LFB123:
+  29              		.file 1 "Core/Src/comment.c"
+   1:Core/Src/comment.c **** #include "tim.h"
+   2:Core/Src/comment.c **** #include "comment.h"
+   3:Core/Src/comment.c **** 
+   4:Core/Src/comment.c **** void delay_us(uint16_t us)
+   5:Core/Src/comment.c **** {
+  30              		.loc 1 5 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+   6:Core/Src/comment.c ****     __HAL_TIM_SET_COUNTER(&htim3, 0); // set the counter value a 0
+  35              		.loc 1 6 5 view .LVU1
+  36 0000 034B     		ldr	r3, .L3
+  37 0002 1A68     		ldr	r2, [r3]
+  38 0004 0023     		movs	r3, #0
+  39 0006 5362     		str	r3, [r2, #36]
+   7:Core/Src/comment.c ****     uint16_t cur_us = 0;
+  40              		.loc 1 7 5 view .LVU2
+  41              	.LVL1:
+   8:Core/Src/comment.c ****     while (__HAL_TIM_GET_COUNTER(&htim3) < us); // wait for the counter to reach the us input in th
+  42              		.loc 1 8 5 view .LVU3
+  43              	.L2:
+  44              		.loc 1 8 47 discriminator 1 view .LVU4
+  45              		.loc 1 8 11 discriminator 1 view .LVU5
+  46              		.loc 1 8 12 is_stmt 0 discriminator 1 view .LVU6
+  47 0008 536A     		ldr	r3, [r2, #36]
+  48              		.loc 1 8 11 discriminator 1 view .LVU7
+  49 000a 8342     		cmp	r3, r0
+  50 000c FCD3     		bcc	.L2
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccm5n5qE.s 			page 2
+
+
+   9:Core/Src/comment.c **** }
+  51              		.loc 1 9 1 view .LVU8
+  52 000e 7047     		bx	lr
+  53              	.L4:
+  54              		.align	2
+  55              	.L3:
+  56 0010 00000000 		.word	htim3
+  57              		.cfi_endproc
+  58              	.LFE123:
+  60              		.text
+  61              	.Letext0:
+  62              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+  63              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+  64              		.file 4 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h"
+  65              		.file 5 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
+  66              		.file 6 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h"
+  67              		.file 7 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h"
+  68              		.file 8 "Core/Inc/tim.h"
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccm5n5qE.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 comment.c
+C:\Users\walker\AppData\Local\Temp\ccm5n5qE.s:20     .text.delay_us:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccm5n5qE.s:26     .text.delay_us:00000000 delay_us
+C:\Users\walker\AppData\Local\Temp\ccm5n5qE.s:56     .text.delay_us:00000010 $d
+
+UNDEFINED SYMBOLS
+htim3

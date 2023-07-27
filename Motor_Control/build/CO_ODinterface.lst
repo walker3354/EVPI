@@ -1,0 +1,1917 @@
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"CO_ODinterface.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.OD_readDisabled,"ax",%progbits
+  20              		.align	1
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	OD_readDisabled:
+  26              	.LVL0:
+  27              	.LFB158:
+  28              		.file 1 "Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c"
+   1:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** /*
+   2:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  * CANopen Object Dictionary interface
+   3:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  *
+   4:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  * @file        CO_ODinterface.c
+   5:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  * @author      Janez Paternoster
+   6:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  * @copyright   2020 Janez Paternoster
+   7:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  *
+   8:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  * This file is part of CANopenNode, an opensource CANopen Stack.
+   9:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  * Project home page is <https://github.com/CANopenNode/CANopenNode>.
+  10:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  * For more information on CANopen see <http://www.can-cia.org/>.
+  11:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  *
+  12:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  * Licensed under the Apache License, Version 2.0 (the "License");
+  13:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  * you may not use this file except in compliance with the License.
+  14:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  * You may obtain a copy of the License at
+  15:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  *
+  16:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  *     http://www.apache.org/licenses/LICENSE-2.0
+  17:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  *
+  18:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  * Unless required by applicable law or agreed to in writing, software
+  19:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  * distributed under the License is distributed on an "AS IS" BASIS,
+  20:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  21:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  * See the License for the specific language governing permissions and
+  22:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  * limitations under the License.
+  23:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****  */
+  24:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+  25:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** #include <string.h>
+  26:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** #define OD_DEFINITION
+  27:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** #include "301/CO_ODinterface.h"
+  28:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+  29:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+  30:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** /******************************************************************************/
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 2
+
+
+  31:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** ODR_t OD_readOriginal(OD_stream_t *stream, void *buf,
+  32:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                       OD_size_t count, OD_size_t *countRead)
+  33:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** {
+  34:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (stream == NULL || buf == NULL || countRead == NULL) {
+  35:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         return ODR_DEV_INCOMPAT;
+  36:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+  37:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+  38:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     OD_size_t dataLenToCopy = stream->dataLength; /* length of OD variable */
+  39:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     const uint8_t *dataOrig = stream->dataOrig;
+  40:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+  41:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (dataOrig == NULL) {
+  42:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         return ODR_SUB_NOT_EXIST;
+  43:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+  44:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+  45:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     ODR_t returnCode = ODR_OK;
+  46:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+  47:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     /* If previous read was partial or OD variable length is larger than
+  48:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****      * current buffer size, then data was (will be) read in several segments */
+  49:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (stream->dataOffset > 0 || dataLenToCopy > count) {
+  50:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         if (stream->dataOffset >= dataLenToCopy) {
+  51:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             return ODR_DEV_INCOMPAT;
+  52:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+  53:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         /* Reduce for already copied data */
+  54:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         dataLenToCopy -= stream->dataOffset;
+  55:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         dataOrig += stream->dataOffset;
+  56:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+  57:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         if (dataLenToCopy > count) {
+  58:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             /* Not enough space in destination buffer */
+  59:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             dataLenToCopy = count;
+  60:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataOffset += dataLenToCopy;
+  61:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             returnCode = ODR_PARTIAL;
+  62:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+  63:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         else {
+  64:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataOffset = 0; /* copy finished, reset offset */
+  65:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+  66:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+  67:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+  68:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     memcpy(buf, dataOrig, dataLenToCopy);
+  69:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+  70:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     *countRead = dataLenToCopy;
+  71:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     return returnCode;
+  72:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** }
+  73:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+  74:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** /******************************************************************************/
+  75:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** ODR_t OD_writeOriginal(OD_stream_t *stream, const void *buf,
+  76:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                        OD_size_t count, OD_size_t *countWritten)
+  77:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** {
+  78:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (stream == NULL || buf == NULL || countWritten == NULL) {
+  79:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         return ODR_DEV_INCOMPAT;
+  80:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+  81:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+  82:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     OD_size_t dataLenToCopy = stream->dataLength; /* length of OD variable */
+  83:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     uint8_t *dataOrig = stream->dataOrig;
+  84:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+  85:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (dataOrig == NULL) {
+  86:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         return ODR_SUB_NOT_EXIST;
+  87:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 3
+
+
+  88:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+  89:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     ODR_t returnCode = ODR_OK;
+  90:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+  91:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     /* If previous write was partial or OD variable length is larger than
+  92:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****      * current buffer size, then data was (will be) written in several
+  93:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****      * segments */
+  94:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (stream->dataOffset > 0 || dataLenToCopy > count) {
+  95:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         if (stream->dataOffset >= dataLenToCopy) {
+  96:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             return ODR_DEV_INCOMPAT;
+  97:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+  98:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         /* reduce for already copied data */
+  99:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         dataLenToCopy -= stream->dataOffset;
+ 100:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         dataOrig += stream->dataOffset;
+ 101:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 102:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         if (dataLenToCopy > count) {
+ 103:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             /* Remaining data space in OD variable is larger than current count
+ 104:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****              * of data, so only current count of data will be copied */
+ 105:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             dataLenToCopy = count;
+ 106:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataOffset += dataLenToCopy;
+ 107:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             returnCode = ODR_PARTIAL;
+ 108:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 109:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         else {
+ 110:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataOffset = 0; /* copy finished, reset offset */
+ 111:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 112:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 113:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 114:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (dataLenToCopy < count) {
+ 115:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         /* OD variable is smaller than current amount of data */
+ 116:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         return ODR_DATA_LONG;
+ 117:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 118:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 119:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     memcpy(dataOrig, buf, dataLenToCopy);
+ 120:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 121:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     *countWritten = dataLenToCopy;
+ 122:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     return returnCode;
+ 123:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** }
+ 124:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 125:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** /* Read value from variable from Object Dictionary disabled, see OD_IO_t*/
+ 126:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** static ODR_t OD_readDisabled(OD_stream_t *stream, void *buf,
+ 127:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                              OD_size_t count, OD_size_t *countRead)
+ 128:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** {
+  29              		.loc 1 128 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+ 129:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     (void) stream; (void) buf; (void) count; (void) countRead;
+  34              		.loc 1 129 5 view .LVU1
+  35              		.loc 1 129 20 view .LVU2
+  36              		.loc 1 129 32 view .LVU3
+  37              		.loc 1 129 46 view .LVU4
+ 130:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     return ODR_UNSUPP_ACCESS;
+  38              		.loc 1 130 5 view .LVU5
+ 131:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** }
+  39              		.loc 1 131 1 is_stmt 0 view .LVU6
+  40 0000 0220     		movs	r0, #2
+  41              	.LVL1:
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 4
+
+
+  42              		.loc 1 131 1 view .LVU7
+  43 0002 7047     		bx	lr
+  44              		.cfi_endproc
+  45              	.LFE158:
+  47              		.section	.text.OD_writeDisabled,"ax",%progbits
+  48              		.align	1
+  49              		.syntax unified
+  50              		.thumb
+  51              		.thumb_func
+  53              	OD_writeDisabled:
+  54              	.LVL2:
+  55              	.LFB159:
+ 132:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 133:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** /* Write value to variable from Object Dictionary disabled, see OD_IO_t */
+ 134:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** static ODR_t OD_writeDisabled(OD_stream_t *stream, const void *buf,
+ 135:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                               OD_size_t count, OD_size_t *countWritten)
+ 136:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** {
+  56              		.loc 1 136 1 is_stmt 1 view -0
+  57              		.cfi_startproc
+  58              		@ args = 0, pretend = 0, frame = 0
+  59              		@ frame_needed = 0, uses_anonymous_args = 0
+  60              		@ link register save eliminated.
+ 137:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     (void) stream; (void) buf; (void) count; (void) countWritten;
+  61              		.loc 1 137 5 view .LVU9
+  62              		.loc 1 137 20 view .LVU10
+  63              		.loc 1 137 32 view .LVU11
+  64              		.loc 1 137 46 view .LVU12
+ 138:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     return ODR_UNSUPP_ACCESS;
+  65              		.loc 1 138 5 view .LVU13
+ 139:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** }
+  66              		.loc 1 139 1 is_stmt 0 view .LVU14
+  67 0000 0220     		movs	r0, #2
+  68              	.LVL3:
+  69              		.loc 1 139 1 view .LVU15
+  70 0002 7047     		bx	lr
+  71              		.cfi_endproc
+  72              	.LFE159:
+  74              		.section	.text.OD_readOriginal,"ax",%progbits
+  75              		.align	1
+  76              		.global	OD_readOriginal
+  77              		.syntax unified
+  78              		.thumb
+  79              		.thumb_func
+  81              	OD_readOriginal:
+  82              	.LVL4:
+  83              	.LFB156:
+  33:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (stream == NULL || buf == NULL || countRead == NULL) {
+  84              		.loc 1 33 1 is_stmt 1 view -0
+  85              		.cfi_startproc
+  86              		@ args = 0, pretend = 0, frame = 0
+  87              		@ frame_needed = 0, uses_anonymous_args = 0
+  33:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (stream == NULL || buf == NULL || countRead == NULL) {
+  88              		.loc 1 33 1 is_stmt 0 view .LVU17
+  89 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  90              	.LCFI0:
+  91              		.cfi_def_cfa_offset 24
+  92              		.cfi_offset 3, -24
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 5
+
+
+  93              		.cfi_offset 4, -20
+  94              		.cfi_offset 5, -16
+  95              		.cfi_offset 6, -12
+  96              		.cfi_offset 7, -8
+  97              		.cfi_offset 14, -4
+  34:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         return ODR_DEV_INCOMPAT;
+  98              		.loc 1 34 5 is_stmt 1 view .LVU18
+  34:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         return ODR_DEV_INCOMPAT;
+  99              		.loc 1 34 8 is_stmt 0 view .LVU19
+ 100 0002 10B3     		cbz	r0, .L8
+ 101 0004 0C46     		mov	r4, r1
+ 102 0006 1D46     		mov	r5, r3
+ 103 0008 0346     		mov	r3, r0
+ 104              	.LVL5:
+  34:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         return ODR_DEV_INCOMPAT;
+ 105              		.loc 1 34 24 discriminator 1 view .LVU20
+ 106 000a 01B3     		cbz	r1, .L9
+  34:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         return ODR_DEV_INCOMPAT;
+ 107              		.loc 1 34 39 discriminator 2 view .LVU21
+ 108 000c 0DB3     		cbz	r5, .L10
+  38:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     const uint8_t *dataOrig = stream->dataOrig;
+ 109              		.loc 1 38 5 is_stmt 1 view .LVU22
+  38:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     const uint8_t *dataOrig = stream->dataOrig;
+ 110              		.loc 1 38 15 is_stmt 0 view .LVU23
+ 111 000e 8668     		ldr	r6, [r0, #8]
+ 112              	.LVL6:
+  39:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 113              		.loc 1 39 5 is_stmt 1 view .LVU24
+  39:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 114              		.loc 1 39 20 is_stmt 0 view .LVU25
+ 115 0010 0168     		ldr	r1, [r0]
+ 116              	.LVL7:
+  41:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         return ODR_SUB_NOT_EXIST;
+ 117              		.loc 1 41 5 is_stmt 1 view .LVU26
+  41:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         return ODR_SUB_NOT_EXIST;
+ 118              		.loc 1 41 8 is_stmt 0 view .LVU27
+ 119 0012 01B3     		cbz	r1, .L11
+  45:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 120              		.loc 1 45 5 is_stmt 1 view .LVU28
+ 121              	.LVL8:
+  49:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         if (stream->dataOffset >= dataLenToCopy) {
+ 122              		.loc 1 49 5 view .LVU29
+  49:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         if (stream->dataOffset >= dataLenToCopy) {
+ 123              		.loc 1 49 15 is_stmt 0 view .LVU30
+ 124 0014 C068     		ldr	r0, [r0, #12]
+ 125              	.LVL9:
+  49:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         if (stream->dataOffset >= dataLenToCopy) {
+ 126              		.loc 1 49 8 view .LVU31
+ 127 0016 08B9     		cbnz	r0, .L5
+  49:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         if (stream->dataOffset >= dataLenToCopy) {
+ 128              		.loc 1 49 32 discriminator 1 view .LVU32
+ 129 0018 9642     		cmp	r6, r2
+ 130 001a 14D9     		bls	.L12
+ 131              	.L5:
+  50:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             return ODR_DEV_INCOMPAT;
+ 132              		.loc 1 50 9 is_stmt 1 view .LVU33
+  50:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             return ODR_DEV_INCOMPAT;
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 6
+
+
+ 133              		.loc 1 50 12 is_stmt 0 view .LVU34
+ 134 001c B042     		cmp	r0, r6
+ 135 001e 1CD2     		bcs	.L13
+  54:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         dataOrig += stream->dataOffset;
+ 136              		.loc 1 54 9 is_stmt 1 view .LVU35
+  54:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         dataOrig += stream->dataOffset;
+ 137              		.loc 1 54 23 is_stmt 0 view .LVU36
+ 138 0020 361A     		subs	r6, r6, r0
+ 139              	.LVL10:
+  55:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 140              		.loc 1 55 9 is_stmt 1 view .LVU37
+  55:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 141              		.loc 1 55 18 is_stmt 0 view .LVU38
+ 142 0022 0144     		add	r1, r1, r0
+ 143              	.LVL11:
+  57:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             /* Not enough space in destination buffer */
+ 144              		.loc 1 57 9 is_stmt 1 view .LVU39
+  57:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             /* Not enough space in destination buffer */
+ 145              		.loc 1 57 12 is_stmt 0 view .LVU40
+ 146 0024 B242     		cmp	r2, r6
+ 147 0026 0BD2     		bcs	.L7
+  59:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataOffset += dataLenToCopy;
+ 148              		.loc 1 59 13 is_stmt 1 view .LVU41
+ 149              	.LVL12:
+  60:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             returnCode = ODR_PARTIAL;
+ 150              		.loc 1 60 13 view .LVU42
+  60:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             returnCode = ODR_PARTIAL;
+ 151              		.loc 1 60 32 is_stmt 0 view .LVU43
+ 152 0028 1044     		add	r0, r0, r2
+ 153 002a D860     		str	r0, [r3, #12]
+  61:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 154              		.loc 1 61 13 is_stmt 1 view .LVU44
+ 155              	.LVL13:
+  59:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataOffset += dataLenToCopy;
+ 156              		.loc 1 59 27 is_stmt 0 view .LVU45
+ 157 002c 1646     		mov	r6, r2
+  61:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 158              		.loc 1 61 24 view .LVU46
+ 159 002e 4FF0FF37 		mov	r7, #-1
+ 160              	.LVL14:
+ 161              	.L6:
+  68:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 162              		.loc 1 68 5 is_stmt 1 view .LVU47
+ 163 0032 3246     		mov	r2, r6
+ 164              	.LVL15:
+  68:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 165              		.loc 1 68 5 is_stmt 0 view .LVU48
+ 166 0034 2046     		mov	r0, r4
+ 167 0036 FFF7FEFF 		bl	memcpy
+ 168              	.LVL16:
+  70:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     return returnCode;
+ 169              		.loc 1 70 5 is_stmt 1 view .LVU49
+  70:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     return returnCode;
+ 170              		.loc 1 70 16 is_stmt 0 view .LVU50
+ 171 003a 2E60     		str	r6, [r5]
+  71:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** }
+ 172              		.loc 1 71 5 is_stmt 1 view .LVU51
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 7
+
+
+ 173              	.LVL17:
+ 174              	.L4:
+  72:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 175              		.loc 1 72 1 is_stmt 0 view .LVU52
+ 176 003c 3846     		mov	r0, r7
+ 177 003e F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 178              	.LVL18:
+ 179              	.L7:
+  64:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 180              		.loc 1 64 13 is_stmt 1 view .LVU53
+  64:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 181              		.loc 1 64 32 is_stmt 0 view .LVU54
+ 182 0040 0027     		movs	r7, #0
+ 183 0042 DF60     		str	r7, [r3, #12]
+ 184 0044 F5E7     		b	.L6
+ 185              	.L12:
+  45:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 186              		.loc 1 45 11 view .LVU55
+ 187 0046 0027     		movs	r7, #0
+ 188 0048 F3E7     		b	.L6
+ 189              	.LVL19:
+ 190              	.L8:
+  35:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 191              		.loc 1 35 16 view .LVU56
+ 192 004a 0927     		movs	r7, #9
+ 193 004c F6E7     		b	.L4
+ 194              	.LVL20:
+ 195              	.L9:
+  35:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 196              		.loc 1 35 16 view .LVU57
+ 197 004e 0927     		movs	r7, #9
+ 198 0050 F4E7     		b	.L4
+ 199              	.L10:
+ 200 0052 0927     		movs	r7, #9
+ 201 0054 F2E7     		b	.L4
+ 202              	.LVL21:
+ 203              	.L11:
+  42:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 204              		.loc 1 42 16 view .LVU58
+ 205 0056 0E27     		movs	r7, #14
+ 206 0058 F0E7     		b	.L4
+ 207              	.LVL22:
+ 208              	.L13:
+  51:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 209              		.loc 1 51 20 view .LVU59
+ 210 005a 0927     		movs	r7, #9
+ 211 005c EEE7     		b	.L4
+ 212              		.cfi_endproc
+ 213              	.LFE156:
+ 215              		.section	.text.OD_writeOriginal,"ax",%progbits
+ 216              		.align	1
+ 217              		.global	OD_writeOriginal
+ 218              		.syntax unified
+ 219              		.thumb
+ 220              		.thumb_func
+ 222              	OD_writeOriginal:
+ 223              	.LVL23:
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 8
+
+
+ 224              	.LFB157:
+  77:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (stream == NULL || buf == NULL || countWritten == NULL) {
+ 225              		.loc 1 77 1 is_stmt 1 view -0
+ 226              		.cfi_startproc
+ 227              		@ args = 0, pretend = 0, frame = 0
+ 228              		@ frame_needed = 0, uses_anonymous_args = 0
+  77:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (stream == NULL || buf == NULL || countWritten == NULL) {
+ 229              		.loc 1 77 1 is_stmt 0 view .LVU61
+ 230 0000 70B5     		push	{r4, r5, r6, lr}
+ 231              	.LCFI1:
+ 232              		.cfi_def_cfa_offset 16
+ 233              		.cfi_offset 4, -16
+ 234              		.cfi_offset 5, -12
+ 235              		.cfi_offset 6, -8
+ 236              		.cfi_offset 14, -4
+  78:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         return ODR_DEV_INCOMPAT;
+ 237              		.loc 1 78 5 is_stmt 1 view .LVU62
+  78:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         return ODR_DEV_INCOMPAT;
+ 238              		.loc 1 78 8 is_stmt 0 view .LVU63
+ 239 0002 10B3     		cbz	r0, .L20
+ 240 0004 1C46     		mov	r4, r3
+ 241 0006 0346     		mov	r3, r0
+ 242              	.LVL24:
+  78:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         return ODR_DEV_INCOMPAT;
+ 243              		.loc 1 78 24 discriminator 1 view .LVU64
+ 244 0008 09B3     		cbz	r1, .L21
+  78:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         return ODR_DEV_INCOMPAT;
+ 245              		.loc 1 78 39 discriminator 2 view .LVU65
+ 246 000a 14B3     		cbz	r4, .L22
+  82:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     uint8_t *dataOrig = stream->dataOrig;
+ 247              		.loc 1 82 5 is_stmt 1 view .LVU66
+  82:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     uint8_t *dataOrig = stream->dataOrig;
+ 248              		.loc 1 82 15 is_stmt 0 view .LVU67
+ 249 000c 8568     		ldr	r5, [r0, #8]
+ 250              	.LVL25:
+  83:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 251              		.loc 1 83 5 is_stmt 1 view .LVU68
+  83:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 252              		.loc 1 83 14 is_stmt 0 view .LVU69
+ 253 000e 0068     		ldr	r0, [r0]
+ 254              	.LVL26:
+  85:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         return ODR_SUB_NOT_EXIST;
+ 255              		.loc 1 85 5 is_stmt 1 view .LVU70
+  85:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         return ODR_SUB_NOT_EXIST;
+ 256              		.loc 1 85 8 is_stmt 0 view .LVU71
+ 257 0010 08B3     		cbz	r0, .L23
+  89:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 258              		.loc 1 89 5 is_stmt 1 view .LVU72
+ 259              	.LVL27:
+  94:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         if (stream->dataOffset >= dataLenToCopy) {
+ 260              		.loc 1 94 5 view .LVU73
+  94:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         if (stream->dataOffset >= dataLenToCopy) {
+ 261              		.loc 1 94 15 is_stmt 0 view .LVU74
+ 262 0012 DE68     		ldr	r6, [r3, #12]
+  94:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         if (stream->dataOffset >= dataLenToCopy) {
+ 263              		.loc 1 94 8 view .LVU75
+ 264 0014 0EB9     		cbnz	r6, .L17
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 9
+
+
+  94:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         if (stream->dataOffset >= dataLenToCopy) {
+ 265              		.loc 1 94 32 discriminator 1 view .LVU76
+ 266 0016 9542     		cmp	r5, r2
+ 267 0018 15D9     		bls	.L24
+ 268              	.L17:
+  95:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             return ODR_DEV_INCOMPAT;
+ 269              		.loc 1 95 9 is_stmt 1 view .LVU77
+  95:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             return ODR_DEV_INCOMPAT;
+ 270              		.loc 1 95 12 is_stmt 0 view .LVU78
+ 271 001a AE42     		cmp	r6, r5
+ 272 001c 1DD2     		bcs	.L25
+  99:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         dataOrig += stream->dataOffset;
+ 273              		.loc 1 99 9 is_stmt 1 view .LVU79
+  99:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         dataOrig += stream->dataOffset;
+ 274              		.loc 1 99 23 is_stmt 0 view .LVU80
+ 275 001e AD1B     		subs	r5, r5, r6
+ 276              	.LVL28:
+ 100:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 277              		.loc 1 100 9 is_stmt 1 view .LVU81
+ 100:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 278              		.loc 1 100 18 is_stmt 0 view .LVU82
+ 279 0020 3044     		add	r0, r0, r6
+ 280              	.LVL29:
+ 102:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             /* Remaining data space in OD variable is larger than current count
+ 281              		.loc 1 102 9 is_stmt 1 view .LVU83
+ 102:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             /* Remaining data space in OD variable is larger than current count
+ 282              		.loc 1 102 12 is_stmt 0 view .LVU84
+ 283 0022 AA42     		cmp	r2, r5
+ 284 0024 0CD2     		bcs	.L19
+ 105:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataOffset += dataLenToCopy;
+ 285              		.loc 1 105 13 is_stmt 1 view .LVU85
+ 286              	.LVL30:
+ 106:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             returnCode = ODR_PARTIAL;
+ 287              		.loc 1 106 13 view .LVU86
+ 106:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             returnCode = ODR_PARTIAL;
+ 288              		.loc 1 106 32 is_stmt 0 view .LVU87
+ 289 0026 1644     		add	r6, r6, r2
+ 290 0028 DE60     		str	r6, [r3, #12]
+ 107:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 291              		.loc 1 107 13 is_stmt 1 view .LVU88
+ 292              	.LVL31:
+ 105:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataOffset += dataLenToCopy;
+ 293              		.loc 1 105 27 is_stmt 0 view .LVU89
+ 294 002a 1546     		mov	r5, r2
+ 107:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 295              		.loc 1 107 24 view .LVU90
+ 296 002c 4FF0FF36 		mov	r6, #-1
+ 297              	.LVL32:
+ 298              	.L18:
+ 114:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         /* OD variable is smaller than current amount of data */
+ 299              		.loc 1 114 5 is_stmt 1 view .LVU91
+ 114:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         /* OD variable is smaller than current amount of data */
+ 300              		.loc 1 114 8 is_stmt 0 view .LVU92
+ 301 0030 9542     		cmp	r5, r2
+ 302 0032 14D3     		bcc	.L26
+ 119:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 303              		.loc 1 119 5 is_stmt 1 view .LVU93
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 10
+
+
+ 304 0034 2A46     		mov	r2, r5
+ 305              	.LVL33:
+ 119:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 306              		.loc 1 119 5 is_stmt 0 view .LVU94
+ 307 0036 FFF7FEFF 		bl	memcpy
+ 308              	.LVL34:
+ 121:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     return returnCode;
+ 309              		.loc 1 121 5 is_stmt 1 view .LVU95
+ 121:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     return returnCode;
+ 310              		.loc 1 121 19 is_stmt 0 view .LVU96
+ 311 003a 2560     		str	r5, [r4]
+ 122:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** }
+ 312              		.loc 1 122 5 is_stmt 1 view .LVU97
+ 313              	.LVL35:
+ 314              	.L16:
+ 123:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 315              		.loc 1 123 1 is_stmt 0 view .LVU98
+ 316 003c 3046     		mov	r0, r6
+ 317 003e 70BD     		pop	{r4, r5, r6, pc}
+ 318              	.LVL36:
+ 319              	.L19:
+ 110:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 320              		.loc 1 110 13 is_stmt 1 view .LVU99
+ 110:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 321              		.loc 1 110 32 is_stmt 0 view .LVU100
+ 322 0040 0026     		movs	r6, #0
+ 323 0042 DE60     		str	r6, [r3, #12]
+ 324 0044 F4E7     		b	.L18
+ 325              	.L24:
+  89:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 326              		.loc 1 89 11 view .LVU101
+ 327 0046 0026     		movs	r6, #0
+ 328 0048 F2E7     		b	.L18
+ 329              	.LVL37:
+ 330              	.L20:
+  79:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 331              		.loc 1 79 16 view .LVU102
+ 332 004a 0926     		movs	r6, #9
+ 333 004c F6E7     		b	.L16
+ 334              	.LVL38:
+ 335              	.L21:
+  79:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 336              		.loc 1 79 16 view .LVU103
+ 337 004e 0926     		movs	r6, #9
+ 338 0050 F4E7     		b	.L16
+ 339              	.L22:
+ 340 0052 0926     		movs	r6, #9
+ 341 0054 F2E7     		b	.L16
+ 342              	.LVL39:
+ 343              	.L23:
+  86:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 344              		.loc 1 86 16 view .LVU104
+ 345 0056 0E26     		movs	r6, #14
+ 346 0058 F0E7     		b	.L16
+ 347              	.LVL40:
+ 348              	.L25:
+  96:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 11
+
+
+ 349              		.loc 1 96 20 view .LVU105
+ 350 005a 0926     		movs	r6, #9
+ 351 005c EEE7     		b	.L16
+ 352              	.LVL41:
+ 353              	.L26:
+ 116:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 354              		.loc 1 116 16 view .LVU106
+ 355 005e 0C26     		movs	r6, #12
+ 356              	.LVL42:
+ 116:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 357              		.loc 1 116 16 view .LVU107
+ 358 0060 ECE7     		b	.L16
+ 359              		.cfi_endproc
+ 360              	.LFE157:
+ 362              		.section	.text.OD_find,"ax",%progbits
+ 363              		.align	1
+ 364              		.global	OD_find
+ 365              		.syntax unified
+ 366              		.thumb
+ 367              		.thumb_func
+ 369              	OD_find:
+ 370              	.LVL43:
+ 371              	.LFB160:
+ 140:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 141:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 142:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** /******************************************************************************/
+ 143:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** OD_entry_t *OD_find(OD_t *od, uint16_t index) {
+ 372              		.loc 1 143 47 is_stmt 1 view -0
+ 373              		.cfi_startproc
+ 374              		@ args = 0, pretend = 0, frame = 0
+ 375              		@ frame_needed = 0, uses_anonymous_args = 0
+ 376              		.loc 1 143 47 is_stmt 0 view .LVU109
+ 377 0000 30B5     		push	{r4, r5, lr}
+ 378              	.LCFI2:
+ 379              		.cfi_def_cfa_offset 12
+ 380              		.cfi_offset 4, -12
+ 381              		.cfi_offset 5, -8
+ 382              		.cfi_offset 14, -4
+ 144:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (od == NULL || od->size == 0) {
+ 383              		.loc 1 144 5 is_stmt 1 view .LVU110
+ 384              		.loc 1 144 8 is_stmt 0 view .LVU111
+ 385 0002 0546     		mov	r5, r0
+ 386 0004 70B3     		cbz	r0, .L28
+ 387              		.loc 1 144 25 discriminator 1 view .LVU112
+ 388 0006 0388     		ldrh	r3, [r0]
+ 389              		.loc 1 144 20 discriminator 1 view .LVU113
+ 390 0008 4BB3     		cbz	r3, .L35
+ 145:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         return NULL;
+ 146:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 147:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 148:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     uint16_t min = 0;
+ 391              		.loc 1 148 5 is_stmt 1 view .LVU114
+ 392              	.LVL44:
+ 149:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     uint16_t max = od->size - 1;
+ 393              		.loc 1 149 5 view .LVU115
+ 394              		.loc 1 149 14 is_stmt 0 view .LVU116
+ 395 000a 013B     		subs	r3, r3, #1
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 12
+
+
+ 396 000c 9AB2     		uxth	r2, r3
+ 397              	.LVL45:
+ 150:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 151:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     /* Fast search in ordered Object Dictionary. If indexes are mixed,
+ 152:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****      * this won't work. If Object Dictionary has up to N entries, then the
+ 153:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****      * max number of loop passes is log2(N) */
+ 154:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     while (min < max) {
+ 398              		.loc 1 154 5 is_stmt 1 view .LVU117
+ 148:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     uint16_t max = od->size - 1;
+ 399              		.loc 1 148 14 is_stmt 0 view .LVU118
+ 400 000e 4FF0000E 		mov	lr, #0
+ 401              		.loc 1 154 11 view .LVU119
+ 402 0012 02E0     		b	.L30
+ 403              	.LVL46:
+ 404              	.L31:
+ 405              	.LBB2:
+ 155:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         /* get entry between min and max */
+ 156:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         uint16_t cur = (min + max) >> 1;
+ 157:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         OD_entry_t* entry = &od->list[cur];
+ 158:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 159:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         if (index == entry->index) {
+ 160:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             return entry;
+ 161:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 162:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 163:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         if (index < entry->index) {
+ 164:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             max = (cur > 0) ? (cur - 1) : cur;
+ 165:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 166:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         else {
+ 167:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             min = cur + 1;
+ 406              		.loc 1 167 13 is_stmt 1 view .LVU120
+ 407              		.loc 1 167 17 is_stmt 0 view .LVU121
+ 408 0014 0133     		adds	r3, r3, #1
+ 409              	.LVL47:
+ 410              		.loc 1 167 17 view .LVU122
+ 411 0016 1FFA83FE 		uxth	lr, r3
+ 412              	.LVL48:
+ 413              	.L30:
+ 414              		.loc 1 167 17 view .LVU123
+ 415              	.LBE2:
+ 154:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         /* get entry between min and max */
+ 416              		.loc 1 154 11 is_stmt 1 view .LVU124
+ 417 001a 9645     		cmp	lr, r2
+ 418 001c 13D2     		bcs	.L39
+ 419              	.LBB3:
+ 156:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         OD_entry_t* entry = &od->list[cur];
+ 420              		.loc 1 156 9 view .LVU125
+ 156:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         OD_entry_t* entry = &od->list[cur];
+ 421              		.loc 1 156 29 is_stmt 0 view .LVU126
+ 422 001e 0EEB0203 		add	r3, lr, r2
+ 156:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         OD_entry_t* entry = &od->list[cur];
+ 423              		.loc 1 156 18 view .LVU127
+ 424 0022 C3F34F03 		ubfx	r3, r3, #1, #16
+ 425              	.LVL49:
+ 157:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 426              		.loc 1 157 9 is_stmt 1 view .LVU128
+ 157:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 427              		.loc 1 157 32 is_stmt 0 view .LVU129
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 13
+
+
+ 428 0026 6C68     		ldr	r4, [r5, #4]
+ 157:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 429              		.loc 1 157 38 view .LVU130
+ 430 0028 03EB430C 		add	ip, r3, r3, lsl #1
+ 157:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 431              		.loc 1 157 21 view .LVU131
+ 432 002c 04EB8C00 		add	r0, r4, ip, lsl #2
+ 433              	.LVL50:
+ 159:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             return entry;
+ 434              		.loc 1 159 9 is_stmt 1 view .LVU132
+ 159:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             return entry;
+ 435              		.loc 1 159 27 is_stmt 0 view .LVU133
+ 436 0030 34F82C40 		ldrh	r4, [r4, ip, lsl #2]
+ 159:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             return entry;
+ 437              		.loc 1 159 12 view .LVU134
+ 438 0034 8C42     		cmp	r4, r1
+ 439 0036 15D0     		beq	.L28
+ 163:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             max = (cur > 0) ? (cur - 1) : cur;
+ 440              		.loc 1 163 9 is_stmt 1 view .LVU135
+ 163:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             max = (cur > 0) ? (cur - 1) : cur;
+ 441              		.loc 1 163 12 is_stmt 0 view .LVU136
+ 442 0038 ECD9     		bls	.L31
+ 164:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 443              		.loc 1 164 13 is_stmt 1 view .LVU137
+ 164:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 444              		.loc 1 164 17 is_stmt 0 view .LVU138
+ 445 003a 13B1     		cbz	r3, .L36
+ 164:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 446              		.loc 1 164 17 discriminator 1 view .LVU139
+ 447 003c 013B     		subs	r3, r3, #1
+ 448              	.LVL51:
+ 164:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 449              		.loc 1 164 17 discriminator 1 view .LVU140
+ 450 003e 9AB2     		uxth	r2, r3
+ 451              	.LVL52:
+ 164:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 452              		.loc 1 164 17 discriminator 1 view .LVU141
+ 453 0040 EBE7     		b	.L30
+ 454              	.LVL53:
+ 455              	.L36:
+ 164:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 456              		.loc 1 164 17 view .LVU142
+ 457 0042 1A46     		mov	r2, r3
+ 458              	.LVL54:
+ 164:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 459              		.loc 1 164 17 view .LVU143
+ 460 0044 E9E7     		b	.L30
+ 461              	.LVL55:
+ 462              	.L39:
+ 164:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 463              		.loc 1 164 17 view .LVU144
+ 464              	.LBE3:
+ 168:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 169:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 170:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 171:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (min == max) {
+ 465              		.loc 1 171 5 is_stmt 1 view .LVU145
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 14
+
+
+ 466              		.loc 1 171 8 is_stmt 0 view .LVU146
+ 467 0046 0CD1     		bne	.L37
+ 468              	.LBB4:
+ 172:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         OD_entry_t* entry = &od->list[min];
+ 469              		.loc 1 172 9 is_stmt 1 view .LVU147
+ 470              		.loc 1 172 32 is_stmt 0 view .LVU148
+ 471 0048 6A68     		ldr	r2, [r5, #4]
+ 472              	.LVL56:
+ 473              		.loc 1 172 38 view .LVU149
+ 474 004a 0EEB4E03 		add	r3, lr, lr, lsl #1
+ 475              		.loc 1 172 21 view .LVU150
+ 476 004e 02EB8300 		add	r0, r2, r3, lsl #2
+ 477              	.LVL57:
+ 173:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         if (index == entry->index) {
+ 478              		.loc 1 173 9 is_stmt 1 view .LVU151
+ 479              		.loc 1 173 27 is_stmt 0 view .LVU152
+ 480 0052 32F82330 		ldrh	r3, [r2, r3, lsl #2]
+ 481              		.loc 1 173 12 view .LVU153
+ 482 0056 8B42     		cmp	r3, r1
+ 483 0058 04D0     		beq	.L28
+ 484              	.LBE4:
+ 174:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             return entry;
+ 175:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 176:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 177:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 178:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     return NULL;  /* entry does not exist in OD */
+ 485              		.loc 1 178 12 view .LVU154
+ 486 005a 0020     		movs	r0, #0
+ 487              	.LVL58:
+ 488              		.loc 1 178 12 view .LVU155
+ 489 005c 02E0     		b	.L28
+ 490              	.LVL59:
+ 491              	.L35:
+ 145:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 492              		.loc 1 145 16 view .LVU156
+ 493 005e 0020     		movs	r0, #0
+ 494              	.LVL60:
+ 145:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 495              		.loc 1 145 16 view .LVU157
+ 496 0060 00E0     		b	.L28
+ 497              	.LVL61:
+ 498              	.L37:
+ 499              		.loc 1 178 12 view .LVU158
+ 500 0062 0020     		movs	r0, #0
+ 501              	.LVL62:
+ 502              	.L28:
+ 179:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** }
+ 503              		.loc 1 179 1 view .LVU159
+ 504 0064 30BD     		pop	{r4, r5, pc}
+ 505              		.loc 1 179 1 view .LVU160
+ 506              		.cfi_endproc
+ 507              	.LFE160:
+ 509              		.section	.text.OD_getSub,"ax",%progbits
+ 510              		.align	1
+ 511              		.global	OD_getSub
+ 512              		.syntax unified
+ 513              		.thumb
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 15
+
+
+ 514              		.thumb_func
+ 516              	OD_getSub:
+ 517              	.LVL63:
+ 518              	.LFB161:
+ 180:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 181:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** /******************************************************************************/
+ 182:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** ODR_t OD_getSub(const OD_entry_t *entry, uint8_t subIndex,
+ 183:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                 OD_IO_t *io, bool_t odOrig)
+ 184:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** {
+ 519              		.loc 1 184 1 is_stmt 1 view -0
+ 520              		.cfi_startproc
+ 521              		@ args = 0, pretend = 0, frame = 0
+ 522              		@ frame_needed = 0, uses_anonymous_args = 0
+ 185:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (entry == NULL || entry->odObject == NULL) return ODR_IDX_NOT_EXIST;
+ 523              		.loc 1 185 5 view .LVU162
+ 524              		.loc 1 185 8 is_stmt 0 view .LVU163
+ 525 0000 0028     		cmp	r0, #0
+ 526 0002 6BD0     		beq	.L54
+ 184:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (entry == NULL || entry->odObject == NULL) return ODR_IDX_NOT_EXIST;
+ 527              		.loc 1 184 1 discriminator 2 view .LVU164
+ 528 0004 30B5     		push	{r4, r5, lr}
+ 529              	.LCFI3:
+ 530              		.cfi_def_cfa_offset 12
+ 531              		.cfi_offset 4, -12
+ 532              		.cfi_offset 5, -8
+ 533              		.cfi_offset 14, -4
+ 534 0006 8446     		mov	ip, r0
+ 535              		.loc 1 185 31 discriminator 2 view .LVU165
+ 536 0008 4568     		ldr	r5, [r0, #4]
+ 537              		.loc 1 185 23 discriminator 2 view .LVU166
+ 538 000a 002D     		cmp	r5, #0
+ 539 000c 68D0     		beq	.L55
+ 186:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (io == NULL) return ODR_DEV_INCOMPAT;
+ 540              		.loc 1 186 5 is_stmt 1 view .LVU167
+ 541              		.loc 1 186 8 is_stmt 0 view .LVU168
+ 542 000e 002A     		cmp	r2, #0
+ 543 0010 68D0     		beq	.L56
+ 187:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 188:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     OD_stream_t *stream = &io->stream;
+ 544              		.loc 1 188 5 is_stmt 1 view .LVU169
+ 545              	.LVL64:
+ 189:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 190:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     /* attribute, dataOrig and dataLength, depends on object type */
+ 191:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     switch (entry->odObjectType & ODT_TYPE_MASK) {
+ 546              		.loc 1 191 5 view .LVU170
+ 547              		.loc 1 191 18 is_stmt 0 view .LVU171
+ 548 0012 C078     		ldrb	r0, [r0, #3]	@ zero_extendqisi2
+ 549              	.LVL65:
+ 550              		.loc 1 191 18 view .LVU172
+ 551 0014 00F00F00 		and	r0, r0, #15
+ 552              		.loc 1 191 5 view .LVU173
+ 553 0018 0228     		cmp	r0, #2
+ 554 001a 0ED0     		beq	.L42
+ 555 001c 0328     		cmp	r0, #3
+ 556 001e 25D0     		beq	.L57
+ 557 0020 0128     		cmp	r0, #1
+ 558 0022 01D0     		beq	.L66
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 16
+
+
+ 559 0024 0920     		movs	r0, #9
+ 560              	.LVL66:
+ 561              	.L41:
+ 192:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     case ODT_VAR: {
+ 193:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         if (subIndex > 0) return ODR_SUB_NOT_EXIST;
+ 194:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         CO_PROGMEM OD_obj_var_t *odo = entry->odObject;
+ 195:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 196:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 197:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->attribute = odo->attribute;
+ 198:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->dataOrig = odo->dataOrig;
+ 199:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->dataLength = odo->dataLength;
+ 200:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         break;
+ 201:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 202:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     case ODT_ARR: {
+ 203:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         if (subIndex >= entry->subEntriesCount) return ODR_SUB_NOT_EXIST;
+ 204:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         CO_PROGMEM OD_obj_array_t *odo = entry->odObject;
+ 205:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 206:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         if (subIndex == 0) {
+ 207:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->attribute = odo->attribute0;
+ 208:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataOrig = odo->dataOrig0;
+ 209:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataLength = 1;
+ 210:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 211:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         else {
+ 212:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->attribute = odo->attribute;
+ 213:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             uint8_t *ptr = odo->dataOrig;
+ 214:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataOrig = ptr == NULL ? ptr
+ 215:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                              : ptr + odo->dataElementSizeof * (subIndex - 1);
+ 216:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataLength = odo->dataElementLength;
+ 217:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 218:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         break;
+ 219:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 220:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     case ODT_REC: {
+ 221:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         CO_PROGMEM OD_obj_record_t *odoArr = entry->odObject;
+ 222:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         CO_PROGMEM OD_obj_record_t *odo = NULL;
+ 223:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         for (uint8_t i = 0; i < entry->subEntriesCount; i++) {
+ 224:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             if (odoArr[i].subIndex == subIndex) {
+ 225:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                 odo = &odoArr[i];
+ 226:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                 break;
+ 227:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             }
+ 228:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 229:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         if (odo == NULL) return ODR_SUB_NOT_EXIST;
+ 230:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 231:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->attribute = odo->attribute;
+ 232:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->dataOrig = odo->dataOrig;
+ 233:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->dataLength = odo->dataLength;
+ 234:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         break;
+ 235:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 236:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     default: {
+ 237:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         return ODR_DEV_INCOMPAT;
+ 238:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 239:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 240:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 241:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     /* Access data from the original OD location */
+ 242:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (entry->extension == NULL || odOrig) {
+ 243:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         io->read = OD_readOriginal;
+ 244:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         io->write = OD_writeOriginal;
+ 245:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->object = NULL;
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 17
+
+
+ 246:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 247:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     /* Access data from extension specified by application */
+ 248:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     else {
+ 249:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         io->read = entry->extension->read != NULL ?
+ 250:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                    entry->extension->read : OD_readDisabled;
+ 251:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         io->write = entry->extension->write != NULL ?
+ 252:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                     entry->extension->write : OD_writeDisabled;
+ 253:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->object = entry->extension->object;
+ 254:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 255:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 256:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     /* Reset stream data offset */
+ 257:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     stream->dataOffset = 0;
+ 258:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     stream->subIndex = subIndex;
+ 259:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 260:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     return ODR_OK;
+ 261:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** }
+ 562              		.loc 1 261 1 view .LVU174
+ 563 0026 30BD     		pop	{r4, r5, pc}
+ 564              	.LVL67:
+ 565              	.L66:
+ 566              	.LBB5:
+ 193:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         CO_PROGMEM OD_obj_var_t *odo = entry->odObject;
+ 567              		.loc 1 193 9 is_stmt 1 view .LVU175
+ 193:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         CO_PROGMEM OD_obj_var_t *odo = entry->odObject;
+ 568              		.loc 1 193 12 is_stmt 0 view .LVU176
+ 569 0028 0029     		cmp	r1, #0
+ 570 002a 5DD1     		bne	.L59
+ 194:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 571              		.loc 1 194 9 is_stmt 1 view .LVU177
+ 572              	.LVL68:
+ 197:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->dataOrig = odo->dataOrig;
+ 573              		.loc 1 197 9 view .LVU178
+ 197:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->dataOrig = odo->dataOrig;
+ 574              		.loc 1 197 32 is_stmt 0 view .LVU179
+ 575 002c 2879     		ldrb	r0, [r5, #4]	@ zero_extendqisi2
+ 197:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->dataOrig = odo->dataOrig;
+ 576              		.loc 1 197 27 view .LVU180
+ 577 002e 1074     		strb	r0, [r2, #16]
+ 198:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->dataLength = odo->dataLength;
+ 578              		.loc 1 198 9 is_stmt 1 view .LVU181
+ 198:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->dataLength = odo->dataLength;
+ 579              		.loc 1 198 31 is_stmt 0 view .LVU182
+ 580 0030 2868     		ldr	r0, [r5]
+ 198:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->dataLength = odo->dataLength;
+ 581              		.loc 1 198 26 view .LVU183
+ 582 0032 1060     		str	r0, [r2]
+ 199:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         break;
+ 583              		.loc 1 199 9 is_stmt 1 view .LVU184
+ 199:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         break;
+ 584              		.loc 1 199 33 is_stmt 0 view .LVU185
+ 585 0034 A868     		ldr	r0, [r5, #8]
+ 199:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         break;
+ 586              		.loc 1 199 28 view .LVU186
+ 587 0036 9060     		str	r0, [r2, #8]
+ 200:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 588              		.loc 1 200 9 is_stmt 1 view .LVU187
+ 589 0038 31E0     		b	.L44
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 18
+
+
+ 590              	.LVL69:
+ 591              	.L42:
+ 200:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 592              		.loc 1 200 9 is_stmt 0 view .LVU188
+ 593              	.LBE5:
+ 594              	.LBB6:
+ 203:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         CO_PROGMEM OD_obj_array_t *odo = entry->odObject;
+ 595              		.loc 1 203 9 is_stmt 1 view .LVU189
+ 203:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         CO_PROGMEM OD_obj_array_t *odo = entry->odObject;
+ 596              		.loc 1 203 30 is_stmt 0 view .LVU190
+ 597 003a 9CF80200 		ldrb	r0, [ip, #2]	@ zero_extendqisi2
+ 203:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         CO_PROGMEM OD_obj_array_t *odo = entry->odObject;
+ 598              		.loc 1 203 12 view .LVU191
+ 599 003e 8842     		cmp	r0, r1
+ 600 0040 54D9     		bls	.L60
+ 204:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 601              		.loc 1 204 9 is_stmt 1 view .LVU192
+ 602              	.LVL70:
+ 206:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->attribute = odo->attribute0;
+ 603              		.loc 1 206 9 view .LVU193
+ 206:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->attribute = odo->attribute0;
+ 604              		.loc 1 206 12 is_stmt 0 view .LVU194
+ 605 0042 31B9     		cbnz	r1, .L45
+ 207:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataOrig = odo->dataOrig0;
+ 606              		.loc 1 207 13 is_stmt 1 view .LVU195
+ 207:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataOrig = odo->dataOrig0;
+ 607              		.loc 1 207 36 is_stmt 0 view .LVU196
+ 608 0044 287A     		ldrb	r0, [r5, #8]	@ zero_extendqisi2
+ 207:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataOrig = odo->dataOrig0;
+ 609              		.loc 1 207 31 view .LVU197
+ 610 0046 1074     		strb	r0, [r2, #16]
+ 208:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataLength = 1;
+ 611              		.loc 1 208 13 is_stmt 1 view .LVU198
+ 208:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataLength = 1;
+ 612              		.loc 1 208 35 is_stmt 0 view .LVU199
+ 613 0048 2868     		ldr	r0, [r5]
+ 208:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataLength = 1;
+ 614              		.loc 1 208 30 view .LVU200
+ 615 004a 1060     		str	r0, [r2]
+ 209:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 616              		.loc 1 209 13 is_stmt 1 view .LVU201
+ 209:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 617              		.loc 1 209 32 is_stmt 0 view .LVU202
+ 618 004c 0120     		movs	r0, #1
+ 619 004e 9060     		str	r0, [r2, #8]
+ 620 0050 25E0     		b	.L44
+ 621              	.L45:
+ 622              	.LBB7:
+ 212:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             uint8_t *ptr = odo->dataOrig;
+ 623              		.loc 1 212 13 is_stmt 1 view .LVU203
+ 212:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             uint8_t *ptr = odo->dataOrig;
+ 624              		.loc 1 212 36 is_stmt 0 view .LVU204
+ 625 0052 687A     		ldrb	r0, [r5, #9]	@ zero_extendqisi2
+ 212:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             uint8_t *ptr = odo->dataOrig;
+ 626              		.loc 1 212 31 view .LVU205
+ 627 0054 1074     		strb	r0, [r2, #16]
+ 213:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataOrig = ptr == NULL ? ptr
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 19
+
+
+ 628              		.loc 1 213 13 is_stmt 1 view .LVU206
+ 213:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataOrig = ptr == NULL ? ptr
+ 629              		.loc 1 213 22 is_stmt 0 view .LVU207
+ 630 0056 6868     		ldr	r0, [r5, #4]
+ 631              	.LVL71:
+ 214:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                              : ptr + odo->dataElementSizeof * (subIndex - 1);
+ 632              		.loc 1 214 13 is_stmt 1 view .LVU208
+ 214:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                              : ptr + odo->dataElementSizeof * (subIndex - 1);
+ 633              		.loc 1 214 30 is_stmt 0 view .LVU209
+ 634 0058 20B1     		cbz	r0, .L46
+ 215:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataLength = odo->dataElementLength;
+ 635              		.loc 1 215 41 discriminator 1 view .LVU210
+ 636 005a 2C69     		ldr	r4, [r5, #16]
+ 215:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             stream->dataLength = odo->dataElementLength;
+ 637              		.loc 1 215 73 discriminator 1 view .LVU211
+ 638 005c 01F1FF3E 		add	lr, r1, #-1
+ 214:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                              : ptr + odo->dataElementSizeof * (subIndex - 1);
+ 639              		.loc 1 214 30 discriminator 1 view .LVU212
+ 640 0060 0EFB0400 		mla	r0, lr, r4, r0
+ 641              	.LVL72:
+ 642              	.L46:
+ 214:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                              : ptr + odo->dataElementSizeof * (subIndex - 1);
+ 643              		.loc 1 214 30 discriminator 4 view .LVU213
+ 644 0064 1060     		str	r0, [r2]
+ 645              	.LVL73:
+ 216:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 646              		.loc 1 216 13 is_stmt 1 discriminator 4 view .LVU214
+ 216:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 647              		.loc 1 216 37 is_stmt 0 discriminator 4 view .LVU215
+ 648 0066 E868     		ldr	r0, [r5, #12]
+ 216:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 649              		.loc 1 216 32 discriminator 4 view .LVU216
+ 650 0068 9060     		str	r0, [r2, #8]
+ 651 006a 18E0     		b	.L44
+ 652              	.LVL74:
+ 653              	.L57:
+ 216:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 654              		.loc 1 216 32 discriminator 4 view .LVU217
+ 655              	.LBE7:
+ 656              	.LBE6:
+ 191:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     case ODT_VAR: {
+ 657              		.loc 1 191 5 view .LVU218
+ 658 006c 0020     		movs	r0, #0
+ 659              	.L43:
+ 660              	.LVL75:
+ 661              	.LBB8:
+ 662              	.LBB9:
+ 223:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             if (odoArr[i].subIndex == subIndex) {
+ 663              		.loc 1 223 29 is_stmt 1 discriminator 1 view .LVU219
+ 223:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             if (odoArr[i].subIndex == subIndex) {
+ 664              		.loc 1 223 38 is_stmt 0 discriminator 1 view .LVU220
+ 665 006e 9CF80240 		ldrb	r4, [ip, #2]	@ zero_extendqisi2
+ 223:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             if (odoArr[i].subIndex == subIndex) {
+ 666              		.loc 1 223 9 discriminator 1 view .LVU221
+ 667 0072 8442     		cmp	r4, r0
+ 668 0074 0AD9     		bls	.L67
+ 224:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                 odo = &odoArr[i];
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 20
+
+
+ 669              		.loc 1 224 13 is_stmt 1 view .LVU222
+ 224:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                 odo = &odoArr[i];
+ 670              		.loc 1 224 23 is_stmt 0 view .LVU223
+ 671 0076 00EB4004 		add	r4, r0, r0, lsl #1
+ 672 007a 05EB8404 		add	r4, r5, r4, lsl #2
+ 224:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                 odo = &odoArr[i];
+ 673              		.loc 1 224 26 view .LVU224
+ 674 007e 94F804E0 		ldrb	lr, [r4, #4]	@ zero_extendqisi2
+ 224:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                 odo = &odoArr[i];
+ 675              		.loc 1 224 16 view .LVU225
+ 676 0082 8E45     		cmp	lr, r1
+ 677 0084 03D0     		beq	.L47
+ 223:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             if (odoArr[i].subIndex == subIndex) {
+ 678              		.loc 1 223 57 is_stmt 1 discriminator 2 view .LVU226
+ 223:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             if (odoArr[i].subIndex == subIndex) {
+ 679              		.loc 1 223 58 is_stmt 0 discriminator 2 view .LVU227
+ 680 0086 0130     		adds	r0, r0, #1
+ 681              	.LVL76:
+ 223:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             if (odoArr[i].subIndex == subIndex) {
+ 682              		.loc 1 223 58 discriminator 2 view .LVU228
+ 683 0088 C0B2     		uxtb	r0, r0
+ 684              	.LVL77:
+ 223:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             if (odoArr[i].subIndex == subIndex) {
+ 685              		.loc 1 223 58 discriminator 2 view .LVU229
+ 686 008a F0E7     		b	.L43
+ 687              	.L67:
+ 223:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             if (odoArr[i].subIndex == subIndex) {
+ 688              		.loc 1 223 58 discriminator 2 view .LVU230
+ 689              	.LBE9:
+ 222:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         for (uint8_t i = 0; i < entry->subEntriesCount; i++) {
+ 690              		.loc 1 222 37 view .LVU231
+ 691 008c 0024     		movs	r4, #0
+ 692              	.L47:
+ 693              	.LVL78:
+ 229:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 694              		.loc 1 229 9 is_stmt 1 view .LVU232
+ 229:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 695              		.loc 1 229 12 is_stmt 0 view .LVU233
+ 696 008e 002C     		cmp	r4, #0
+ 697 0090 2ED0     		beq	.L61
+ 231:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->dataOrig = odo->dataOrig;
+ 698              		.loc 1 231 9 is_stmt 1 view .LVU234
+ 231:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->dataOrig = odo->dataOrig;
+ 699              		.loc 1 231 32 is_stmt 0 view .LVU235
+ 700 0092 6079     		ldrb	r0, [r4, #5]	@ zero_extendqisi2
+ 701              	.LVL79:
+ 231:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->dataOrig = odo->dataOrig;
+ 702              		.loc 1 231 27 view .LVU236
+ 703 0094 1074     		strb	r0, [r2, #16]
+ 232:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->dataLength = odo->dataLength;
+ 704              		.loc 1 232 9 is_stmt 1 view .LVU237
+ 232:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->dataLength = odo->dataLength;
+ 705              		.loc 1 232 31 is_stmt 0 view .LVU238
+ 706 0096 2068     		ldr	r0, [r4]
+ 232:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->dataLength = odo->dataLength;
+ 707              		.loc 1 232 26 view .LVU239
+ 708 0098 1060     		str	r0, [r2]
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 21
+
+
+ 233:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         break;
+ 709              		.loc 1 233 9 is_stmt 1 view .LVU240
+ 233:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         break;
+ 710              		.loc 1 233 33 is_stmt 0 view .LVU241
+ 711 009a A068     		ldr	r0, [r4, #8]
+ 233:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         break;
+ 712              		.loc 1 233 28 view .LVU242
+ 713 009c 9060     		str	r0, [r2, #8]
+ 234:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 714              		.loc 1 234 9 is_stmt 1 view .LVU243
+ 715              	.LVL80:
+ 716              	.L44:
+ 234:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 717              		.loc 1 234 9 is_stmt 0 view .LVU244
+ 718              	.LBE8:
+ 242:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         io->read = OD_readOriginal;
+ 719              		.loc 1 242 5 is_stmt 1 view .LVU245
+ 242:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         io->read = OD_readOriginal;
+ 720              		.loc 1 242 14 is_stmt 0 view .LVU246
+ 721 009e DCF80800 		ldr	r0, [ip, #8]
+ 242:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         io->read = OD_readOriginal;
+ 722              		.loc 1 242 8 view .LVU247
+ 723 00a2 00B1     		cbz	r0, .L49
+ 242:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         io->read = OD_readOriginal;
+ 724              		.loc 1 242 34 discriminator 1 view .LVU248
+ 725 00a4 4BB1     		cbz	r3, .L50
+ 726              	.L49:
+ 243:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         io->write = OD_writeOriginal;
+ 727              		.loc 1 243 9 is_stmt 1 view .LVU249
+ 243:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         io->write = OD_writeOriginal;
+ 728              		.loc 1 243 18 is_stmt 0 view .LVU250
+ 729 00a6 134B     		ldr	r3, .L70
+ 730              	.LVL81:
+ 243:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         io->write = OD_writeOriginal;
+ 731              		.loc 1 243 18 view .LVU251
+ 732 00a8 5361     		str	r3, [r2, #20]
+ 244:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->object = NULL;
+ 733              		.loc 1 244 9 is_stmt 1 view .LVU252
+ 244:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->object = NULL;
+ 734              		.loc 1 244 19 is_stmt 0 view .LVU253
+ 735 00aa 134B     		ldr	r3, .L70+4
+ 736 00ac 9361     		str	r3, [r2, #24]
+ 245:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 737              		.loc 1 245 9 is_stmt 1 view .LVU254
+ 245:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 738              		.loc 1 245 24 is_stmt 0 view .LVU255
+ 739 00ae 0023     		movs	r3, #0
+ 740 00b0 5360     		str	r3, [r2, #4]
+ 741              	.L51:
+ 257:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     stream->subIndex = subIndex;
+ 742              		.loc 1 257 5 is_stmt 1 view .LVU256
+ 257:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     stream->subIndex = subIndex;
+ 743              		.loc 1 257 24 is_stmt 0 view .LVU257
+ 744 00b2 0020     		movs	r0, #0
+ 745 00b4 D060     		str	r0, [r2, #12]
+ 258:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 746              		.loc 1 258 5 is_stmt 1 view .LVU258
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 22
+
+
+ 258:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 747              		.loc 1 258 22 is_stmt 0 view .LVU259
+ 748 00b6 5174     		strb	r1, [r2, #17]
+ 260:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** }
+ 749              		.loc 1 260 5 is_stmt 1 view .LVU260
+ 260:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** }
+ 750              		.loc 1 260 12 is_stmt 0 view .LVU261
+ 751 00b8 B5E7     		b	.L41
+ 752              	.LVL82:
+ 753              	.L50:
+ 249:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                    entry->extension->read : OD_readDisabled;
+ 754              		.loc 1 249 9 is_stmt 1 view .LVU262
+ 249:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                    entry->extension->read : OD_readDisabled;
+ 755              		.loc 1 249 36 is_stmt 0 view .LVU263
+ 756 00ba 4368     		ldr	r3, [r0, #4]
+ 757              	.LVL83:
+ 250:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         io->write = entry->extension->write != NULL ?
+ 758              		.loc 1 250 43 view .LVU264
+ 759 00bc 53B1     		cbz	r3, .L68
+ 760              	.L52:
+ 249:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                    entry->extension->read : OD_readDisabled;
+ 761              		.loc 1 249 18 view .LVU265
+ 762 00be 5361     		str	r3, [r2, #20]
+ 251:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                     entry->extension->write : OD_writeDisabled;
+ 763              		.loc 1 251 9 is_stmt 1 view .LVU266
+ 251:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                     entry->extension->write : OD_writeDisabled;
+ 764              		.loc 1 251 26 is_stmt 0 view .LVU267
+ 765 00c0 DCF80830 		ldr	r3, [ip, #8]
+ 251:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                     entry->extension->write : OD_writeDisabled;
+ 766              		.loc 1 251 37 view .LVU268
+ 767 00c4 9B68     		ldr	r3, [r3, #8]
+ 252:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->object = entry->extension->object;
+ 768              		.loc 1 252 45 view .LVU269
+ 769 00c6 3BB1     		cbz	r3, .L69
+ 770              	.L53:
+ 251:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                     entry->extension->write : OD_writeDisabled;
+ 771              		.loc 1 251 19 view .LVU270
+ 772 00c8 9361     		str	r3, [r2, #24]
+ 253:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 773              		.loc 1 253 9 is_stmt 1 view .LVU271
+ 253:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 774              		.loc 1 253 31 is_stmt 0 view .LVU272
+ 775 00ca DCF80830 		ldr	r3, [ip, #8]
+ 253:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 776              		.loc 1 253 42 view .LVU273
+ 777 00ce 1B68     		ldr	r3, [r3]
+ 253:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 778              		.loc 1 253 24 view .LVU274
+ 779 00d0 5360     		str	r3, [r2, #4]
+ 780 00d2 EEE7     		b	.L51
+ 781              	.L68:
+ 250:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         io->write = entry->extension->write != NULL ?
+ 782              		.loc 1 250 43 view .LVU275
+ 783 00d4 094B     		ldr	r3, .L70+8
+ 784 00d6 F2E7     		b	.L52
+ 785              	.L69:
+ 252:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         stream->object = entry->extension->object;
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 23
+
+
+ 786              		.loc 1 252 45 view .LVU276
+ 787 00d8 094B     		ldr	r3, .L70+12
+ 788 00da F5E7     		b	.L53
+ 789              	.LVL84:
+ 790              	.L54:
+ 791              	.LCFI4:
+ 792              		.cfi_def_cfa_offset 0
+ 793              		.cfi_restore 4
+ 794              		.cfi_restore 5
+ 795              		.cfi_restore 14
+ 185:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (io == NULL) return ODR_DEV_INCOMPAT;
+ 796              		.loc 1 185 58 view .LVU277
+ 797 00dc 0520     		movs	r0, #5
+ 798              	.LVL85:
+ 799              		.loc 1 261 1 view .LVU278
+ 800 00de 7047     		bx	lr
+ 801              	.LVL86:
+ 802              	.L55:
+ 803              	.LCFI5:
+ 804              		.cfi_def_cfa_offset 12
+ 805              		.cfi_offset 4, -12
+ 806              		.cfi_offset 5, -8
+ 807              		.cfi_offset 14, -4
+ 185:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (io == NULL) return ODR_DEV_INCOMPAT;
+ 808              		.loc 1 185 58 view .LVU279
+ 809 00e0 0520     		movs	r0, #5
+ 810              	.LVL87:
+ 185:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (io == NULL) return ODR_DEV_INCOMPAT;
+ 811              		.loc 1 185 58 view .LVU280
+ 812 00e2 A0E7     		b	.L41
+ 813              	.LVL88:
+ 814              	.L56:
+ 186:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 815              		.loc 1 186 28 view .LVU281
+ 816 00e4 0920     		movs	r0, #9
+ 817              	.LVL89:
+ 186:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 818              		.loc 1 186 28 view .LVU282
+ 819 00e6 9EE7     		b	.L41
+ 820              	.LVL90:
+ 821              	.L59:
+ 822              	.LBB10:
+ 193:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         CO_PROGMEM OD_obj_var_t *odo = entry->odObject;
+ 823              		.loc 1 193 34 view .LVU283
+ 824 00e8 0E20     		movs	r0, #14
+ 825 00ea 9CE7     		b	.L41
+ 826              	.L60:
+ 193:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         CO_PROGMEM OD_obj_var_t *odo = entry->odObject;
+ 827              		.loc 1 193 34 view .LVU284
+ 828              	.LBE10:
+ 829              	.LBB11:
+ 203:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         CO_PROGMEM OD_obj_array_t *odo = entry->odObject;
+ 830              		.loc 1 203 56 view .LVU285
+ 831 00ec 0E20     		movs	r0, #14
+ 832 00ee 9AE7     		b	.L41
+ 833              	.LVL91:
+ 834              	.L61:
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 24
+
+
+ 203:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         CO_PROGMEM OD_obj_array_t *odo = entry->odObject;
+ 835              		.loc 1 203 56 view .LVU286
+ 836              	.LBE11:
+ 837              	.LBB12:
+ 229:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 838              		.loc 1 229 33 view .LVU287
+ 839 00f0 0E20     		movs	r0, #14
+ 840              	.LVL92:
+ 229:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 841              		.loc 1 229 33 view .LVU288
+ 842 00f2 98E7     		b	.L41
+ 843              	.L71:
+ 844              		.align	2
+ 845              	.L70:
+ 846 00f4 00000000 		.word	OD_readOriginal
+ 847 00f8 00000000 		.word	OD_writeOriginal
+ 848 00fc 00000000 		.word	OD_readDisabled
+ 849 0100 00000000 		.word	OD_writeDisabled
+ 850              	.LBE12:
+ 851              		.cfi_endproc
+ 852              	.LFE161:
+ 854              		.section	.text.OD_getSDOabCode,"ax",%progbits
+ 855              		.align	1
+ 856              		.global	OD_getSDOabCode
+ 857              		.syntax unified
+ 858              		.thumb
+ 859              		.thumb_func
+ 861              	OD_getSDOabCode:
+ 862              	.LVL93:
+ 863              	.LFB162:
+ 262:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 263:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** /******************************************************************************/
+ 264:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** uint32_t OD_getSDOabCode(ODR_t returnCode) {
+ 864              		.loc 1 264 44 is_stmt 1 view -0
+ 865              		.cfi_startproc
+ 866              		@ args = 0, pretend = 0, frame = 0
+ 867              		@ frame_needed = 0, uses_anonymous_args = 0
+ 868              		@ link register save eliminated.
+ 265:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     static const uint32_t abortCodes[ODR_COUNT] = {
+ 869              		.loc 1 265 5 view .LVU290
+ 266:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x00000000UL, /* No abort */
+ 267:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x05040005UL, /* Out of memory */
+ 268:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x06010000UL, /* Unsupported access to an object */
+ 269:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x06010001UL, /* Attempt to read a write only object */
+ 270:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x06010002UL, /* Attempt to write a read only object */
+ 271:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x06020000UL, /* Object does not exist in the object dictionary */
+ 272:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x06040041UL, /* Object cannot be mapped to the PDO */
+ 273:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x06040042UL, /* Num and len of object to be mapped exceeds PDO len */
+ 274:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x06040043UL, /* General parameter incompatibility reasons */
+ 275:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x06040047UL, /* General internal incompatibility in device */
+ 276:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x06060000UL, /* Access failed due to hardware error */
+ 277:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x06070010UL, /* Data type does not match, length does not match */
+ 278:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x06070012UL, /* Data type does not match, length too high */
+ 279:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x06070013UL, /* Data type does not match, length too short */
+ 280:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x06090011UL, /* Sub index does not exist */
+ 281:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x06090030UL, /* Invalid value for parameter (download only). */
+ 282:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x06090031UL, /* Value range of parameter written too high */
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 25
+
+
+ 283:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x06090032UL, /* Value range of parameter written too low */
+ 284:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x06090036UL, /* Maximum value is less than minimum value. */
+ 285:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x060A0023UL, /* Resource not available: SDO connection */
+ 286:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x08000000UL, /* General error */
+ 287:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x08000020UL, /* Data cannot be transferred or stored to application */
+ 288:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x08000021UL, /* Data cannot be transferred because of local control */
+ 289:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x08000022UL, /* Data cannot be tran. because of present device state */
+ 290:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x08000023UL, /* Object dict. not present or dynamic generation fails */
+ 291:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         0x08000024UL  /* No data available */
+ 292:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     };
+ 293:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 294:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     return (returnCode < 0 || returnCode >= ODR_COUNT) ?
+ 870              		.loc 1 294 5 view .LVU291
+ 871              		.loc 1 294 28 is_stmt 0 view .LVU292
+ 872 0000 C3B2     		uxtb	r3, r0
+ 295:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         abortCodes[ODR_DEV_INCOMPAT] : abortCodes[returnCode];
+ 873              		.loc 1 295 38 view .LVU293
+ 874 0002 192B     		cmp	r3, #25
+ 875 0004 03D8     		bhi	.L74
+ 876              		.loc 1 295 38 discriminator 2 view .LVU294
+ 877 0006 034B     		ldr	r3, .L75
+ 878 0008 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 879              	.LVL94:
+ 880              		.loc 1 295 38 discriminator 2 view .LVU295
+ 881 000c 7047     		bx	lr
+ 882              	.LVL95:
+ 883              	.L74:
+ 884              		.loc 1 295 38 view .LVU296
+ 885 000e 0248     		ldr	r0, .L75+4
+ 886              	.LVL96:
+ 296:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** }
+ 887              		.loc 1 296 1 view .LVU297
+ 888 0010 7047     		bx	lr
+ 889              	.L76:
+ 890 0012 00BF     		.align	2
+ 891              	.L75:
+ 892 0014 00000000 		.word	.LANCHOR0
+ 893 0018 47000406 		.word	100925511
+ 894              		.cfi_endproc
+ 895              	.LFE162:
+ 897              		.section	.text.OD_get_value,"ax",%progbits
+ 898              		.align	1
+ 899              		.global	OD_get_value
+ 900              		.syntax unified
+ 901              		.thumb
+ 902              		.thumb_func
+ 904              	OD_get_value:
+ 905              	.LVL97:
+ 906              	.LFB163:
+ 297:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 298:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 299:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** /******************************************************************************/
+ 300:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** ODR_t OD_get_value(const OD_entry_t *entry, uint8_t subIndex,
+ 301:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                    void *val, OD_size_t len, bool_t odOrig)
+ 302:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** {
+ 907              		.loc 1 302 1 is_stmt 1 view -0
+ 908              		.cfi_startproc
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 26
+
+
+ 909              		@ args = 4, pretend = 0, frame = 32
+ 910              		@ frame_needed = 0, uses_anonymous_args = 0
+ 303:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (val == NULL) return ODR_DEV_INCOMPAT;
+ 911              		.loc 1 303 5 view .LVU299
+ 912              		.loc 1 303 8 is_stmt 0 view .LVU300
+ 913 0000 AAB1     		cbz	r2, .L79
+ 302:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (val == NULL) return ODR_DEV_INCOMPAT;
+ 914              		.loc 1 302 1 view .LVU301
+ 915 0002 30B5     		push	{r4, r5, lr}
+ 916              	.LCFI6:
+ 917              		.cfi_def_cfa_offset 12
+ 918              		.cfi_offset 4, -12
+ 919              		.cfi_offset 5, -8
+ 920              		.cfi_offset 14, -4
+ 921 0004 89B0     		sub	sp, sp, #36
+ 922              	.LCFI7:
+ 923              		.cfi_def_cfa_offset 48
+ 924 0006 1C46     		mov	r4, r3
+ 925 0008 1546     		mov	r5, r2
+ 304:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 305:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     OD_IO_t io;
+ 926              		.loc 1 305 5 is_stmt 1 view .LVU302
+ 306:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     OD_stream_t *stream = (OD_stream_t *)&io;
+ 927              		.loc 1 306 5 view .LVU303
+ 928              	.LVL98:
+ 307:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     OD_size_t countRd = 0;
+ 929              		.loc 1 307 5 view .LVU304
+ 930              		.loc 1 307 15 is_stmt 0 view .LVU305
+ 931 000a 0023     		movs	r3, #0
+ 932              	.LVL99:
+ 933              		.loc 1 307 15 view .LVU306
+ 934 000c 0093     		str	r3, [sp]
+ 308:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 309:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     ODR_t ret = OD_getSub(entry, subIndex, &io, odOrig);
+ 935              		.loc 1 309 5 is_stmt 1 view .LVU307
+ 936              		.loc 1 309 17 is_stmt 0 view .LVU308
+ 937 000e 0C9B     		ldr	r3, [sp, #48]
+ 938 0010 01AA     		add	r2, sp, #4
+ 939              	.LVL100:
+ 940              		.loc 1 309 17 view .LVU309
+ 941 0012 FFF7FEFF 		bl	OD_getSub
+ 942              	.LVL101:
+ 310:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 311:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (ret != ODR_OK) return ret;
+ 943              		.loc 1 311 5 is_stmt 1 view .LVU310
+ 944              		.loc 1 311 8 is_stmt 0 view .LVU311
+ 945 0016 40B9     		cbnz	r0, .L78
+ 312:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (stream->dataLength != len) return ODR_TYPE_MISMATCH;
+ 946              		.loc 1 312 5 is_stmt 1 view .LVU312
+ 947              		.loc 1 312 15 is_stmt 0 view .LVU313
+ 948 0018 039B     		ldr	r3, [sp, #12]
+ 949              		.loc 1 312 8 view .LVU314
+ 950 001a A342     		cmp	r3, r4
+ 951 001c 09D1     		bne	.L80
+ 313:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 314:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     return io.read(stream, val, len, &countRd);
+ 952              		.loc 1 314 5 is_stmt 1 view .LVU315
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 27
+
+
+ 953              		.loc 1 314 12 is_stmt 0 view .LVU316
+ 954 001e 6B46     		mov	r3, sp
+ 955 0020 2246     		mov	r2, r4
+ 956 0022 2946     		mov	r1, r5
+ 957 0024 01A8     		add	r0, sp, #4
+ 958              	.LVL102:
+ 959              		.loc 1 314 12 view .LVU317
+ 960 0026 069C     		ldr	r4, [sp, #24]
+ 961              	.LVL103:
+ 962              		.loc 1 314 12 view .LVU318
+ 963 0028 A047     		blx	r4
+ 964              	.LVL104:
+ 965              	.L78:
+ 315:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** }
+ 966              		.loc 1 315 1 view .LVU319
+ 967 002a 09B0     		add	sp, sp, #36
+ 968              	.LCFI8:
+ 969              		.cfi_def_cfa_offset 12
+ 970              		@ sp needed
+ 971 002c 30BD     		pop	{r4, r5, pc}
+ 972              	.LVL105:
+ 973              	.L79:
+ 974              	.LCFI9:
+ 975              		.cfi_def_cfa_offset 0
+ 976              		.cfi_restore 4
+ 977              		.cfi_restore 5
+ 978              		.cfi_restore 14
+ 303:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 979              		.loc 1 303 29 view .LVU320
+ 980 002e 0920     		movs	r0, #9
+ 981              	.LVL106:
+ 982              		.loc 1 315 1 view .LVU321
+ 983 0030 7047     		bx	lr
+ 984              	.LVL107:
+ 985              	.L80:
+ 986              	.LCFI10:
+ 987              		.cfi_def_cfa_offset 48
+ 988              		.cfi_offset 4, -12
+ 989              		.cfi_offset 5, -8
+ 990              		.cfi_offset 14, -4
+ 312:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 991              		.loc 1 312 43 view .LVU322
+ 992 0032 0B20     		movs	r0, #11
+ 993              	.LVL108:
+ 312:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 994              		.loc 1 312 43 view .LVU323
+ 995 0034 F9E7     		b	.L78
+ 996              		.cfi_endproc
+ 997              	.LFE163:
+ 999              		.section	.text.OD_set_value,"ax",%progbits
+ 1000              		.align	1
+ 1001              		.global	OD_set_value
+ 1002              		.syntax unified
+ 1003              		.thumb
+ 1004              		.thumb_func
+ 1006              	OD_set_value:
+ 1007              	.LVL109:
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 28
+
+
+ 1008              	.LFB164:
+ 316:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 317:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** ODR_t OD_set_value(const OD_entry_t *entry, uint8_t subIndex, void *val,
+ 318:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                    OD_size_t len, bool_t odOrig)
+ 319:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** {
+ 1009              		.loc 1 319 1 is_stmt 1 view -0
+ 1010              		.cfi_startproc
+ 1011              		@ args = 4, pretend = 0, frame = 32
+ 1012              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1013              		.loc 1 319 1 is_stmt 0 view .LVU325
+ 1014 0000 30B5     		push	{r4, r5, lr}
+ 1015              	.LCFI11:
+ 1016              		.cfi_def_cfa_offset 12
+ 1017              		.cfi_offset 4, -12
+ 1018              		.cfi_offset 5, -8
+ 1019              		.cfi_offset 14, -4
+ 1020 0002 89B0     		sub	sp, sp, #36
+ 1021              	.LCFI12:
+ 1022              		.cfi_def_cfa_offset 48
+ 1023 0004 1546     		mov	r5, r2
+ 1024 0006 1C46     		mov	r4, r3
+ 320:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     OD_IO_t io;
+ 1025              		.loc 1 320 5 is_stmt 1 view .LVU326
+ 321:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     OD_stream_t *stream = &io.stream;
+ 1026              		.loc 1 321 5 view .LVU327
+ 1027              	.LVL110:
+ 322:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     OD_size_t countWritten = 0;
+ 1028              		.loc 1 322 5 view .LVU328
+ 1029              		.loc 1 322 15 is_stmt 0 view .LVU329
+ 1030 0008 0023     		movs	r3, #0
+ 1031              	.LVL111:
+ 1032              		.loc 1 322 15 view .LVU330
+ 1033 000a 0093     		str	r3, [sp]
+ 323:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 324:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     ODR_t ret = OD_getSub(entry, subIndex, &io, odOrig);
+ 1034              		.loc 1 324 5 is_stmt 1 view .LVU331
+ 1035              		.loc 1 324 17 is_stmt 0 view .LVU332
+ 1036 000c 0C9B     		ldr	r3, [sp, #48]
+ 1037 000e 01AA     		add	r2, sp, #4
+ 1038              	.LVL112:
+ 1039              		.loc 1 324 17 view .LVU333
+ 1040 0010 FFF7FEFF 		bl	OD_getSub
+ 1041              	.LVL113:
+ 325:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 326:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (ret != ODR_OK) return ret;
+ 1042              		.loc 1 326 5 is_stmt 1 view .LVU334
+ 1043              		.loc 1 326 8 is_stmt 0 view .LVU335
+ 1044 0014 40B9     		cbnz	r0, .L86
+ 327:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (stream->dataLength != len) return ODR_TYPE_MISMATCH;
+ 1045              		.loc 1 327 5 is_stmt 1 view .LVU336
+ 1046              		.loc 1 327 15 is_stmt 0 view .LVU337
+ 1047 0016 039B     		ldr	r3, [sp, #12]
+ 1048              		.loc 1 327 8 view .LVU338
+ 1049 0018 A342     		cmp	r3, r4
+ 1050 001a 07D1     		bne	.L87
+ 328:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 329:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     return io.write(stream, val, len, &countWritten);
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 29
+
+
+ 1051              		.loc 1 329 5 is_stmt 1 view .LVU339
+ 1052              		.loc 1 329 12 is_stmt 0 view .LVU340
+ 1053 001c 6B46     		mov	r3, sp
+ 1054 001e 2246     		mov	r2, r4
+ 1055 0020 2946     		mov	r1, r5
+ 1056 0022 01A8     		add	r0, sp, #4
+ 1057              	.LVL114:
+ 1058              		.loc 1 329 12 view .LVU341
+ 1059 0024 079C     		ldr	r4, [sp, #28]
+ 1060              	.LVL115:
+ 1061              		.loc 1 329 12 view .LVU342
+ 1062 0026 A047     		blx	r4
+ 1063              	.LVL116:
+ 1064              	.L86:
+ 330:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** }
+ 1065              		.loc 1 330 1 view .LVU343
+ 1066 0028 09B0     		add	sp, sp, #36
+ 1067              	.LCFI13:
+ 1068              		.cfi_remember_state
+ 1069              		.cfi_def_cfa_offset 12
+ 1070              		@ sp needed
+ 1071 002a 30BD     		pop	{r4, r5, pc}
+ 1072              	.LVL117:
+ 1073              	.L87:
+ 1074              	.LCFI14:
+ 1075              		.cfi_restore_state
+ 327:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (stream->dataLength != len) return ODR_TYPE_MISMATCH;
+ 1076              		.loc 1 327 43 view .LVU344
+ 1077 002c 0B20     		movs	r0, #11
+ 1078 002e FBE7     		b	.L86
+ 1079              		.cfi_endproc
+ 1080              	.LFE164:
+ 1082              		.section	.text.OD_getPtr,"ax",%progbits
+ 1083              		.align	1
+ 1084              		.global	OD_getPtr
+ 1085              		.syntax unified
+ 1086              		.thumb
+ 1087              		.thumb_func
+ 1089              	OD_getPtr:
+ 1090              	.LVL118:
+ 1091              	.LFB165:
+ 331:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 332:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** void *OD_getPtr(const OD_entry_t *entry, uint8_t subIndex, OD_size_t len,
+ 333:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****                 ODR_t *err)
+ 334:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** {
+ 1092              		.loc 1 334 1 is_stmt 1 view -0
+ 1093              		.cfi_startproc
+ 1094              		@ args = 0, pretend = 0, frame = 32
+ 1095              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1096              		.loc 1 334 1 is_stmt 0 view .LVU346
+ 1097 0000 30B5     		push	{r4, r5, lr}
+ 1098              	.LCFI15:
+ 1099              		.cfi_def_cfa_offset 12
+ 1100              		.cfi_offset 4, -12
+ 1101              		.cfi_offset 5, -8
+ 1102              		.cfi_offset 14, -4
+ 1103 0002 89B0     		sub	sp, sp, #36
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 30
+
+
+ 1104              	.LCFI16:
+ 1105              		.cfi_def_cfa_offset 48
+ 1106 0004 1546     		mov	r5, r2
+ 1107 0006 1C46     		mov	r4, r3
+ 335:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     ODR_t errCopy;
+ 1108              		.loc 1 335 5 is_stmt 1 view .LVU347
+ 336:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     OD_IO_t io;
+ 1109              		.loc 1 336 5 view .LVU348
+ 337:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     OD_stream_t *stream = &io.stream;
+ 1110              		.loc 1 337 5 view .LVU349
+ 1111              	.LVL119:
+ 338:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 339:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     errCopy = OD_getSub(entry, subIndex, &io, true);
+ 1112              		.loc 1 339 5 view .LVU350
+ 1113              		.loc 1 339 15 is_stmt 0 view .LVU351
+ 1114 0008 0123     		movs	r3, #1
+ 1115              	.LVL120:
+ 1116              		.loc 1 339 15 view .LVU352
+ 1117 000a 01AA     		add	r2, sp, #4
+ 1118              	.LVL121:
+ 1119              		.loc 1 339 15 view .LVU353
+ 1120 000c FFF7FEFF 		bl	OD_getSub
+ 1121              	.LVL122:
+ 340:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 341:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (errCopy == ODR_OK) {
+ 1122              		.loc 1 341 5 is_stmt 1 view .LVU354
+ 1123              		.loc 1 341 8 is_stmt 0 view .LVU355
+ 1124 0010 0346     		mov	r3, r0
+ 1125 0012 58B9     		cbnz	r0, .L90
+ 342:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         if (stream->dataOrig == NULL || stream->dataLength == 0) {
+ 1126              		.loc 1 342 9 is_stmt 1 view .LVU356
+ 1127              		.loc 1 342 19 is_stmt 0 view .LVU357
+ 1128 0014 019A     		ldr	r2, [sp, #4]
+ 1129              		.loc 1 342 12 view .LVU358
+ 1130 0016 32B1     		cbz	r2, .L93
+ 1131              		.loc 1 342 47 discriminator 1 view .LVU359
+ 1132 0018 039A     		ldr	r2, [sp, #12]
+ 1133              		.loc 1 342 38 discriminator 1 view .LVU360
+ 1134 001a 32B1     		cbz	r2, .L94
+ 343:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             errCopy = ODR_DEV_INCOMPAT;
+ 344:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 345:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         else if (len != 0 && len != stream->dataLength) {
+ 1135              		.loc 1 345 14 is_stmt 1 view .LVU361
+ 1136              		.loc 1 345 17 is_stmt 0 view .LVU362
+ 1137 001c 35B1     		cbz	r5, .L90
+ 1138              		.loc 1 345 27 discriminator 1 view .LVU363
+ 1139 001e AA42     		cmp	r2, r5
+ 1140 0020 04D0     		beq	.L90
+ 346:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             errCopy = ODR_TYPE_MISMATCH;
+ 1141              		.loc 1 346 21 view .LVU364
+ 1142 0022 0B23     		movs	r3, #11
+ 1143 0024 02E0     		b	.L90
+ 1144              	.L93:
+ 343:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****             errCopy = ODR_DEV_INCOMPAT;
+ 1145              		.loc 1 343 21 view .LVU365
+ 1146 0026 0923     		movs	r3, #9
+ 1147 0028 00E0     		b	.L90
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 31
+
+
+ 1148              	.L94:
+ 1149 002a 0923     		movs	r3, #9
+ 1150              	.L90:
+ 1151              	.LVL123:
+ 347:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****         }
+ 348:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     }
+ 349:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 350:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     if (err != NULL) *err = errCopy;
+ 1152              		.loc 1 350 5 is_stmt 1 view .LVU366
+ 1153              		.loc 1 350 8 is_stmt 0 view .LVU367
+ 1154 002c 04B1     		cbz	r4, .L91
+ 1155              		.loc 1 350 22 is_stmt 1 discriminator 1 view .LVU368
+ 1156              		.loc 1 350 27 is_stmt 0 discriminator 1 view .LVU369
+ 1157 002e 2370     		strb	r3, [r4]
+ 1158              	.L91:
+ 351:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** 
+ 352:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c ****     return errCopy == ODR_OK ? stream->dataOrig : NULL;
+ 1159              		.loc 1 352 5 is_stmt 1 view .LVU370
+ 1160              		.loc 1 352 49 is_stmt 0 view .LVU371
+ 1161 0030 13B9     		cbnz	r3, .L96
+ 1162              		.loc 1 352 49 discriminator 1 view .LVU372
+ 1163 0032 0198     		ldr	r0, [sp, #4]
+ 1164              	.L89:
+ 353:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** }
+ 1165              		.loc 1 353 1 view .LVU373
+ 1166 0034 09B0     		add	sp, sp, #36
+ 1167              	.LCFI17:
+ 1168              		.cfi_remember_state
+ 1169              		.cfi_def_cfa_offset 12
+ 1170              		@ sp needed
+ 1171 0036 30BD     		pop	{r4, r5, pc}
+ 1172              	.LVL124:
+ 1173              	.L96:
+ 1174              	.LCFI18:
+ 1175              		.cfi_restore_state
+ 352:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.c **** }
+ 1176              		.loc 1 352 49 view .LVU374
+ 1177 0038 0020     		movs	r0, #0
+ 1178 003a FBE7     		b	.L89
+ 1179              		.cfi_endproc
+ 1180              	.LFE165:
+ 1182              		.section	.rodata.abortCodes.0,"a"
+ 1183              		.align	2
+ 1184              		.set	.LANCHOR0,. + 0
+ 1187              	abortCodes.0:
+ 1188 0000 00000000 		.word	0
+ 1189 0004 05000405 		.word	84148229
+ 1190 0008 00000106 		.word	100728832
+ 1191 000c 01000106 		.word	100728833
+ 1192 0010 02000106 		.word	100728834
+ 1193 0014 00000206 		.word	100794368
+ 1194 0018 41000406 		.word	100925505
+ 1195 001c 42000406 		.word	100925506
+ 1196 0020 43000406 		.word	100925507
+ 1197 0024 47000406 		.word	100925511
+ 1198 0028 00000606 		.word	101056512
+ 1199 002c 10000706 		.word	101122064
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 32
+
+
+ 1200 0030 12000706 		.word	101122066
+ 1201 0034 13000706 		.word	101122067
+ 1202 0038 11000906 		.word	101253137
+ 1203 003c 30000906 		.word	101253168
+ 1204 0040 31000906 		.word	101253169
+ 1205 0044 32000906 		.word	101253170
+ 1206 0048 36000906 		.word	101253174
+ 1207 004c 23000A06 		.word	101318691
+ 1208 0050 00000008 		.word	134217728
+ 1209 0054 20000008 		.word	134217760
+ 1210 0058 21000008 		.word	134217761
+ 1211 005c 22000008 		.word	134217762
+ 1212 0060 23000008 		.word	134217763
+ 1213 0064 24000008 		.word	134217764
+ 1214              		.text
+ 1215              	.Letext0:
+ 1216              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 1217              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 1218              		.file 4 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 1219              		.file 5 "Middlewares/Third_Party/CANopenNode_STM32/CO_driver_target.h"
+ 1220              		.file 6 "Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h"
+ 1221              		.file 7 "<built-in>"
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s 			page 33
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 CO_ODinterface.c
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:20     .text.OD_readDisabled:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:25     .text.OD_readDisabled:00000000 OD_readDisabled
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:48     .text.OD_writeDisabled:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:53     .text.OD_writeDisabled:00000000 OD_writeDisabled
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:75     .text.OD_readOriginal:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:81     .text.OD_readOriginal:00000000 OD_readOriginal
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:216    .text.OD_writeOriginal:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:222    .text.OD_writeOriginal:00000000 OD_writeOriginal
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:363    .text.OD_find:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:369    .text.OD_find:00000000 OD_find
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:510    .text.OD_getSub:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:516    .text.OD_getSub:00000000 OD_getSub
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:846    .text.OD_getSub:000000f4 $d
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:855    .text.OD_getSDOabCode:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:861    .text.OD_getSDOabCode:00000000 OD_getSDOabCode
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:892    .text.OD_getSDOabCode:00000014 $d
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:898    .text.OD_get_value:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:904    .text.OD_get_value:00000000 OD_get_value
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:1000   .text.OD_set_value:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:1006   .text.OD_set_value:00000000 OD_set_value
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:1083   .text.OD_getPtr:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:1089   .text.OD_getPtr:00000000 OD_getPtr
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:1183   .rodata.abortCodes.0:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccMSPlYK.s:1187   .rodata.abortCodes.0:00000000 abortCodes.0
+
+UNDEFINED SYMBOLS
+memcpy

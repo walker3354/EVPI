@@ -1,0 +1,476 @@
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccD55GqV.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"OD.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	OD
+  20              		.global	OD_RAM
+  21              		.global	OD_PERSIST_COMM
+  22              		.section	.data.OD,"aw"
+  23              		.align	2
+  26              	OD:
+  27 0000 00000000 		.word	_OD
+  28              		.section	.data.ODList,"aw"
+  29              		.align	2
+  32              	ODList:
+  33 0000 0010     		.short	4096
+  34 0002 01       		.byte	1
+  35 0003 01       		.byte	1
+  36 0004 00000000 		.word	ODObjs
+  37 0008 00000000 		.word	0
+  38 000c 0110     		.short	4097
+  39 000e 01       		.byte	1
+  40 000f 01       		.byte	1
+  41 0010 0C000000 		.word	ODObjs+12
+  42 0014 00000000 		.word	0
+  43 0018 0310     		.short	4099
+  44 001a 11       		.byte	17
+  45 001b 02       		.byte	2
+  46 001c 18000000 		.word	ODObjs+24
+  47 0020 00000000 		.word	0
+  48 0024 0510     		.short	4101
+  49 0026 01       		.byte	1
+  50 0027 01       		.byte	1
+  51 0028 2C000000 		.word	ODObjs+44
+  52 002c 00000000 		.word	0
+  53 0030 0610     		.short	4102
+  54 0032 01       		.byte	1
+  55 0033 01       		.byte	1
+  56 0034 38000000 		.word	ODObjs+56
+  57 0038 00000000 		.word	0
+  58 003c 0710     		.short	4103
+  59 003e 01       		.byte	1
+  60 003f 01       		.byte	1
+  61 0040 44000000 		.word	ODObjs+68
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccD55GqV.s 			page 2
+
+
+  62 0044 00000000 		.word	0
+  63 0048 1010     		.short	4112
+  64 004a 05       		.byte	5
+  65 004b 02       		.byte	2
+  66 004c 50000000 		.word	ODObjs+80
+  67 0050 00000000 		.word	0
+  68 0054 1110     		.short	4113
+  69 0056 05       		.byte	5
+  70 0057 02       		.byte	2
+  71 0058 64000000 		.word	ODObjs+100
+  72 005c 00000000 		.word	0
+  73 0060 1210     		.short	4114
+  74 0062 01       		.byte	1
+  75 0063 01       		.byte	1
+  76 0064 78000000 		.word	ODObjs+120
+  77 0068 00000000 		.word	0
+  78 006c 1410     		.short	4116
+  79 006e 01       		.byte	1
+  80 006f 01       		.byte	1
+  81 0070 84000000 		.word	ODObjs+132
+  82 0074 00000000 		.word	0
+  83 0078 1510     		.short	4117
+  84 007a 01       		.byte	1
+  85 007b 01       		.byte	1
+  86 007c 90000000 		.word	ODObjs+144
+  87 0080 00000000 		.word	0
+  88 0084 1610     		.short	4118
+  89 0086 09       		.byte	9
+  90 0087 02       		.byte	2
+  91 0088 9C000000 		.word	ODObjs+156
+  92 008c 00000000 		.word	0
+  93 0090 1710     		.short	4119
+  94 0092 01       		.byte	1
+  95 0093 01       		.byte	1
+  96 0094 B0000000 		.word	ODObjs+176
+  97 0098 00000000 		.word	0
+  98 009c 1810     		.short	4120
+  99 009e 05       		.byte	5
+ 100 009f 03       		.byte	3
+ 101 00a0 BC000000 		.word	ODObjs+188
+ 102 00a4 00000000 		.word	0
+ 103 00a8 1910     		.short	4121
+ 104 00aa 01       		.byte	1
+ 105 00ab 01       		.byte	1
+ 106 00ac F8000000 		.word	ODObjs+248
+ 107 00b0 00000000 		.word	0
+ 108 00b4 0012     		.short	4608
+ 109 00b6 03       		.byte	3
+ 110 00b7 03       		.byte	3
+ 111 00b8 04010000 		.word	ODObjs+260
+ 112 00bc 00000000 		.word	0
+ 113 00c0 8012     		.short	4736
+ 114 00c2 04       		.byte	4
+ 115 00c3 03       		.byte	3
+ 116 00c4 28010000 		.word	ODObjs+296
+ 117 00c8 00000000 		.word	0
+ 118 00cc 0018     		.short	6144
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccD55GqV.s 			page 3
+
+
+ 119 00ce 06       		.byte	6
+ 120 00cf 03       		.byte	3
+ 121 00d0 58010000 		.word	ODObjs+344
+ 122 00d4 00000000 		.word	0
+ 123 00d8 001A     		.short	6656
+ 124 00da 09       		.byte	9
+ 125 00db 03       		.byte	3
+ 126 00dc A0010000 		.word	ODObjs+416
+ 127 00e0 00000000 		.word	0
+ 128 00e4 0060     		.short	24576
+ 129 00e6 01       		.byte	1
+ 130 00e7 01       		.byte	1
+ 131 00e8 0C020000 		.word	ODObjs+524
+ 132 00ec 00000000 		.word	0
+ 133 00f0 0000     		.short	0
+ 134 00f2 00       		.byte	0
+ 135 00f3 00       		.byte	0
+ 136 00f4 00000000 		.word	0
+ 137 00f8 00000000 		.word	0
+ 138              		.section	.data.OD_PERSIST_COMM,"aw"
+ 139              		.align	2
+ 142              	OD_PERSIST_COMM:
+ 143 0000 00000000 		.word	0
+ 144 0004 80000000 		.word	128
+ 145 0008 00000000 		.word	0
+ 146 000c 00000000 		.word	0
+ 147 0010 00010000 		.word	256
+ 148 0014 80000000 		.word	128
+ 149 0018 0000     		.short	0
+ 150 001a 08       		.byte	8
+ 151 001b 00       		.space	1
+ 152 001c 00000000 		.word	0
+ 153 0020 00000000 		.word	0
+ 154 0024 00000000 		.word	0
+ 155 0028 00000000 		.word	0
+ 156 002c 00000000 		.word	0
+ 157 0030 00000000 		.word	0
+ 158 0034 00000000 		.word	0
+ 159 0038 00000000 		.word	0
+ 160 003c E803     		.short	1000
+ 161 003e 0000     		.space	2
+ 162 0040 04       		.byte	4
+ 163 0041 000000   		.space	3
+ 164 0044 00000000 		.word	0
+ 165 0048 00000000 		.word	0
+ 166 004c 00000000 		.word	0
+ 167 0050 00000000 		.word	0
+ 168 0054 00       		.byte	0
+ 169 0055 000000   		.space	3
+ 170 0058 03       		.byte	3
+ 171 0059 000000   		.space	3
+ 172 005c 00000080 		.word	-2147483648
+ 173 0060 00000080 		.word	-2147483648
+ 174 0064 01       		.byte	1
+ 175 0065 000000   		.space	3
+ 176 0068 06       		.byte	6
+ 177 0069 000000   		.space	3
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccD55GqV.s 			page 4
+
+
+ 178 006c 80010000 		.word	384
+ 179 0070 FE       		.byte	-2
+ 180 0071 00       		.space	1
+ 181 0072 0000     		.short	0
+ 182 0074 0000     		.short	0
+ 183 0076 00       		.byte	0
+ 184 0077 00       		.space	1
+ 185 0078 01       		.byte	1
+ 186 0079 000000   		.space	3
+ 187 007c 10000060 		.word	1610612752
+ 188 0080 00000000 		.word	0
+ 189 0084 00000000 		.word	0
+ 190 0088 00000000 		.word	0
+ 191 008c 00000000 		.word	0
+ 192 0090 00000000 		.word	0
+ 193 0094 00000000 		.word	0
+ 194 0098 00000000 		.word	0
+ 195 009c 0000     		.short	0
+ 196 009e 0000     		.space	2
+ 197              		.section	.data.OD_RAM,"aw"
+ 198              		.align	2
+ 201              	OD_RAM:
+ 202 0000 00       		.byte	0
+ 203 0001 04       		.byte	4
+ 204 0002 0000     		.space	2
+ 205 0004 01000000 		.word	1
+ 206 0008 01000000 		.word	1
+ 207 000c 01000000 		.word	1
+ 208 0010 01000000 		.word	1
+ 209 0014 04       		.byte	4
+ 210 0015 000000   		.space	3
+ 211 0018 01000000 		.word	1
+ 212 001c 01000000 		.word	1
+ 213 0020 01000000 		.word	1
+ 214 0024 01000000 		.word	1
+ 215 0028 02       		.byte	2
+ 216 0029 000000   		.space	3
+ 217 002c 00060000 		.word	1536
+ 218 0030 80050000 		.word	1408
+ 219              		.section	.data._OD,"aw"
+ 220              		.align	2
+ 223              	_OD:
+ 224 0000 1400     		.short	20
+ 225 0002 0000     		.space	2
+ 226 0004 00000000 		.word	ODList
+ 227              		.section	.rodata.ODObjs,"a"
+ 228              		.align	2
+ 231              	ODObjs:
+ 232 0000 00000000 		.word	OD_PERSIST_COMM
+ 233 0004 41       		.byte	65
+ 234 0005 000000   		.space	3
+ 235 0008 04000000 		.word	4
+ 236 000c 00000000 		.word	OD_RAM
+ 237 0010 0D       		.byte	13
+ 238 0011 000000   		.space	3
+ 239 0014 01000000 		.word	1
+ 240 0018 00000000 		.word	0
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccD55GqV.s 			page 5
+
+
+ 241 001c 00000000 		.word	0
+ 242 0020 03       		.byte	3
+ 243 0021 41       		.byte	65
+ 244 0022 0000     		.space	2
+ 245 0024 04000000 		.word	4
+ 246 0028 04000000 		.word	4
+ 247 002c 04000000 		.word	OD_PERSIST_COMM+4
+ 248 0030 43       		.byte	67
+ 249 0031 000000   		.space	3
+ 250 0034 04000000 		.word	4
+ 251 0038 08000000 		.word	OD_PERSIST_COMM+8
+ 252 003c 43       		.byte	67
+ 253 003d 000000   		.space	3
+ 254 0040 04000000 		.word	4
+ 255 0044 0C000000 		.word	OD_PERSIST_COMM+12
+ 256 0048 43       		.byte	67
+ 257 0049 000000   		.space	3
+ 258 004c 04000000 		.word	4
+ 259 0050 01000000 		.word	OD_RAM+1
+ 260 0054 04000000 		.word	OD_RAM+4
+ 261 0058 01       		.byte	1
+ 262 0059 43       		.byte	67
+ 263 005a 0000     		.space	2
+ 264 005c 04000000 		.word	4
+ 265 0060 04000000 		.word	4
+ 266 0064 14000000 		.word	OD_RAM+20
+ 267 0068 18000000 		.word	OD_RAM+24
+ 268 006c 01       		.byte	1
+ 269 006d 43       		.byte	67
+ 270 006e 0000     		.space	2
+ 271 0070 04000000 		.word	4
+ 272 0074 04000000 		.word	4
+ 273 0078 10000000 		.word	OD_PERSIST_COMM+16
+ 274 007c 43       		.byte	67
+ 275 007d 000000   		.space	3
+ 276 0080 04000000 		.word	4
+ 277 0084 14000000 		.word	OD_PERSIST_COMM+20
+ 278 0088 43       		.byte	67
+ 279 0089 000000   		.space	3
+ 280 008c 04000000 		.word	4
+ 281 0090 18000000 		.word	OD_PERSIST_COMM+24
+ 282 0094 43       		.byte	67
+ 283 0095 000000   		.space	3
+ 284 0098 02000000 		.word	2
+ 285 009c 1A000000 		.word	OD_PERSIST_COMM+26
+ 286 00a0 1C000000 		.word	OD_PERSIST_COMM+28
+ 287 00a4 01       		.byte	1
+ 288 00a5 43       		.byte	67
+ 289 00a6 0000     		.space	2
+ 290 00a8 04000000 		.word	4
+ 291 00ac 04000000 		.word	4
+ 292 00b0 3C000000 		.word	OD_PERSIST_COMM+60
+ 293 00b4 43       		.byte	67
+ 294 00b5 000000   		.space	3
+ 295 00b8 02000000 		.word	2
+ 296 00bc 40000000 		.word	OD_PERSIST_COMM+64
+ 297 00c0 00       		.byte	0
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccD55GqV.s 			page 6
+
+
+ 298 00c1 01       		.byte	1
+ 299 00c2 0000     		.space	2
+ 300 00c4 01000000 		.word	1
+ 301 00c8 44000000 		.word	OD_PERSIST_COMM+68
+ 302 00cc 01       		.byte	1
+ 303 00cd 41       		.byte	65
+ 304 00ce 0000     		.space	2
+ 305 00d0 04000000 		.word	4
+ 306 00d4 48000000 		.word	OD_PERSIST_COMM+72
+ 307 00d8 02       		.byte	2
+ 308 00d9 41       		.byte	65
+ 309 00da 0000     		.space	2
+ 310 00dc 04000000 		.word	4
+ 311 00e0 4C000000 		.word	OD_PERSIST_COMM+76
+ 312 00e4 03       		.byte	3
+ 313 00e5 41       		.byte	65
+ 314 00e6 0000     		.space	2
+ 315 00e8 04000000 		.word	4
+ 316 00ec 50000000 		.word	OD_PERSIST_COMM+80
+ 317 00f0 04       		.byte	4
+ 318 00f1 41       		.byte	65
+ 319 00f2 0000     		.space	2
+ 320 00f4 04000000 		.word	4
+ 321 00f8 54000000 		.word	OD_PERSIST_COMM+84
+ 322 00fc 03       		.byte	3
+ 323 00fd 000000   		.space	3
+ 324 0100 01000000 		.word	1
+ 325 0104 28000000 		.word	OD_RAM+40
+ 326 0108 00       		.byte	0
+ 327 0109 01       		.byte	1
+ 328 010a 0000     		.space	2
+ 329 010c 01000000 		.word	1
+ 330 0110 2C000000 		.word	OD_RAM+44
+ 331 0114 01       		.byte	1
+ 332 0115 4D       		.byte	77
+ 333 0116 0000     		.space	2
+ 334 0118 04000000 		.word	4
+ 335 011c 30000000 		.word	OD_RAM+48
+ 336 0120 02       		.byte	2
+ 337 0121 4D       		.byte	77
+ 338 0122 0000     		.space	2
+ 339 0124 04000000 		.word	4
+ 340 0128 58000000 		.word	OD_PERSIST_COMM+88
+ 341 012c 00       		.byte	0
+ 342 012d 01       		.byte	1
+ 343 012e 0000     		.space	2
+ 344 0130 01000000 		.word	1
+ 345 0134 5C000000 		.word	OD_PERSIST_COMM+92
+ 346 0138 01       		.byte	1
+ 347 0139 4F       		.byte	79
+ 348 013a 0000     		.space	2
+ 349 013c 04000000 		.word	4
+ 350 0140 60000000 		.word	OD_PERSIST_COMM+96
+ 351 0144 02       		.byte	2
+ 352 0145 4F       		.byte	79
+ 353 0146 0000     		.space	2
+ 354 0148 04000000 		.word	4
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccD55GqV.s 			page 7
+
+
+ 355 014c 64000000 		.word	OD_PERSIST_COMM+100
+ 356 0150 03       		.byte	3
+ 357 0151 03       		.byte	3
+ 358 0152 0000     		.space	2
+ 359 0154 01000000 		.word	1
+ 360 0158 68000000 		.word	OD_PERSIST_COMM+104
+ 361 015c 00       		.byte	0
+ 362 015d 01       		.byte	1
+ 363 015e 0000     		.space	2
+ 364 0160 01000000 		.word	1
+ 365 0164 6C000000 		.word	OD_PERSIST_COMM+108
+ 366 0168 01       		.byte	1
+ 367 0169 43       		.byte	67
+ 368 016a 0000     		.space	2
+ 369 016c 04000000 		.word	4
+ 370 0170 70000000 		.word	OD_PERSIST_COMM+112
+ 371 0174 02       		.byte	2
+ 372 0175 03       		.byte	3
+ 373 0176 0000     		.space	2
+ 374 0178 01000000 		.word	1
+ 375 017c 72000000 		.word	OD_PERSIST_COMM+114
+ 376 0180 03       		.byte	3
+ 377 0181 43       		.byte	67
+ 378 0182 0000     		.space	2
+ 379 0184 02000000 		.word	2
+ 380 0188 74000000 		.word	OD_PERSIST_COMM+116
+ 381 018c 05       		.byte	5
+ 382 018d 43       		.byte	67
+ 383 018e 0000     		.space	2
+ 384 0190 02000000 		.word	2
+ 385 0194 76000000 		.word	OD_PERSIST_COMM+118
+ 386 0198 06       		.byte	6
+ 387 0199 03       		.byte	3
+ 388 019a 0000     		.space	2
+ 389 019c 01000000 		.word	1
+ 390 01a0 78000000 		.word	OD_PERSIST_COMM+120
+ 391 01a4 00       		.byte	0
+ 392 01a5 03       		.byte	3
+ 393 01a6 0000     		.space	2
+ 394 01a8 01000000 		.word	1
+ 395 01ac 7C000000 		.word	OD_PERSIST_COMM+124
+ 396 01b0 01       		.byte	1
+ 397 01b1 43       		.byte	67
+ 398 01b2 0000     		.space	2
+ 399 01b4 04000000 		.word	4
+ 400 01b8 80000000 		.word	OD_PERSIST_COMM+128
+ 401 01bc 02       		.byte	2
+ 402 01bd 43       		.byte	67
+ 403 01be 0000     		.space	2
+ 404 01c0 04000000 		.word	4
+ 405 01c4 84000000 		.word	OD_PERSIST_COMM+132
+ 406 01c8 03       		.byte	3
+ 407 01c9 43       		.byte	67
+ 408 01ca 0000     		.space	2
+ 409 01cc 04000000 		.word	4
+ 410 01d0 88000000 		.word	OD_PERSIST_COMM+136
+ 411 01d4 04       		.byte	4
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccD55GqV.s 			page 8
+
+
+ 412 01d5 43       		.byte	67
+ 413 01d6 0000     		.space	2
+ 414 01d8 04000000 		.word	4
+ 415 01dc 8C000000 		.word	OD_PERSIST_COMM+140
+ 416 01e0 05       		.byte	5
+ 417 01e1 43       		.byte	67
+ 418 01e2 0000     		.space	2
+ 419 01e4 04000000 		.word	4
+ 420 01e8 90000000 		.word	OD_PERSIST_COMM+144
+ 421 01ec 06       		.byte	6
+ 422 01ed 43       		.byte	67
+ 423 01ee 0000     		.space	2
+ 424 01f0 04000000 		.word	4
+ 425 01f4 94000000 		.word	OD_PERSIST_COMM+148
+ 426 01f8 07       		.byte	7
+ 427 01f9 43       		.byte	67
+ 428 01fa 0000     		.space	2
+ 429 01fc 04000000 		.word	4
+ 430 0200 98000000 		.word	OD_PERSIST_COMM+152
+ 431 0204 08       		.byte	8
+ 432 0205 43       		.byte	67
+ 433 0206 0000     		.space	2
+ 434 0208 04000000 		.word	4
+ 435 020c 9C000000 		.word	OD_PERSIST_COMM+156
+ 436 0210 47       		.byte	71
+ 437 0211 000000   		.space	3
+ 438 0214 02000000 		.word	2
+ 439              		.text
+ 440              	.Letext0:
+ 441              		.file 1 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 442              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 443              		.file 3 "Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h"
+ 444              		.file 4 "Middlewares/Third_Party/CANopenNode_STM32/OD.h"
+ 445              		.file 5 "Middlewares/Third_Party/CANopenNode_STM32/OD.c"
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccD55GqV.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 OD.c
+C:\Users\walker\AppData\Local\Temp\ccD55GqV.s:26     .data.OD:00000000 OD
+C:\Users\walker\AppData\Local\Temp\ccD55GqV.s:201    .data.OD_RAM:00000000 OD_RAM
+C:\Users\walker\AppData\Local\Temp\ccD55GqV.s:142    .data.OD_PERSIST_COMM:00000000 OD_PERSIST_COMM
+C:\Users\walker\AppData\Local\Temp\ccD55GqV.s:23     .data.OD:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccD55GqV.s:223    .data._OD:00000000 _OD
+C:\Users\walker\AppData\Local\Temp\ccD55GqV.s:29     .data.ODList:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccD55GqV.s:32     .data.ODList:00000000 ODList
+C:\Users\walker\AppData\Local\Temp\ccD55GqV.s:231    .rodata.ODObjs:00000000 ODObjs
+C:\Users\walker\AppData\Local\Temp\ccD55GqV.s:139    .data.OD_PERSIST_COMM:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccD55GqV.s:198    .data.OD_RAM:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccD55GqV.s:220    .data._OD:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccD55GqV.s:228    .rodata.ODObjs:00000000 $d
+
+NO UNDEFINED SYMBOLS
