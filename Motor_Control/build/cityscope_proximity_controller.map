@@ -3704,7 +3704,7 @@ LOAD c:/program files (x86)/gnu arm embedded toolchain/10 2021.10/bin/../lib/gcc
  .debug_line    0x0001ff2b      0x197 build/dma.o
  .debug_line    0x000200c2       0x76 build/startup_stm32f303x8.o
 
-.debug_str      0x00000000     0xb884
+.debug_str      0x00000000     0xb89a
  .debug_str     0x00000000     0x1e85 build/main.o
                                0x2294 (size before relaxing)
  .debug_str     0x00001e85      0x10e build/gpio.o
@@ -3783,8 +3783,7 @@ LOAD c:/program files (x86)/gnu arm embedded toolchain/10 2021.10/bin/../lib/gcc
                                 0xb9f (size before relaxing)
  .debug_str     0x0000b851        0xf build/dma.o
                                 0x4f0 (size before relaxing)
- .debug_str     0x0000b860       0x24 build/startup_stm32f303x8.o
-                                 0x4a (size before relaxing)
+ .debug_str     0x0000b860       0x3a build/startup_stm32f303x8.o
 
 .comment        0x00000000       0x49
  .comment       0x00000000       0x49 build/main.o

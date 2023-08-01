@@ -1,0 +1,857 @@
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"flashROM.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.GetPage,"ax",%progbits
+  20              		.align	1
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	GetPage:
+  26              	.LVL0:
+  27              	.LFB126:
+  28              		.file 1 "Core/Src/flashROM.c"
+   1:Core/Src/flashROM.c **** /**
+   2:Core/Src/flashROM.c ****   *************************************************************************************************
+   3:Core/Src/flashROM.c ****   *************************************************************************************************
+   4:Core/Src/flashROM.c ****   *************************************************************************************************
+   5:Core/Src/flashROM.c ****   File:	      FLASH_PAGE_F1.c
+   6:Core/Src/flashROM.c ****   Modifier:   ControllersTech.com
+   7:Core/Src/flashROM.c ****   Updated:    27th MAY 2021
+   8:Core/Src/flashROM.c ****   *************************************************************************************************
+   9:Core/Src/flashROM.c ****   Copyright (C) 2017 ControllersTech.com
+  10:Core/Src/flashROM.c ****   This is a free software under the GNU license, you can redistribute it and/or modify it under the
+  11:Core/Src/flashROM.c ****   of the GNU General Public License version 3 as published by the Free Software Foundation.
+  12:Core/Src/flashROM.c ****   This software library is shared with public for educational purposes, without WARRANTY and Author
+  13:Core/Src/flashROM.c ****   or indirectly by this software, read more about this on the GNU General Public License.
+  14:Core/Src/flashROM.c ****   *************************************************************************************************
+  15:Core/Src/flashROM.c **** */
+  16:Core/Src/flashROM.c **** 
+  17:Core/Src/flashROM.c **** #include "flashROM.h"
+  18:Core/Src/flashROM.c **** #include "string.h"
+  19:Core/Src/flashROM.c **** #include "stdio.h"
+  20:Core/Src/flashROM.c **** 
+  21:Core/Src/flashROM.c **** /* STM32F103 have 128 PAGES (Page 0 to Page 127) of 1 KB each. This makes up 128 KB Flash Memory
+  22:Core/Src/flashROM.c ****  * Some STM32F103C8 have 64 KB FLASH Memory, so I guess they have Page 0 to Page 63 only.
+  23:Core/Src/flashROM.c ****  */
+  24:Core/Src/flashROM.c **** 
+  25:Core/Src/flashROM.c **** /* FLASH_PAGE_SIZE should be able to get the size of the Page according to the controller */
+  26:Core/Src/flashROM.c **** static uint32_t GetPage(uint32_t Address)
+  27:Core/Src/flashROM.c **** {
+  29              		.loc 1 27 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s 			page 2
+
+
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34              		.loc 1 27 1 is_stmt 0 view .LVU1
+  35 0000 0146     		mov	r1, r0
+  28:Core/Src/flashROM.c **** 	for (int indx = 0; indx < 128; indx++)
+  36              		.loc 1 28 2 is_stmt 1 view .LVU2
+  37              	.LBB2:
+  38              		.loc 1 28 7 view .LVU3
+  39              	.LVL1:
+  40              		.loc 1 28 11 is_stmt 0 view .LVU4
+  41 0002 0023     		movs	r3, #0
+  42              		.loc 1 28 2 view .LVU5
+  43 0004 00E0     		b	.L2
+  44              	.LVL2:
+  45              	.L3:
+  46              		.loc 1 28 33 is_stmt 1 discriminator 2 view .LVU6
+  47              		.loc 1 28 37 is_stmt 0 discriminator 2 view .LVU7
+  48 0006 0133     		adds	r3, r3, #1
+  49              	.LVL3:
+  50              	.L2:
+  51              		.loc 1 28 21 is_stmt 1 discriminator 1 view .LVU8
+  52              		.loc 1 28 2 is_stmt 0 discriminator 1 view .LVU9
+  53 0008 7F2B     		cmp	r3, #127
+  54 000a 0BDC     		bgt	.L6
+  29:Core/Src/flashROM.c **** 	{
+  30:Core/Src/flashROM.c **** 		if ((Address < (0x08000000 + (FLASH_PAGE_SIZE * (indx + 1)))) && (Address >= (0x08000000 + FLASH_
+  55              		.loc 1 30 3 is_stmt 1 view .LVU10
+  56              		.loc 1 30 30 is_stmt 0 view .LVU11
+  57 000c 03F10112 		add	r2, r3, #65537
+  58              		.loc 1 30 6 view .LVU12
+  59 0010 B1EBC22F 		cmp	r1, r2, lsl #11
+  60 0014 F7D2     		bcs	.L3
+  61              		.loc 1 30 92 discriminator 1 view .LVU13
+  62 0016 03F58032 		add	r2, r3, #65536
+  63 001a D002     		lsls	r0, r2, #11
+  64              		.loc 1 30 65 discriminator 1 view .LVU14
+  65 001c B1EBC22F 		cmp	r1, r2, lsl #11
+  66 0020 F1D3     		bcc	.L3
+  67              	.L1:
+  68              		.loc 1 30 65 discriminator 1 view .LVU15
+  69              	.LBE2:
+  31:Core/Src/flashROM.c **** 		{
+  32:Core/Src/flashROM.c **** 			return (0x08000000 + FLASH_PAGE_SIZE * indx);
+  33:Core/Src/flashROM.c **** 		}
+  34:Core/Src/flashROM.c **** 	}
+  35:Core/Src/flashROM.c **** 
+  36:Core/Src/flashROM.c **** 	return 0;
+  37:Core/Src/flashROM.c **** }
+  70              		.loc 1 37 1 view .LVU16
+  71 0022 7047     		bx	lr
+  72              	.L6:
+  36:Core/Src/flashROM.c **** }
+  73              		.loc 1 36 9 view .LVU17
+  74 0024 0020     		movs	r0, #0
+  75 0026 FCE7     		b	.L1
+  76              		.cfi_endproc
+  77              	.LFE126:
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s 			page 3
+
+
+  79              		.section	.text.float2Bytes,"ax",%progbits
+  80              		.align	1
+  81              		.global	float2Bytes
+  82              		.syntax unified
+  83              		.thumb
+  84              		.thumb_func
+  86              	float2Bytes:
+  87              	.LVL4:
+  88              	.LFB127:
+  38:Core/Src/flashROM.c **** 
+  39:Core/Src/flashROM.c **** uint8_t bytes_temp[4];
+  40:Core/Src/flashROM.c **** 
+  41:Core/Src/flashROM.c **** void float2Bytes(uint8_t *ftoa_bytes_temp, float float_variable)
+  42:Core/Src/flashROM.c **** {
+  89              		.loc 1 42 1 is_stmt 1 view -0
+  90              		.cfi_startproc
+  91              		@ args = 0, pretend = 0, frame = 8
+  92              		@ frame_needed = 0, uses_anonymous_args = 0
+  93              		@ link register save eliminated.
+  94              		.loc 1 42 1 is_stmt 0 view .LVU19
+  95 0000 82B0     		sub	sp, sp, #8
+  96              	.LCFI0:
+  97              		.cfi_def_cfa_offset 8
+  43:Core/Src/flashROM.c **** 	union
+  98              		.loc 1 43 2 is_stmt 1 view .LVU20
+  44:Core/Src/flashROM.c **** 	{
+  45:Core/Src/flashROM.c **** 		float a;
+  46:Core/Src/flashROM.c **** 		uint8_t bytes[4];
+  47:Core/Src/flashROM.c **** 	} thing;
+  48:Core/Src/flashROM.c **** 
+  49:Core/Src/flashROM.c **** 	thing.a = float_variable;
+  99              		.loc 1 49 2 view .LVU21
+ 100              		.loc 1 49 10 is_stmt 0 view .LVU22
+ 101 0002 8DED010A 		vstr.32	s0, [sp, #4]
+  50:Core/Src/flashROM.c **** 
+  51:Core/Src/flashROM.c **** 	for (uint8_t i = 0; i < 4; i++)
+ 102              		.loc 1 51 2 is_stmt 1 view .LVU23
+ 103              	.LBB3:
+ 104              		.loc 1 51 7 view .LVU24
+ 105              	.LVL5:
+ 106              		.loc 1 51 15 is_stmt 0 view .LVU25
+ 107 0006 0023     		movs	r3, #0
+ 108              		.loc 1 51 2 view .LVU26
+ 109 0008 07E0     		b	.L8
+ 110              	.LVL6:
+ 111              	.L9:
+  52:Core/Src/flashROM.c **** 	{
+  53:Core/Src/flashROM.c **** 		ftoa_bytes_temp[i] = thing.bytes[i];
+ 112              		.loc 1 53 3 is_stmt 1 discriminator 3 view .LVU27
+ 113              		.loc 1 53 35 is_stmt 0 discriminator 3 view .LVU28
+ 114 000a 03F10802 		add	r2, r3, #8
+ 115 000e 6A44     		add	r2, sp, r2
+ 116 0010 12F8042C 		ldrb	r2, [r2, #-4]	@ zero_extendqisi2
+ 117              		.loc 1 53 22 discriminator 3 view .LVU29
+ 118 0014 C254     		strb	r2, [r0, r3]
+  51:Core/Src/flashROM.c **** 	{
+ 119              		.loc 1 51 29 is_stmt 1 discriminator 3 view .LVU30
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s 			page 4
+
+
+  51:Core/Src/flashROM.c **** 	{
+ 120              		.loc 1 51 30 is_stmt 0 discriminator 3 view .LVU31
+ 121 0016 0133     		adds	r3, r3, #1
+ 122              	.LVL7:
+  51:Core/Src/flashROM.c **** 	{
+ 123              		.loc 1 51 30 discriminator 3 view .LVU32
+ 124 0018 DBB2     		uxtb	r3, r3
+ 125              	.LVL8:
+ 126              	.L8:
+  51:Core/Src/flashROM.c **** 	{
+ 127              		.loc 1 51 22 is_stmt 1 discriminator 1 view .LVU33
+  51:Core/Src/flashROM.c **** 	{
+ 128              		.loc 1 51 2 is_stmt 0 discriminator 1 view .LVU34
+ 129 001a 032B     		cmp	r3, #3
+ 130 001c F5D9     		bls	.L9
+ 131              	.LBE3:
+  54:Core/Src/flashROM.c **** 	}
+  55:Core/Src/flashROM.c **** }
+ 132              		.loc 1 55 1 view .LVU35
+ 133 001e 02B0     		add	sp, sp, #8
+ 134              	.LCFI1:
+ 135              		.cfi_def_cfa_offset 0
+ 136              		@ sp needed
+ 137 0020 7047     		bx	lr
+ 138              		.cfi_endproc
+ 139              	.LFE127:
+ 141              		.section	.text.Bytes2float,"ax",%progbits
+ 142              		.align	1
+ 143              		.global	Bytes2float
+ 144              		.syntax unified
+ 145              		.thumb
+ 146              		.thumb_func
+ 148              	Bytes2float:
+ 149              	.LVL9:
+ 150              	.LFB128:
+  56:Core/Src/flashROM.c **** 
+  57:Core/Src/flashROM.c **** float Bytes2float(uint8_t *ftoa_bytes_temp)
+  58:Core/Src/flashROM.c **** {
+ 151              		.loc 1 58 1 is_stmt 1 view -0
+ 152              		.cfi_startproc
+ 153              		@ args = 0, pretend = 0, frame = 8
+ 154              		@ frame_needed = 0, uses_anonymous_args = 0
+ 155              		@ link register save eliminated.
+ 156              		.loc 1 58 1 is_stmt 0 view .LVU37
+ 157 0000 82B0     		sub	sp, sp, #8
+ 158              	.LCFI2:
+ 159              		.cfi_def_cfa_offset 8
+  59:Core/Src/flashROM.c **** 	union
+ 160              		.loc 1 59 2 is_stmt 1 view .LVU38
+  60:Core/Src/flashROM.c **** 	{
+  61:Core/Src/flashROM.c **** 		float a;
+  62:Core/Src/flashROM.c **** 		uint8_t bytes[4];
+  63:Core/Src/flashROM.c **** 	} thing;
+  64:Core/Src/flashROM.c **** 
+  65:Core/Src/flashROM.c **** 	for (uint8_t i = 0; i < 4; i++)
+ 161              		.loc 1 65 2 view .LVU39
+ 162              	.LBB4:
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s 			page 5
+
+
+ 163              		.loc 1 65 7 view .LVU40
+ 164              	.LVL10:
+ 165              		.loc 1 65 15 is_stmt 0 view .LVU41
+ 166 0002 0023     		movs	r3, #0
+ 167              		.loc 1 65 2 view .LVU42
+ 168 0004 07E0     		b	.L12
+ 169              	.LVL11:
+ 170              	.L13:
+  66:Core/Src/flashROM.c **** 	{
+  67:Core/Src/flashROM.c **** 		thing.bytes[i] = ftoa_bytes_temp[i];
+ 171              		.loc 1 67 3 is_stmt 1 discriminator 3 view .LVU43
+ 172              		.loc 1 67 35 is_stmt 0 discriminator 3 view .LVU44
+ 173 0006 C15C     		ldrb	r1, [r0, r3]	@ zero_extendqisi2
+ 174              		.loc 1 67 18 discriminator 3 view .LVU45
+ 175 0008 03F10802 		add	r2, r3, #8
+ 176 000c 6A44     		add	r2, sp, r2
+ 177 000e 02F8041C 		strb	r1, [r2, #-4]
+  65:Core/Src/flashROM.c **** 	{
+ 178              		.loc 1 65 29 is_stmt 1 discriminator 3 view .LVU46
+  65:Core/Src/flashROM.c **** 	{
+ 179              		.loc 1 65 30 is_stmt 0 discriminator 3 view .LVU47
+ 180 0012 0133     		adds	r3, r3, #1
+ 181              	.LVL12:
+  65:Core/Src/flashROM.c **** 	{
+ 182              		.loc 1 65 30 discriminator 3 view .LVU48
+ 183 0014 DBB2     		uxtb	r3, r3
+ 184              	.LVL13:
+ 185              	.L12:
+  65:Core/Src/flashROM.c **** 	{
+ 186              		.loc 1 65 22 is_stmt 1 discriminator 1 view .LVU49
+  65:Core/Src/flashROM.c **** 	{
+ 187              		.loc 1 65 2 is_stmt 0 discriminator 1 view .LVU50
+ 188 0016 032B     		cmp	r3, #3
+ 189 0018 F5D9     		bls	.L13
+ 190              	.LBE4:
+  68:Core/Src/flashROM.c **** 	}
+  69:Core/Src/flashROM.c **** 
+  70:Core/Src/flashROM.c **** 	float float_variable = thing.a;
+ 191              		.loc 1 70 2 is_stmt 1 view .LVU51
+ 192              	.LVL14:
+  71:Core/Src/flashROM.c **** 	return float_variable;
+ 193              		.loc 1 71 2 view .LVU52
+  72:Core/Src/flashROM.c **** }
+ 194              		.loc 1 72 1 is_stmt 0 view .LVU53
+ 195 001a 9DED010A 		vldr.32	s0, [sp, #4]
+ 196 001e 02B0     		add	sp, sp, #8
+ 197              	.LCFI3:
+ 198              		.cfi_def_cfa_offset 0
+ 199              	.LVL15:
+ 200              		.loc 1 72 1 view .LVU54
+ 201              		@ sp needed
+ 202 0020 7047     		bx	lr
+ 203              		.cfi_endproc
+ 204              	.LFE128:
+ 206              		.section	.text.Flash_Write_Data,"ax",%progbits
+ 207              		.align	1
+ 208              		.global	Flash_Write_Data
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s 			page 6
+
+
+ 209              		.syntax unified
+ 210              		.thumb
+ 211              		.thumb_func
+ 213              	Flash_Write_Data:
+ 214              	.LVL16:
+ 215              	.LFB129:
+  73:Core/Src/flashROM.c **** 
+  74:Core/Src/flashROM.c **** uint32_t Flash_Write_Data(uint32_t StartPageAddress, uint32_t *Data, uint16_t numberofwords)
+  75:Core/Src/flashROM.c **** {
+ 216              		.loc 1 75 1 is_stmt 1 view -0
+ 217              		.cfi_startproc
+ 218              		@ args = 0, pretend = 0, frame = 8
+ 219              		@ frame_needed = 0, uses_anonymous_args = 0
+ 220              		.loc 1 75 1 is_stmt 0 view .LVU56
+ 221 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 222              	.LCFI4:
+ 223              		.cfi_def_cfa_offset 20
+ 224              		.cfi_offset 4, -20
+ 225              		.cfi_offset 5, -16
+ 226              		.cfi_offset 6, -12
+ 227              		.cfi_offset 7, -8
+ 228              		.cfi_offset 14, -4
+ 229 0002 83B0     		sub	sp, sp, #12
+ 230              	.LCFI5:
+ 231              		.cfi_def_cfa_offset 32
+ 232 0004 0546     		mov	r5, r0
+ 233 0006 0F46     		mov	r7, r1
+ 234 0008 1646     		mov	r6, r2
+  76:Core/Src/flashROM.c **** 
+  77:Core/Src/flashROM.c **** 	static FLASH_EraseInitTypeDef EraseInitStruct;
+ 235              		.loc 1 77 2 is_stmt 1 view .LVU57
+  78:Core/Src/flashROM.c **** 	uint32_t PAGEError;
+ 236              		.loc 1 78 2 view .LVU58
+  79:Core/Src/flashROM.c **** 	int sofar = 0;
+ 237              		.loc 1 79 2 view .LVU59
+ 238              	.LVL17:
+  80:Core/Src/flashROM.c **** 
+  81:Core/Src/flashROM.c **** 	/* Unlock the Flash to enable the flash control register access *************/
+  82:Core/Src/flashROM.c **** 	HAL_FLASH_Unlock();
+ 239              		.loc 1 82 2 view .LVU60
+ 240 000a FFF7FEFF 		bl	HAL_FLASH_Unlock
+ 241              	.LVL18:
+  83:Core/Src/flashROM.c **** 
+  84:Core/Src/flashROM.c **** 	/* Erase the user Flash area*/
+  85:Core/Src/flashROM.c **** 
+  86:Core/Src/flashROM.c **** 	uint32_t StartPage = GetPage(StartPageAddress);
+ 242              		.loc 1 86 2 view .LVU61
+ 243              		.loc 1 86 23 is_stmt 0 view .LVU62
+ 244 000e 2846     		mov	r0, r5
+ 245 0010 FFF7FEFF 		bl	GetPage
+ 246              	.LVL19:
+ 247 0014 0446     		mov	r4, r0
+ 248              	.LVL20:
+  87:Core/Src/flashROM.c **** 	uint32_t EndPageAdress = StartPageAddress + numberofwords * 4;
+ 249              		.loc 1 87 2 is_stmt 1 view .LVU63
+  88:Core/Src/flashROM.c **** 	uint32_t EndPage = GetPage(EndPageAdress);
+ 250              		.loc 1 88 2 view .LVU64
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s 			page 7
+
+
+ 251              		.loc 1 88 21 is_stmt 0 view .LVU65
+ 252 0016 05EB8600 		add	r0, r5, r6, lsl #2
+ 253              	.LVL21:
+ 254              		.loc 1 88 21 view .LVU66
+ 255 001a FFF7FEFF 		bl	GetPage
+ 256              	.LVL22:
+ 257              		.loc 1 88 21 view .LVU67
+ 258 001e 0346     		mov	r3, r0
+ 259              	.LVL23:
+  89:Core/Src/flashROM.c **** 
+  90:Core/Src/flashROM.c **** 	/* Fill EraseInit structure*/
+  91:Core/Src/flashROM.c **** 	EraseInitStruct.TypeErase = FLASH_TYPEERASE_PAGES;
+ 260              		.loc 1 91 2 is_stmt 1 view .LVU68
+ 261              		.loc 1 91 28 is_stmt 0 view .LVU69
+ 262 0020 1248     		ldr	r0, .L24
+ 263              	.LVL24:
+ 264              		.loc 1 91 28 view .LVU70
+ 265 0022 0022     		movs	r2, #0
+ 266 0024 0260     		str	r2, [r0]
+  92:Core/Src/flashROM.c **** 	EraseInitStruct.PageAddress = StartPage;
+ 267              		.loc 1 92 2 is_stmt 1 view .LVU71
+ 268              		.loc 1 92 30 is_stmt 0 view .LVU72
+ 269 0026 4460     		str	r4, [r0, #4]
+  93:Core/Src/flashROM.c **** 	EraseInitStruct.NbPages = ((EndPage - StartPage) / FLASH_PAGE_SIZE) + 1;
+ 270              		.loc 1 93 2 is_stmt 1 view .LVU73
+ 271              		.loc 1 93 38 is_stmt 0 view .LVU74
+ 272 0028 1B1B     		subs	r3, r3, r4
+ 273              	.LVL25:
+ 274              		.loc 1 93 51 view .LVU75
+ 275 002a DB0A     		lsrs	r3, r3, #11
+ 276              		.loc 1 93 70 view .LVU76
+ 277 002c 0133     		adds	r3, r3, #1
+ 278              		.loc 1 93 26 view .LVU77
+ 279 002e 8360     		str	r3, [r0, #8]
+  94:Core/Src/flashROM.c **** 
+  95:Core/Src/flashROM.c **** 	if (HAL_FLASHEx_Erase(&EraseInitStruct, &PAGEError) != HAL_OK)
+ 280              		.loc 1 95 2 is_stmt 1 view .LVU78
+ 281              		.loc 1 95 6 is_stmt 0 view .LVU79
+ 282 0030 01A9     		add	r1, sp, #4
+ 283 0032 FFF7FEFF 		bl	HAL_FLASHEx_Erase
+ 284              	.LVL26:
+ 285              		.loc 1 95 5 view .LVU80
+ 286 0036 68B9     		cbnz	r0, .L22
+  79:Core/Src/flashROM.c **** 
+ 287              		.loc 1 79 6 view .LVU81
+ 288 0038 0024     		movs	r4, #0
+ 289              	.LVL27:
+ 290              	.L16:
+  96:Core/Src/flashROM.c **** 	{
+  97:Core/Src/flashROM.c **** 		/*Error occurred while page erase.*/
+  98:Core/Src/flashROM.c **** 		return HAL_FLASH_GetError();
+  99:Core/Src/flashROM.c **** 	}
+ 100:Core/Src/flashROM.c **** 
+ 101:Core/Src/flashROM.c **** 	/* Program the user Flash area word by word*/
+ 102:Core/Src/flashROM.c **** 
+ 103:Core/Src/flashROM.c **** 	while (sofar < numberofwords)
+ 291              		.loc 1 103 8 is_stmt 1 view .LVU82
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s 			page 8
+
+
+ 292 003a A642     		cmp	r6, r4
+ 293 003c 10DD     		ble	.L23
+ 104:Core/Src/flashROM.c **** 	{
+ 105:Core/Src/flashROM.c **** 		if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, StartPageAddress, Data[sofar]) == HAL_OK)
+ 294              		.loc 1 105 3 view .LVU83
+ 295              		.loc 1 105 7 is_stmt 0 view .LVU84
+ 296 003e 57F82420 		ldr	r2, [r7, r4, lsl #2]
+ 297 0042 0023     		movs	r3, #0
+ 298 0044 2946     		mov	r1, r5
+ 299 0046 0220     		movs	r0, #2
+ 300 0048 FFF7FEFF 		bl	HAL_FLASH_Program
+ 301              	.LVL28:
+ 302              		.loc 1 105 6 view .LVU85
+ 303 004c 28B9     		cbnz	r0, .L18
+ 106:Core/Src/flashROM.c **** 		{
+ 107:Core/Src/flashROM.c **** 			StartPageAddress += 4; // use StartPageAddress += 2 for half word and 8 for double word
+ 304              		.loc 1 107 4 is_stmt 1 view .LVU86
+ 305              		.loc 1 107 21 is_stmt 0 view .LVU87
+ 306 004e 0435     		adds	r5, r5, #4
+ 307              	.LVL29:
+ 108:Core/Src/flashROM.c **** 			sofar++;
+ 308              		.loc 1 108 4 is_stmt 1 view .LVU88
+ 309              		.loc 1 108 9 is_stmt 0 view .LVU89
+ 310 0050 0134     		adds	r4, r4, #1
+ 311              	.LVL30:
+ 312              		.loc 1 108 9 view .LVU90
+ 313 0052 F2E7     		b	.L16
+ 314              	.LVL31:
+ 315              	.L22:
+  98:Core/Src/flashROM.c **** 	}
+ 316              		.loc 1 98 3 is_stmt 1 view .LVU91
+  98:Core/Src/flashROM.c **** 	}
+ 317              		.loc 1 98 10 is_stmt 0 view .LVU92
+ 318 0054 FFF7FEFF 		bl	HAL_FLASH_GetError
+ 319              	.LVL32:
+ 320 0058 05E0     		b	.L15
+ 321              	.LVL33:
+ 322              	.L18:
+ 109:Core/Src/flashROM.c **** 		}
+ 110:Core/Src/flashROM.c **** 		else
+ 111:Core/Src/flashROM.c **** 		{
+ 112:Core/Src/flashROM.c **** 			/* Error occurred while writing data in Flash memory*/
+ 113:Core/Src/flashROM.c **** 			return HAL_FLASH_GetError();
+ 323              		.loc 1 113 4 is_stmt 1 view .LVU93
+ 324              		.loc 1 113 11 is_stmt 0 view .LVU94
+ 325 005a FFF7FEFF 		bl	HAL_FLASH_GetError
+ 326              	.LVL34:
+ 327 005e 02E0     		b	.L15
+ 328              	.L23:
+ 114:Core/Src/flashROM.c **** 		}
+ 115:Core/Src/flashROM.c **** 	}
+ 116:Core/Src/flashROM.c **** 
+ 117:Core/Src/flashROM.c **** 	/* Lock the Flash to disable the flash control register access (recommended
+ 118:Core/Src/flashROM.c **** 	   to protect the FLASH memory against possible unwanted operation) *********/
+ 119:Core/Src/flashROM.c **** 	HAL_FLASH_Lock();
+ 329              		.loc 1 119 2 is_stmt 1 view .LVU95
+ 330 0060 FFF7FEFF 		bl	HAL_FLASH_Lock
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s 			page 9
+
+
+ 331              	.LVL35:
+ 120:Core/Src/flashROM.c **** 
+ 121:Core/Src/flashROM.c **** 	return 0;
+ 332              		.loc 1 121 2 view .LVU96
+ 333              		.loc 1 121 9 is_stmt 0 view .LVU97
+ 334 0064 0020     		movs	r0, #0
+ 335              	.LVL36:
+ 336              	.L15:
+ 122:Core/Src/flashROM.c **** }
+ 337              		.loc 1 122 1 view .LVU98
+ 338 0066 03B0     		add	sp, sp, #12
+ 339              	.LCFI6:
+ 340              		.cfi_def_cfa_offset 20
+ 341              		@ sp needed
+ 342 0068 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 343              	.LVL37:
+ 344              	.L25:
+ 345              		.loc 1 122 1 view .LVU99
+ 346 006a 00BF     		.align	2
+ 347              	.L24:
+ 348 006c 00000000 		.word	.LANCHOR0
+ 349              		.cfi_endproc
+ 350              	.LFE129:
+ 352              		.section	.text.Flash_Read_Data,"ax",%progbits
+ 353              		.align	1
+ 354              		.global	Flash_Read_Data
+ 355              		.syntax unified
+ 356              		.thumb
+ 357              		.thumb_func
+ 359              	Flash_Read_Data:
+ 360              	.LVL38:
+ 361              	.LFB130:
+ 123:Core/Src/flashROM.c **** 
+ 124:Core/Src/flashROM.c **** void Flash_Read_Data(uint32_t StartPageAddress, uint32_t *RxBuf, uint16_t numberofwords)
+ 125:Core/Src/flashROM.c **** {
+ 362              		.loc 1 125 1 is_stmt 1 view -0
+ 363              		.cfi_startproc
+ 364              		@ args = 0, pretend = 0, frame = 0
+ 365              		@ frame_needed = 0, uses_anonymous_args = 0
+ 366              		@ link register save eliminated.
+ 126:Core/Src/flashROM.c **** 	while (1)
+ 367              		.loc 1 126 2 view .LVU101
+ 127:Core/Src/flashROM.c **** 	{
+ 128:Core/Src/flashROM.c **** 
+ 129:Core/Src/flashROM.c **** 		*RxBuf = *(__IO uint32_t *)StartPageAddress;
+ 368              		.loc 1 129 3 view .LVU102
+ 369              		.loc 1 129 12 is_stmt 0 view .LVU103
+ 370 0000 0368     		ldr	r3, [r0]
+ 371              		.loc 1 129 10 view .LVU104
+ 372 0002 0B60     		str	r3, [r1]
+ 130:Core/Src/flashROM.c **** 		StartPageAddress += 4;
+ 373              		.loc 1 130 3 is_stmt 1 view .LVU105
+ 374              	.LVL39:
+ 131:Core/Src/flashROM.c **** 		RxBuf++;
+ 375              		.loc 1 131 3 view .LVU106
+ 132:Core/Src/flashROM.c **** 		if (!(numberofwords--))
+ 376              		.loc 1 132 3 view .LVU107
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s 			page 10
+
+
+ 133:Core/Src/flashROM.c **** 			break;
+ 134:Core/Src/flashROM.c **** 		break;
+ 135:Core/Src/flashROM.c **** 	}
+ 136:Core/Src/flashROM.c **** }
+ 377              		.loc 1 136 1 is_stmt 0 view .LVU108
+ 378 0004 7047     		bx	lr
+ 379              		.cfi_endproc
+ 380              	.LFE130:
+ 382              		.section	.text.Flash_read_byte,"ax",%progbits
+ 383              		.align	1
+ 384              		.global	Flash_read_byte
+ 385              		.syntax unified
+ 386              		.thumb
+ 387              		.thumb_func
+ 389              	Flash_read_byte:
+ 390              	.LVL40:
+ 391              	.LFB131:
+ 137:Core/Src/flashROM.c **** void Flash_read_byte(uint32_t StartPageAddress, uint32_t *RxBuf)
+ 138:Core/Src/flashROM.c **** {
+ 392              		.loc 1 138 1 is_stmt 1 view -0
+ 393              		.cfi_startproc
+ 394              		@ args = 0, pretend = 0, frame = 0
+ 395              		@ frame_needed = 0, uses_anonymous_args = 0
+ 396              		@ link register save eliminated.
+ 139:Core/Src/flashROM.c **** 	while (1)
+ 397              		.loc 1 139 2 view .LVU110
+ 140:Core/Src/flashROM.c **** 	{
+ 141:Core/Src/flashROM.c **** 		*RxBuf = *(__IO uint32_t *)StartPageAddress;
+ 398              		.loc 1 141 3 view .LVU111
+ 399              		.loc 1 141 12 is_stmt 0 view .LVU112
+ 400 0000 0368     		ldr	r3, [r0]
+ 401              		.loc 1 141 10 view .LVU113
+ 402 0002 0B60     		str	r3, [r1]
+ 142:Core/Src/flashROM.c **** 		return;
+ 403              		.loc 1 142 3 is_stmt 1 view .LVU114
+ 143:Core/Src/flashROM.c **** 	}
+ 144:Core/Src/flashROM.c **** 	
+ 145:Core/Src/flashROM.c **** }
+ 404              		.loc 1 145 1 is_stmt 0 view .LVU115
+ 405 0004 7047     		bx	lr
+ 406              		.cfi_endproc
+ 407              	.LFE131:
+ 409              		.section	.text.Convert_To_Str,"ax",%progbits
+ 410              		.align	1
+ 411              		.global	Convert_To_Str
+ 412              		.syntax unified
+ 413              		.thumb
+ 414              		.thumb_func
+ 416              	Convert_To_Str:
+ 417              	.LVL41:
+ 418              	.LFB132:
+ 146:Core/Src/flashROM.c **** void Convert_To_Str(uint32_t *Data, char *Buf)
+ 147:Core/Src/flashROM.c **** {
+ 419              		.loc 1 147 1 is_stmt 1 view -0
+ 420              		.cfi_startproc
+ 421              		@ args = 0, pretend = 0, frame = 0
+ 422              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s 			page 11
+
+
+ 423              		.loc 1 147 1 is_stmt 0 view .LVU117
+ 424 0000 38B5     		push	{r3, r4, r5, lr}
+ 425              	.LCFI7:
+ 426              		.cfi_def_cfa_offset 16
+ 427              		.cfi_offset 3, -16
+ 428              		.cfi_offset 4, -12
+ 429              		.cfi_offset 5, -8
+ 430              		.cfi_offset 14, -4
+ 431 0002 0546     		mov	r5, r0
+ 432 0004 0C46     		mov	r4, r1
+ 148:Core/Src/flashROM.c **** 	int numberofbytes = ((strlen((char *)Data) / 4) + ((strlen((char *)Data) % 4) != 0)) * 4;
+ 433              		.loc 1 148 2 is_stmt 1 view .LVU118
+ 434              		.loc 1 148 24 is_stmt 0 view .LVU119
+ 435 0006 FFF7FEFF 		bl	strlen
+ 436              	.LVL42:
+ 437              		.loc 1 148 80 view .LVU120
+ 438 000a 10F0030C 		ands	ip, r0, #3
+ 439 000e 18BF     		it	ne
+ 440 0010 4FF0010C 		movne	ip, #1
+ 441              		.loc 1 148 50 view .LVU121
+ 442 0014 0CEB900C 		add	ip, ip, r0, lsr #2
+ 443              		.loc 1 148 87 view .LVU122
+ 444 0018 4FEA8C0C 		lsl	ip, ip, #2
+ 445              	.LVL43:
+ 149:Core/Src/flashROM.c **** 
+ 150:Core/Src/flashROM.c **** 	for (int i = 0; i < numberofbytes; i++)
+ 446              		.loc 1 150 2 is_stmt 1 view .LVU123
+ 447              	.LBB5:
+ 448              		.loc 1 150 7 view .LVU124
+ 449              		.loc 1 150 11 is_stmt 0 view .LVU125
+ 450 001c 0023     		movs	r3, #0
+ 451              		.loc 1 150 2 view .LVU126
+ 452 001e 0EE0     		b	.L29
+ 453              	.LVL44:
+ 454              	.L30:
+ 151:Core/Src/flashROM.c **** 	{
+ 152:Core/Src/flashROM.c **** 		Buf[i] = Data[i / 4] >> (8 * (i % 4));
+ 455              		.loc 1 152 19 discriminator 3 view .LVU127
+ 456 0020 9210     		asrs	r2, r2, #2
+ 457              		.loc 1 152 16 discriminator 3 view .LVU128
+ 458 0022 55F82210 		ldr	r1, [r5, r2, lsl #2]
+ 459              		.loc 1 152 35 discriminator 3 view .LVU129
+ 460 0026 5842     		rsbs	r0, r3, #0
+ 461 0028 03F00302 		and	r2, r3, #3
+ 462 002c 00F00300 		and	r0, r0, #3
+ 463 0030 58BF     		it	pl
+ 464 0032 4242     		rsbpl	r2, r0, #0
+ 465              		.loc 1 152 30 discriminator 3 view .LVU130
+ 466 0034 D200     		lsls	r2, r2, #3
+ 467              		.loc 1 152 24 discriminator 3 view .LVU131
+ 468 0036 21FA02F2 		lsr	r2, r1, r2
+ 469              		.loc 1 152 10 discriminator 3 view .LVU132
+ 470 003a E254     		strb	r2, [r4, r3]
+ 150:Core/Src/flashROM.c **** 	{
+ 471              		.loc 1 150 37 is_stmt 1 discriminator 3 view .LVU133
+ 150:Core/Src/flashROM.c **** 	{
+ 472              		.loc 1 150 38 is_stmt 0 discriminator 3 view .LVU134
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s 			page 12
+
+
+ 473 003c 0133     		adds	r3, r3, #1
+ 474              	.LVL45:
+ 475              	.L29:
+ 150:Core/Src/flashROM.c **** 	{
+ 476              		.loc 1 150 18 is_stmt 1 discriminator 1 view .LVU135
+ 150:Core/Src/flashROM.c **** 	{
+ 477              		.loc 1 150 2 is_stmt 0 discriminator 1 view .LVU136
+ 478 003e 6345     		cmp	r3, ip
+ 479 0040 04DA     		bge	.L33
+ 480              		.loc 1 152 3 is_stmt 1 discriminator 3 view .LVU137
+ 481              		.loc 1 152 19 is_stmt 0 discriminator 3 view .LVU138
+ 482 0042 1A46     		mov	r2, r3
+ 483 0044 002B     		cmp	r3, #0
+ 484 0046 EBDA     		bge	.L30
+ 485 0048 DA1C     		adds	r2, r3, #3
+ 486 004a E9E7     		b	.L30
+ 487              	.L33:
+ 488              	.LBE5:
+ 153:Core/Src/flashROM.c **** 	}
+ 154:Core/Src/flashROM.c **** }
+ 489              		.loc 1 154 1 view .LVU139
+ 490 004c 38BD     		pop	{r3, r4, r5, pc}
+ 491              		.loc 1 154 1 view .LVU140
+ 492              		.cfi_endproc
+ 493              	.LFE132:
+ 495              		.section	.text.Flash_Write_NUM,"ax",%progbits
+ 496              		.align	1
+ 497              		.global	Flash_Write_NUM
+ 498              		.syntax unified
+ 499              		.thumb
+ 500              		.thumb_func
+ 502              	Flash_Write_NUM:
+ 503              	.LVL46:
+ 504              	.LFB133:
+ 155:Core/Src/flashROM.c **** 
+ 156:Core/Src/flashROM.c **** void Flash_Write_NUM(uint32_t StartSectorAddress, float Num)
+ 157:Core/Src/flashROM.c **** {
+ 505              		.loc 1 157 1 is_stmt 1 view -0
+ 506              		.cfi_startproc
+ 507              		@ args = 0, pretend = 0, frame = 0
+ 508              		@ frame_needed = 0, uses_anonymous_args = 0
+ 509              		.loc 1 157 1 is_stmt 0 view .LVU142
+ 510 0000 38B5     		push	{r3, r4, r5, lr}
+ 511              	.LCFI8:
+ 512              		.cfi_def_cfa_offset 16
+ 513              		.cfi_offset 3, -16
+ 514              		.cfi_offset 4, -12
+ 515              		.cfi_offset 5, -8
+ 516              		.cfi_offset 14, -4
+ 517 0002 0446     		mov	r4, r0
+ 158:Core/Src/flashROM.c **** 
+ 159:Core/Src/flashROM.c **** 	float2Bytes(bytes_temp, Num);
+ 518              		.loc 1 159 2 is_stmt 1 view .LVU143
+ 519 0004 044D     		ldr	r5, .L36
+ 520 0006 2846     		mov	r0, r5
+ 521              	.LVL47:
+ 522              		.loc 1 159 2 is_stmt 0 view .LVU144
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s 			page 13
+
+
+ 523 0008 FFF7FEFF 		bl	float2Bytes
+ 524              	.LVL48:
+ 160:Core/Src/flashROM.c **** 
+ 161:Core/Src/flashROM.c **** 	Flash_Write_Data(StartSectorAddress, (uint32_t *)bytes_temp, 1);
+ 525              		.loc 1 161 2 is_stmt 1 view .LVU145
+ 526 000c 0122     		movs	r2, #1
+ 527 000e 2946     		mov	r1, r5
+ 528 0010 2046     		mov	r0, r4
+ 529 0012 FFF7FEFF 		bl	Flash_Write_Data
+ 530              	.LVL49:
+ 162:Core/Src/flashROM.c **** }
+ 531              		.loc 1 162 1 is_stmt 0 view .LVU146
+ 532 0016 38BD     		pop	{r3, r4, r5, pc}
+ 533              	.LVL50:
+ 534              	.L37:
+ 535              		.loc 1 162 1 view .LVU147
+ 536              		.align	2
+ 537              	.L36:
+ 538 0018 00000000 		.word	.LANCHOR1
+ 539              		.cfi_endproc
+ 540              	.LFE133:
+ 542              		.section	.text.Flash_Read_NUM,"ax",%progbits
+ 543              		.align	1
+ 544              		.global	Flash_Read_NUM
+ 545              		.syntax unified
+ 546              		.thumb
+ 547              		.thumb_func
+ 549              	Flash_Read_NUM:
+ 550              	.LVL51:
+ 551              	.LFB134:
+ 163:Core/Src/flashROM.c **** 
+ 164:Core/Src/flashROM.c **** float Flash_Read_NUM(uint32_t StartSectorAddress)
+ 165:Core/Src/flashROM.c **** {
+ 552              		.loc 1 165 1 is_stmt 1 view -0
+ 553              		.cfi_startproc
+ 554              		@ args = 0, pretend = 0, frame = 8
+ 555              		@ frame_needed = 0, uses_anonymous_args = 0
+ 556              		.loc 1 165 1 is_stmt 0 view .LVU149
+ 557 0000 00B5     		push	{lr}
+ 558              	.LCFI9:
+ 559              		.cfi_def_cfa_offset 4
+ 560              		.cfi_offset 14, -4
+ 561 0002 83B0     		sub	sp, sp, #12
+ 562              	.LCFI10:
+ 563              		.cfi_def_cfa_offset 16
+ 166:Core/Src/flashROM.c **** 	uint8_t buffer[4];
+ 564              		.loc 1 166 2 is_stmt 1 view .LVU150
+ 167:Core/Src/flashROM.c **** 	float value;
+ 565              		.loc 1 167 2 view .LVU151
+ 168:Core/Src/flashROM.c **** 
+ 169:Core/Src/flashROM.c **** 	Flash_Read_Data(StartSectorAddress, (uint32_t *)buffer, 1);
+ 566              		.loc 1 169 2 view .LVU152
+ 567 0004 0122     		movs	r2, #1
+ 568 0006 01A9     		add	r1, sp, #4
+ 569 0008 FFF7FEFF 		bl	Flash_Read_Data
+ 570              	.LVL52:
+ 170:Core/Src/flashROM.c **** 	value = Bytes2float(buffer);
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s 			page 14
+
+
+ 571              		.loc 1 170 2 view .LVU153
+ 572              		.loc 1 170 10 is_stmt 0 view .LVU154
+ 573 000c 01A8     		add	r0, sp, #4
+ 574 000e FFF7FEFF 		bl	Bytes2float
+ 575              	.LVL53:
+ 171:Core/Src/flashROM.c **** 	return value;
+ 576              		.loc 1 171 2 is_stmt 1 view .LVU155
+ 172:Core/Src/flashROM.c **** }
+ 577              		.loc 1 172 1 is_stmt 0 view .LVU156
+ 578 0012 03B0     		add	sp, sp, #12
+ 579              	.LCFI11:
+ 580              		.cfi_def_cfa_offset 4
+ 581              		@ sp needed
+ 582 0014 5DF804FB 		ldr	pc, [sp], #4
+ 583              		.cfi_endproc
+ 584              	.LFE134:
+ 586              		.global	bytes_temp
+ 587              		.section	.bss.EraseInitStruct.0,"aw",%nobits
+ 588              		.align	2
+ 589              		.set	.LANCHOR0,. + 0
+ 592              	EraseInitStruct.0:
+ 593 0000 00000000 		.space	12
+ 593      00000000 
+ 593      00000000 
+ 594              		.section	.bss.bytes_temp,"aw",%nobits
+ 595              		.align	2
+ 596              		.set	.LANCHOR1,. + 0
+ 599              	bytes_temp:
+ 600 0000 00000000 		.space	4
+ 601              		.text
+ 602              	.Letext0:
+ 603              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 604              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 605              		.file 4 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_flash_ex.h"
+ 606              		.file 5 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 607              		.file 6 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_flash.h"
+ 608              		.file 7 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s 			page 15
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 flashROM.c
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:20     .text.GetPage:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:25     .text.GetPage:00000000 GetPage
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:80     .text.float2Bytes:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:86     .text.float2Bytes:00000000 float2Bytes
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:142    .text.Bytes2float:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:148    .text.Bytes2float:00000000 Bytes2float
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:207    .text.Flash_Write_Data:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:213    .text.Flash_Write_Data:00000000 Flash_Write_Data
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:348    .text.Flash_Write_Data:0000006c $d
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:353    .text.Flash_Read_Data:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:359    .text.Flash_Read_Data:00000000 Flash_Read_Data
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:383    .text.Flash_read_byte:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:389    .text.Flash_read_byte:00000000 Flash_read_byte
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:410    .text.Convert_To_Str:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:416    .text.Convert_To_Str:00000000 Convert_To_Str
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:496    .text.Flash_Write_NUM:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:502    .text.Flash_Write_NUM:00000000 Flash_Write_NUM
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:538    .text.Flash_Write_NUM:00000018 $d
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:543    .text.Flash_Read_NUM:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:549    .text.Flash_Read_NUM:00000000 Flash_Read_NUM
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:599    .bss.bytes_temp:00000000 bytes_temp
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:588    .bss.EraseInitStruct.0:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:592    .bss.EraseInitStruct.0:00000000 EraseInitStruct.0
+C:\Users\walker\AppData\Local\Temp\cc0RNCaK.s:595    .bss.bytes_temp:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_FLASH_Unlock
+HAL_FLASHEx_Erase
+HAL_FLASH_Program
+HAL_FLASH_GetError
+HAL_FLASH_Lock
+strlen
