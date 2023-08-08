@@ -25,6 +25,8 @@ build/freertos.o: Core/Src/freertos.c \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma_ex.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_cortex.h \
+ Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h \
+ Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc_ex.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_can.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_flash.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_flash_ex.h \
@@ -69,7 +71,8 @@ build/freertos.o: Core/Src/freertos.c \
  Middlewares/Third_Party/CANopenNode/303/CO_LEDs.h \
  Middlewares/Third_Party/CANopenNode/extra/CO_trace.h \
  Middlewares/Third_Party/CANopenNode_STM32/OD.h Core/Inc/tim.h \
- Core/Inc/main.h Core/Inc/comment.h Core/Inc/can.h
+ Core/Inc/main.h Core/Inc/comment.h Core/Inc/can.h Core/Inc/pid.h \
+ Core/Inc/adc.h
 Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 Core/Inc/FreeRTOSConfig.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
@@ -99,6 +102,8 @@ Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_exti.h:
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h:
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma_ex.h:
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_cortex.h:
+Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h:
+Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc_ex.h:
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_can.h:
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_flash.h:
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_flash_ex.h:
@@ -147,3 +152,5 @@ Core/Inc/tim.h:
 Core/Inc/main.h:
 Core/Inc/comment.h:
 Core/Inc/can.h:
+Core/Inc/pid.h:
+Core/Inc/adc.h:

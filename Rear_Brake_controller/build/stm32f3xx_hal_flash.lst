@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
   28:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****       (+) Option Bytes programming
   29:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c **** 
   30:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 2
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 2
 
 
   31:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****                      ##### How to use this driver #####
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
   85:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c **** /** @addtogroup STM32F3xx_HAL_Driver
   86:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****   * @{
   87:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****   */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 3
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 3
 
 
   88:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c **** 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  142:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****   *
  143:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c **** @verbatim   
  144:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c **** @endverbatim
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 4
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 4
 
 
  145:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****   * @{
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  199:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c **** 
  200:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****     for (index = 0U; index < nbiterations; index++)
  201:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****     {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 5
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 5
 
 
  202:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****       FLASH_Program_HalfWord((Address + (2U*index)), (uint16_t)(Data >> (16U*index)));
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  256:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****   {
  257:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****     pFlash.ProcedureOnGoing = FLASH_PROC_PROGRAMHALFWORD;
  258:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****     /* Program halfword (16-bit) at a specified address. */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 6
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 6
 
 
  259:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****     pFlash.DataRemaining = 1U;
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  313:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****     if(pFlash.ProcedureOnGoing != FLASH_PROC_NONE)
  314:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****     {
  315:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****       if(pFlash.ProcedureOnGoing == FLASH_PROC_PAGEERASE)
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 7
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 7
 
 
  316:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****       {
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  370:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****           /* Shift to have next 16-bit data */
  371:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****           pFlash.Data = (pFlash.Data >> 16U);
  372:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****           
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 8
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 8
 
 
  373:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****           /* Operation is completed, disable the PG Bit */
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  427:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c **** __weak void HAL_FLASH_EndOfOperationCallback(uint32_t ReturnValue)
  428:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c **** {
  429:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****   /* Prevent unused argument(s) compilation warning */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 9
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 9
 
 
  430:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****   UNUSED(ReturnValue);
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  484:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****     /* Authorize the FLASH Registers access */
  485:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****     WRITE_REG(FLASH->KEYR, FLASH_KEY1);
  486:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****     WRITE_REG(FLASH->KEYR, FLASH_KEY2);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 10
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 10
 
 
  487:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c **** 
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  541:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****   
  542:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c **** /**
  543:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****   * @brief  Launch the option byte loading.
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 11
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 11
 
 
  544:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****   * @note   This function will reset automatically the MCU.
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  598:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****   * @param  Address specify the address to be programmed.
  599:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****   * @param  Data    specify the data to be programmed.
  600:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****   * @retval None
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 12
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 12
 
 
  601:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****   */
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  621:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****   /* Wait for the FLASH operation to complete by polling on BUSY flag to be reset.
  622:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****      Even if the FLASH operation fails, the BUSY flag will be reset and an error
  623:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****      flag will be set */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 13
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 13
 
 
  624:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****      
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
   76              		.loc 1 666 5 view .LVU11
   77 0004 13F01003 		ands	r3, r3, #16
   78 0008 05D0     		beq	.L5
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 14
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 14
 
 
  667:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****   {
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  122              		.section	.text.HAL_FLASH_Program_IT,"ax",%progbits
  123              		.align	1
  124              		.global	HAL_FLASH_Program_IT
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 15
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 15
 
 
  125              		.syntax unified
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  168 0018 1349     		ldr	r1, .L18+4
  169              	.LVL9:
  250:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****   
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 16
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 16
 
 
  170              		.loc 1 250 3 is_stmt 0 discriminator 2 view .LVU37
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  208              	.LVL11:
  209              	.L16:
  257:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****     /* Program halfword (16-bit) at a specified address. */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 17
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 17
 
 
  210              		.loc 1 257 5 is_stmt 1 view .LVU54
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  256              		.cfi_startproc
  257              		@ args = 0, pretend = 0, frame = 0
  258              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 18
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 18
 
 
  259              		@ link register save eliminated.
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  310              	.LVL16:
  289:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****   {
  311              		.loc 1 289 3 view .LVU72
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 19
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 19
 
 
  289:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****   {
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  351              		.loc 1 307 5 view .LVU87
  352 0032 13F0200F 		tst	r3, #32
  353 0036 2BD0     		beq	.L25
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 20
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 20
 
 
  310:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****     
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  392 0064 4FD1     		bne	.L37
  383:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****           {
  393              		.loc 1 383 11 is_stmt 1 view .LVU104
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 21
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 21
 
 
  383:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****           {
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  433 0094 5BB9     		cbnz	r3, .L22
  408:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c **** 
  434              		.loc 1 408 5 is_stmt 1 view .LVU120
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 22
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 22
 
 
  435 0096 2D4B     		ldr	r3, .L40
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  328:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****           pFlash.Address = addresstmp;
  474              		.loc 1 328 30 is_stmt 0 view .LVU136
  475 00c4 A068     		ldr	r0, [r4, #8]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 23
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 23
 
 
  328:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****           pFlash.Address = addresstmp;
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  517              	.LVL29:
  356:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****         }
  518              		.loc 1 356 11 view .LVU150
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 24
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 24
 
 
  356:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****         }
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  385:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****           }
  559              		.loc 1 385 13 is_stmt 1 view .LVU165
  560 0136 064B     		ldr	r3, .L40+4
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 25
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 25
 
 
  561 0138 9868     		ldr	r0, [r3, #8]
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  608 000c 084A     		ldr	r2, .L46+4
  609 000e 5A60     		str	r2, [r3, #4]
  486:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 26
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 26
 
 
  610              		.loc 1 486 5 view .LVU175
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  657 0004 43F08003 		orr	r3, r3, #128
  658 0008 1361     		str	r3, [r2, #16]
  507:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c **** }
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 27
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 27
 
 
  659              		.loc 1 507 3 view .LVU185
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  528:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c **** 
  705              		.loc 1 528 1 view .LVU196
  706 001c 7047     		bx	lr
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 28
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 28
 
 
  707              	.L55:
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  759              		.loc 1 581 4 view .LVU202
  581:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c **** }
  760              		.loc 1 581 17 is_stmt 0 view .LVU203
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 29
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 29
 
 
  761 0000 014B     		ldr	r3, .L60
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  627:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****   { 
  808              		.loc 1 627 8 view .LVU213
  809 000e 13F0010F 		tst	r3, #1
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 30
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 30
 
 
  810 0012 0AD0     		beq	.L72
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  848              		.loc 1 645 5 view .LVU229
  849 003e 13F0100F 		tst	r3, #16
  850 0042 06D1     		bne	.L69
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 31
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 31
 
 
  646:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****   {
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  898              		.cfi_offset 5, -24
  899              		.cfi_offset 6, -20
  900              		.cfi_offset 7, -16
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 32
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 32
 
 
  901              		.cfi_offset 8, -12
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  184:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c ****     {
  939              		.loc 1 184 7 is_stmt 0 view .LVU255
  940 0026 012C     		cmp	r4, #1
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 33
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 33
 
 
  941 0028 08D0     		beq	.L82
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  980              		.loc 1 202 77 is_stmt 0 view .LVU270
  981 004a 2101     		lsls	r1, r4, #4
  202:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 34
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 34
 
 
  982              		.loc 1 202 70 view .LVU271
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  1024 008c 1846     		mov	r0, r3
  1025 008e BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
  1026              	.LVL58:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 35
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 35
 
 
  1027              	.L81:
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  1078              		.align	3
  1079              		.set	.LANCHOR0,. + 0
  1082              	pFlash:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 36
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 36
 
 
  1083 0000 00000000 		.space	32
@@ -2115,53 +2115,53 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 1
  1090              		.file 6 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
  1091              		.file 7 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_flash.h"
  1092              		.file 8 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s 			page 37
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s 			page 37
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f3xx_hal_flash.c
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:20     .text.FLASH_Program_HalfWord:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:25     .text.FLASH_Program_HalfWord:00000000 FLASH_Program_HalfWord
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:52     .text.FLASH_Program_HalfWord:00000014 $d
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:58     .text.FLASH_SetErrorCode:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:63     .text.FLASH_SetErrorCode:00000000 FLASH_SetErrorCode
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:117    .text.FLASH_SetErrorCode:00000034 $d
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:123    .text.HAL_FLASH_Program_IT:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:129    .text.HAL_FLASH_Program_IT:00000000 HAL_FLASH_Program_IT
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:240    .text.HAL_FLASH_Program_IT:00000064 $d
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:246    .text.HAL_FLASH_EndOfOperationCallback:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:252    .text.HAL_FLASH_EndOfOperationCallback:00000000 HAL_FLASH_EndOfOperationCallback
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:267    .text.HAL_FLASH_OperationErrorCallback:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:273    .text.HAL_FLASH_OperationErrorCallback:00000000 HAL_FLASH_OperationErrorCallback
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:288    .text.HAL_FLASH_IRQHandler:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:294    .text.HAL_FLASH_IRQHandler:00000000 HAL_FLASH_IRQHandler
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:578    .text.HAL_FLASH_IRQHandler:0000014c $d
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:584    .text.HAL_FLASH_Unlock:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:590    .text.HAL_FLASH_Unlock:00000000 HAL_FLASH_Unlock
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:635    .text.HAL_FLASH_Unlock:0000002c $d
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:641    .text.HAL_FLASH_Lock:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:647    .text.HAL_FLASH_Lock:00000000 HAL_FLASH_Lock
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:666    .text.HAL_FLASH_Lock:00000010 $d
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:671    .text.HAL_FLASH_OB_Unlock:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:677    .text.HAL_FLASH_OB_Unlock:00000000 HAL_FLASH_OB_Unlock
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:710    .text.HAL_FLASH_OB_Unlock:00000020 $d
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:716    .text.HAL_FLASH_OB_Lock:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:722    .text.HAL_FLASH_OB_Lock:00000000 HAL_FLASH_OB_Lock
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:741    .text.HAL_FLASH_OB_Lock:00000010 $d
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:746    .text.HAL_FLASH_GetError:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:752    .text.HAL_FLASH_GetError:00000000 HAL_FLASH_GetError
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:768    .text.HAL_FLASH_GetError:00000008 $d
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:773    .text.FLASH_WaitForLastOperation:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:779    .text.FLASH_WaitForLastOperation:00000000 FLASH_WaitForLastOperation
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:874    .text.FLASH_WaitForLastOperation:0000005c $d
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:879    .text.HAL_FLASH_Program:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:885    .text.HAL_FLASH_Program:00000000 HAL_FLASH_Program
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:1034   .text.HAL_FLASH_Program:00000098 $d
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:1040   .text.HAL_FLASH_OB_Launch:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:1046   .text.HAL_FLASH_OB_Launch:00000000 HAL_FLASH_OB_Launch
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:1072   .text.HAL_FLASH_OB_Launch:00000018 $d
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:1082   .bss.pFlash:00000000 pFlash
-C:\Users\walker\AppData\Local\Temp\ccEbSy0a.s:1078   .bss.pFlash:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:20     .text.FLASH_Program_HalfWord:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:25     .text.FLASH_Program_HalfWord:00000000 FLASH_Program_HalfWord
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:52     .text.FLASH_Program_HalfWord:00000014 $d
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:58     .text.FLASH_SetErrorCode:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:63     .text.FLASH_SetErrorCode:00000000 FLASH_SetErrorCode
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:117    .text.FLASH_SetErrorCode:00000034 $d
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:123    .text.HAL_FLASH_Program_IT:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:129    .text.HAL_FLASH_Program_IT:00000000 HAL_FLASH_Program_IT
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:240    .text.HAL_FLASH_Program_IT:00000064 $d
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:246    .text.HAL_FLASH_EndOfOperationCallback:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:252    .text.HAL_FLASH_EndOfOperationCallback:00000000 HAL_FLASH_EndOfOperationCallback
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:267    .text.HAL_FLASH_OperationErrorCallback:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:273    .text.HAL_FLASH_OperationErrorCallback:00000000 HAL_FLASH_OperationErrorCallback
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:288    .text.HAL_FLASH_IRQHandler:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:294    .text.HAL_FLASH_IRQHandler:00000000 HAL_FLASH_IRQHandler
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:578    .text.HAL_FLASH_IRQHandler:0000014c $d
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:584    .text.HAL_FLASH_Unlock:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:590    .text.HAL_FLASH_Unlock:00000000 HAL_FLASH_Unlock
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:635    .text.HAL_FLASH_Unlock:0000002c $d
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:641    .text.HAL_FLASH_Lock:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:647    .text.HAL_FLASH_Lock:00000000 HAL_FLASH_Lock
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:666    .text.HAL_FLASH_Lock:00000010 $d
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:671    .text.HAL_FLASH_OB_Unlock:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:677    .text.HAL_FLASH_OB_Unlock:00000000 HAL_FLASH_OB_Unlock
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:710    .text.HAL_FLASH_OB_Unlock:00000020 $d
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:716    .text.HAL_FLASH_OB_Lock:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:722    .text.HAL_FLASH_OB_Lock:00000000 HAL_FLASH_OB_Lock
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:741    .text.HAL_FLASH_OB_Lock:00000010 $d
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:746    .text.HAL_FLASH_GetError:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:752    .text.HAL_FLASH_GetError:00000000 HAL_FLASH_GetError
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:768    .text.HAL_FLASH_GetError:00000008 $d
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:773    .text.FLASH_WaitForLastOperation:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:779    .text.FLASH_WaitForLastOperation:00000000 FLASH_WaitForLastOperation
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:874    .text.FLASH_WaitForLastOperation:0000005c $d
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:879    .text.HAL_FLASH_Program:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:885    .text.HAL_FLASH_Program:00000000 HAL_FLASH_Program
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:1034   .text.HAL_FLASH_Program:00000098 $d
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:1040   .text.HAL_FLASH_OB_Launch:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:1046   .text.HAL_FLASH_OB_Launch:00000000 HAL_FLASH_OB_Launch
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:1072   .text.HAL_FLASH_OB_Launch:00000018 $d
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:1082   .bss.pFlash:00000000 pFlash
+C:\Users\walker\AppData\Local\Temp\ccyOFHpn.s:1078   .bss.pFlash:00000000 $d
 
 UNDEFINED SYMBOLS
 FLASH_PageErase

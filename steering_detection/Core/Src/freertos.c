@@ -33,6 +33,9 @@
 #include "adc.h"
 #define portTICK_RATE_MS portTICK_PERIOD_MS
 #define portTICK_PERIOD_MS ((TickType_t)1000 / configTICK_RATE_HZ)
+
+double steering_value = 0;
+volatile voltage = 0;
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -54,26 +57,19 @@
 /* USER CODE BEGIN Variables */
 
 /* USER CODE END Variables */
-/* Definitions for ReadDistance */
-osThreadId_t ReadDistanceHandle;
-const osThreadAttr_t ReadDistance_attributes = {
-  .name = "ReadDistance",
-  .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityHigh,
-};
-/* Definitions for UITask */
-osThreadId_t UITaskHandle;
-const osThreadAttr_t UITask_attributes = {
-  .name = "UITask",
-  .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityNormal,
+/* Definitions for SendDistance */
+osThreadId_t SendDistanceHandle;
+const osThreadAttr_t SendDistance_attributes = {
+    .name = "SendDistance",
+    .stack_size = 128 * 4,
+    .priority = (osPriority_t)osPriorityHigh,
 };
 /* Definitions for canopenTask */
 osThreadId_t canopenTaskHandle;
 const osThreadAttr_t canopenTask_attributes = {
-  .name = "canopenTask",
-  .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityRealtime,
+    .name = "canopenTask",
+    .stack_size = 128 * 4,
+    .priority = (osPriority_t)osPriorityRealtime,
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -81,19 +77,17 @@ const osThreadAttr_t canopenTask_attributes = {
 
 /* USER CODE END FunctionPrototypes */
 
-void StartReadDistance(void *argument);
-void StartUITask(void *argument);
+void StartSendDistance(void *argument);
 void canopen_task(void *argument);
-double steering_value = 0;
-double voltage = 0;
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /**
-  * @brief  FreeRTOS initialization
-  * @param  None
-  * @retval None
-  */
-void MX_FREERTOS_Init(void) {
+ * @brief  FreeRTOS initialization
+ * @param  None
+ * @retval None
+ */
+void MX_FREERTOS_Init(void)
+{
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
@@ -115,12 +109,8 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
-  /* creation of ReadDistance */
-  ReadDistanceHandle = osThreadNew(StartReadDistance, NULL, &ReadDistance_attributes);
-
-  /* creation of UITask */
-  UITaskHandle = osThreadNew(StartUITask, NULL, &UITask_attributes);
-
+  /* creation of SendDistance */
+  SendDistanceHandle = osThreadNew(StartSendDistance, NULL, &SendDistance_attributes);
   /* creation of canopenTask */
   canopenTaskHandle = osThreadNew(canopen_task, NULL, &canopenTask_attributes);
 
@@ -131,46 +121,26 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_EVENTS */
   /* add events, ... */
   /* USER CODE END RTOS_EVENTS */
-
 }
 
-/* USER CODE BEGIN Header_StartReadDistance */
+/* USER CODE BEGIN Header_StartSendDistance */
 /**
- * @brief  Function implementing the ReadDistance thread.
+ * @brief  Function implementing the SendDistance thread.
  * @param  argument: Not used
  * @retval None
  */
-/* USER CODE END Header_StartReadDistance */
-void StartReadDistance(void *argument)
+/* USER CODE END Header_StartSendDistance */
+void StartSendDistance(void *argument)
 {
-  /* USER CODE BEGIN StartReadDistance */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
-  /* USER CODE END StartReadDistance */
-}
-
-/* USER CODE BEGIN Header_StartUITask */
-/**
- * @brief Function implementing the UITask thread.
- * @param argument: Not used
- * @retval None
- */
-/* USER CODE END Header_StartUITask */
-void StartUITask(void *argument)
-{
-  /* USER CODE BEGIN StartUITask */
+  /* USER CODE BEGIN StartSendDistance */
   /* Infinite loop */
   for (;;)
   {
-    
     OD_set_u16(OD_find(OD, 0x6000), 0x000, OD_PERSIST_COMM.x6000_steering, false);
     CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
-    osDelay(1000);
+    osDelay(300);
   }
-  /* USER CODE END StartUITask */
+  /* USER CODE END StartSendDistance */
 }
 
 /* USER CODE BEGIN Header_canopen_task */
@@ -210,4 +180,3 @@ void canopen_task(void *argument)
 /* USER CODE BEGIN Application */
 
 /* USER CODE END Application */
-

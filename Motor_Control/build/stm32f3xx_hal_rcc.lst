@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
   28:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****       (+) Configure the AHB and APB buses prescalers
   29:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****       (+) Enable the clock for the peripheral(s) to be used
   30:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****       (+) Configure the clock source(s) for peripherals whose clocks are not
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 2
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 2
 
 
   31:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****           derived from the System clock (RTC, ADC, I2C, I2S, TIM, USB FS)
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
   85:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   */
   86:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c **** /* Private macro -------------------------------------------------------------*/
   87:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c **** /** @defgroup RCC_Private_Macros RCC Private Macros
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 3
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 3
 
 
   88:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   * @{
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  142:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c **** 
  143:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****       (#) PLL (clocked by HSI or HSE), featuring different output clocks:
  144:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****         (++) The first output is used to generate the high speed system clock (up to 72 MHz)
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 4
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 4
 
 
  145:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****         (++) The second output is used to generate the clock for the USB FS (48 MHz)
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  199:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   */
  200:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c **** 
  201:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c **** /**
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 5
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 5
 
 
  202:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   * @brief  Resets the RCC clock configuration to the default reset state.
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
   58 0014 1B68     		ldr	r3, [r3]
   59              		.loc 1 226 8 view .LVU8
   60 0016 13F0020F 		tst	r3, #2
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 6
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 6
 
 
   61 001a 07D1     		bne	.L14
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  267:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c **** 
  268:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   /* Insure PLLRDY is reset */
  269:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   /* Get start tick */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 7
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 7
 
 
  270:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   tickstart = HAL_GetTick();
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
   96              	.LVL7:
  245:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   {
   97              		.loc 1 245 3 is_stmt 1 view .LVU19
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 8
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 8
 
 
   98              	.L5:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  137              		.loc 1 257 5 view .LVU34
  138 0074 08B1     		cbz	r0, .L16
  259:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   }
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 9
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 9
 
 
  139              		.loc 1 259 12 view .LVU35
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  180              	.L17:
  280:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c **** 
  181              		.loc 1 280 3 is_stmt 1 view .LVU49
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 10
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 10
 
 
  182 00ae 0B4B     		ldr	r3, .L18
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
   32:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wunused-parameter"
   33:Drivers/CMSIS/Include/cmsis_gcc.h **** 
   34:Drivers/CMSIS/Include/cmsis_gcc.h **** /* Fallback for __has_builtin */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 11
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 11
 
 
   35:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __has_builtin
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
   89:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
   90:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT16_READ { uint16_t v; };
   91:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 12
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 12
 
 
   92:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT16_READ(addr)          (((const struct T_UINT16_READ *)(const void *)(add
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  146:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  147:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get Control Register
  148:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the content of the Control Register.
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 13
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 13
 
 
  149:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Control Register value
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  203:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               IPSR Register value
  204:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  205:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __get_IPSR(void)
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 14
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 14
 
 
  206:Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  260:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               PSP Register value
  261:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  262:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __TZ_get_PSP_NS(void)
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 15
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 15
 
 
  263:Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  317:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  318:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
  319:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 16
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 16
 
 
  320:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, msp_ns" : "=r" (result) );
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  374:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  375:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  376:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 17
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 17
 
 
  377:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  431:Drivers/CMSIS/Include/cmsis_gcc.h **** #if ((defined (__ARM_ARCH_7M__      ) && (__ARM_ARCH_7M__      == 1)) || \
  432:Drivers/CMSIS/Include/cmsis_gcc.h ****      (defined (__ARM_ARCH_7EM__     ) && (__ARM_ARCH_7EM__     == 1)) || \
  433:Drivers/CMSIS/Include/cmsis_gcc.h ****      (defined (__ARM_ARCH_8M_MAIN__ ) && (__ARM_ARCH_8M_MAIN__ == 1))    )
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 18
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 18
 
 
  434:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  488:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Assigns the given value to the Base Priority register.
  489:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    basePri  Base Priority value to set
  490:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 19
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 19
 
 
  491:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __set_BASEPRI(uint32_t basePri)
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  545:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  546:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, faultmask_ns" : "=r" (result) );
  547:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 20
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 20
 
 
  548:Drivers/CMSIS/Include/cmsis_gcc.h **** }
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  602:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  603:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  604:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 21
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 21
 
 
  605:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (defined (__ARM_FEATURE_CMSE) && (__ARM_FEATURE_CMSE == 3))
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  659:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  660:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (!(defined (__ARM_ARCH_8M_MAIN__ ) && (__ARM_ARCH_8M_MAIN__ == 1)))
  661:Drivers/CMSIS/Include/cmsis_gcc.h ****   // without main extensions, the non-secure PSPLIM is RAZ/WI
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 22
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 22
 
 
  662:Drivers/CMSIS/Include/cmsis_gcc.h ****   (void)ProcStackPtrLimit;
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  716:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  717:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Main Stack Pointer Limit
  718:Drivers/CMSIS/Include/cmsis_gcc.h ****   Devices without ARMv8-M Main Extensions (i.e. Cortex-M23) lack the non-secure
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 23
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 23
 
 
  719:Drivers/CMSIS/Include/cmsis_gcc.h ****   Stack Pointer Limit register hence the write is silently ignored in non-secure
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  773:Drivers/CMSIS/Include/cmsis_gcc.h ****   /* see https://gcc.gnu.org/ml/gcc-patches/2017-04/msg00443.html */
  774:Drivers/CMSIS/Include/cmsis_gcc.h ****   return __builtin_arm_get_fpscr();
  775:Drivers/CMSIS/Include/cmsis_gcc.h **** #else
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 24
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 24
 
 
  776:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  830:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  831:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  832:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 25
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 25
 
 
  833:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   No Operation
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  887:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  888:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __DMB(void)
  889:Drivers/CMSIS/Include/cmsis_gcc.h **** {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 26
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 26
 
 
  890:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("dmb 0xF":::"memory");
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  944:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  945:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  946:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 27
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 27
 
 
  947:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  991:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  992:Drivers/CMSIS/Include/cmsis_gcc.h ****   result = value;                      /* r will be reversed bits of v; first get LSB of v */
  993:Drivers/CMSIS/Include/cmsis_gcc.h ****   for (value >>= 1U; value != 0U; value >>= 1U)
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 28
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 28
 
 
  994:Drivers/CMSIS/Include/cmsis_gcc.h ****   {
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  306:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   * @note   Transitions LSE Bypass to LSE On and LSE On to LSE Bypass are not
  307:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   *         supported by this macro. User should request a transition to LSE Off
  308:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   *         first and then LSE On or LSE Bypass.
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 29
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 29
 
 
  309:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   * @note   Transition HSE Bypass to HSE On and HSE On to HSE Bypass are not
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  333:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   {
  334:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****     /* Check the parameters */
  335:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****     assert_param(IS_RCC_HSE(RCC_OscInitStruct->HSEState));
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 30
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 30
 
 
  277              		.loc 1 335 5 is_stmt 1 view .LVU73
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  316 0056 5B68     		ldr	r3, [r3, #4]
  339:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****        || ((__HAL_RCC_GET_SYSCLK_SOURCE() == RCC_SYSCLKSOURCE_STATUS_PLLCLK) && (__HAL_RCC_GET_PLL_
  317              		.loc 1 339 78 discriminator 1 view .LVU85
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 31
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 31
 
 
  318 0058 13F4803F 		tst	r3, #65536
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  363              		.loc 1 341 11 view .LVU98
  364 0072 B3FA83F3 		clz	r3, r3
  365 0076 03F01F03 		and	r3, r3, #31
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 32
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 32
 
 
  366 007a 0122     		movs	r2, #1
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  378              		.loc 1 388 3 is_stmt 1 view .LVU102
  379              		.loc 1 388 25 is_stmt 0 view .LVU103
  380 008c 2368     		ldr	r3, [r4]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 33
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 33
 
 
  381              		.loc 1 388 5 view .LVU104
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  407              		.loc 1 416 9 is_stmt 1 view .LVU115
  408              	.LVL24:
  409              	.LBB174:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 34
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 34
 
 
  410              	.LBI174:
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  452              	@ 0 "" 2
  453              		.loc 2 1001 3 view .LVU129
  454              	.LVL28:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 35
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 35
 
 
  455              		.loc 2 1001 3 is_stmt 0 view .LVU130
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  502              	.LVL32:
  503              	.L119:
  349:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****       
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 36
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 36
 
 
  504              		.loc 1 349 7 is_stmt 1 discriminator 1 view .LVU144
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  545              		.loc 2 1001 3 view .LVU158
  546              	.LVL35:
  547              		.loc 2 1001 3 is_stmt 0 view .LVU159
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 37
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 37
 
 
  548              		.thumb
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  591              		.loc 1 367 20 view .LVU172
  592 015a 0320     		movs	r0, #3
  593 015c 5FE2     		b	.L21
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 38
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 38
 
 
  594              	.LVL39:
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  636              		.loc 2 983 3 view .LVU184
  988:Drivers/CMSIS/Include/cmsis_gcc.h **** #else
  637              		.loc 2 988 4 view .LVU185
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 39
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 39
 
 
  638 0198 4FF40033 		mov	r3, #131072
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  379:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****           {
  684              		.loc 1 379 30 view .LVU198
  685 01c4 401B     		subs	r0, r0, r5
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 40
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 40
 
 
  379:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****           {
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  729              		.loc 2 983 3 view .LVU211
  988:Drivers/CMSIS/Include/cmsis_gcc.h **** #else
  730              		.loc 2 988 4 view .LVU212
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 41
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 41
 
 
  731 01e4 0223     		movs	r3, #2
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  777              		.thumb
  778              		.syntax unified
  779              	.LBE193:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 42
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 42
 
 
  780              	.LBE192:
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  460:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****     {
  461:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****       /* Enable the Internal Low Speed oscillator (LSI). */
  462:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****       __HAL_RCC_LSI_ENABLE();
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 43
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 43
 
 
  800              		.loc 1 462 7 is_stmt 1 view .LVU233
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  842              		.syntax unified
  843              	@ 988 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
  844 024a 93FAA3F2 		rbit r2, r3
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 44
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 44
 
 
  845              	@ 0 "" 2
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  981:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  893              		.loc 2 981 31 is_stmt 1 view .LVU260
  894              	.LBB203:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 45
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 45
 
 
  983:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  988:Drivers/CMSIS/Include/cmsis_gcc.h **** #else
  940              		.loc 2 988 4 view .LVU275
  941 0288 F822     		movs	r2, #248
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 46
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 46
 
 
  942              		.syntax unified
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  988              		.loc 1 439 21 is_stmt 0 view .LVU287
  989 02b4 FFF7FEFF 		bl	HAL_GetTick
  990              	.LVL67:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 47
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 47
 
 
  991 02b8 0546     		mov	r5, r0
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  442:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****         {
  1036              		.loc 1 442 15 view .LVU301
  1037 02ca B3FA83F3 		clz	r3, r3
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 48
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 48
 
 
  1038 02ce 03F01F03 		and	r3, r3, #31
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  1076              		.loc 2 1001 3 view .LVU312
  1077              		.loc 2 1001 3 is_stmt 0 view .LVU313
  1078              		.thumb
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 49
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 49
 
 
  1079              		.syntax unified
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  1121              		.loc 2 988 4 view .LVU326
  1122              		.syntax unified
  1123              	@ 988 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 50
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 50
 
 
  1124 0314 93FAA3F2 		rbit r2, r3
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  1172 0324 B3FA83F3 		clz	r3, r3
  1173 0328 03F01F03 		and	r3, r3, #31
  1174 032c 0122     		movs	r2, #1
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 51
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 51
 
 
  1175 032e 02FA03F3 		lsl	r3, r2, r3
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  505:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****     {
  506:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****       __HAL_RCC_PWR_CLK_ENABLE();
  1210              		.loc 1 506 7 is_stmt 1 view .LVU355
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 52
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 52
 
 
  1211              	.LBB223:
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  1243 037a 012B     		cmp	r3, #1
  1244 037c 23D0     		beq	.L125
  1245              		.loc 1 528 5 discriminator 2 view .LVU368
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 53
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 53
 
 
  1246 037e 73BB     		cbnz	r3, .L68
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  1289              		.loc 1 520 27 view .LVU381
  1290 03bc 801B     		subs	r0, r0, r6
  520:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****         {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 54
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 54
 
 
  1291              		.loc 1 520 11 view .LVU382
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  1333 03ee 22F00402 		bic	r2, r2, #4
  1334 03f2 1A62     		str	r2, [r3, #32]
  1335 03f4 ECE7     		b	.L67
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 55
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 55
 
 
  1336              	.L126:
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  1383              	.LVL99:
  1384              		.loc 1 538 27 view .LVU408
  1385 042a 801B     		subs	r0, r0, r6
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 56
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 56
 
 
  1386              		.loc 1 538 11 view .LVU409
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  1432              	.LBB230:
  1433              	.LBI230:
  981:Drivers/CMSIS/Include/cmsis_gcc.h **** {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 57
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 57
 
 
  1434              		.loc 2 981 31 is_stmt 1 view .LVU422
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  1473              	.LBI232:
  981:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  1474              		.loc 2 981 31 is_stmt 1 discriminator 11 view .LVU433
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 58
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 58
 
 
  1475              	.LBB233:
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  1521              	@ 0 "" 2
  1522              	.LVL113:
  1523              		.loc 2 1001 3 view .LVU448
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 59
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 59
 
 
  1524              		.loc 2 1001 3 is_stmt 0 view .LVU449
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  1570 049a 596A     		ldr	r1, [r3, #36]
  1571 049c DEE7     		b	.L78
  1572              	.L75:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 60
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 60
 
 
  553:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****         {
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  581:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c **** #endif
  582:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   
  583:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****         /* Disable the main PLL. */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 61
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 61
 
 
  584:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****         __HAL_RCC_PLL_DISABLE();
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  1607 04ba 4FF08073 		mov	r3, #16777216
  1608              		.syntax unified
  1609              	@ 988 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 62
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 62
 
 
  1610 04be 93FAA3F3 		rbit r3, r3
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  1655 04e4 1968     		ldr	r1, [r3]
  1656              	.LVL123:
  1657              	.LBB244:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 63
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 63
 
 
  1658              	.LBI244:
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  1704              	.LVL127:
  1705              	.L130:
  562:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****     }
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 64
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 64
 
 
  1706              		.loc 1 562 7 is_stmt 0 view .LVU504
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  1748              	.LBB250:
  983:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  1749              		.loc 2 983 3 view .LVU519
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 65
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 65
 
 
  988:Drivers/CMSIS/Include/cmsis_gcc.h **** #else
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  1795 0560 FFF7FEFF 		bl	HAL_GetTick
  1796              	.LVL134:
  592:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****           {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 66
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 66
 
 
  1797              		.loc 1 592 29 view .LVU533
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  1842              		.loc 1 612 9 is_stmt 1 view .LVU544
  612:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****         
  1843              		.loc 1 612 21 is_stmt 0 view .LVU545
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 67
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 67
 
 
  1844 059a FFF7FEFF 		bl	HAL_GetTick
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  1889              	.LBE258:
  1890              	.LBE257:
  615:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****         {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 68
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 68
 
 
  1891              		.loc 1 615 15 view .LVU559
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  664:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****       }
  665:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****     }
  666:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   }
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 69
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 69
 
 
  667:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c **** 
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  1953 0604 0020     		movs	r0, #0
  1954 0606 0AE0     		b	.L21
  1955              	.LVL146:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 70
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 70
 
 
  1956              	.L94:
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  2001              	.LVL152:
  2002              	.L21:
  2003              		.loc 1 669 1 view .LVU589
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 71
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 71
 
 
  2004 061e 02B0     		add	sp, sp, #8
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  683:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   *         of failure of the HSE used directly or indirectly as system clock
  684:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   *         (if the Clock Security System CSS is enabled).
  685:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   *           
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 72
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 72
 
 
  686:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   * @note   A switch from one clock source to another occurs only if the target
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  740:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****     {
  741:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****       /* Check the HSE ready flag */  
  742:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****       if(__HAL_RCC_GET_FLAG(RCC_FLAG_HSERDY) == RESET)
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 73
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 73
 
 
  743:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****       {
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  797:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****     MODIFY_REG(RCC->CFGR, RCC_CFGR_PPRE1, RCC_ClkInitStruct->APB1CLKDivider);
  798:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   }
  799:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 74
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 74
 
 
  800:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   /*-------------------------- PCLK2 Configuration ---------------------------*/ 
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  854:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   *            @arg @ref RCC_MCODIV_1   no division applied to MCO clock
  855:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   *            @arg @ref RCC_MCODIV_2   division by 2 applied to MCO clock
  856:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   *            @arg @ref RCC_MCODIV_4   division by 4 applied to MCO clock
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 75
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 75
 
 
  857:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   *            @arg @ref RCC_MCODIV_8   division by 8 applied to MCO clock
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  892:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   assert_param(IS_RCC_MCODIV(RCC_MCODiv));
  2063              		.loc 1 892 3 view .LVU597
  893:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   assert_param(IS_RCC_MCO1SOURCE(RCC_MCOSource));
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 76
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 76
 
 
  2064              		.loc 1 893 3 view .LVU598
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  2106 0032 4FF09040 		mov	r0, #1207959552
  2107              	.LVL159:
  2108              		.loc 1 905 3 view .LVU618
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 77
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 77
 
 
  2109 0036 FFF7FEFF 		bl	HAL_GPIO_Init
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  2148              	.LBB261:
  2149              	.LBI261:
  981:Drivers/CMSIS/Include/cmsis_gcc.h **** {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 78
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 78
 
 
  2150              		.loc 2 981 31 view .LVU624
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  2195              	.LBB263:
  2196              	.LBI263:
  981:Drivers/CMSIS/Include/cmsis_gcc.h **** {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 79
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 79
 
 
  2197              		.loc 2 981 31 view .LVU634
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  948:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   *                8 MHz), user has to ensure that HSE_VALUE is same as the real
  949:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   *                frequency of the crystal used. Otherwise, this function may
  950:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   *                have wrong result.
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 80
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 80
 
 
  951:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   *                  
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  983:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****       if ((tmpreg & RCC_CFGR_PLLSRC) != RCC_PLLSOURCE_HSI)
  984:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****       {
  985:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****         /* HSE used as PLL clock source : PLLCLK = HSE/PREDIV * PLLMUL */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 81
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 81
 
 
  986:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****         pllclk = (uint32_t)((uint64_t) HSE_VALUE / (uint64_t) (prediv)) * ((uint64_t) pllmul);
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  2275 0018 92FAA2F2 		rbit r2, r2
  2276              	@ 0 "" 2
  2277              	.LVL171:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 82
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 82
 
 
  2278              		.loc 2 1001 3 view .LVU658
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  2322              	.LVL175:
  983:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****       {
  2323              		.loc 1 983 7 is_stmt 1 view .LVU672
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 83
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 83
 
 
  983:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****       {
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  695:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   uint32_t tickstart = 0U;
  2370              		.loc 1 695 1 is_stmt 1 view -0
  2371              		.cfi_startproc
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 84
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 84
 
 
  2372              		@ args = 0, pretend = 0, frame = 0
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  727:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   {
  2413              		.loc 1 727 3 is_stmt 1 view .LVU697
  727:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 85
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 85
 
 
  2414              		.loc 1 727 25 is_stmt 0 view .LVU698
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  983:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  2453              		.loc 2 983 3 view .LVU714
  988:Drivers/CMSIS/Include/cmsis_gcc.h **** #else
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 86
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 86
 
 
  2454              		.loc 2 988 4 view .LVU715
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  2501 0080 22F00302 		bic	r2, r2, #3
  2502 0084 1343     		orrs	r3, r3, r2
  2503 0086 4B60     		str	r3, [r1, #4]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 87
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 87
 
 
  769:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****     
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  988:Drivers/CMSIS/Include/cmsis_gcc.h **** #else
  2543              		.loc 2 988 4 view .LVU742
  2544 00b0 4FF40032 		mov	r2, #131072
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 88
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 88
 
 
  2545              		.syntax unified
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  2591              		.loc 1 751 7 is_stmt 1 view .LVU754
  2592              	.LBB277:
  2593              	.LBI277:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 89
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 89
 
 
  981:Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  2639 00fe BDD1     		bne	.L161
  753:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****       }
  2640              		.loc 1 753 16 view .LVU768
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 90
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 90
 
 
  2641 0100 0120     		movs	r0, #1
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  2682              		.loc 1 801 3 view .LVU781
  801:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   {
  2683              		.loc 1 801 25 is_stmt 0 view .LVU782
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 91
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 91
 
 
  2684 013c 2368     		ldr	r3, [r4]
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  2727 016a D340     		lsrs	r3, r3, r2
  808:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c **** 
  2728              		.loc 1 808 63 view .LVU796
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 92
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 92
 
 
  2729 016c 0B4A     		ldr	r2, .L185+8
@@ -5518,7 +5518,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  2773              	.LVL207:
  2774              	.L176:
  762:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****       }
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 93
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 93
 
 
  2775              		.loc 1 762 16 view .LVU807
@@ -5578,7 +5578,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  2816 0008 00000000 		.word	SystemCoreClock
  2817              		.cfi_endproc
  2818              	.LFE130:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 94
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 94
 
 
  2820              		.section	.text.HAL_RCC_GetPCLK1Freq,"ax",%progbits
@@ -5638,7 +5638,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  2861              		.loc 2 1001 3 is_stmt 0 view .LVU821
  2862              		.thumb
  2863              		.syntax unified
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 95
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 95
 
 
  2864              	.LBE284:
@@ -5698,7 +5698,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  2908              		.loc 1 1053 60 view .LVU829
  2909 000a 03F46053 		and	r3, r3, #14336
  2910              	.LVL213:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 96
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 96
 
 
  2911              	.LBB285:
@@ -5758,7 +5758,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
 1062:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   */
 1063:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c **** void HAL_RCC_GetOscConfig(RCC_OscInitTypeDef  *RCC_OscInitStruct)
 1064:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c **** {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 97
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 97
 
 
  2956              		.loc 1 1064 1 is_stmt 1 view -0
@@ -5818,7 +5818,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
 1090:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   /* Get the HSI configuration -----------------------------------------------*/
 1091:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   if((RCC->CR &RCC_CR_HSION) == RCC_CR_HSION)
  2985              		.loc 1 1091 3 is_stmt 1 view .LVU850
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 98
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 98
 
 
  2986              		.loc 1 1091 10 is_stmt 0 view .LVU851
@@ -5878,7 +5878,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
 1103:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   if((RCC->BDCR &RCC_BDCR_LSEBYP) == RCC_BDCR_LSEBYP)
  3026              		.loc 1 1103 3 is_stmt 1 view .LVU865
  3027              		.loc 1 1103 10 is_stmt 0 view .LVU866
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 99
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 99
 
 
  3028 0040 0B6A     		ldr	r3, [r1, #32]
@@ -5938,7 +5938,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
 1130:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****     RCC_OscInitStruct->PLL.PLLState = RCC_PLL_ON;
  3056              		.loc 1 1130 5 is_stmt 1 view .LVU878
  3057              		.loc 1 1130 37 is_stmt 0 view .LVU879
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 100
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 100
 
 
  3058 0064 0223     		movs	r3, #2
@@ -5998,7 +5998,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  3094 008e 0023     		movs	r3, #0
  3095 0090 4360     		str	r3, [r0, #4]
  3096 0092 BFE7     		b	.L200
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 101
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 101
 
 
  3097              	.L202:
@@ -6058,7 +6058,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  3138              		.cfi_endproc
  3139              	.LFE133:
  3141              		.section	.text.HAL_RCC_GetClockConfig,"ax",%progbits
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 102
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 102
 
 
  3142              		.align	1
@@ -6118,7 +6118,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  3174 0010 02F0F002 		and	r2, r2, #240
  3175              		.loc 1 1164 36 view .LVU921
  3176 0014 8260     		str	r2, [r0, #8]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 103
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 103
 
 
 1165:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   
@@ -6178,7 +6178,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
 1179:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   * @retval None
 1180:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   */
 1181:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c **** void HAL_RCC_NMI_IRQHandler(void)
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 104
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 104
 
 
 1182:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c **** {
@@ -6238,7 +6238,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  3250 0004 9B68     		ldr	r3, [r3, #8]
 1184:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c ****   {
  3251              		.loc 1 1184 5 view .LVU940
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 105
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 105
 
 
  3252 0006 13F0800F 		tst	r3, #128
@@ -6295,58 +6295,58 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 1
  3298              		.file 9 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc.h"
  3299              		.file 10 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_gpio.h"
  3300              		.file 11 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 106
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 106
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f3xx_hal_rcc.c
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:20     .text.HAL_RCC_DeInit:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:26     .text.HAL_RCC_DeInit:00000000 HAL_RCC_DeInit
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:229    .text.HAL_RCC_DeInit:000000dc $d
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:239    .text.HAL_RCC_OscConfig:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:245    .text.HAL_RCC_OscConfig:00000000 HAL_RCC_OscConfig
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:1059   .text.HAL_RCC_OscConfig:000002ec $d
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:1070   .text.HAL_RCC_OscConfig:000002f4 $t
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:1922   .text.HAL_RCC_OscConfig:000005dc $d
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:1929   .text.HAL_RCC_OscConfig:000005e8 $t
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2030   .text.HAL_RCC_OscConfig:00000630 $d
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2035   .text.HAL_RCC_MCOConfig:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2041   .text.HAL_RCC_MCOConfig:00000000 HAL_RCC_MCOConfig
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2128   .text.HAL_RCC_MCOConfig:0000004c $d
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2133   .text.HAL_RCC_EnableCSS:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2139   .text.HAL_RCC_EnableCSS:00000000 HAL_RCC_EnableCSS
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2180   .text.HAL_RCC_DisableCSS:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2186   .text.HAL_RCC_DisableCSS:00000000 HAL_RCC_DisableCSS
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2227   .text.HAL_RCC_GetSysClockFreq:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2233   .text.HAL_RCC_GetSysClockFreq:00000000 HAL_RCC_GetSysClockFreq
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2352   .text.HAL_RCC_GetSysClockFreq:0000005c $d
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2361   .text.HAL_RCC_ClockConfig:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2367   .text.HAL_RCC_ClockConfig:00000000 HAL_RCC_ClockConfig
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2786   .text.HAL_RCC_ClockConfig:00000194 $d
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2795   .text.HAL_RCC_GetHCLKFreq:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2801   .text.HAL_RCC_GetHCLKFreq:00000000 HAL_RCC_GetHCLKFreq
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2816   .text.HAL_RCC_GetHCLKFreq:00000008 $d
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2821   .text.HAL_RCC_GetPCLK1Freq:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2827   .text.HAL_RCC_GetPCLK1Freq:00000000 HAL_RCC_GetPCLK1Freq
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2878   .text.HAL_RCC_GetPCLK1Freq:00000024 $d
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2884   .text.HAL_RCC_GetPCLK2Freq:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2890   .text.HAL_RCC_GetPCLK2Freq:00000000 HAL_RCC_GetPCLK2Freq
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2941   .text.HAL_RCC_GetPCLK2Freq:00000024 $d
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2947   .text.HAL_RCC_GetOscConfig:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:2953   .text.HAL_RCC_GetOscConfig:00000000 HAL_RCC_GetOscConfig
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:3137   .text.HAL_RCC_GetOscConfig:000000bc $d
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:3142   .text.HAL_RCC_GetClockConfig:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:3148   .text.HAL_RCC_GetClockConfig:00000000 HAL_RCC_GetClockConfig
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:3205   .text.HAL_RCC_GetClockConfig:00000034 $d
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:3211   .text.HAL_RCC_CSSCallback:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:3217   .text.HAL_RCC_CSSCallback:00000000 HAL_RCC_CSSCallback
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:3230   .text.HAL_RCC_NMI_IRQHandler:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:3236   .text.HAL_RCC_NMI_IRQHandler:00000000 HAL_RCC_NMI_IRQHandler
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:3270   .text.HAL_RCC_NMI_IRQHandler:0000001c $d
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:3275   .rodata.aPLLMULFactorTable:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:3279   .rodata.aPLLMULFactorTable:00000000 aPLLMULFactorTable
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:3283   .rodata.aPredivFactorTable:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s:3287   .rodata.aPredivFactorTable:00000000 aPredivFactorTable
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:20     .text.HAL_RCC_DeInit:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:26     .text.HAL_RCC_DeInit:00000000 HAL_RCC_DeInit
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:229    .text.HAL_RCC_DeInit:000000dc $d
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:239    .text.HAL_RCC_OscConfig:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:245    .text.HAL_RCC_OscConfig:00000000 HAL_RCC_OscConfig
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:1059   .text.HAL_RCC_OscConfig:000002ec $d
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:1070   .text.HAL_RCC_OscConfig:000002f4 $t
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:1922   .text.HAL_RCC_OscConfig:000005dc $d
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:1929   .text.HAL_RCC_OscConfig:000005e8 $t
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2030   .text.HAL_RCC_OscConfig:00000630 $d
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2035   .text.HAL_RCC_MCOConfig:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2041   .text.HAL_RCC_MCOConfig:00000000 HAL_RCC_MCOConfig
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2128   .text.HAL_RCC_MCOConfig:0000004c $d
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2133   .text.HAL_RCC_EnableCSS:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2139   .text.HAL_RCC_EnableCSS:00000000 HAL_RCC_EnableCSS
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2180   .text.HAL_RCC_DisableCSS:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2186   .text.HAL_RCC_DisableCSS:00000000 HAL_RCC_DisableCSS
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2227   .text.HAL_RCC_GetSysClockFreq:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2233   .text.HAL_RCC_GetSysClockFreq:00000000 HAL_RCC_GetSysClockFreq
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2352   .text.HAL_RCC_GetSysClockFreq:0000005c $d
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2361   .text.HAL_RCC_ClockConfig:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2367   .text.HAL_RCC_ClockConfig:00000000 HAL_RCC_ClockConfig
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2786   .text.HAL_RCC_ClockConfig:00000194 $d
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2795   .text.HAL_RCC_GetHCLKFreq:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2801   .text.HAL_RCC_GetHCLKFreq:00000000 HAL_RCC_GetHCLKFreq
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2816   .text.HAL_RCC_GetHCLKFreq:00000008 $d
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2821   .text.HAL_RCC_GetPCLK1Freq:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2827   .text.HAL_RCC_GetPCLK1Freq:00000000 HAL_RCC_GetPCLK1Freq
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2878   .text.HAL_RCC_GetPCLK1Freq:00000024 $d
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2884   .text.HAL_RCC_GetPCLK2Freq:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2890   .text.HAL_RCC_GetPCLK2Freq:00000000 HAL_RCC_GetPCLK2Freq
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2941   .text.HAL_RCC_GetPCLK2Freq:00000024 $d
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2947   .text.HAL_RCC_GetOscConfig:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:2953   .text.HAL_RCC_GetOscConfig:00000000 HAL_RCC_GetOscConfig
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:3137   .text.HAL_RCC_GetOscConfig:000000bc $d
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:3142   .text.HAL_RCC_GetClockConfig:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:3148   .text.HAL_RCC_GetClockConfig:00000000 HAL_RCC_GetClockConfig
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:3205   .text.HAL_RCC_GetClockConfig:00000034 $d
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:3211   .text.HAL_RCC_CSSCallback:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:3217   .text.HAL_RCC_CSSCallback:00000000 HAL_RCC_CSSCallback
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:3230   .text.HAL_RCC_NMI_IRQHandler:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:3236   .text.HAL_RCC_NMI_IRQHandler:00000000 HAL_RCC_NMI_IRQHandler
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:3270   .text.HAL_RCC_NMI_IRQHandler:0000001c $d
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:3275   .rodata.aPLLMULFactorTable:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:3279   .rodata.aPLLMULFactorTable:00000000 aPLLMULFactorTable
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:3283   .rodata.aPredivFactorTable:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cciAMGmR.s:3287   .rodata.aPredivFactorTable:00000000 aPredivFactorTable
 
 UNDEFINED SYMBOLS
 HAL_GetTick
@@ -6355,7 +6355,7 @@ SystemCoreClock
 uwTickPrio
 HAL_GPIO_Init
 AHBPrescTable
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccNfjDKy.s 			page 107
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cciAMGmR.s 			page 107
 
 
 APBPrescTable

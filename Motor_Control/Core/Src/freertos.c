@@ -22,7 +22,7 @@
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
-
+#include "stdlib.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "CO_app_STM32.h"
@@ -30,8 +30,11 @@
 #include "tim.h"
 #include "comment.h"
 #include "can.h"
+#include "pid.h"
+#include "adc.h"
 #define portTICK_RATE_MS portTICK_PERIOD_MS
 #define portTICK_PERIOD_MS ((TickType_t)1000 / configTICK_RATE_HZ)
+#define MAX_angle 35
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -53,45 +56,42 @@
 /* USER CODE BEGIN Variables */
 
 /* USER CODE END Variables */
-/* Definitions for ReadDistance */
-osThreadId_t ReadDistanceHandle;
-const osThreadAttr_t ReadDistance_attributes = {
-  .name = "ReadDistance",
-  .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityHigh,
-};
-/* Definitions for UITask */
-osThreadId_t UITaskHandle;
-const osThreadAttr_t UITask_attributes = {
-  .name = "UITask",
-  .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityNormal,
+/* Definitions for PIDTask */
+osThreadId_t PIDTaskHandle;
+const osThreadAttr_t PIDTask_attributes = {
+    .name = "PIDTask",
+    .stack_size = 128 * 4,
+    .priority = (osPriority_t)osPriorityHigh,
 };
 /* Definitions for canopenTask */
 osThreadId_t canopenTaskHandle;
 const osThreadAttr_t canopenTask_attributes = {
-  .name = "canopenTask",
-  .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityRealtime,
+    .name = "canopenTask",
+    .stack_size = 128 * 4,
+    .priority = (osPriority_t)osPriorityRealtime,
 };
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
-
+volatile double CCR_value = 0;
+volatile double current_voltage = 0;
+volatile double current_angle = 0;
+volatile double db_target_angle = 0;
+void analyze_volatge(void);
 /* USER CODE END FunctionPrototypes */
 
-void StartReadDistance(void *argument);
-void StartUITask(void *argument);
+void StartPIDTask(void *argument);
 void canopen_task(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /**
-  * @brief  FreeRTOS initialization
-  * @param  None
-  * @retval None
-  */
-void MX_FREERTOS_Init(void) {
+ * @brief  FreeRTOS initialization
+ * @param  None
+ * @retval None
+ */
+void MX_FREERTOS_Init(void)
+{
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
@@ -113,11 +113,8 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
-  /* creation of ReadDistance */
-  ReadDistanceHandle = osThreadNew(StartReadDistance, NULL, &ReadDistance_attributes);
-
-  /* creation of UITask */
-  UITaskHandle = osThreadNew(StartUITask, NULL, &UITask_attributes);
+  /* creation of PIDTask */
+  PIDTaskHandle = osThreadNew(StartPIDTask, NULL, &PIDTask_attributes);
 
   /* creation of canopenTask */
   canopenTaskHandle = osThreadNew(canopen_task, NULL, &canopenTask_attributes);
@@ -129,45 +126,50 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_EVENTS */
   /* add events, ... */
   /* USER CODE END RTOS_EVENTS */
-
 }
 
-/* USER CODE BEGIN Header_StartReadDistance */
+/* USER CODE BEGIN Header_StartPIDTask */
 /**
- * @brief  Function implementing the ReadDistance thread.
+ * @brief  Function implementing the PIDTask thread.
  * @param  argument: Not used
  * @retval None
  */
-/* USER CODE END Header_StartReadDistance */
-void StartReadDistance(void *argument)
+/* USER CODE END Header_StartPIDTask */
+void StartPIDTask(void *argument)
 {
-  /* USER CODE BEGIN StartReadDistance */
+  /* USER CODE BEGIN StartPIDTask */
+  TIM2->CCR2 = (int)CCR_value; // CCR_value bigger the rpm will highter 0~100
+  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
+  HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
+  analyze_volatge();
+  db_target_angle = 10.0;
+  PID_TypeDef TPID;
+  PID(&TPID, &current_angle, &CCR_value, &db_target_angle, 0.8, 0, 0, _PID_P_ON_E, _PID_CD_DIRECT); // input output target
+  PID_SetMode(&TPID, _PID_MODE_AUTOMATIC);
+  PID_SetSampleTime(&TPID, 100);
+  PID_SetOutputLimits(&TPID, -100, 100);
   /* Infinite loop */
   for (;;)
   {
-    osDelay(1);
+    analyze_volatge();
+    if (current_angle < db_target_angle)
+    {
+      HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 0);
+    }
+    else
+    {
+      HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
+    }
+    PID_Compute(&TPID);
+    CCR_value = abs(CCR_value);
+    if (abs(current_angle) > MAX_angle)
+    {
+      CCR_value = 0;
+    }
+    TIM2->CCR2 = ((int)CCR_value);
+    osDelay(100);
   }
-  /* USER CODE END StartReadDistance */
-}
-
-/* USER CODE BEGIN Header_StartUITask */
-/**
- * @brief Function implementing the UITask thread.
- * @param argument: Not used
- * @retval None
- */
-/* USER CODE END Header_StartUITask */
-void StartUITask(void *argument)
-{
-  /* USER CODE BEGIN StartUITask */
-  /* Infinite loop */
-  for (;;)
-  {
-    OD_set_u16(OD_find(OD, 0x6000), 0x000, OD_PERSIST_COMM.x6000_steering, false);
-    CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
-    osDelay(1000);
-  }
-  /* USER CODE END StartUITask */
+  /* USER CODE END StartPIDTask */
 }
 
 /* USER CODE BEGIN Header_canopen_task */
@@ -187,20 +189,32 @@ void canopen_task(void *argument)
   canOpenNodeSTM32.desiredNodeID = 17;
   canOpenNodeSTM32.baudrate = 125;
   canopen_app_init(&canOpenNodeSTM32);
-  TIM2->CCR2 = 50; //CCR_value bigger the rpm will highter
-  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
-  HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 0);
+  int16_t pre_target_angle = OD_PERSIST_COMM.x6001_target_angle;
+  db_target_angle = (double)OD_PERSIST_COMM.x6001_target_angle;
   /* Infinite loop */
   for (;;)
   {
     canopen_app_process();
+    if (OD_PERSIST_COMM.x6000_current_angle != pre_target_angle)
+    {
+      pre_target_angle = OD_PERSIST_COMM.x6001_target_angle;
+      db_target_angle = (double)OD_PERSIST_COMM.x6001_target_angle;
+    }
     vTaskDelay(1);
   }
   /* USER CODE END canopen_task */
 }
-
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
+void analyze_volatge(void)
+{
+  HAL_ADC_Start(&hadc1);
+  HAL_ADC_PollForConversion(&hadc1, 1);
+  current_voltage = HAL_ADC_GetValue(&hadc1);
+  current_voltage = HAL_ADC_GetValue(&hadc1);
+  current_voltage = ((current_voltage / 4096) * 3.3);
+  current_angle = ((current_voltage * 2 * 22.5) - 45);
+  current_angle = current_angle / 1;
+}
 
 /* USER CODE END Application */
-

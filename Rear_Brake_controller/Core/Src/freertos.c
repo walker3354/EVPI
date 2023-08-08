@@ -53,19 +53,12 @@
 /* USER CODE BEGIN Variables */
 
 /* USER CODE END Variables */
-/* Definitions for ReadDistance */
-osThreadId_t ReadDistanceHandle;
-const osThreadAttr_t ReadDistance_attributes = {
-    .name = "ReadDistance",
+/* Definitions for Translate_CCR */
+osThreadId_t Translate_CCRHandle;
+const osThreadAttr_t Translate_CCR_attributes = {
+    .name = "Translate_CCR",
     .stack_size = 128 * 4,
     .priority = (osPriority_t)osPriorityHigh,
-};
-/* Definitions for UITask */
-osThreadId_t UITaskHandle;
-const osThreadAttr_t UITask_attributes = {
-    .name = "UITask",
-    .stack_size = 128 * 4,
-    .priority = (osPriority_t)osPriorityNormal,
 };
 /* Definitions for canopenTask */
 osThreadId_t canopenTaskHandle;
@@ -80,8 +73,7 @@ const osThreadAttr_t canopenTask_attributes = {
 
 /* USER CODE END FunctionPrototypes */
 
-void StartReadDistance(void *argument);
-void StartUITask(void *argument);
+void StartTranslate_CCR(void *argument);
 void canopen_task(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -114,12 +106,8 @@ void MX_FREERTOS_Init(void)
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
-  /* creation of ReadDistance */
-  ReadDistanceHandle = osThreadNew(StartReadDistance, NULL, &ReadDistance_attributes);
-
-  /* creation of UITask */
-  UITaskHandle = osThreadNew(StartUITask, NULL, &UITask_attributes);
-
+  /* creation of Translate_CCR */
+  Translate_CCRHandle = osThreadNew(StartTranslate_CCR, NULL, &Translate_CCR_attributes);
   /* creation of canopenTask */
   canopenTaskHandle = osThreadNew(canopen_task, NULL, &canopenTask_attributes);
 
@@ -132,39 +120,27 @@ void MX_FREERTOS_Init(void)
   /* USER CODE END RTOS_EVENTS */
 }
 
-/* USER CODE BEGIN Header_StartReadDistance */
+/* USER CODE BEGIN Header_StartTranslate_CCR */
 /**
- * @brief  Function implementing the ReadDistance thread.
+ * @brief  Function implementing the Translate_CCR thread.
  * @param  argument: Not used
  * @retval None
  */
-/* USER CODE END Header_StartReadDistance */
-void StartReadDistance(void *argument)
+/* USER CODE END Header_StartTranslate_CCR */
+void StartTranslate_CCR(void *argument)
 {
-  /* USER CODE BEGIN StartReadDistance */
+  /* USER CODE BEGIN StartTranslate_CCR */
   /* Infinite loop */
+  volatile int angle_data = OD_PERSIST_COMM.x6000_angle_data;
   for (;;)
   {
-    osDelay(1);
+    if (OD_PERSIST_COMM.x6000_angle_data != angle_data)
+    {
+      angle_data = OD_PERSIST_COMM.x6000_angle_data;
+      TIM2->CCR2 = 1200 + (angle_data * 20);
+    }
   }
-  /* USER CODE END StartReadDistance */
-}
-
-/* USER CODE BEGIN Header_StartUITask */
-/**
- * @brief Function implementing the UITask thread.
- * @param argument: Not used
- * @retval None
- */
-/* USER CODE END Header_StartUITask */
-void StartUITask(void *argument)
-{
-  /* USER CODE BEGIN StartUITask */
-  /* Infinite loop */
-  for (;;)
-  {
-  }
-  /* USER CODE END StartUITask */
+  /* USER CODE END StartTranslate_CCR */
 }
 
 /* USER CODE BEGIN Header_canopen_task */
@@ -181,17 +157,15 @@ void canopen_task(void *argument)
   canOpenNodeSTM32.CANHandle = &hcan;
   canOpenNodeSTM32.HWInitFunction = MX_CAN_Init;
   canOpenNodeSTM32.timerHandle = &htim17;
-  canOpenNodeSTM32.desiredNodeID = 17;
+  canOpenNodeSTM32.desiredNodeID = 13;
   canOpenNodeSTM32.baudrate = 125;
   canopen_app_init(&canOpenNodeSTM32);
-  TIM2->CCR2 = 1200; // CCR_value bigger the rpm will highter range 1200 ~ 4800
+  TIM2->CCR2 = 1200; // CCR_value bigger the rpm will highter range 1200 ~ 4800, Duty cycle 15% ~ 60%
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
-  HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 0);
   /* Infinite loop */
   for (;;)
   {
     canopen_app_process();
-
     vTaskDelay(1);
   }
   /* USER CODE END canopen_task */

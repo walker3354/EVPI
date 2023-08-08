@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
   27:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   ==============================================================================
   28:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****                       ##### TIMER Extended features #####
   29:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   ==============================================================================
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 2
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 2
 
 
   30:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   [..]
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
   84:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
   85:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** /** @addtogroup STM32F3xx_HAL_Driver
   86:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @{
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 3
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 3
 
 
   87:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   */
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  141:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** {
  142:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   TIM_OC_InitTypeDef OC_Config;
  143:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 4
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 4
 
 
  144:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   /* Check the TIM handle allocation */
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  198:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   /* Select the TIM_TS_TI1F_ED signal as Input trigger for the TIM */
  199:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   htim->Instance->SMCR &= ~TIM_SMCR_TS;
  200:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   htim->Instance->SMCR |= TIM_TS_TI1F_ED;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 5
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 5
 
 
  201:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  255:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     htim->HallSensor_MspDeInitCallback = HAL_TIMEx_HallSensor_MspDeInit;
  256:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   }
  257:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   /* DeInit the low level hardware */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 6
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 6
 
 
  258:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   htim->HallSensor_MspDeInitCallback(htim);
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
   48              	HAL_TIMEx_HallSensor_MspDeInit:
   49              	.LVL1:
   50              	.LFB126:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 7
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 7
 
 
  296:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  331:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       || (complementary_channel_1_state != HAL_TIM_CHANNEL_STATE_READY)
  332:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       || (complementary_channel_2_state != HAL_TIM_CHANNEL_STATE_READY))
  333:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 8
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 8
 
 
  334:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     return HAL_ERROR;
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  388:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   TIM_CHANNEL_N_STATE_SET(htim, TIM_CHANNEL_2, HAL_TIM_CHANNEL_STATE_READY);
  389:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  390:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   /* Return function status */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 9
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 9
 
 
  391:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   return HAL_OK;
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  445:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   }
  446:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  447:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   /* Return function status */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 10
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 10
 
 
  448:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   return HAL_OK;
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  502:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     return HAL_BUSY;
  503:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   }
  504:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   else if ((channel_1_state == HAL_TIM_CHANNEL_STATE_READY)
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 11
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 11
 
 
  505:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****            && (complementary_channel_1_state == HAL_TIM_CHANNEL_STATE_READY))
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  559:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  560:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** /**
  561:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @brief  Stops the TIM Hall Sensor Interface in DMA mode.
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 12
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 12
 
 
  562:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @param  htim TIM Hall Sensor Interface handle
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  616:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** /**
  617:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @brief  Starts the TIM Output Compare signal generation on the complementary
  618:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   *         output.
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 13
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 13
 
 
  619:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @param  htim TIM Output Compare handle
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  673:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   *            @arg TIM_CHANNEL_1: TIM Channel 1 selected
  674:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   *            @arg TIM_CHANNEL_2: TIM Channel 2 selected
  675:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   *            @arg TIM_CHANNEL_3: TIM Channel 3 selected
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 14
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 14
 
 
  676:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @retval HAL status
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  730:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     {
  731:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       /* Enable the TIM Output Compare interrupt */
  732:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       __HAL_TIM_ENABLE_IT(htim, TIM_IT_CC1);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 15
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 15
 
 
  733:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       break;
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  787:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @brief  Stops the TIM Output Compare signal generation in interrupt mode
  788:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   *         on the complementary output.
  789:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @param  htim TIM Output Compare handle
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 16
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 16
 
 
  790:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @param  Channel TIM Channel to be disabled
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  844:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  845:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     /* Disable the Main Output */
  846:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     __HAL_TIM_MOE_DISABLE(htim);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 17
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 17
 
 
  847:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  901:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  902:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   switch (Channel)
  903:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 18
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 18
 
 
  904:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     case TIM_CHANNEL_1:
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  958:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       {
  959:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****         /* Return error status */
  960:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****         return HAL_ERROR;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 19
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 19
 
 
  961:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       }
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1015:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   assert_param(IS_TIM_CCXN_INSTANCE(htim->Instance, Channel));
 1016:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
 1017:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   switch (Channel)
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 20
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 20
 
 
 1018:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1072:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @brief    Timer Complementary PWM functions
 1073:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   *
 1074:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** @verbatim
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 21
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 21
 
 
 1075:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   ==============================================================================
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1129:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
 1130:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   /* Enable the Main Output */
 1131:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   __HAL_TIM_MOE_ENABLE(htim);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 22
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 22
 
 
 1132:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1186:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @param  Channel TIM Channel to be disabled
 1187:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   *          This parameter can be one of the following values:
 1188:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   *            @arg TIM_CHANNEL_1: TIM Channel 1 selected
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 23
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 23
 
 
 1189:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   *            @arg TIM_CHANNEL_2: TIM Channel 2 selected
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1243:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     /* Enable the complementary PWM output  */
 1244:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     TIM_CCxNChannelCmd(htim->Instance, Channel, TIM_CCxN_ENABLE);
 1245:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 24
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 24
 
 
 1246:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     /* Enable the Main Output */
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1300:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       break;
 1301:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     }
 1302:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 25
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 25
 
 
 1303:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     case TIM_CHANNEL_3:
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1357:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   HAL_StatusTypeDef status = HAL_OK;
 1358:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   uint32_t tmpsmcr;
 1359:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 26
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 26
 
 
 1360:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   /* Check the parameters */
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1414:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       htim->hdma[TIM_DMA_ID_CC2]->XferErrorCallback = TIM_DMAErrorCCxN ;
 1415:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
 1416:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       /* Enable the DMA channel */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 27
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 27
 
 
 1417:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       if (HAL_DMA_Start_IT(htim->hdma[TIM_DMA_ID_CC2], (uint32_t)pData, (uint32_t)&htim->Instance->
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1471:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     else
 1472:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     {
 1473:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       __HAL_TIM_ENABLE(htim);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 28
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 28
 
 
 1474:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     }
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1528:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   }
 1529:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
 1530:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   if (status == HAL_OK)
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 29
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 29
 
 
 1531:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1585:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   uint32_t input_channel = (OutputChannel == TIM_CHANNEL_1) ? TIM_CHANNEL_2 : TIM_CHANNEL_1;
 1586:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   HAL_TIM_ChannelStateTypeDef channel_1_state = TIM_CHANNEL_STATE_GET(htim, TIM_CHANNEL_1);
 1587:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   HAL_TIM_ChannelStateTypeDef channel_2_state = TIM_CHANNEL_STATE_GET(htim, TIM_CHANNEL_2);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 30
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 30
 
 
 1588:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   HAL_TIM_ChannelStateTypeDef complementary_channel_1_state = TIM_CHANNEL_N_STATE_GET(htim, TIM_CHA
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1642:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
 1643:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   /* Disable the Main Output */
 1644:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   __HAL_TIM_MOE_DISABLE(htim);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 31
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 31
 
 
 1645:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1699:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
 1700:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   /* Enable the TIM Capture/Compare 2 interrupt */
 1701:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   __HAL_TIM_ENABLE_IT(htim, TIM_IT_CC2);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 32
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 32
 
 
 1702:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1756:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   return HAL_OK;
 1757:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** }
 1758:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 33
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 33
 
 
 1759:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** /**
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1813:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   __HAL_LOCK(htim);
 1814:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
 1815:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   if ((InputTrigger == TIM_TS_ITR0) || (InputTrigger == TIM_TS_ITR1) ||
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 34
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 34
 
 
 1816:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       (InputTrigger == TIM_TS_ITR2) || (InputTrigger == TIM_TS_ITR3))
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1870:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
 1871:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   if ((InputTrigger == TIM_TS_ITR0) || (InputTrigger == TIM_TS_ITR1) ||
 1872:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       (InputTrigger == TIM_TS_ITR2) || (InputTrigger == TIM_TS_ITR3))
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 35
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 35
 
 
 1873:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1927:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
 1928:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   if ((InputTrigger == TIM_TS_ITR0) || (InputTrigger == TIM_TS_ITR1) ||
 1929:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       (InputTrigger == TIM_TS_ITR2) || (InputTrigger == TIM_TS_ITR3))
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 36
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 36
 
 
 1930:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1984:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
 1985:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   /* Get the TIMx CR2 register value */
 1986:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   tmpcr2 = htim->Instance->CR2;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 37
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 37
 
 
 1987:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 2041:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @retval HAL status
 2042:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   */
 2043:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** HAL_StatusTypeDef HAL_TIMEx_ConfigBreakDeadTime(TIM_HandleTypeDef *htim,
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 38
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 38
 
 
 2044:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****                                                 const TIM_BreakDeadTimeConfigTypeDef *sBreakDeadTim
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 2098:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   __HAL_UNLOCK(htim);
 2099:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
 2100:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   return HAL_OK;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 39
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 39
 
 
 2101:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** }
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 2155:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   *           @arg TIM_TIM8_ADC3_AWD3:     TIM1_ETR is connected to ADC3 AWD3
 2156:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   @endif
 2157:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   @if STM32F373xC
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 40
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 40
 
 
 2158:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   *         For TIM14, the parameter can have the following values:
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 2212:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   *         TIM_GROUPCH5_OC2REFC: OC2REFC is the logical AND of OC2REFC and OC5REF
 2213:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   *         TIM_GROUPCH5_OC3REFC: OC3REFC is the logical AND of OC3REFC and OC5REF
 2214:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @retval HAL status
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 41
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 41
 
 
 2215:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   */
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 2269:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   /* Prevent unused argument(s) compilation warning */
 2270:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   UNUSED(htim);
 2271:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 42
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 42
 
 
 2272:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   /* NOTE : This function should not be modified, when the callback is needed,
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 2326:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** /** @defgroup TIMEx_Exported_Functions_Group7 Extended Peripheral State functions
 2327:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @brief    Extended Peripheral State functions
 2328:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   *
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 43
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 43
 
 
 2329:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** @verbatim
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 2383:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   */
 2384:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
 2385:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** /**
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 44
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 44
 
 
 2386:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @brief  TIM DMA Commutation callback.
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 2403:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
 2404:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** /**
 2405:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @brief  TIM DMA Commutation half complete callback.
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 45
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 45
 
 
 2406:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @param  hdma pointer to DMA handle.
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 2424:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** /**
 2425:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @brief  TIM DMA Delay Pulse complete callback (complementary channel).
 2426:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @param  hdma pointer to DMA handle.
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 46
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 46
 
 
 2427:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @retval None
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  178              		.loc 1 2451 11 view .LVU38
  179 0012 8342     		cmp	r3, r0
  180 0014 1BD0     		beq	.L15
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 47
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 47
 
 
 2452:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  205              	.L13:
 2435:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  206              		.loc 1 2435 5 is_stmt 1 view .LVU50
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 48
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 48
 
 
 2435:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  245 0056 E1D1     		bne	.L9
 2457:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     }
  246              		.loc 1 2457 7 is_stmt 1 view .LVU67
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 49
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 49
 
 
  247 0058 0123     		movs	r3, #1
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  288              		.loc 1 2490 22 is_stmt 0 view .LVU77
  289 0002 446A     		ldr	r4, [r0, #36]
  290              	.LVL14:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 50
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 50
 
 
 2491:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 2516:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** #endif /* USE_HAL_TIM_REGISTER_CALLBACKS */
 2517:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
 2518:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   htim->Channel = HAL_TIM_ACTIVE_CHANNEL_CLEARED;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 51
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 51
 
 
  320              		.loc 1 2518 3 is_stmt 1 view .LVU92
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 2521:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** /**
 2522:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @brief  Enables or disables the TIM Capture Compare Channel xN.
 2523:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @param  TIMx to select the TIM peripheral
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 52
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 52
 
 
 2524:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   * @param  Channel specifies the TIM Channel
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  399              		.global	HAL_TIMEx_HallSensor_Init
  400              		.syntax unified
  401              		.thumb
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 53
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 53
 
 
  402              		.thumb_func
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  441 0010 002B     		cmp	r3, #0
  442 0012 5AD0     		beq	.L35
  443              	.LVL22:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 54
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 54
 
 
  444              	.L28:
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  482 0044 2268     		ldr	r2, [r4]
  196:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  483              		.loc 1 196 23 view .LVU148
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 55
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 55
 
 
  484 0046 5368     		ldr	r3, [r2, #4]
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  522 007e 0695     		str	r5, [sp, #24]
  209:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   OC_Config.OCNIdleState = TIM_OCNIDLESTATE_RESET;
  523              		.loc 1 209 3 is_stmt 1 view .LVU165
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 56
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 56
 
 
  209:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   OC_Config.OCNIdleState = TIM_OCNIDLESTATE_RESET;
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  560              		.loc 1 223 3 is_stmt 1 view .LVU183
  223:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  561              		.loc 1 223 23 is_stmt 0 view .LVU184
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 57
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 57
 
 
  562 00aa 0123     		movs	r3, #1
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  174:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** #else
  601              		.loc 1 174 5 is_stmt 1 view .LVU200
  174:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** #else
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 58
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 58
 
 
  602              		.loc 1 174 9 is_stmt 0 view .LVU201
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  651              	.LCFI9:
  652              		.cfi_def_cfa_offset 8
  653              		.cfi_offset 4, -8
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 59
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 59
 
 
  654              		.cfi_offset 14, -4
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  693              	.LVL33:
  265:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  694              		.loc 1 265 3 is_stmt 1 view .LVU224
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 60
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 60
 
 
  265:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  737              	HAL_TIMEx_HallSensor_Start:
  738              	.LVL35:
  739              	.LFB127:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 61
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 61
 
 
  318:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   uint32_t tmpsmcr;
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  778 001c D2B2     		uxtb	r2, r2
  329:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       || (channel_2_state != HAL_TIM_CHANNEL_STATE_READY)
  779              		.loc 1 329 6 view .LVU255
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 62
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 62
 
 
  780 001e C9B2     		uxtb	r1, r1
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  819 004a 2368     		ldr	r3, [r4]
  349:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
  820              		.loc 1 349 6 view .LVU271
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 63
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 63
 
 
  821 004c 144A     		ldr	r2, .L57
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  862 008a 1A60     		str	r2, [r3]
  363:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** }
  863              		.loc 1 363 10 view .LVU285
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 64
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 64
 
 
  864 008c 0020     		movs	r0, #0
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  913              	.LCFI11:
  914              		.cfi_def_cfa_offset 8
  915              		.cfi_offset 4, -8
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 65
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 65
 
 
  916              		.cfi_offset 14, -4
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  956 003e 0020     		movs	r0, #0
  957 0040 10BD     		pop	{r4, pc}
  392:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 66
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 66
 
 
  958              		.loc 1 392 1 discriminator 5 view .LVU307
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  1002              	.LVL62:
  408:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  1003              		.loc 1 408 3 is_stmt 1 view .LVU320
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 67
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 67
 
 
  411:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       || (channel_2_state != HAL_TIM_CHANNEL_STATE_READY)
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  426:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  1043              		.loc 1 426 3 is_stmt 0 view .LVU336
  1044 0044 D368     		ldr	r3, [r2, #12]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 68
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 68
 
 
  1045 0046 43F00203 		orr	r3, r3, #2
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  436:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     if (!IS_TIM_SLAVEMODE_TRIGGER_ENABLED(tmpsmcr))
  1086              		.loc 1 436 13 view .LVU350
  1087 0082 0B4A     		ldr	r2, .L73+4
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 69
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 69
 
 
  1088 0084 0A40     		ands	r2, r2, r1
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  1131              	.L73:
  1132 00ac 002C0140 		.word	1073818624
  1133 00b0 07000100 		.word	65543
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 70
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 70
 
 
  1134              		.cfi_endproc
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  1181 0026 40F24442 		movw	r2, #1092
  1182 002a 1142     		tst	r1, r2
  1183 002c 03D1     		bne	.L76
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 71
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 71
 
 
  470:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  1229              		.cfi_offset 7, -8
  1230              		.cfi_offset 14, -4
  1231 0002 0446     		mov	r4, r0
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 72
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 72
 
 
  491:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   HAL_TIM_ChannelStateTypeDef channel_1_state = TIM_CHANNEL_STATE_GET(htim, TIM_CHANNEL_1);
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  1269              		.loc 1 509 14 view .LVU398
  1270 0030 43E0     		b	.L79
  1271              	.LVL84:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 73
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 73
 
 
  1272              	.L88:
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  1309              		.loc 1 534 67 is_stmt 0 view .LVU415
  1310 0058 2168     		ldr	r1, [r4]
  534:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 74
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 74
 
 
  1311              		.loc 1 534 7 view .LVU416
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  1353 009c 0D4A     		ldr	r2, .L89+16
  1354 009e 0A40     		ands	r2, r2, r1
  1355              	.LVL90:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 75
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 75
 
 
  546:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     {
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  1398              		.align	2
  1399              	.L89:
  1400 00c4 00000000 		.word	TIM_DMACaptureCplt
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 76
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 76
 
 
  1401 00c8 00000000 		.word	TIM_DMACaptureHalfCplt
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  1448              		.loc 1 582 3 is_stmt 1 view .LVU449
  582:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  1449              		.loc 1 582 3 view .LVU450
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 77
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 77
 
 
  1450 001e 2368     		ldr	r3, [r4]
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  1496              		.cfi_def_cfa_offset 8
  1497              		.cfi_offset 4, -8
  1498              		.cfi_offset 14, -4
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 78
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 78
 
 
  1499 0002 0446     		mov	r4, r0
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  1539 0030 43F40043 		orr	r3, r3, #32768
  1540 0034 5364     		str	r3, [r2, #68]
  650:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 79
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 79
 
 
  1541              		.loc 1 650 3 view .LVU475
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  1583              		.loc 1 635 7 discriminator 4 view .LVU487
  1584 0076 94F84530 		ldrb	r3, [r4, #69]	@ zero_extendqisi2
  1585 007a DBB2     		uxtb	r3, r3
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 80
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 80
 
 
  635:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  1629              	.LVL110:
  653:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     {
  1630              		.loc 1 653 5 is_stmt 1 view .LVU499
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 81
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 81
 
 
  653:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     {
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  1679              	.LFB134:
  679:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   /* Check the parameters */
  1680              		.loc 1 679 1 is_stmt 1 view -0
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 82
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 82
 
 
  1681              		.cfi_startproc
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  1724 0030 41F21112 		movw	r2, #4369
  1725 0034 1142     		tst	r1, r2
  1726 0036 08D1     		bne	.L118
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 83
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 83
 
 
  690:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  1769 0074 EDE7     		b	.L120
  1770              		.cfi_endproc
  1771              	.LFE134:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 84
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 84
 
 
  1773              		.section	.text.HAL_TIMEx_OCN_Start_IT,"ax",%progbits
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  1816 0018 10BB     		cbnz	r0, .L132
  725:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  1817              		.loc 1 725 3 is_stmt 0 discriminator 1 view .LVU544
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 85
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 85
 
 
  1818 001a 0223     		movs	r3, #2
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  1862 0058 013B     		subs	r3, r3, #1
  1863 005a 18BF     		it	ne
  1864 005c 0123     		movne	r3, #1
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 86
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 86
 
 
  1865 005e D9E7     		b	.L128
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  1908              	.LVL125:
  765:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  1909              		.loc 1 765 5 is_stmt 1 view .LVU566
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 87
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 87
 
 
  1910 009e 2268     		ldr	r2, [r4]
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  1953 00e6 D360     		str	r3, [r2, #12]
  747:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     }
  1954              		.loc 1 747 7 view .LVU578
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 88
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 88
 
 
  756:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  1997 0112 00BF     		.align	2
  1998              	.L151:
  1999 0114 002C0140 		.word	1073818624
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 89
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 89
 
 
  2000 0118 07000100 		.word	65543
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  2047 0014 0268     		ldr	r2, [r0]
  2048 0016 D368     		ldr	r3, [r2, #12]
  2049 0018 23F00203 		bic	r3, r3, #2
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 90
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 90
 
 
  2050 001c D360     		str	r3, [r2, #12]
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  2089              		.loc 1 846 5 is_stmt 1 discriminator 1 view .LVU614
  2090 0048 196A     		ldr	r1, [r3, #32]
  2091 004a 40F24442 		movw	r2, #1092
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 91
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 91
 
 
  2092 004e 1142     		tst	r1, r2
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  2134 008e C6E7     		b	.L157
  2135              	.L155:
  824:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       break;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 92
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 92
 
 
  2136              		.loc 1 824 7 view .LVU627
@@ -5518,7 +5518,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  2184              		@ args = 0, pretend = 0, frame = 0
  2185              		@ frame_needed = 0, uses_anonymous_args = 0
  874:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   HAL_StatusTypeDef status = HAL_OK;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 93
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 93
 
 
  2186              		.loc 1 874 1 is_stmt 0 view .LVU636
@@ -5578,7 +5578,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  886:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
  2227              		.loc 1 886 51 discriminator 1 view .LVU650
  2228 0028 012A     		cmp	r2, #1
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 94
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 94
 
 
  2229 002a 14BF     		ite	ne
@@ -5638,7 +5638,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  882:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
  2272              		.loc 1 882 46 discriminator 8 view .LVU662
  2273 006e 0228     		cmp	r0, #2
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 95
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 95
 
 
  2274 0070 14BF     		ite	ne
@@ -5698,7 +5698,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  2317 00a6 012A     		cmp	r2, #1
  2318 00a8 14BF     		ite	ne
  2319 00aa 0022     		movne	r2, #0
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 96
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 96
 
 
  2320 00ac 0122     		moveq	r2, #1
@@ -5758,7 +5758,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  2364              	.L205:
  894:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     }
  2365              		.loc 1 894 7 discriminator 6 view .LVU684
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 97
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 97
 
 
  2366 00e8 0222     		movs	r2, #2
@@ -5818,7 +5818,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  2405 0116 43F40073 		orr	r3, r3, #512
  2406 011a D360     		str	r3, [r2, #12]
  922:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     }
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 98
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 98
 
 
  2407              		.loc 1 922 7 view .LVU700
@@ -5878,7 +5878,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  2449 015a A26A     		ldr	r2, [r4, #40]
  928:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       htim->hdma[TIM_DMA_ID_CC2]->XferHalfCpltCallback = TIM_DMADelayPulseHalfCplt;
  2450              		.loc 1 928 52 view .LVU713
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 99
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 99
 
 
  2451 015c 2549     		ldr	r1, .L206
@@ -5938,7 +5938,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  949:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       htim->hdma[TIM_DMA_ID_CC3]->XferHalfCpltCallback = TIM_DMADelayPulseHalfCplt;
  2490              		.loc 1 949 17 is_stmt 0 view .LVU729
  2491 0188 E26A     		ldr	r2, [r4, #44]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 100
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 100
 
 
  949:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       htim->hdma[TIM_DMA_ID_CC3]->XferHalfCpltCallback = TIM_DMADelayPulseHalfCplt;
@@ -5998,7 +5998,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  983:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       if (!IS_TIM_SLAVEMODE_TRIGGER_ENABLED(tmpsmcr))
  2530              		.loc 1 983 31 is_stmt 0 view .LVU746
  2531 01b4 9968     		ldr	r1, [r3, #8]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 101
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 101
 
 
  983:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       if (!IS_TIM_SLAVEMODE_TRIGGER_ENABLED(tmpsmcr))
@@ -6058,7 +6058,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  2575 01e0 0120     		movs	r0, #1
  2576 01e2 F8E7     		b	.L174
  2577              	.L194:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 102
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 102
 
 
  939:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       }
@@ -6118,7 +6118,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  2628              		.loc 1 1012 3 is_stmt 1 view .LVU763
  2629              	.LVL177:
 1015:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 103
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 103
 
 
  2630              		.loc 1 1015 3 view .LVU764
@@ -6178,7 +6178,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  2672 0038 08D1     		bne	.L213
 1054:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  2673              		.loc 1 1054 5 discriminator 1 view .LVU777
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 104
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 104
 
 
  2674 003a 196A     		ldr	r1, [r3, #32]
@@ -6238,7 +6238,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1031:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       break;
  2717              		.loc 1 1031 13 is_stmt 0 view .LVU789
  2718 0080 806A     		ldr	r0, [r0, #40]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 105
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 105
 
 
  2719              	.LVL184:
@@ -6298,7 +6298,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  2760 00b4 ADE7     		b	.L211
  2761              	.L222:
 1060:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   }
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 106
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 106
 
 
  2762              		.loc 1 1060 5 discriminator 6 view .LVU803
@@ -6358,7 +6358,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  2808 0014 002B     		cmp	r3, #0
  2809 0016 5AD1     		bne	.L235
 1125:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 107
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 107
 
 
  2810              		.loc 1 1125 3 is_stmt 1 view .LVU814
@@ -6418,7 +6418,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  2852 0056 42F00102 		orr	r2, r2, #1
  2853 005a 1A60     		str	r2, [r3]
 1148:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** }
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 108
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 108
 
 
  2854              		.loc 1 1148 10 is_stmt 0 view .LVU827
@@ -6478,7 +6478,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1125:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  2898              		.loc 1 1125 3 discriminator 7 view .LVU838
  2899 009a 0223     		movs	r3, #2
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 109
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 109
 
 
  2900 009c 84F84730 		strb	r3, [r4, #71]
@@ -6538,7 +6538,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  2942              	.L228:
 1149:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  2943              		.loc 1 1149 1 view .LVU851
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 110
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 110
 
 
  2944 00d0 10BD     		pop	{r4, pc}
@@ -6598,7 +6598,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  2993              		.loc 1 1170 3 is_stmt 1 view .LVU858
 1170:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  2994              		.loc 1 1170 3 view .LVU859
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 111
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 111
 
 
  2995 000e 2368     		ldr	r3, [r4]
@@ -6658,7 +6658,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  3037 0052 0020     		movs	r0, #0
  3038 0054 38BD     		pop	{r3, r4, r5, pc}
  3039              	.LVL204:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 112
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 112
 
 
  3040              	.L248:
@@ -6718,7 +6718,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  3087              		.loc 1 1196 3 view .LVU880
 1199:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  3088              		.loc 1 1199 3 view .LVU881
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 113
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 113
 
 
 1202:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
@@ -6778,7 +6778,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1202:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
  3131              		.loc 1 1202 7 discriminator 8 view .LVU894
  3132 0036 94F84730 		ldrb	r3, [r4, #71]	@ zero_extendqisi2
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 114
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 114
 
 
  3133 003a DBB2     		uxtb	r3, r3
@@ -6838,7 +6838,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  3177 007e CFE7     		b	.L262
  3178              	.L275:
 1215:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       break;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 115
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 115
 
 
  3179              		.loc 1 1215 7 is_stmt 1 view .LVU905
@@ -6898,7 +6898,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  3221 00c2 9342     		cmp	r3, r2
  3222 00c4 11D0     		beq	.L268
 1260:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     }
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 116
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 116
 
 
  3223              		.loc 1 1260 7 is_stmt 1 view .LVU918
@@ -6958,7 +6958,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  3264              		.loc 1 1255 9 is_stmt 1 view .LVU931
  3265 00fa 1A68     		ldr	r2, [r3]
  3266              	.LVL215:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 117
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 117
 
 
 1255:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       }
@@ -7018,7 +7018,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  3317 0002 0546     		mov	r5, r0
  3318 0004 0C46     		mov	r4, r1
 1281:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   uint32_t tmpccer;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 118
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 118
 
 
  3319              		.loc 1 1281 3 is_stmt 1 view .LVU938
@@ -7078,7 +7078,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  3359 002a 196A     		ldr	r1, [r3, #32]
  3360              	.LVL226:
 1322:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 119
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 119
 
 
  3361              		.loc 1 1322 5 is_stmt 1 view .LVU953
@@ -7138,7 +7138,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  3403              		.loc 1 1331 5 discriminator 3 view .LVU965
  3404 0070 1A68     		ldr	r2, [r3]
  3405 0072 22F00102 		bic	r2, r2, #1
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 120
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 120
 
 
  3406 0076 1A60     		str	r2, [r3]
@@ -7198,7 +7198,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  3448              	.L296:
 1334:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   }
  3449              		.loc 1 1334 5 discriminator 3 view .LVU978
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 121
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 121
 
 
  3450 00ae 0123     		movs	r3, #1
@@ -7258,7 +7258,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  3497              	.LVL232:
 1364:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
  3498              		.loc 1 1364 7 discriminator 1 view .LVU988
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 122
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 122
 
 
  3499 000e C0B2     		uxtb	r0, r0
@@ -7318,7 +7318,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  3540              	.L309:
 1384:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
  3541              		.loc 1 1384 3 is_stmt 1 view .LVU1002
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 123
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 123
 
 
  3542 004c 042D     		cmp	r5, #4
@@ -7378,7 +7378,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1364:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
  3587              		.loc 1 1364 7 discriminator 7 view .LVU1012
  3588 008c C0B2     		uxtb	r0, r0
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 124
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 124
 
 
 1364:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
@@ -7438,7 +7438,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  3632 00c4 D2B2     		uxtb	r2, r2
 1368:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
  3633              		.loc 1 1368 51 discriminator 7 view .LVU1024
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 125
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 125
 
 
  3634 00c6 012A     		cmp	r2, #1
@@ -7498,7 +7498,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  3675              		.loc 1 1393 7 is_stmt 1 view .LVU1037
 1393:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  3676              		.loc 1 1393 17 is_stmt 0 view .LVU1038
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 126
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 126
 
 
  3677 00fc 626A     		ldr	r2, [r4, #36]
@@ -7558,7 +7558,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  3718 0136 3DD0     		beq	.L315
 1463:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     {
  3719              		.loc 1 1463 9 discriminator 1 view .LVU1052
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 127
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 127
 
 
  3720 0138 B3F1804F 		cmp	r3, #1073741824
@@ -7618,7 +7618,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  3759              		.loc 1 1417 88 is_stmt 0 view .LVU1067
  3760 016c 2268     		ldr	r2, [r4]
 1417:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****                            Length) != HAL_OK)
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 128
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 128
 
 
  3761              		.loc 1 1417 11 view .LVU1068
@@ -7678,7 +7678,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  3800              		.loc 1 1438 7 is_stmt 1 view .LVU1083
 1438:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****                            Length) != HAL_OK)
  3801              		.loc 1 1438 88 is_stmt 0 view .LVU1084
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 129
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 129
 
 
  3802 019a 2268     		ldr	r2, [r4]
@@ -7738,7 +7738,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  3843              	.L317:
 1366:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   }
  3844              		.loc 1 1366 12 view .LVU1098
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 130
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 130
 
 
  3845 01d0 0220     		movs	r0, #2
@@ -7798,7 +7798,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  3892              		.cfi_endproc
  3893              	.LFE143:
  3895              		.section	.text.HAL_TIMEx_PWMN_Stop_DMA,"ax",%progbits
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 131
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 131
 
 
  3896              		.align	1
@@ -7858,7 +7858,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1505:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       break;
  3942              		.loc 1 1505 13 is_stmt 0 view .LVU1115
  3943 001e 406A     		ldr	r0, [r0, #36]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 132
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 132
 
 
  3944              	.LVL266:
@@ -7918,7 +7918,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  3986 0060 03D1     		bne	.L343
 1539:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  3987              		.loc 1 1539 5 discriminator 3 view .LVU1128
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 133
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 133
 
 
  3988 0062 1A68     		ldr	r2, [r3]
@@ -7978,7 +7978,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  4029 0094 FFF7FEFF 		bl	HAL_DMA_Abort_IT
  4030              	.LVL274:
 1522:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     }
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 134
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 134
 
 
  4031              		.loc 1 1522 7 is_stmt 1 view .LVU1142
@@ -8038,7 +8038,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  4079              		.cfi_offset 3, -16
  4080              		.cfi_offset 4, -12
  4081              		.cfi_offset 5, -8
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 135
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 135
 
 
  4082              		.cfi_offset 14, -4
@@ -8098,7 +8098,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1597:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       || (complementary_channel_2_state != HAL_TIM_CHANNEL_STATE_READY))
  4121              		.loc 1 1597 7 view .LVU1166
  4122 002c 012A     		cmp	r2, #1
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 136
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 136
 
 
  4123 002e 22D1     		bne	.L357
@@ -8158,7 +8158,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  4163 005a 0122     		movs	r2, #1
  4164 005c 2946     		mov	r1, r5
  4165 005e 2068     		ldr	r0, [r4]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 137
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 137
 
 
  4166 0060 FFF7FEFF 		bl	TIM_CCxChannelCmd
@@ -8218,7 +8218,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  4213              		.cfi_offset 3, -16
  4214              		.cfi_offset 4, -12
  4215              		.cfi_offset 5, -8
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 138
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 138
 
 
  4216              		.cfi_offset 14, -4
@@ -8278,7 +8278,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1647:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  4258              		.loc 1 1647 3 discriminator 5 view .LVU1202
  4259 003a 2368     		ldr	r3, [r4]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 139
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 139
 
 
  4260 003c 196A     		ldr	r1, [r3, #32]
@@ -8338,7 +8338,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1672:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   uint32_t input_channel = (OutputChannel == TIM_CHANNEL_1) ? TIM_CHANNEL_2 : TIM_CHANNEL_1;
  4306              		.loc 1 1672 1 is_stmt 1 view -0
  4307              		.cfi_startproc
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 140
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 140
 
 
  4308              		@ args = 0, pretend = 0, frame = 0
@@ -8398,7 +8398,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1683:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       || (channel_2_state != HAL_TIM_CHANNEL_STATE_READY)
  4349              		.loc 1 1683 3 discriminator 4 view .LVU1227
 1683:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       || (channel_2_state != HAL_TIM_CHANNEL_STATE_READY)
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 141
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 141
 
 
  4350              		.loc 1 1683 6 is_stmt 0 discriminator 4 view .LVU1228
@@ -8458,7 +8458,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  4391 0058 D360     		str	r3, [r2, #12]
 1701:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  4392              		.loc 1 1701 3 is_stmt 1 view .LVU1242
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 142
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 142
 
 
  4393 005a 2268     		ldr	r2, [r4]
@@ -8518,7 +8518,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  4436 008c FCE7     		b	.L369
  4437              		.cfi_endproc
  4438              	.LFE147:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 143
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 143
 
 
  4440              		.section	.text.HAL_TIMEx_OnePulseN_Stop_IT,"ax",%progbits
@@ -8578,7 +8578,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  4486 0022 FFF7FEFF 		bl	TIM_CCxNChannelCmd
  4487              	.LVL324:
 1741:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 144
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 144
 
 
  4488              		.loc 1 1741 3 is_stmt 1 discriminator 4 view .LVU1263
@@ -8638,7 +8638,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  4531 006c 0123     		movs	r3, #1
  4532 006e 84F83E30 		strb	r3, [r4, #62]
 1751:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   TIM_CHANNEL_N_STATE_SET(htim, TIM_CHANNEL_1, HAL_TIM_CHANNEL_STATE_READY);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 145
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 145
 
 
  4533              		.loc 1 1751 3 discriminator 5 view .LVU1275
@@ -8698,7 +8698,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 1813:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  4578              		.loc 1 1813 3 is_stmt 1 discriminator 2 view .LVU1287
  4579 000a 0123     		movs	r3, #1
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 146
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 146
 
 
  4580 000c 80F83C30 		strb	r3, [r0, #60]
@@ -8758,7 +8758,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  4618 0038 4B60     		str	r3, [r1, #4]
 1826:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   htim->Instance->CR2 |= CommutationSource;
  4619              		.loc 1 1826 3 is_stmt 1 view .LVU1304
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 147
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 147
 
 
 1826:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   htim->Instance->CR2 |= CommutationSource;
@@ -8818,7 +8818,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  4660              	.LVL331:
  4661              	.L386:
 1813:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 148
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 148
 
 
  4662              		.loc 1 1813 3 view .LVU1319
@@ -8878,7 +8878,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  4706 0014 03D0     		beq	.L393
 1871:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****       (InputTrigger == TIM_TS_ITR2) || (InputTrigger == TIM_TS_ITR3))
  4707              		.loc 1 1871 70 discriminator 2 view .LVU1332
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 149
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 149
 
 
  4708 0016 2029     		cmp	r1, #32
@@ -8938,7 +8938,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  4746              		.loc 1 1883 7 is_stmt 0 view .LVU1348
  4747 0044 0168     		ldr	r1, [r0]
 1883:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 150
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 150
 
 
  4748              		.loc 1 1883 23 view .LVU1349
@@ -8998,7 +8998,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  4792              		.syntax unified
  4793              		.thumb
  4794              		.thumb_func
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 151
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 151
 
 
  4796              	HAL_TIMEx_ConfigCommutEvent_DMA:
@@ -9058,7 +9058,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  4835 001e 0468     		ldr	r4, [r0]
 1932:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****     htim->Instance->SMCR |= InputTrigger;
  4836              		.loc 1 1932 26 view .LVU1376
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 152
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 152
 
 
  4837 0020 A368     		ldr	r3, [r4, #8]
@@ -9118,7 +9118,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  4875 004c 436B     		ldr	r3, [r0, #52]
 1944:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   htim->hdma[TIM_DMA_ID_COMMUTATION]->XferHalfCpltCallback = TIMEx_DMACommutationHalfCplt;
  4876              		.loc 1 1944 56 view .LVU1393
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 153
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 153
 
 
  4877 004e 0D4A     		ldr	r2, .L409
@@ -9178,7 +9178,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  4917              	.L404:
 1926:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  4918              		.loc 1 1926 3 view .LVU1408
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 154
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 154
 
 
  4919 0080 0220     		movs	r0, #2
@@ -9238,7 +9238,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  4964 000a 0123     		movs	r3, #1
  4965 000c 80F83C30 		strb	r3, [r0, #60]
 1980:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 155
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 155
 
 
  4966              		.loc 1 1980 3 discriminator 2 view .LVU1420
@@ -9298,7 +9298,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 2013:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   {
  5003              		.loc 1 2013 6 view .LVU1438
  5004 002e 114A     		ldr	r2, .L422
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 156
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 156
 
 
  5005              	.LVL351:
@@ -9358,7 +9358,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  5043              		.loc 1 2027 3 view .LVU1454
 2029:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** }
  5044              		.loc 1 2029 3 view .LVU1455
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 157
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 157
 
 
 2029:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** }
@@ -9418,7 +9418,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  5087              		.align	2
  5088              	.L422:
  5089 0074 002C0140 		.word	1073818624
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 158
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 158
 
 
  5090              		.cfi_endproc
@@ -9478,7 +9478,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 2063:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  5131              		.loc 1 2063 3 discriminator 2 view .LVU1483
 2069:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   MODIFY_REG(tmpbdtr, TIM_BDTR_LOCK, sBreakDeadTimeConfig->LockLevel);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 159
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 159
 
 
  5132              		.loc 1 2069 3 discriminator 2 view .LVU1484
@@ -9538,7 +9538,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  5173 0036 4A69     		ldr	r2, [r1, #20]
  5174              	.LVL375:
 2074:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   MODIFY_REG(tmpbdtr, TIM_BDTR_AOE, sBreakDeadTimeConfig->AutomaticOutput);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 160
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 160
 
 
  5175              		.loc 1 2074 3 discriminator 2 view .LVU1498
@@ -9598,7 +9598,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 2098:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  5215              		.loc 1 2098 3 is_stmt 1 view .LVU1513
 2100:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** }
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 161
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 161
 
 
  5216              		.loc 1 2100 3 view .LVU1514
@@ -9658,7 +9658,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  5257 007c 0B43     		orrs	r3, r3, r1
  5258              	.LVL395:
 2091:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   }
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 162
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 162
 
 
  5259              		.loc 1 2091 5 view .LVU1528
@@ -9718,7 +9718,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 2199:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  5306              		.loc 1 2199 3 discriminator 2 view .LVU1538
 2199:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 163
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 163
 
 
  5307              		.loc 1 2199 3 discriminator 2 view .LVU1539
@@ -9778,7 +9778,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  5351              	.LCFI46:
  5352              		.cfi_def_cfa_offset 4
  5353              		.cfi_offset 4, -4
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 164
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 164
 
 
 2223:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
@@ -9838,7 +9838,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 2239:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** #endif /* TIM_CCR5_CCR5 */
  5390              		.loc 1 2239 1 discriminator 2 view .LVU1570
  5391 0034 5DF8044B 		ldr	r4, [sp], #4
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 165
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 165
 
 
  5392              	.LCFI47:
@@ -9898,7 +9898,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
 2289:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
  5443              		.loc 1 2289 1 is_stmt 0 view .LVU1578
  5444 0000 7047     		bx	lr
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 166
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 166
 
 
  5445              		.cfi_endproc
@@ -9958,7 +9958,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  5499              	.LFB160:
 2347:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c ****   return htim->State;
  5500              		.loc 1 2347 1 is_stmt 1 view -0
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 167
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 167
 
 
  5501              		.cfi_startproc
@@ -10018,7 +10018,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  5545              		.loc 1 2368 19 discriminator 5 view .LVU1597
  5546 000e 0829     		cmp	r1, #8
  5547 0010 07D0     		beq	.L456
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 168
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 168
 
 
 2368:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c **** 
@@ -10066,116 +10066,116 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 1
  5583              		.file 7 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h"
  5584              		.file 8 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h"
  5585              		.file 9 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 169
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 169
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f3xx_hal_tim_ex.c
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:20     .text.HAL_TIMEx_HallSensor_MspInit:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:26     .text.HAL_TIMEx_HallSensor_MspInit:00000000 HAL_TIMEx_HallSensor_MspInit
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:42     .text.HAL_TIMEx_HallSensor_MspDeInit:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:48     .text.HAL_TIMEx_HallSensor_MspDeInit:00000000 HAL_TIMEx_HallSensor_MspDeInit
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:63     .text.TIMEx_DMACommutationCplt:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:69     .text.TIMEx_DMACommutationCplt:00000000 TIMEx_DMACommutationCplt
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:102    .text.TIMEx_DMACommutationHalfCplt:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:108    .text.TIMEx_DMACommutationHalfCplt:00000000 TIMEx_DMACommutationHalfCplt
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:141    .text.TIM_DMADelayPulseNCplt:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:146    .text.TIM_DMADelayPulseNCplt:00000000 TIM_DMADelayPulseNCplt
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:269    .text.TIM_DMAErrorCCxN:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:274    .text.TIM_DMAErrorCCxN:00000000 TIM_DMAErrorCCxN
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:357    .text.TIM_CCxNChannelCmd:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:362    .text.TIM_CCxNChannelCmd:00000000 TIM_CCxNChannelCmd
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:398    .text.HAL_TIMEx_HallSensor_Init:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:404    .text.HAL_TIMEx_HallSensor_Init:00000000 HAL_TIMEx_HallSensor_Init
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:631    .text.HAL_TIMEx_HallSensor_Init:000000e8 $d
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:636    .text.HAL_TIMEx_HallSensor_DeInit:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:642    .text.HAL_TIMEx_HallSensor_DeInit:00000000 HAL_TIMEx_HallSensor_DeInit
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:726    .text.HAL_TIMEx_HallSensor_DeInit:00000060 $d
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:731    .text.HAL_TIMEx_HallSensor_Start:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:737    .text.HAL_TIMEx_HallSensor_Start:00000000 HAL_TIMEx_HallSensor_Start
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:892    .text.HAL_TIMEx_HallSensor_Start:000000a0 $d
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:898    .text.HAL_TIMEx_HallSensor_Stop:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:904    .text.HAL_TIMEx_HallSensor_Stop:00000000 HAL_TIMEx_HallSensor_Stop
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:963    .text.HAL_TIMEx_HallSensor_Start_IT:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:969    .text.HAL_TIMEx_HallSensor_Start_IT:00000000 HAL_TIMEx_HallSensor_Start_IT
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:1132   .text.HAL_TIMEx_HallSensor_Start_IT:000000ac $d
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:1138   .text.HAL_TIMEx_HallSensor_Stop_IT:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:1144   .text.HAL_TIMEx_HallSensor_Stop_IT:00000000 HAL_TIMEx_HallSensor_Stop_IT
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:1208   .text.HAL_TIMEx_HallSensor_Start_DMA:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:1214   .text.HAL_TIMEx_HallSensor_Start_DMA:00000000 HAL_TIMEx_HallSensor_Start_DMA
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:1400   .text.HAL_TIMEx_HallSensor_Start_DMA:000000c4 $d
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:1409   .text.HAL_TIMEx_HallSensor_Stop_DMA:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:1415   .text.HAL_TIMEx_HallSensor_Stop_DMA:00000000 HAL_TIMEx_HallSensor_Stop_DMA
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:1480   .text.HAL_TIMEx_OCN_Start:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:1486   .text.HAL_TIMEx_OCN_Start:00000000 HAL_TIMEx_OCN_Start
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:1665   .text.HAL_TIMEx_OCN_Start:000000dc $d
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:1671   .text.HAL_TIMEx_OCN_Stop:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:1677   .text.HAL_TIMEx_OCN_Stop:00000000 HAL_TIMEx_OCN_Stop
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:1774   .text.HAL_TIMEx_OCN_Start_IT:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:1780   .text.HAL_TIMEx_OCN_Start_IT:00000000 HAL_TIMEx_OCN_Start_IT
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:1999   .text.HAL_TIMEx_OCN_Start_IT:00000114 $d
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:2005   .text.HAL_TIMEx_OCN_Stop_IT:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:2011   .text.HAL_TIMEx_OCN_Stop_IT:00000000 HAL_TIMEx_OCN_Stop_IT
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:2173   .text.HAL_TIMEx_OCN_Start_DMA:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:2179   .text.HAL_TIMEx_OCN_Start_DMA:00000000 HAL_TIMEx_OCN_Start_DMA
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:2596   .text.HAL_TIMEx_OCN_Start_DMA:000001f4 $d
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:2605   .text.HAL_TIMEx_OCN_Stop_DMA:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:2611   .text.HAL_TIMEx_OCN_Stop_DMA:00000000 HAL_TIMEx_OCN_Stop_DMA
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:2771   .text.HAL_TIMEx_PWMN_Start:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:2777   .text.HAL_TIMEx_PWMN_Start:00000000 HAL_TIMEx_PWMN_Start
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:2956   .text.HAL_TIMEx_PWMN_Start:000000dc $d
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:2962   .text.HAL_TIMEx_PWMN_Stop:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:2968   .text.HAL_TIMEx_PWMN_Stop:00000000 HAL_TIMEx_PWMN_Stop
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 170
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:20     .text.HAL_TIMEx_HallSensor_MspInit:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:26     .text.HAL_TIMEx_HallSensor_MspInit:00000000 HAL_TIMEx_HallSensor_MspInit
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:42     .text.HAL_TIMEx_HallSensor_MspDeInit:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:48     .text.HAL_TIMEx_HallSensor_MspDeInit:00000000 HAL_TIMEx_HallSensor_MspDeInit
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:63     .text.TIMEx_DMACommutationCplt:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:69     .text.TIMEx_DMACommutationCplt:00000000 TIMEx_DMACommutationCplt
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:102    .text.TIMEx_DMACommutationHalfCplt:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:108    .text.TIMEx_DMACommutationHalfCplt:00000000 TIMEx_DMACommutationHalfCplt
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:141    .text.TIM_DMADelayPulseNCplt:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:146    .text.TIM_DMADelayPulseNCplt:00000000 TIM_DMADelayPulseNCplt
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:269    .text.TIM_DMAErrorCCxN:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:274    .text.TIM_DMAErrorCCxN:00000000 TIM_DMAErrorCCxN
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:357    .text.TIM_CCxNChannelCmd:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:362    .text.TIM_CCxNChannelCmd:00000000 TIM_CCxNChannelCmd
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:398    .text.HAL_TIMEx_HallSensor_Init:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:404    .text.HAL_TIMEx_HallSensor_Init:00000000 HAL_TIMEx_HallSensor_Init
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:631    .text.HAL_TIMEx_HallSensor_Init:000000e8 $d
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:636    .text.HAL_TIMEx_HallSensor_DeInit:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:642    .text.HAL_TIMEx_HallSensor_DeInit:00000000 HAL_TIMEx_HallSensor_DeInit
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:726    .text.HAL_TIMEx_HallSensor_DeInit:00000060 $d
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:731    .text.HAL_TIMEx_HallSensor_Start:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:737    .text.HAL_TIMEx_HallSensor_Start:00000000 HAL_TIMEx_HallSensor_Start
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:892    .text.HAL_TIMEx_HallSensor_Start:000000a0 $d
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:898    .text.HAL_TIMEx_HallSensor_Stop:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:904    .text.HAL_TIMEx_HallSensor_Stop:00000000 HAL_TIMEx_HallSensor_Stop
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:963    .text.HAL_TIMEx_HallSensor_Start_IT:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:969    .text.HAL_TIMEx_HallSensor_Start_IT:00000000 HAL_TIMEx_HallSensor_Start_IT
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:1132   .text.HAL_TIMEx_HallSensor_Start_IT:000000ac $d
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:1138   .text.HAL_TIMEx_HallSensor_Stop_IT:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:1144   .text.HAL_TIMEx_HallSensor_Stop_IT:00000000 HAL_TIMEx_HallSensor_Stop_IT
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:1208   .text.HAL_TIMEx_HallSensor_Start_DMA:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:1214   .text.HAL_TIMEx_HallSensor_Start_DMA:00000000 HAL_TIMEx_HallSensor_Start_DMA
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:1400   .text.HAL_TIMEx_HallSensor_Start_DMA:000000c4 $d
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:1409   .text.HAL_TIMEx_HallSensor_Stop_DMA:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:1415   .text.HAL_TIMEx_HallSensor_Stop_DMA:00000000 HAL_TIMEx_HallSensor_Stop_DMA
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:1480   .text.HAL_TIMEx_OCN_Start:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:1486   .text.HAL_TIMEx_OCN_Start:00000000 HAL_TIMEx_OCN_Start
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:1665   .text.HAL_TIMEx_OCN_Start:000000dc $d
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:1671   .text.HAL_TIMEx_OCN_Stop:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:1677   .text.HAL_TIMEx_OCN_Stop:00000000 HAL_TIMEx_OCN_Stop
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:1774   .text.HAL_TIMEx_OCN_Start_IT:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:1780   .text.HAL_TIMEx_OCN_Start_IT:00000000 HAL_TIMEx_OCN_Start_IT
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:1999   .text.HAL_TIMEx_OCN_Start_IT:00000114 $d
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:2005   .text.HAL_TIMEx_OCN_Stop_IT:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:2011   .text.HAL_TIMEx_OCN_Stop_IT:00000000 HAL_TIMEx_OCN_Stop_IT
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:2173   .text.HAL_TIMEx_OCN_Start_DMA:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:2179   .text.HAL_TIMEx_OCN_Start_DMA:00000000 HAL_TIMEx_OCN_Start_DMA
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:2596   .text.HAL_TIMEx_OCN_Start_DMA:000001f4 $d
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:2605   .text.HAL_TIMEx_OCN_Stop_DMA:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:2611   .text.HAL_TIMEx_OCN_Stop_DMA:00000000 HAL_TIMEx_OCN_Stop_DMA
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:2771   .text.HAL_TIMEx_PWMN_Start:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:2777   .text.HAL_TIMEx_PWMN_Start:00000000 HAL_TIMEx_PWMN_Start
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:2956   .text.HAL_TIMEx_PWMN_Start:000000dc $d
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:2962   .text.HAL_TIMEx_PWMN_Stop:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:2968   .text.HAL_TIMEx_PWMN_Stop:00000000 HAL_TIMEx_PWMN_Stop
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 170
 
 
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:3065   .text.HAL_TIMEx_PWMN_Start_IT:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:3071   .text.HAL_TIMEx_PWMN_Start_IT:00000000 HAL_TIMEx_PWMN_Start_IT
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:3290   .text.HAL_TIMEx_PWMN_Start_IT:00000114 $d
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:3296   .text.HAL_TIMEx_PWMN_Stop_IT:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:3302   .text.HAL_TIMEx_PWMN_Stop_IT:00000000 HAL_TIMEx_PWMN_Stop_IT
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:3464   .text.HAL_TIMEx_PWMN_Start_DMA:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:3470   .text.HAL_TIMEx_PWMN_Start_DMA:00000000 HAL_TIMEx_PWMN_Start_DMA
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:3887   .text.HAL_TIMEx_PWMN_Start_DMA:000001f4 $d
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:3896   .text.HAL_TIMEx_PWMN_Stop_DMA:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:3902   .text.HAL_TIMEx_PWMN_Stop_DMA:00000000 HAL_TIMEx_PWMN_Stop_DMA
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:4062   .text.HAL_TIMEx_OnePulseN_Start:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:4068   .text.HAL_TIMEx_OnePulseN_Start:00000000 HAL_TIMEx_OnePulseN_Start
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:4196   .text.HAL_TIMEx_OnePulseN_Stop:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:4202   .text.HAL_TIMEx_OnePulseN_Stop:00000000 HAL_TIMEx_OnePulseN_Stop
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:4297   .text.HAL_TIMEx_OnePulseN_Start_IT:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:4303   .text.HAL_TIMEx_OnePulseN_Start_IT:00000000 HAL_TIMEx_OnePulseN_Start_IT
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:4441   .text.HAL_TIMEx_OnePulseN_Stop_IT:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:4447   .text.HAL_TIMEx_OnePulseN_Stop_IT:00000000 HAL_TIMEx_OnePulseN_Stop_IT
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:4552   .text.HAL_TIMEx_ConfigCommutEvent:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:4558   .text.HAL_TIMEx_ConfigCommutEvent:00000000 HAL_TIMEx_ConfigCommutEvent
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:4671   .text.HAL_TIMEx_ConfigCommutEvent_IT:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:4677   .text.HAL_TIMEx_ConfigCommutEvent_IT:00000000 HAL_TIMEx_ConfigCommutEvent_IT
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:4790   .text.HAL_TIMEx_ConfigCommutEvent_DMA:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:4796   .text.HAL_TIMEx_ConfigCommutEvent_DMA:00000000 HAL_TIMEx_ConfigCommutEvent_DMA
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:4926   .text.HAL_TIMEx_ConfigCommutEvent_DMA:00000084 $d
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:4933   .text.HAL_TIMEx_MasterConfigSynchronization:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:4939   .text.HAL_TIMEx_MasterConfigSynchronization:00000000 HAL_TIMEx_MasterConfigSynchronization
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:5089   .text.HAL_TIMEx_MasterConfigSynchronization:00000074 $d
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:5094   .text.HAL_TIMEx_ConfigBreakDeadTime:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:5100   .text.HAL_TIMEx_ConfigBreakDeadTime:00000000 HAL_TIMEx_ConfigBreakDeadTime
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:5274   .text.HAL_TIMEx_ConfigBreakDeadTime:00000084 $d
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:5279   .text.HAL_TIMEx_RemapConfig:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:5285   .text.HAL_TIMEx_RemapConfig:00000000 HAL_TIMEx_RemapConfig
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:5328   .text.HAL_TIMEx_GroupChannel5:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:5334   .text.HAL_TIMEx_GroupChannel5:00000000 HAL_TIMEx_GroupChannel5
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:5407   .text.HAL_TIMEx_CommutCallback:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:5413   .text.HAL_TIMEx_CommutCallback:00000000 HAL_TIMEx_CommutCallback
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:5428   .text.HAL_TIMEx_CommutHalfCpltCallback:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:5434   .text.HAL_TIMEx_CommutHalfCpltCallback:00000000 HAL_TIMEx_CommutHalfCpltCallback
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:5449   .text.HAL_TIMEx_BreakCallback:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:5455   .text.HAL_TIMEx_BreakCallback:00000000 HAL_TIMEx_BreakCallback
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:5470   .text.HAL_TIMEx_Break2Callback:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:5476   .text.HAL_TIMEx_Break2Callback:00000000 HAL_TIMEx_Break2Callback
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:5491   .text.HAL_TIMEx_HallSensor_GetState:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:5497   .text.HAL_TIMEx_HallSensor_GetState:00000000 HAL_TIMEx_HallSensor_GetState
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:5515   .text.HAL_TIMEx_GetChannelNState:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s:5521   .text.HAL_TIMEx_GetChannelNState:00000000 HAL_TIMEx_GetChannelNState
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:3065   .text.HAL_TIMEx_PWMN_Start_IT:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:3071   .text.HAL_TIMEx_PWMN_Start_IT:00000000 HAL_TIMEx_PWMN_Start_IT
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:3290   .text.HAL_TIMEx_PWMN_Start_IT:00000114 $d
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:3296   .text.HAL_TIMEx_PWMN_Stop_IT:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:3302   .text.HAL_TIMEx_PWMN_Stop_IT:00000000 HAL_TIMEx_PWMN_Stop_IT
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:3464   .text.HAL_TIMEx_PWMN_Start_DMA:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:3470   .text.HAL_TIMEx_PWMN_Start_DMA:00000000 HAL_TIMEx_PWMN_Start_DMA
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:3887   .text.HAL_TIMEx_PWMN_Start_DMA:000001f4 $d
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:3896   .text.HAL_TIMEx_PWMN_Stop_DMA:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:3902   .text.HAL_TIMEx_PWMN_Stop_DMA:00000000 HAL_TIMEx_PWMN_Stop_DMA
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:4062   .text.HAL_TIMEx_OnePulseN_Start:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:4068   .text.HAL_TIMEx_OnePulseN_Start:00000000 HAL_TIMEx_OnePulseN_Start
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:4196   .text.HAL_TIMEx_OnePulseN_Stop:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:4202   .text.HAL_TIMEx_OnePulseN_Stop:00000000 HAL_TIMEx_OnePulseN_Stop
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:4297   .text.HAL_TIMEx_OnePulseN_Start_IT:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:4303   .text.HAL_TIMEx_OnePulseN_Start_IT:00000000 HAL_TIMEx_OnePulseN_Start_IT
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:4441   .text.HAL_TIMEx_OnePulseN_Stop_IT:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:4447   .text.HAL_TIMEx_OnePulseN_Stop_IT:00000000 HAL_TIMEx_OnePulseN_Stop_IT
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:4552   .text.HAL_TIMEx_ConfigCommutEvent:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:4558   .text.HAL_TIMEx_ConfigCommutEvent:00000000 HAL_TIMEx_ConfigCommutEvent
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:4671   .text.HAL_TIMEx_ConfigCommutEvent_IT:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:4677   .text.HAL_TIMEx_ConfigCommutEvent_IT:00000000 HAL_TIMEx_ConfigCommutEvent_IT
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:4790   .text.HAL_TIMEx_ConfigCommutEvent_DMA:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:4796   .text.HAL_TIMEx_ConfigCommutEvent_DMA:00000000 HAL_TIMEx_ConfigCommutEvent_DMA
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:4926   .text.HAL_TIMEx_ConfigCommutEvent_DMA:00000084 $d
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:4933   .text.HAL_TIMEx_MasterConfigSynchronization:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:4939   .text.HAL_TIMEx_MasterConfigSynchronization:00000000 HAL_TIMEx_MasterConfigSynchronization
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:5089   .text.HAL_TIMEx_MasterConfigSynchronization:00000074 $d
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:5094   .text.HAL_TIMEx_ConfigBreakDeadTime:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:5100   .text.HAL_TIMEx_ConfigBreakDeadTime:00000000 HAL_TIMEx_ConfigBreakDeadTime
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:5274   .text.HAL_TIMEx_ConfigBreakDeadTime:00000084 $d
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:5279   .text.HAL_TIMEx_RemapConfig:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:5285   .text.HAL_TIMEx_RemapConfig:00000000 HAL_TIMEx_RemapConfig
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:5328   .text.HAL_TIMEx_GroupChannel5:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:5334   .text.HAL_TIMEx_GroupChannel5:00000000 HAL_TIMEx_GroupChannel5
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:5407   .text.HAL_TIMEx_CommutCallback:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:5413   .text.HAL_TIMEx_CommutCallback:00000000 HAL_TIMEx_CommutCallback
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:5428   .text.HAL_TIMEx_CommutHalfCpltCallback:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:5434   .text.HAL_TIMEx_CommutHalfCpltCallback:00000000 HAL_TIMEx_CommutHalfCpltCallback
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:5449   .text.HAL_TIMEx_BreakCallback:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:5455   .text.HAL_TIMEx_BreakCallback:00000000 HAL_TIMEx_BreakCallback
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:5470   .text.HAL_TIMEx_Break2Callback:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:5476   .text.HAL_TIMEx_Break2Callback:00000000 HAL_TIMEx_Break2Callback
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:5491   .text.HAL_TIMEx_HallSensor_GetState:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:5497   .text.HAL_TIMEx_HallSensor_GetState:00000000 HAL_TIMEx_HallSensor_GetState
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:5515   .text.HAL_TIMEx_GetChannelNState:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cchRQw1g.s:5521   .text.HAL_TIMEx_GetChannelNState:00000000 HAL_TIMEx_GetChannelNState
 
 UNDEFINED SYMBOLS
 TIM_Base_SetConfig
@@ -10186,7 +10186,7 @@ TIM_CCxChannelCmd
 HAL_DMA_Start_IT
 TIM_DMACaptureCplt
 TIM_DMACaptureHalfCplt
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccZ7Jqvl.s 			page 171
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cchRQw1g.s 			page 171
 
 
 TIM_DMAError

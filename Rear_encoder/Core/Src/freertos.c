@@ -50,19 +50,12 @@
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
 /* USER CODE END Variables */
-/* Definitions for ReadDistance */
-osThreadId_t ReadDistanceHandle;
-const osThreadAttr_t ReadDistance_attributes = {
-  .name = "ReadDistance",
+/* Definitions for RPM_CalcuateTas */
+osThreadId_t RPM_CalcuateTasHandle;
+const osThreadAttr_t RPM_CalcuateTas_attributes = {
+  .name = "RPM_CalcuateTas",
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityHigh,
-};
-/* Definitions for UITask */
-osThreadId_t UITaskHandle;
-const osThreadAttr_t UITask_attributes = {
-  .name = "UITask",
-  .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for canopenTask */
 osThreadId_t canopenTaskHandle;
@@ -77,8 +70,7 @@ const osThreadAttr_t canopenTask_attributes = {
 
 /* USER CODE END FunctionPrototypes */
 
-void StartReadDistance(void *argument);
-void StartUITask(void *argument);
+void StartRPM_Calcuate(void *argument);
 void canopen_task(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -110,11 +102,8 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
-  /* creation of ReadDistance */
-  ReadDistanceHandle = osThreadNew(StartReadDistance, NULL, &ReadDistance_attributes);
-
-  /* creation of UITask */
-  UITaskHandle = osThreadNew(StartUITask, NULL, &UITask_attributes);
+  /* creation of RPM_CalcuateTas */
+  RPM_CalcuateTasHandle = osThreadNew(StartRPM_Calcuate, NULL, &RPM_CalcuateTas_attributes);
 
   /* creation of canopenTask */
   canopenTaskHandle = osThreadNew(canopen_task, NULL, &canopenTask_attributes);
@@ -129,27 +118,26 @@ void MX_FREERTOS_Init(void) {
 
 }
 
-/* USER CODE BEGIN Header_StartReadDistance */
+/* USER CODE BEGIN Header_StartRPM_Calcuate */
 /**
- * @brief  Function implementing the ReadDistance thread.
- * @param  argument: Not used
- * @retval None
- */
-/* USER CODE END Header_StartReadDistance */
-void StartReadDistance(void *argument)
+  * @brief  Function implementing the RPM_CalcuateTas thread.
+  * @param  argument: Not used
+  * @retval None
+  */
+/* USER CODE END Header_StartRPM_Calcuate */
+void StartRPM_Calcuate(void *argument)
 {
-  /* USER CODE BEGIN StartReadDistance */
+  /* USER CODE BEGIN StartRPM_Calcuate */
   /* Infinite loop */
-
   volatile int rpm = 0; // volatile use to let gdp get value
   volatile int16_t pre_wheel_counter = get_counter();
   volatile int16_t pre_timer = get_timer_counter();
   for (;;)
   {
-    if (get_timer_counter() > 5)
+    if (get_timer_counter() > 5) // 0.5s
     {
-      rpm = ((get_counter() - pre_wheel_counter) * 60 * 2) / 600;
       set_timer_counter(0);
+      rpm = ((get_counter() - pre_wheel_counter) * 60 * 2) / 600;
       pre_wheel_counter = get_counter();
     }
     if (pre_timer - get_timer_counter() > 1)
@@ -160,25 +148,7 @@ void StartReadDistance(void *argument)
       pre_timer = get_timer_counter();
     }
   }
-  /* USER CODE END StartReadDistance */
-}
-
-/* USER CODE BEGIN Header_StartUITask */
-/**
- * @brief Function implementing the UITask thread.
- * @param argument: Not used
- * @retval None
- */
-/* USER CODE END Header_StartUITask */
-void StartUITask(void *argument)
-{
-  /* USER CODE BEGIN StartUITask */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
-  /* USER CODE END StartUITask */
+  /* USER CODE END StartRPM_Calcuate */
 }
 
 /* USER CODE BEGIN Header_canopen_task */

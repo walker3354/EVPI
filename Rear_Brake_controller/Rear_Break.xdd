@@ -14,7 +14,7 @@
         <ProfileTechnology>CANopen</ProfileTechnology>
       </ISO15745Reference>
     </ProfileHeader>
-    <ProfileBody xmlns:q1="http://www.canopen.org/xml/1.1" xsi:type="q1:ProfileBody_Device_CANopen" formatName="CANopen" formatVersion="1.0" fileName="Steering_encoder_D301.xdd" fileCreator="Justin Zhang" fileCreationDate="2020-11-23" fileCreationTime="13:00:00.0000000+08:00" fileModifiedBy="" fileModificationDate="2023-07-21" fileModificationTime="10:42:54.1875312+08:00" fileVersion="1" supportedLanguages="en" xmlns="">
+    <ProfileBody xmlns:q1="http://www.canopen.org/xml/1.1" xsi:type="q1:ProfileBody_Device_CANopen" formatName="CANopen" formatVersion="1.0" fileName="Rear_Break.xdd" fileCreator="Justin Zhang" fileCreationDate="2020-11-23" fileCreationTime="13:00:00.0000000+08:00" fileModifiedBy="" fileModificationDate="2023-08-02" fileModificationTime="11:33:32.7740366+08:00" fileVersion="1" supportedLanguages="en" xmlns="">
       <q1:DeviceIdentity>
         <q1:vendorName>Taipei Tech</q1:vendorName>
         <q1:vendorID>0</q1:vendorID>
@@ -537,8 +537,8 @@
             <q1:defaultValue value="0x00000000" />
           </q1:parameter>
           <q1:parameter uniqueID="UID_OBJ_6000" access="readWriteInput">
-            <label lang="en">steering</label>
-            <INT />
+            <label lang="en">angle_data</label>
+            <UINT />
             <q1:defaultValue value="0" />
           </q1:parameter>
         </q1:parameterList>
@@ -558,7 +558,7 @@
         <ProfileTechnology>CANopen</ProfileTechnology>
       </ISO15745Reference>
     </ProfileHeader>
-    <ProfileBody xmlns:q2="http://www.canopen.org/xml/1.1" xsi:type="q2:ProfileBody_CommunicationNetwork_CANopen" formatName="CANopen" formatVersion="1.0" fileName="Steering_encoder_D301.xdd" fileCreator="Justin Zhang" fileCreationDate="2020-11-23" fileCreationTime="13:00:00.0000000+08:00" fileModificationDate="2023-07-21" fileModificationTime="10:42:54.1875312+08:00" fileVersion="1" supportedLanguages="en" xmlns="">
+    <ProfileBody xmlns:q2="http://www.canopen.org/xml/1.1" xsi:type="q2:ProfileBody_CommunicationNetwork_CANopen" formatName="CANopen" formatVersion="1.0" fileName="Rear_Break.xdd" fileCreator="Justin Zhang" fileCreationDate="2020-11-23" fileCreationTime="13:00:00.0000000+08:00" fileModificationDate="2023-08-02" fileModificationTime="11:33:32.7740366+08:00" fileVersion="1" supportedLanguages="en" xmlns="">
       <ApplicationLayers>
         <q2:CANopenObjectList>
           <CANopenObject index="1000" name="Device type" objectType="7" PDOmapping="no" uniqueIDRef="UID_OBJ_1000" />
@@ -652,7 +652,7 @@
             <CANopenSubObject subIndex="07" name="Application object 7" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_1A0007" />
             <CANopenSubObject subIndex="08" name="Application object 8" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_1A0008" />
           </CANopenObject>
-          <CANopenObject index="6000" name="steering" objectType="7" PDOmapping="TPDO" uniqueIDRef="UID_OBJ_6000" />
+          <CANopenObject index="6000" name="angle_data" objectType="7" PDOmapping="TPDO" uniqueIDRef="UID_OBJ_6000" />
         </q2:CANopenObjectList>
         <dummyUsage>
           <dummy entry="Dummy0001=0" />

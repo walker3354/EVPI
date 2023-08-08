@@ -16,7 +16,7 @@
 
         Created:      2020/11/23 下午 01:00:00
         Created By:   Justin Zhang
-        Modified:     2023/3/30 下午 04:07:45
+        Modified:     2023/8/2 上午 11:32:13
         Modified By:  
 
     Device Info:
@@ -103,7 +103,7 @@ typedef struct {
         uint32_t applicationObject7;
         uint32_t applicationObject8;
     } x1A00_TPDOMappingParameter;
-    int16_t x6000_steering;
+    uint16_t x6000_angle_data;
 } OD_PERSIST_COMM_t;
 
 typedef struct {
@@ -182,7 +182,7 @@ extern OD_ATTR_OD OD_t *OD;
 #define OD_ENTRY_H1280_SDOClientParameter &OD->list[16]
 #define OD_ENTRY_H1800_TPDOCommunicationParameter &OD->list[17]
 #define OD_ENTRY_H1A00_TPDOMappingParameter &OD->list[18]
-#define OD_ENTRY_H6000_steering &OD->list[19]
+#define OD_ENTRY_H6000_angle_data &OD->list[19]
 
 
 /*******************************************************************************

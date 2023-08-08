@@ -1,5 +1,5 @@
 [FileInfo]
-FileName=Steering_encoder_D301.eds
+FileName=DS301_profile_mcu.eds
 FileVersion=1
 FileRevision=1
 LastEDS=
@@ -8,8 +8,8 @@ Description=
 CreationTime=1:00PM
 CreationDate=11-23-2020
 CreatedBy=Justin Zhang
-ModificationTime=10:42AM
-ModificationDate=07-21-2023
+ModificationTime=11:26AM
+ModificationDate=08-04-2023
 ModifiedBy=
 
 [DeviceInfo]
@@ -32,7 +32,7 @@ Granularity=8
 DynamicChannelsSupported=0
 CompactPDO=0
 GroupMessaging=0
-NrOfRXPDO=0
+NrOfRXPDO=1
 NrOfTXPDO=1
 LSS_Supported=0
 
@@ -57,7 +57,7 @@ SupportedObjects=3
 [1000]
 ParameterName=Device type
 ObjectType=0x7
-;StorageLocation=RAM
+;StorageLocation=PERSIST_COMM
 DataType=0x0007
 AccessType=ro
 DefaultValue=0x00000000
@@ -75,7 +75,7 @@ PDOMapping=1
 [1018]
 ParameterName=Identity
 ObjectType=0x9
-;StorageLocation=RAM
+;StorageLocation=PERSIST_COMM
 SubNumber=0x5
 
 [1018sub0]
@@ -124,7 +124,7 @@ DefaultValue=0x00000000
 PDOMapping=0
 
 [OptionalObjects]
-SupportedObjects=17
+SupportedObjects=20
 1=0x1003
 2=0x1005
 3=0x1006
@@ -139,9 +139,12 @@ SupportedObjects=17
 12=0x1019
 13=0x1200
 14=0x1280
-15=0x1800
-16=0x1A00
-17=0x6000
+15=0x1400
+16=0x1600
+17=0x1800
+18=0x1A00
+19=0x6000
+20=0x6001
 
 [1003]
 ParameterName=Pre-defined error field
@@ -305,7 +308,7 @@ PDOMapping=0
 [1005]
 ParameterName=COB-ID SYNC message
 ObjectType=0x7
-;StorageLocation=RAM
+;StorageLocation=PERSIST_COMM
 DataType=0x0007
 AccessType=rw
 DefaultValue=0x00000080
@@ -314,7 +317,7 @@ PDOMapping=0
 [1006]
 ParameterName=Communication cycle period
 ObjectType=0x7
-;StorageLocation=RAM
+;StorageLocation=PERSIST_COMM
 DataType=0x0007
 AccessType=rw
 DefaultValue=0
@@ -323,7 +326,7 @@ PDOMapping=0
 [1007]
 ParameterName=Synchronous window length
 ObjectType=0x7
-;StorageLocation=RAM
+;StorageLocation=PERSIST_COMM
 DataType=0x0007
 AccessType=rw
 DefaultValue=0
@@ -434,7 +437,7 @@ PDOMapping=0
 [1012]
 ParameterName=COB-ID time stamp object
 ObjectType=0x7
-;StorageLocation=RAM
+;StorageLocation=PERSIST_COMM
 DataType=0x0007
 AccessType=rw
 DefaultValue=0x00000100
@@ -443,7 +446,7 @@ PDOMapping=0
 [1014]
 ParameterName=COB-ID EMCY
 ObjectType=0x7
-;StorageLocation=RAM
+;StorageLocation=PERSIST_COMM
 DataType=0x0007
 AccessType=rw
 DefaultValue=0x80+$NODEID
@@ -452,7 +455,7 @@ PDOMapping=0
 [1015]
 ParameterName=Inhibit time EMCY
 ObjectType=0x7
-;StorageLocation=RAM
+;StorageLocation=PERSIST_COMM
 DataType=0x0006
 AccessType=rw
 DefaultValue=0
@@ -461,7 +464,7 @@ PDOMapping=0
 [1016]
 ParameterName=Consumer heartbeat time
 ObjectType=0x8
-;StorageLocation=RAM
+;StorageLocation=PERSIST_COMM
 SubNumber=0x9
 
 [1016sub0]
@@ -548,7 +551,7 @@ PDOMapping=0
 [1017]
 ParameterName=Producer heartbeat time
 ObjectType=0x7
-;StorageLocation=RAM
+;StorageLocation=PERSIST_COMM
 DataType=0x0006
 AccessType=rw
 DefaultValue=1000
@@ -557,7 +560,7 @@ PDOMapping=0
 [1019]
 ParameterName=Synchronous counter overflow value
 ObjectType=0x7
-;StorageLocation=RAM
+;StorageLocation=PERSIST_COMM
 DataType=0x0005
 AccessType=rw
 DefaultValue=0
@@ -599,7 +602,7 @@ PDOMapping=1
 [1280]
 ParameterName=SDO client parameter
 ObjectType=0x9
-;StorageLocation=RAM
+;StorageLocation=PERSIST_COMM
 SubNumber=0x4
 
 [1280sub0]
@@ -638,10 +641,139 @@ AccessType=rw
 DefaultValue=0x01
 PDOMapping=0
 
+[1400]
+ParameterName=RPDO communication parameter
+ObjectType=0x9
+;StorageLocation=PERSIST_COMM
+SubNumber=0x4
+
+[1400sub0]
+ParameterName=Highest sub-index supported
+ObjectType=0x7
+;StorageLocation=RAM
+DataType=0x0005
+AccessType=ro
+DefaultValue=0x05
+PDOMapping=0
+
+[1400sub1]
+ParameterName=COB-ID used by RPDO
+ObjectType=0x7
+;StorageLocation=RAM
+DataType=0x0007
+AccessType=rw
+DefaultValue=$NODEID+0x200
+PDOMapping=0
+
+[1400sub2]
+ParameterName=Transmission type
+ObjectType=0x7
+;StorageLocation=RAM
+DataType=0x0005
+AccessType=rw
+DefaultValue=254
+PDOMapping=0
+
+[1400sub5]
+ParameterName=Event timer
+ObjectType=0x7
+;StorageLocation=RAM
+DataType=0x0006
+AccessType=rw
+DefaultValue=0
+PDOMapping=0
+
+[1600]
+ParameterName=RPDO mapping parameter
+ObjectType=0x9
+;StorageLocation=PERSIST_COMM
+SubNumber=0x9
+
+[1600sub0]
+ParameterName=Number of mapped application objects in PDO
+ObjectType=0x7
+;StorageLocation=RAM
+DataType=0x0005
+AccessType=rw
+DefaultValue=1
+PDOMapping=0
+
+[1600sub1]
+ParameterName=Application object 1
+ObjectType=0x7
+;StorageLocation=RAM
+DataType=0x0007
+AccessType=rw
+DefaultValue=0x60010010
+PDOMapping=0
+
+[1600sub2]
+ParameterName=Application object 2
+ObjectType=0x7
+;StorageLocation=RAM
+DataType=0x0007
+AccessType=rw
+DefaultValue=0x00000000
+PDOMapping=0
+
+[1600sub3]
+ParameterName=Application object 3
+ObjectType=0x7
+;StorageLocation=RAM
+DataType=0x0007
+AccessType=rw
+DefaultValue=0x00000000
+PDOMapping=0
+
+[1600sub4]
+ParameterName=Application object 4
+ObjectType=0x7
+;StorageLocation=RAM
+DataType=0x0007
+AccessType=rw
+DefaultValue=0x00000000
+PDOMapping=0
+
+[1600sub5]
+ParameterName=Application object 5
+ObjectType=0x7
+;StorageLocation=RAM
+DataType=0x0007
+AccessType=rw
+DefaultValue=0x00000000
+PDOMapping=0
+
+[1600sub6]
+ParameterName=Application object 6
+ObjectType=0x7
+;StorageLocation=RAM
+DataType=0x0007
+AccessType=rw
+DefaultValue=0x00000000
+PDOMapping=0
+
+[1600sub7]
+ParameterName=Application object 7
+ObjectType=0x7
+;StorageLocation=RAM
+DataType=0x0007
+AccessType=rw
+DefaultValue=0x00000000
+PDOMapping=0
+
+[1600sub8]
+ParameterName=Application object 8
+ObjectType=0x7
+;StorageLocation=RAM
+DataType=0x0007
+AccessType=rw
+DefaultValue=0x00000000
+PDOMapping=0
+
 [1800]
 ParameterName=TPDO communication parameter
 ObjectType=0x9
-;StorageLocation=RAM
+;StorageLocation=PERSIST_COMM
 SubNumber=0x6
 
 [1800sub0]
@@ -701,7 +833,7 @@ PDOMapping=0
 [1A00]
 ParameterName=TPDO mapping parameter
 ObjectType=0x9
-;StorageLocation=RAM
+;StorageLocation=PERSIST_COMM
 SubNumber=0x9
 
 [1A00sub0]
@@ -786,11 +918,20 @@ DefaultValue=0x00000000
 PDOMapping=0
 
 [6000]
-ParameterName=steering
+ParameterName=current_angle
 ObjectType=0x7
-;StorageLocation=RAM
+;StorageLocation=PERSIST_COMM
 DataType=0x0003
 AccessType=rwr
+DefaultValue=0
+PDOMapping=1
+
+[6001]
+ParameterName=target_angle
+ObjectType=0x7
+;StorageLocation=PERSIST_COMM
+DataType=0x0003
+AccessType=rww
 DefaultValue=0
 PDOMapping=1
 

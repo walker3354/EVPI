@@ -6,7 +6,8 @@
     "files.associations": {
         "gpio.h": "c",
         "co_app_stm32.h": "c",
-        "od.h": "c"
+        "od.h": "c",
+        "can.h": "c"
     },
     "ros.distro": "noetic"
 }

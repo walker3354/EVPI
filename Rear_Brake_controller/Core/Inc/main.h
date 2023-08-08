@@ -57,8 +57,6 @@ uint32_t get_NodeID(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define CW_CCW_control_Pin GPIO_PIN_3
-#define CW_CCW_control_GPIO_Port GPIOA
 #define LED_Pin GPIO_PIN_3
 #define LED_GPIO_Port GPIOB
 

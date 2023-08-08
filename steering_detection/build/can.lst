@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s 			page 1
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s 			page 1
   28:Core/Src/can.c **** 
   29:Core/Src/can.c **** /* CAN init function */
   30:Core/Src/can.c **** void MX_CAN_Init(void)
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s 			page 2
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s 			page 2
 
 
   31:Core/Src/can.c **** {
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s 			page 1
   47:Core/Src/can.c ****   hcan.Init.AutoBusOff = ENABLE;
   67              		.loc 1 47 3 is_stmt 1 view .LVU15
   68              		.loc 1 47 24 is_stmt 0 view .LVU16
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s 			page 3
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s 			page 3
 
 
   69 0026 4376     		strb	r3, [r0, #25]
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s 			page 1
  110              		.thumb_func
  112              	HAL_CAN_MspInit:
  113              	.LVL2:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s 			page 4
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s 			page 4
 
 
  114              	.LFB124:
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s 			page 1
   82:Core/Src/can.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   83:Core/Src/can.c ****     GPIO_InitStruct.Alternate = GPIO_AF9_CAN;
   84:Core/Src/can.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s 			page 5
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s 			page 5
 
 
   85:Core/Src/can.c **** 
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s 			page 1
  174              		.loc 1 74 5 view .LVU45
  175              	.LBB3:
   74:Core/Src/can.c ****     /**CAN GPIO Configuration
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s 			page 6
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s 			page 6
 
 
  176              		.loc 1 74 5 view .LVU46
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s 			page 1
  214 0060 FFF7FEFF 		bl	HAL_GPIO_Init
  215              	.LVL6:
   86:Core/Src/can.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s 			page 7
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s 			page 7
 
 
  216              		.loc 1 86 5 is_stmt 1 view .LVU63
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s 			page 1
  256 009a FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
  257              	.LVL11:
   98:Core/Src/can.c ****     HAL_NVIC_EnableIRQ(CAN_RX1_IRQn);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s 			page 8
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s 			page 8
 
 
  258              		.loc 1 98 5 view .LVU78
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s 			page 1
  112:Core/Src/can.c **** 
  113:Core/Src/can.c ****   /* USER CODE END CAN_MspDeInit 0 */
  114:Core/Src/can.c ****     /* Peripheral clock disable */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s 			page 9
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s 			page 9
 
 
  115:Core/Src/can.c ****     __HAL_RCC_CAN1_CLK_DISABLE();
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s 			page 1
  337 0036 00BF     		.align	2
  338              	.L17:
  339 0038 00640040 		.word	1073767424
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s 			page 10
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s 			page 10
 
 
  340 003c 00100240 		.word	1073876992
@@ -566,22 +566,22 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s 			page 1
  361              		.file 9 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_cortex.h"
  362              		.file 10 "Core/Inc/main.h"
  363              		.file 11 "Core/Inc/can.h"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s 			page 11
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 can.c
-C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s:20     .text.MX_CAN_Init:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s:26     .text.MX_CAN_Init:00000000 MX_CAN_Init
-C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s:100    .text.MX_CAN_Init:00000040 $d
-C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s:106    .text.HAL_CAN_MspInit:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s:112    .text.HAL_CAN_MspInit:00000000 HAL_CAN_MspInit
-C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s:273    .text.HAL_CAN_MspInit:000000b0 $d
-C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s:278    .text.HAL_CAN_MspDeInit:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s:284    .text.HAL_CAN_MspDeInit:00000000 HAL_CAN_MspDeInit
-C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s:339    .text.HAL_CAN_MspDeInit:00000038 $d
-C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s:350    .bss.hcan:00000000 hcan
-C:\Users\walker\AppData\Local\Temp\cc8Wkw6m.s:346    .bss.hcan:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s:20     .text.MX_CAN_Init:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s:26     .text.MX_CAN_Init:00000000 MX_CAN_Init
+C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s:100    .text.MX_CAN_Init:00000040 $d
+C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s:106    .text.HAL_CAN_MspInit:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s:112    .text.HAL_CAN_MspInit:00000000 HAL_CAN_MspInit
+C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s:273    .text.HAL_CAN_MspInit:000000b0 $d
+C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s:278    .text.HAL_CAN_MspDeInit:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s:284    .text.HAL_CAN_MspDeInit:00000000 HAL_CAN_MspDeInit
+C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s:339    .text.HAL_CAN_MspDeInit:00000038 $d
+C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s:350    .bss.hcan:00000000 hcan
+C:\Users\walker\AppData\Local\Temp\ccz8rFKy.s:346    .bss.hcan:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_CAN_Init

@@ -64,7 +64,7 @@ OD_ATTR_PERSIST_COMM OD_PERSIST_COMM_t OD_PERSIST_COMM = {
         .applicationObject7 = 0x00000000,
         .applicationObject8 = 0x00000000
     },
-    .x6000_steering = 0
+    .x6000_angle_data = 0x0000
 };
 
 OD_ATTR_RAM OD_RAM_t OD_RAM = {
@@ -105,7 +105,7 @@ typedef struct {
     OD_obj_record_t o_1280_SDOClientParameter[4];
     OD_obj_record_t o_1800_TPDOCommunicationParameter[6];
     OD_obj_record_t o_1A00_TPDOMappingParameter[9];
-    OD_obj_var_t o_6000_steering;
+    OD_obj_var_t o_6000_angle_data;
 } ODObjs_t;
 
 static CO_PROGMEM ODObjs_t ODObjs = {
@@ -363,8 +363,8 @@ static CO_PROGMEM ODObjs_t ODObjs = {
             .dataLength = 4
         }
     },
-    .o_6000_steering = {
-        .dataOrig = &OD_PERSIST_COMM.x6000_steering,
+    .o_6000_angle_data = {
+        .dataOrig = &OD_PERSIST_COMM.x6000_angle_data,
         .attribute = ODA_SDO_RW | ODA_TPDO | ODA_MB,
         .dataLength = 2
     }
@@ -394,7 +394,7 @@ static OD_ATTR_OD OD_entry_t ODList[] = {
     {0x1280, 0x04, ODT_REC, &ODObjs.o_1280_SDOClientParameter, NULL},
     {0x1800, 0x06, ODT_REC, &ODObjs.o_1800_TPDOCommunicationParameter, NULL},
     {0x1A00, 0x09, ODT_REC, &ODObjs.o_1A00_TPDOMappingParameter, NULL},
-    {0x6000, 0x01, ODT_VAR, &ODObjs.o_6000_steering, NULL},
+    {0x6000, 0x01, ODT_VAR, &ODObjs.o_6000_angle_data, NULL},
     {0x0000, 0x00, 0, NULL, NULL}
 };
 
