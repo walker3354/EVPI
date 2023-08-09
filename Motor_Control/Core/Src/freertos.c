@@ -34,7 +34,6 @@
 #include "adc.h"
 #define portTICK_RATE_MS portTICK_PERIOD_MS
 #define portTICK_PERIOD_MS ((TickType_t)1000 / configTICK_RATE_HZ)
-#define MAX_angle 35
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -77,7 +76,23 @@ volatile double CCR_value = 0;
 volatile double current_voltage = 0;
 volatile double current_angle = 0;
 volatile double db_target_angle = 0;
+int volatge_counter = 0;
+int error_counter = 0;
+
+bool PID_lock = false;
+bool init_flag = false;
+int init_counter = 0;
+
 void analyze_volatge(void);
+void set_db_target_angle(double temp);
+void steering_prevent(void);
+void PID_prevent(void);
+void PID_Error_handler(void);
+void init_temp_buffer(void);
+
+double voltage_temp[10] = {0};
+double error_temp[10] = {0};
+
 /* USER CODE END FunctionPrototypes */
 
 void StartPIDTask(void *argument);
@@ -142,16 +157,18 @@ void StartPIDTask(void *argument)
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
   HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
   analyze_volatge();
-  db_target_angle = 10.0;
+  set_db_target_angle(35.0);
   PID_TypeDef TPID;
-  PID(&TPID, &current_angle, &CCR_value, &db_target_angle, 0.8, 0, 0, _PID_P_ON_E, _PID_CD_DIRECT); // input output target
+  PID(&TPID, &current_angle, &CCR_value, &db_target_angle, 1, 0.15, 0, _PID_P_ON_E, _PID_CD_DIRECT); // input output target
   PID_SetMode(&TPID, _PID_MODE_AUTOMATIC);
   PID_SetSampleTime(&TPID, 100);
-  PID_SetOutputLimits(&TPID, -100, 100);
+  PID_SetOutputLimits(&TPID, -70, 70);
   /* Infinite loop */
   for (;;)
   {
     analyze_volatge();
+    PID_Compute(&TPID);
+    PID_prevent();
     if (current_angle < db_target_angle)
     {
       HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 0);
@@ -160,13 +177,15 @@ void StartPIDTask(void *argument)
     {
       HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
     }
-    PID_Compute(&TPID);
-    CCR_value = abs(CCR_value);
-    if (abs(current_angle) > MAX_angle)
+    if (PID_lock == false)
     {
-      CCR_value = 0;
+      CCR_value = abs(CCR_value);
+      TIM2->CCR2 = ((int)CCR_value);
     }
-    TIM2->CCR2 = ((int)CCR_value);
+    else
+    {
+      HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+    }
     osDelay(100);
   }
   /* USER CODE END StartPIDTask */
@@ -190,7 +209,7 @@ void canopen_task(void *argument)
   canOpenNodeSTM32.baudrate = 125;
   canopen_app_init(&canOpenNodeSTM32);
   int16_t pre_target_angle = OD_PERSIST_COMM.x6001_target_angle;
-  db_target_angle = (double)OD_PERSIST_COMM.x6001_target_angle;
+  db_target_angle = OD_PERSIST_COMM.x6001_target_angle;
   /* Infinite loop */
   for (;;)
   {
@@ -213,8 +232,62 @@ void analyze_volatge(void)
   current_voltage = HAL_ADC_GetValue(&hadc1);
   current_voltage = HAL_ADC_GetValue(&hadc1);
   current_voltage = ((current_voltage / 4096) * 3.3);
-  current_angle = ((current_voltage * 2 * 22.5) - 45);
+  current_angle = (((current_voltage)*2 * 22.5) - 45);
   current_angle = current_angle / 1;
+  steering_prevent();
+  if (init_counter > 2)
+  {
+    init_flag = true;
+  }
+  else
+  {
+    init_counter += 1;
+  }
+}
+
+void steering_prevent(void)
+{
+  voltage_temp[volatge_counter] = current_voltage;
+  volatge_counter = (volatge_counter + 1) % 10;
+  if (init_flag)
+  {
+    if (voltage_temp[volatge_counter] > 2.5 && voltage_temp[volatge_counter] < 0.25) // out of range 4.5v ~ 0.5
+    {
+      PID_Error_handler();
+    }
+
+    if (abs(*(voltage_temp) - *(voltage_temp + 9)) < 0.02 && abs(current_angle - db_target_angle) > 3) // static voltage 0.03
+    {
+      PID_Error_handler();
+    }
+    if (voltage_temp[volatge_counter] - voltage_temp[(volatge_counter == 0 ? 9 : volatge_counter - 1)] > 1) // voltage difference too high
+    {
+      PID_Error_handler();
+    }
+  }
+}
+void PID_prevent(void)
+{
+  error_temp[error_counter] = abs(current_angle - db_target_angle);
+  if (init_flag)
+  {
+    if (abs(current_angle - db_target_angle) > 10 && abs(*(error_temp) - *(error_temp + 9)) < 1) // 3 error too low
+    {
+      PID_Error_handler();
+    }
+  }
+  error_counter = (error_counter + 1) % 10;
+}
+
+void set_db_target_angle(double temp)
+{
+  db_target_angle = temp;
+}
+
+void PID_Error_handler(void)
+{
+  TIM2->CCR2 = 0;
+  PID_lock = true;
 }
 
 /* USER CODE END Application */
