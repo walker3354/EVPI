@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
   25:Core/Src/pid.c **** void PID_Init(PID_TypeDef *uPID)
   26:Core/Src/pid.c **** {
   32              		.loc 1 26 1 view -0
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 2
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 2
 
 
   33              		.cfi_startproc
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
   36:Core/Src/pid.c **** 	{
   37:Core/Src/pid.c **** 		uPID->OutputSum = uPID->OutMin;
   38:Core/Src/pid.c **** 	}
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 3
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 3
 
 
   39:Core/Src/pid.c **** 	else { }
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
   51:Core/Src/pid.c **** 	PID_SetOutputLimits(uPID, 0, _PID_8BIT_PWM_MAX);
   52:Core/Src/pid.c **** 	
   53:Core/Src/pid.c **** 	uPID->SampleTime = _PID_SAMPLE_TIME_MS_DEF; /* default Controller Sample Time is 0.1 seconds */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 4
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 4
 
 
   54:Core/Src/pid.c **** 	
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
   76:Core/Src/pid.c **** 	double dInput;
  148              		.loc 1 76 2 view .LVU30
   77:Core/Src/pid.c **** 	double output;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 5
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 5
 
 
  149              		.loc 1 77 2 view .LVU31
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  124:Core/Src/pid.c **** 		/* ..... Compute Rest of PID Output ..... */
  125:Core/Src/pid.c **** 		output += uPID->OutputSum - uPID->Kd * dInput;
  126:Core/Src/pid.c **** 		
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 6
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 6
 
 
  127:Core/Src/pid.c **** 		if (output > uPID->OutMax)
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  182              		.loc 1 87 26 is_stmt 0 view .LVU39
  183 0020 6368     		ldr	r3, [r4, #4]
   87:Core/Src/pid.c **** 	
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 7
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 7
 
 
  184              		.loc 1 87 13 view .LVU40
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
   96:Core/Src/pid.c **** 		
  225              		.loc 1 96 3 is_stmt 1 view .LVU54
   96:Core/Src/pid.c **** 		
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 8
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 8
 
 
  226              		.loc 1 96 36 is_stmt 0 view .LVU55
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  268 009e D4E91A67 		ldrd	r6, [r4, #104]
  104:Core/Src/pid.c **** 		{
  269              		.loc 1 104 6 view .LVU68
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 9
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 9
 
 
  270 00a2 3246     		mov	r2, r6
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  312 00ec FFF7FEFF 		bl	__aeabi_dadd
  313              	.LVL29:
  314 00f0 8246     		mov	r10, r0
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 10
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 10
 
 
  315 00f2 8B46     		mov	fp, r1
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  354              		.loc 1 143 3 is_stmt 1 view .LVU95
  143:Core/Src/pid.c **** 		
  355              		.loc 1 143 10 is_stmt 0 view .LVU96
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 11
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 11
 
 
  356 0124 0120     		movs	r0, #1
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  403              	PID_SetMode:
  404              	.LVL39:
  405              	.LFB127:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 12
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 12
 
 
  152:Core/Src/pid.c **** 
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  442 0016 FAD1     		bne	.L29
  162:Core/Src/pid.c **** 	}
  443              		.loc 1 162 3 is_stmt 1 view .LVU117
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 13
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 13
 
 
  444 0018 FFF7FEFF 		bl	PID_Init
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  493              		.loc 1 175 1 is_stmt 0 view .LVU124
  494 0000 2DE9F84F 		push	{r3, r4, r5, r6, r7, r8, r9, r10, fp, lr}
  495              	.LCFI8:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 14
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 14
 
 
  496              		.cfi_def_cfa_offset 40
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  535 002c 656C     		ldr	r5, [r4, #68]
  536              		.loc 1 190 7 view .LVU138
  537 002e D5E900AB 		ldrd	r10, [r5]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 15
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 15
 
 
  538              		.loc 1 190 6 view .LVU139
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  213:Core/Src/pid.c **** }
  570              		.loc 1 213 1 view .LVU149
  571 005e BDE8F88F 		pop	{r3, r4, r5, r6, r7, r8, r9, r10, fp, pc}
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 16
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 16
 
 
  572              	.LVL53:
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  617              		.thumb_func
  619              	PID_SetTunings2:
  620              	.LVL57:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 17
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 17
 
 
  621              	.LFB131:
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  662 0026 FFF7FEFF 		bl	__aeabi_dcmplt
  663              	.LVL60:
  664              		.loc 1 226 5 view .LVU167
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 18
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 18
 
 
  665 002a 0028     		cmp	r0, #0
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  705              		.loc 1 240 21 is_stmt 0 view .LVU182
  706 0070 A068     		ldr	r0, [r4, #8]
  707 0072 FFF7FEFF 		bl	__aeabi_ui2d
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 19
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 19
 
 
  708              	.LVL63:
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  251:Core/Src/pid.c **** 		uPID->Ki = (0 - uPID->Ki);
  252:Core/Src/pid.c **** 		uPID->Kd = (0 - uPID->Kd);
  253:Core/Src/pid.c **** 		
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 20
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 20
 
 
  254:Core/Src/pid.c **** 	}
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  252:Core/Src/pid.c **** 		
  795              		.loc 1 252 12 view .LVU206
  796 00e8 C4E90E01 		strd	r0, [r4, #56]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 21
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 21
 
 
  797 00ec E2E7     		b	.L49
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  847              		@ frame_needed = 0, uses_anonymous_args = 0
  848              		.loc 1 260 1 is_stmt 0 view .LVU212
  849 0000 38B5     		push	{r3, r4, r5, lr}
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 22
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 22
 
 
  850              	.LCFI14:
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  897              		.loc 1 267 12 view .LVU228
  898 003c C4E90E01 		strd	r0, [r4, #56]
  899              	.L58:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 23
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 23
 
 
  268:Core/Src/pid.c **** 		
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  946              		.loc 1 46 19 is_stmt 0 view .LVU236
  947 0020 4264     		str	r2, [r0, #68]
   47:Core/Src/pid.c **** 	uPID->MySetpoint = Setpoint;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 24
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 24
 
 
  948              		.loc 1 47 2 is_stmt 1 view .LVU237
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
   58:Core/Src/pid.c **** 	
  989              		.loc 1 58 2 view .LVU251
   58:Core/Src/pid.c **** 	
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 25
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 25
 
 
  990              		.loc 1 58 19 is_stmt 0 view .LVU252
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  1038              		.loc 1 63 1 is_stmt 0 view .LVU260
  1039 0000 10B5     		push	{r4, lr}
  1040              	.LCFI18:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 26
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 26
 
 
  1041              		.cfi_def_cfa_offset 8
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  1091              		.global	PID_SetSampleTime
  1092              		.syntax unified
  1093              		.thumb
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 27
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 27
 
 
  1094              		.thumb_func
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  1137 001e 3946     		mov	r1, r7
  1138 0020 FFF7FEFF 		bl	__aeabi_ddiv
  1139              	.LVL101:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 28
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 28
 
 
  1140 0024 0646     		mov	r6, r0
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  1184              		@ link register save eliminated.
  302:Core/Src/pid.c **** 	return uPID->DispKp;
  1185              		.loc 1 302 2 view .LVU288
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 29
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 29
 
 
  303:Core/Src/pid.c **** }
@@ -1738,50 +1738,50 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 1
  1236              		.text
  1237              	.Letext0:
  1238              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 30
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 30
 
 
  1239              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
  1240              		.file 4 "Core/Inc/pid.h"
  1241              		.file 5 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s 			page 31
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cczfSh6o.s 			page 31
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 pid.c
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:22     .text.PID_Init:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:28     .text.PID_Init:00000000 PID_Init
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:107    .text.PID_Compute:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:113    .text.PID_Compute:00000000 PID_Compute
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:391    .text.PID_Compute:00000150 $d
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:397    .text.PID_SetMode:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:403    .text.PID_SetMode:00000000 PID_SetMode
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:452    .text.PID_GetMode:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:458    .text.PID_GetMode:00000000 PID_GetMode
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:480    .text.PID_SetOutputLimits:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:486    .text.PID_SetOutputLimits:00000000 PID_SetOutputLimits
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:613    .text.PID_SetTunings2:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:619    .text.PID_SetTunings2:00000000 PID_SetTunings2
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:801    .text.PID_SetTunings2:000000f0 $d
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:806    .text.PID_SetTunings:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:812    .text.PID_SetTunings:00000000 PID_SetTunings
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:835    .text.PID_SetControllerDirection:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:841    .text.PID_SetControllerDirection:00000000 PID_SetControllerDirection
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:910    .text.PID:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:916    .text.PID:00000000 PID
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:1017   .text.PID:00000078 $d
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:1025   .text.PID2:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:1031   .text.PID2:00000000 PID2
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:1065   .text.PID_GetDirection:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:1071   .text.PID_GetDirection:00000000 PID_GetDirection
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:1090   .text.PID_SetSampleTime:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:1096   .text.PID_SetSampleTime:00000000 PID_SetSampleTime
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:1171   .text.PID_GetKp:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:1177   .text.PID_GetKp:00000000 PID_GetKp
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:1193   .text.PID_GetKi:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:1199   .text.PID_GetKi:00000000 PID_GetKi
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:1215   .text.PID_GetKd:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfpVdVd.s:1221   .text.PID_GetKd:00000000 PID_GetKd
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:22     .text.PID_Init:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:28     .text.PID_Init:00000000 PID_Init
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:107    .text.PID_Compute:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:113    .text.PID_Compute:00000000 PID_Compute
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:391    .text.PID_Compute:00000150 $d
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:397    .text.PID_SetMode:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:403    .text.PID_SetMode:00000000 PID_SetMode
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:452    .text.PID_GetMode:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:458    .text.PID_GetMode:00000000 PID_GetMode
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:480    .text.PID_SetOutputLimits:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:486    .text.PID_SetOutputLimits:00000000 PID_SetOutputLimits
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:613    .text.PID_SetTunings2:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:619    .text.PID_SetTunings2:00000000 PID_SetTunings2
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:801    .text.PID_SetTunings2:000000f0 $d
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:806    .text.PID_SetTunings:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:812    .text.PID_SetTunings:00000000 PID_SetTunings
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:835    .text.PID_SetControllerDirection:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:841    .text.PID_SetControllerDirection:00000000 PID_SetControllerDirection
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:910    .text.PID:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:916    .text.PID:00000000 PID
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:1017   .text.PID:00000078 $d
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:1025   .text.PID2:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:1031   .text.PID2:00000000 PID2
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:1065   .text.PID_GetDirection:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:1071   .text.PID_GetDirection:00000000 PID_GetDirection
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:1090   .text.PID_SetSampleTime:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:1096   .text.PID_SetSampleTime:00000000 PID_SetSampleTime
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:1171   .text.PID_GetKp:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:1177   .text.PID_GetKp:00000000 PID_GetKp
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:1193   .text.PID_GetKi:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:1199   .text.PID_GetKi:00000000 PID_GetKi
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:1215   .text.PID_GetKd:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cczfSh6o.s:1221   .text.PID_GetKd:00000000 PID_GetKd
 
 UNDEFINED SYMBOLS
 __aeabi_dcmpgt

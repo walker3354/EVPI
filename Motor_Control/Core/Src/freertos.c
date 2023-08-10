@@ -32,9 +32,9 @@
 #include "can.h"
 #include "pid.h"
 #include "adc.h"
-
-#define Virtual_target 35
-#define Limit_angle 40
+#define Virtual_target_angle -20
+#define portTICK_RATE_MS portTICK_PERIOD_MS
+#define portTICK_PERIOD_MS ((TickType_t)1000 / configTICK_RATE_HZ)
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -73,26 +73,23 @@ const osThreadAttr_t canopenTask_attributes = {
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
+PID_TypeDef TPID;
 volatile double CCR_value = 0;
 volatile double current_voltage = 0;
 volatile double current_angle = 0;
 volatile double db_target_angle = 0;
 
-bool PID_lock = false;
-PID_TypeDef TPID;
-
 void analyze_volatge(void);
-void CW_CCW_dected(void);
-void PID_error_handler(void);
-void PID_sys_init(void);
-
-void steering_protection(void);
+void PID_Error_handler(void);
+void CW_CCW_deect(void);
+void PID_init(void);
 /* USER CODE END FunctionPrototypes */
 
 void StartPIDTask(void *argument);
 void canopen_task(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
+
 /**
  * @brief  FreeRTOS initialization
  * @param  None
@@ -146,20 +143,15 @@ void MX_FREERTOS_Init(void)
 void StartPIDTask(void *argument)
 {
   /* USER CODE BEGIN StartPIDTask */
-  PID_sys_init();
-  db_target_angle = 35;
+  PID_init();
   /* Infinite loop */
   for (;;)
   {
     analyze_volatge();
+    CW_CCW_deect();
     PID_Compute(&TPID);
-    CW_CCW_dected();
-    steering_protection();
-    if (PID_lock == false)
-    {
-      CCR_value = abs(CCR_value);
-      TIM2->CCR2 = ((int)CCR_value);
-    }
+    CCR_value = abs(CCR_value);
+    TIM2->CCR2 = ((int)CCR_value);
     osDelay(100);
   }
   /* USER CODE END StartPIDTask */
@@ -199,17 +191,29 @@ void canopen_task(void *argument)
 }
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
-
-
 void analyze_volatge(void)
 {
   HAL_ADC_Start(&hadc1);
   HAL_ADC_PollForConversion(&hadc1, 1);
   current_voltage = HAL_ADC_GetValue(&hadc1);
+  current_voltage = HAL_ADC_GetValue(&hadc1);
   current_voltage = ((current_voltage / 4096) * 3.3);
-  current_angle = (((current_voltage)*2 * 22.5) - 45) / 1;
+  current_angle = (int)(((current_voltage * 2) - 1.6) * 26.5 - 34.45);
 }
-void CW_CCW_dected(void)
+
+void PID_init(void)
+{
+  TIM2->CCR2 = 0; // CCR_value bigger the rpm will highter 0~100
+  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
+  HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
+  analyze_volatge();
+  db_target_angle = Virtual_target_angle;
+  PID(&TPID, &current_angle, &CCR_value, &db_target_angle, 1, 0.15, 0, _PID_P_ON_E, _PID_CD_DIRECT); // input output target
+  PID_SetMode(&TPID, _PID_MODE_AUTOMATIC);
+  PID_SetSampleTime(&TPID, 100);
+  PID_SetOutputLimits(&TPID, -30, 30);
+}
+void CW_CCW_deect(void)
 {
   if (current_angle < db_target_angle)
   {
@@ -220,28 +224,8 @@ void CW_CCW_dected(void)
     HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
   }
 }
-void PID_error_handler(void)
+void PID_Error_handler(void)
 {
   TIM2->CCR2 = 0;
-  PID_lock = true;
-  HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-}
-void PID_sys_init(void)
-{
-  TIM2->CCR2 = (int)CCR_value; // CCR_value bigger the rpm will highter , CCR range : 0~100
-  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
-  HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
-  analyze_volatge();
-  PID(&TPID, &current_angle, &CCR_value, &db_target_angle, 1, 0.15, 0, _PID_P_ON_E, _PID_CD_DIRECT); // input output target
-  PID_SetMode(&TPID, _PID_MODE_AUTOMATIC);
-  PID_SetSampleTime(&TPID, 100);
-  PID_SetOutputLimits(&TPID, -70, 70);
-}
-void steering_protection(void)
-{
-  if (current_voltage > 4.5 || current_angle < 0.5)
-  {
-    PID_error_handler();
-  }
 }
 /* USER CODE END Application */

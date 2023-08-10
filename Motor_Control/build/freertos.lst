@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 1
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 1
   26:Core/Src/freertos.c **** /* Private includes ----------------------------------------------------------*/
   27:Core/Src/freertos.c **** /* USER CODE BEGIN Includes */
   28:Core/Src/freertos.c **** #include "CO_app_STM32.h"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 2
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s 			page 2
 
 
   29:Core/Src/freertos.c **** #include "OD.h"
@@ -67,9 +67,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 1
   32:Core/Src/freertos.c **** #include "can.h"
   33:Core/Src/freertos.c **** #include "pid.h"
   34:Core/Src/freertos.c **** #include "adc.h"
-  35:Core/Src/freertos.c **** 
-  36:Core/Src/freertos.c **** #define Virtual_target 35
-  37:Core/Src/freertos.c **** #define Limit_angle 40
+  35:Core/Src/freertos.c **** #define Virtual_target_angle -20
+  36:Core/Src/freertos.c **** #define portTICK_RATE_MS portTICK_PERIOD_MS
+  37:Core/Src/freertos.c **** #define portTICK_PERIOD_MS ((TickType_t)1000 / configTICK_RATE_HZ)
   38:Core/Src/freertos.c **** /* USER CODE END Includes */
   39:Core/Src/freertos.c **** 
   40:Core/Src/freertos.c **** /* Private typedef -----------------------------------------------------------*/
@@ -108,118 +108,110 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 1
   73:Core/Src/freertos.c **** 
   74:Core/Src/freertos.c **** /* Private function prototypes -----------------------------------------------*/
   75:Core/Src/freertos.c **** /* USER CODE BEGIN FunctionPrototypes */
-  76:Core/Src/freertos.c **** volatile double CCR_value = 0;
-  77:Core/Src/freertos.c **** volatile double current_voltage = 0;
-  78:Core/Src/freertos.c **** volatile double current_angle = 0;
-  79:Core/Src/freertos.c **** volatile double db_target_angle = 0;
-  80:Core/Src/freertos.c **** 
-  81:Core/Src/freertos.c **** bool PID_lock = false;
-  82:Core/Src/freertos.c **** PID_TypeDef TPID;
-  83:Core/Src/freertos.c **** 
-  84:Core/Src/freertos.c **** void analyze_volatge(void);
-  85:Core/Src/freertos.c **** void CW_CCW_dected(void);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 3
+  76:Core/Src/freertos.c **** PID_TypeDef TPID;
+  77:Core/Src/freertos.c **** volatile double CCR_value = 0;
+  78:Core/Src/freertos.c **** volatile double current_voltage = 0;
+  79:Core/Src/freertos.c **** volatile double current_angle = 0;
+  80:Core/Src/freertos.c **** volatile double db_target_angle = 0;
+  81:Core/Src/freertos.c **** 
+  82:Core/Src/freertos.c **** void analyze_volatge(void);
+  83:Core/Src/freertos.c **** void PID_Error_handler(void);
+  84:Core/Src/freertos.c **** void CW_CCW_deect(void);
+  85:Core/Src/freertos.c **** void PID_init(void);
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s 			page 3
 
 
-  86:Core/Src/freertos.c **** void PID_error_handler(void);
-  87:Core/Src/freertos.c **** void PID_sys_init(void);
-  88:Core/Src/freertos.c **** 
-  89:Core/Src/freertos.c **** void steering_protection(void);
-  90:Core/Src/freertos.c **** /* USER CODE END FunctionPrototypes */
-  91:Core/Src/freertos.c **** 
-  92:Core/Src/freertos.c **** void StartPIDTask(void *argument);
-  93:Core/Src/freertos.c **** void canopen_task(void *argument);
-  94:Core/Src/freertos.c **** 
-  95:Core/Src/freertos.c **** void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
-  96:Core/Src/freertos.c **** /**
-  97:Core/Src/freertos.c ****  * @brief  FreeRTOS initialization
-  98:Core/Src/freertos.c ****  * @param  None
-  99:Core/Src/freertos.c ****  * @retval None
- 100:Core/Src/freertos.c ****  */
- 101:Core/Src/freertos.c **** void MX_FREERTOS_Init(void)
- 102:Core/Src/freertos.c **** {
- 103:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
- 104:Core/Src/freertos.c **** 
- 105:Core/Src/freertos.c ****   /* USER CODE END Init */
- 106:Core/Src/freertos.c **** 
- 107:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_MUTEX */
- 108:Core/Src/freertos.c ****   /* add mutexes, ... */
- 109:Core/Src/freertos.c ****   /* USER CODE END RTOS_MUTEX */
- 110:Core/Src/freertos.c **** 
- 111:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_SEMAPHORES */
- 112:Core/Src/freertos.c ****   /* add semaphores, ... */
- 113:Core/Src/freertos.c ****   /* USER CODE END RTOS_SEMAPHORES */
- 114:Core/Src/freertos.c **** 
- 115:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_TIMERS */
- 116:Core/Src/freertos.c ****   /* start timers, add new ones, ... */
- 117:Core/Src/freertos.c ****   /* USER CODE END RTOS_TIMERS */
- 118:Core/Src/freertos.c **** 
- 119:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_QUEUES */
- 120:Core/Src/freertos.c ****   /* add queues, ... */
- 121:Core/Src/freertos.c ****   /* USER CODE END RTOS_QUEUES */
- 122:Core/Src/freertos.c **** 
- 123:Core/Src/freertos.c ****   /* Create the thread(s) */
- 124:Core/Src/freertos.c ****   /* creation of PIDTask */
- 125:Core/Src/freertos.c ****   PIDTaskHandle = osThreadNew(StartPIDTask, NULL, &PIDTask_attributes);
+  86:Core/Src/freertos.c **** /* USER CODE END FunctionPrototypes */
+  87:Core/Src/freertos.c **** 
+  88:Core/Src/freertos.c **** void StartPIDTask(void *argument);
+  89:Core/Src/freertos.c **** void canopen_task(void *argument);
+  90:Core/Src/freertos.c **** 
+  91:Core/Src/freertos.c **** void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
+  92:Core/Src/freertos.c **** 
+  93:Core/Src/freertos.c **** /**
+  94:Core/Src/freertos.c ****  * @brief  FreeRTOS initialization
+  95:Core/Src/freertos.c ****  * @param  None
+  96:Core/Src/freertos.c ****  * @retval None
+  97:Core/Src/freertos.c ****  */
+  98:Core/Src/freertos.c **** void MX_FREERTOS_Init(void)
+  99:Core/Src/freertos.c **** {
+ 100:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
+ 101:Core/Src/freertos.c **** 
+ 102:Core/Src/freertos.c ****   /* USER CODE END Init */
+ 103:Core/Src/freertos.c **** 
+ 104:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_MUTEX */
+ 105:Core/Src/freertos.c ****   /* add mutexes, ... */
+ 106:Core/Src/freertos.c ****   /* USER CODE END RTOS_MUTEX */
+ 107:Core/Src/freertos.c **** 
+ 108:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_SEMAPHORES */
+ 109:Core/Src/freertos.c ****   /* add semaphores, ... */
+ 110:Core/Src/freertos.c ****   /* USER CODE END RTOS_SEMAPHORES */
+ 111:Core/Src/freertos.c **** 
+ 112:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_TIMERS */
+ 113:Core/Src/freertos.c ****   /* start timers, add new ones, ... */
+ 114:Core/Src/freertos.c ****   /* USER CODE END RTOS_TIMERS */
+ 115:Core/Src/freertos.c **** 
+ 116:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_QUEUES */
+ 117:Core/Src/freertos.c ****   /* add queues, ... */
+ 118:Core/Src/freertos.c ****   /* USER CODE END RTOS_QUEUES */
+ 119:Core/Src/freertos.c **** 
+ 120:Core/Src/freertos.c ****   /* Create the thread(s) */
+ 121:Core/Src/freertos.c ****   /* creation of PIDTask */
+ 122:Core/Src/freertos.c ****   PIDTaskHandle = osThreadNew(StartPIDTask, NULL, &PIDTask_attributes);
+ 123:Core/Src/freertos.c **** 
+ 124:Core/Src/freertos.c ****   /* creation of canopenTask */
+ 125:Core/Src/freertos.c ****   canopenTaskHandle = osThreadNew(canopen_task, NULL, &canopenTask_attributes);
  126:Core/Src/freertos.c **** 
- 127:Core/Src/freertos.c ****   /* creation of canopenTask */
- 128:Core/Src/freertos.c ****   canopenTaskHandle = osThreadNew(canopen_task, NULL, &canopenTask_attributes);
- 129:Core/Src/freertos.c **** 
- 130:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_THREADS */
- 131:Core/Src/freertos.c ****   /* add threads, ... */
- 132:Core/Src/freertos.c ****   /* USER CODE END RTOS_THREADS */
- 133:Core/Src/freertos.c **** 
- 134:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_EVENTS */
- 135:Core/Src/freertos.c ****   /* add events, ... */
- 136:Core/Src/freertos.c ****   /* USER CODE END RTOS_EVENTS */
- 137:Core/Src/freertos.c **** }
- 138:Core/Src/freertos.c **** 
- 139:Core/Src/freertos.c **** /* USER CODE BEGIN Header_StartPIDTask */
- 140:Core/Src/freertos.c **** /**
- 141:Core/Src/freertos.c ****  * @brief  Function implementing the PIDTask thread.
- 142:Core/Src/freertos.c ****  * @param  argument: Not used
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 4
+ 127:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_THREADS */
+ 128:Core/Src/freertos.c ****   /* add threads, ... */
+ 129:Core/Src/freertos.c ****   /* USER CODE END RTOS_THREADS */
+ 130:Core/Src/freertos.c **** 
+ 131:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_EVENTS */
+ 132:Core/Src/freertos.c ****   /* add events, ... */
+ 133:Core/Src/freertos.c ****   /* USER CODE END RTOS_EVENTS */
+ 134:Core/Src/freertos.c **** }
+ 135:Core/Src/freertos.c **** 
+ 136:Core/Src/freertos.c **** /* USER CODE BEGIN Header_StartPIDTask */
+ 137:Core/Src/freertos.c **** /**
+ 138:Core/Src/freertos.c ****  * @brief  Function implementing the PIDTask thread.
+ 139:Core/Src/freertos.c ****  * @param  argument: Not used
+ 140:Core/Src/freertos.c ****  * @retval None
+ 141:Core/Src/freertos.c ****  */
+ 142:Core/Src/freertos.c **** /* USER CODE END Header_StartPIDTask */
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s 			page 4
 
 
- 143:Core/Src/freertos.c ****  * @retval None
- 144:Core/Src/freertos.c ****  */
- 145:Core/Src/freertos.c **** /* USER CODE END Header_StartPIDTask */
- 146:Core/Src/freertos.c **** void StartPIDTask(void *argument)
- 147:Core/Src/freertos.c **** {
- 148:Core/Src/freertos.c ****   /* USER CODE BEGIN StartPIDTask */
- 149:Core/Src/freertos.c ****   PID_sys_init();
- 150:Core/Src/freertos.c ****   db_target_angle = 35;
- 151:Core/Src/freertos.c ****   /* Infinite loop */
- 152:Core/Src/freertos.c ****   for (;;)
- 153:Core/Src/freertos.c ****   {
- 154:Core/Src/freertos.c ****     analyze_volatge();
- 155:Core/Src/freertos.c ****     PID_Compute(&TPID);
- 156:Core/Src/freertos.c ****     CW_CCW_dected();
- 157:Core/Src/freertos.c ****     steering_protection();
- 158:Core/Src/freertos.c ****     if (PID_lock == false)
- 159:Core/Src/freertos.c ****     {
- 160:Core/Src/freertos.c ****       CCR_value = abs(CCR_value);
- 161:Core/Src/freertos.c ****       TIM2->CCR2 = ((int)CCR_value);
- 162:Core/Src/freertos.c ****     }
- 163:Core/Src/freertos.c ****     osDelay(100);
- 164:Core/Src/freertos.c ****   }
- 165:Core/Src/freertos.c ****   /* USER CODE END StartPIDTask */
- 166:Core/Src/freertos.c **** }
- 167:Core/Src/freertos.c **** 
- 168:Core/Src/freertos.c **** /* USER CODE BEGIN Header_canopen_task */
- 169:Core/Src/freertos.c **** /**
- 170:Core/Src/freertos.c ****  * @brief Function implementing the canopenTask thread.
- 171:Core/Src/freertos.c ****  * @param argument: Not used
- 172:Core/Src/freertos.c ****  * @retval None
- 173:Core/Src/freertos.c ****  */
- 174:Core/Src/freertos.c **** /* USER CODE END Header_canopen_task */
- 175:Core/Src/freertos.c **** void canopen_task(void *argument)
- 176:Core/Src/freertos.c **** {
-  31              		.loc 1 176 1 view -0
+ 143:Core/Src/freertos.c **** void StartPIDTask(void *argument)
+ 144:Core/Src/freertos.c **** {
+ 145:Core/Src/freertos.c ****   /* USER CODE BEGIN StartPIDTask */
+ 146:Core/Src/freertos.c ****   PID_init();
+ 147:Core/Src/freertos.c ****   /* Infinite loop */
+ 148:Core/Src/freertos.c ****   for (;;)
+ 149:Core/Src/freertos.c ****   {
+ 150:Core/Src/freertos.c ****     analyze_volatge();
+ 151:Core/Src/freertos.c ****     CW_CCW_deect();
+ 152:Core/Src/freertos.c ****     PID_Compute(&TPID);
+ 153:Core/Src/freertos.c ****     CCR_value = abs(CCR_value);
+ 154:Core/Src/freertos.c ****     TIM2->CCR2 = ((int)CCR_value);
+ 155:Core/Src/freertos.c ****     osDelay(100);
+ 156:Core/Src/freertos.c ****   }
+ 157:Core/Src/freertos.c ****   /* USER CODE END StartPIDTask */
+ 158:Core/Src/freertos.c **** }
+ 159:Core/Src/freertos.c **** 
+ 160:Core/Src/freertos.c **** /* USER CODE BEGIN Header_canopen_task */
+ 161:Core/Src/freertos.c **** /**
+ 162:Core/Src/freertos.c ****  * @brief Function implementing the canopenTask thread.
+ 163:Core/Src/freertos.c ****  * @param argument: Not used
+ 164:Core/Src/freertos.c ****  * @retval None
+ 165:Core/Src/freertos.c ****  */
+ 166:Core/Src/freertos.c **** /* USER CODE END Header_canopen_task */
+ 167:Core/Src/freertos.c **** void canopen_task(void *argument)
+ 168:Core/Src/freertos.c **** {
+  31              		.loc 1 168 1 view -0
   32              		.cfi_startproc
   33              		@ args = 0, pretend = 0, frame = 24
   34              		@ frame_needed = 0, uses_anonymous_args = 0
-  35              		.loc 1 176 1 is_stmt 0 view .LVU1
+  35              		.loc 1 168 1 is_stmt 0 view .LVU1
   36 0000 10B5     		push	{r4, lr}
   37              	.LCFI0:
   38              		.cfi_def_cfa_offset 8
@@ -228,53 +220,53 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 1
   41 0002 86B0     		sub	sp, sp, #24
   42              	.LCFI1:
   43              		.cfi_def_cfa_offset 32
- 177:Core/Src/freertos.c ****   /* USER CODE BEGIN canopen_task */
- 178:Core/Src/freertos.c ****   CANopenNodeSTM32 canOpenNodeSTM32;
-  44              		.loc 1 178 3 is_stmt 1 view .LVU2
- 179:Core/Src/freertos.c ****   canOpenNodeSTM32.CANHandle = &hcan;
-  45              		.loc 1 179 3 view .LVU3
-  46              		.loc 1 179 30 is_stmt 0 view .LVU4
+ 169:Core/Src/freertos.c ****   /* USER CODE BEGIN canopen_task */
+ 170:Core/Src/freertos.c ****   CANopenNodeSTM32 canOpenNodeSTM32;
+  44              		.loc 1 170 3 is_stmt 1 view .LVU2
+ 171:Core/Src/freertos.c ****   canOpenNodeSTM32.CANHandle = &hcan;
+  45              		.loc 1 171 3 view .LVU3
+  46              		.loc 1 171 30 is_stmt 0 view .LVU4
   47 0004 164B     		ldr	r3, .L6
   48 0006 0293     		str	r3, [sp, #8]
- 180:Core/Src/freertos.c ****   canOpenNodeSTM32.HWInitFunction = MX_CAN_Init;
-  49              		.loc 1 180 3 is_stmt 1 view .LVU5
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 5
-
-
-  50              		.loc 1 180 35 is_stmt 0 view .LVU6
+ 172:Core/Src/freertos.c ****   canOpenNodeSTM32.HWInitFunction = MX_CAN_Init;
+  49              		.loc 1 172 3 is_stmt 1 view .LVU5
+  50              		.loc 1 172 35 is_stmt 0 view .LVU6
   51 0008 164B     		ldr	r3, .L6+4
   52 000a 0393     		str	r3, [sp, #12]
- 181:Core/Src/freertos.c ****   canOpenNodeSTM32.timerHandle = &htim17;
-  53              		.loc 1 181 3 is_stmt 1 view .LVU7
-  54              		.loc 1 181 32 is_stmt 0 view .LVU8
+ 173:Core/Src/freertos.c ****   canOpenNodeSTM32.timerHandle = &htim17;
+  53              		.loc 1 173 3 is_stmt 1 view .LVU7
+  54              		.loc 1 173 32 is_stmt 0 view .LVU8
   55 000c 164B     		ldr	r3, .L6+8
   56 000e 0193     		str	r3, [sp, #4]
- 182:Core/Src/freertos.c ****   canOpenNodeSTM32.desiredNodeID = 17;
-  57              		.loc 1 182 3 is_stmt 1 view .LVU9
-  58              		.loc 1 182 34 is_stmt 0 view .LVU10
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s 			page 5
+
+
+ 174:Core/Src/freertos.c ****   canOpenNodeSTM32.desiredNodeID = 17;
+  57              		.loc 1 174 3 is_stmt 1 view .LVU9
+  58              		.loc 1 174 34 is_stmt 0 view .LVU10
   59 0010 1123     		movs	r3, #17
   60 0012 8DF80030 		strb	r3, [sp]
- 183:Core/Src/freertos.c ****   canOpenNodeSTM32.baudrate = 125;
-  61              		.loc 1 183 3 is_stmt 1 view .LVU11
-  62              		.loc 1 183 29 is_stmt 0 view .LVU12
+ 175:Core/Src/freertos.c ****   canOpenNodeSTM32.baudrate = 125;
+  61              		.loc 1 175 3 is_stmt 1 view .LVU11
+  62              		.loc 1 175 29 is_stmt 0 view .LVU12
   63 0016 7D23     		movs	r3, #125
   64 0018 8DF80230 		strb	r3, [sp, #2]
- 184:Core/Src/freertos.c ****   canopen_app_init(&canOpenNodeSTM32);
-  65              		.loc 1 184 3 is_stmt 1 view .LVU13
+ 176:Core/Src/freertos.c ****   canopen_app_init(&canOpenNodeSTM32);
+  65              		.loc 1 176 3 is_stmt 1 view .LVU13
   66 001c 6846     		mov	r0, sp
   67              	.LVL1:
-  68              		.loc 1 184 3 is_stmt 0 view .LVU14
+  68              		.loc 1 176 3 is_stmt 0 view .LVU14
   69 001e FFF7FEFF 		bl	canopen_app_init
   70              	.LVL2:
- 185:Core/Src/freertos.c ****   int16_t pre_target_angle = OD_PERSIST_COMM.x6001_target_angle;
-  71              		.loc 1 185 3 is_stmt 1 view .LVU15
-  72              		.loc 1 185 11 is_stmt 0 view .LVU16
+ 177:Core/Src/freertos.c ****   int16_t pre_target_angle = OD_PERSIST_COMM.x6001_target_angle;
+  71              		.loc 1 177 3 is_stmt 1 view .LVU15
+  72              		.loc 1 177 11 is_stmt 0 view .LVU16
   73 0022 124B     		ldr	r3, .L6+12
   74 0024 B3F9CE40 		ldrsh	r4, [r3, #206]
   75              	.LVL3:
- 186:Core/Src/freertos.c ****   db_target_angle = OD_PERSIST_COMM.x6001_target_angle;
-  76              		.loc 1 186 3 is_stmt 1 view .LVU17
-  77              		.loc 1 186 19 is_stmt 0 view .LVU18
+ 178:Core/Src/freertos.c ****   db_target_angle = OD_PERSIST_COMM.x6001_target_angle;
+  76              		.loc 1 178 3 is_stmt 1 view .LVU17
+  77              		.loc 1 178 19 is_stmt 0 view .LVU18
   78 0028 2046     		mov	r0, r4
   79 002a FFF7FEFF 		bl	__aeabi_i2d
   80              	.LVL4:
@@ -282,58 +274,58 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 1
   82 0030 C3E90001 		strd	r0, [r3]
   83 0034 0BE0     		b	.L3
   84              	.L5:
- 187:Core/Src/freertos.c ****   /* Infinite loop */
- 188:Core/Src/freertos.c ****   for (;;)
- 189:Core/Src/freertos.c ****   {
- 190:Core/Src/freertos.c ****     canopen_app_process();
- 191:Core/Src/freertos.c ****     if (OD_PERSIST_COMM.x6000_current_angle != pre_target_angle)
- 192:Core/Src/freertos.c ****     {
- 193:Core/Src/freertos.c ****       pre_target_angle = OD_PERSIST_COMM.x6001_target_angle;
-  85              		.loc 1 193 7 is_stmt 1 view .LVU19
-  86              		.loc 1 193 24 is_stmt 0 view .LVU20
+ 179:Core/Src/freertos.c ****   /* Infinite loop */
+ 180:Core/Src/freertos.c ****   for (;;)
+ 181:Core/Src/freertos.c ****   {
+ 182:Core/Src/freertos.c ****     canopen_app_process();
+ 183:Core/Src/freertos.c ****     if (OD_PERSIST_COMM.x6000_current_angle != pre_target_angle)
+ 184:Core/Src/freertos.c ****     {
+ 185:Core/Src/freertos.c ****       pre_target_angle = OD_PERSIST_COMM.x6001_target_angle;
+  85              		.loc 1 185 7 is_stmt 1 view .LVU19
+  86              		.loc 1 185 24 is_stmt 0 view .LVU20
   87 0036 0D4B     		ldr	r3, .L6+12
   88 0038 B3F9CE40 		ldrsh	r4, [r3, #206]
   89              	.LVL5:
- 194:Core/Src/freertos.c ****       db_target_angle = (double)OD_PERSIST_COMM.x6001_target_angle;
-  90              		.loc 1 194 7 is_stmt 1 view .LVU21
-  91              		.loc 1 194 25 is_stmt 0 view .LVU22
+ 186:Core/Src/freertos.c ****       db_target_angle = (double)OD_PERSIST_COMM.x6001_target_angle;
+  90              		.loc 1 186 7 is_stmt 1 view .LVU21
+  91              		.loc 1 186 25 is_stmt 0 view .LVU22
   92 003c 2046     		mov	r0, r4
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 6
-
-
   93 003e FFF7FEFF 		bl	__aeabi_i2d
   94              	.LVL6:
-  95              		.loc 1 194 23 view .LVU23
+  95              		.loc 1 186 23 view .LVU23
   96 0042 0B4B     		ldr	r3, .L6+16
   97 0044 C3E90001 		strd	r0, [r3]
   98              	.L2:
- 195:Core/Src/freertos.c ****     }
- 196:Core/Src/freertos.c ****     vTaskDelay(1);
-  99              		.loc 1 196 5 is_stmt 1 view .LVU24
+ 187:Core/Src/freertos.c ****     }
+ 188:Core/Src/freertos.c ****     vTaskDelay(1);
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s 			page 6
+
+
+  99              		.loc 1 188 5 is_stmt 1 view .LVU24
  100 0048 0120     		movs	r0, #1
  101 004a FFF7FEFF 		bl	vTaskDelay
  102              	.LVL7:
- 188:Core/Src/freertos.c ****   {
- 103              		.loc 1 188 9 view .LVU25
+ 180:Core/Src/freertos.c ****   {
+ 103              		.loc 1 180 9 view .LVU25
  104              	.L3:
- 188:Core/Src/freertos.c ****   {
- 105              		.loc 1 188 3 view .LVU26
- 190:Core/Src/freertos.c ****     if (OD_PERSIST_COMM.x6000_current_angle != pre_target_angle)
- 106              		.loc 1 190 5 view .LVU27
+ 180:Core/Src/freertos.c ****   {
+ 105              		.loc 1 180 3 view .LVU26
+ 182:Core/Src/freertos.c ****     if (OD_PERSIST_COMM.x6000_current_angle != pre_target_angle)
+ 106              		.loc 1 182 5 view .LVU27
  107 004e FFF7FEFF 		bl	canopen_app_process
  108              	.LVL8:
- 191:Core/Src/freertos.c ****     {
- 109              		.loc 1 191 5 view .LVU28
- 191:Core/Src/freertos.c ****     {
- 110              		.loc 1 191 24 is_stmt 0 view .LVU29
+ 183:Core/Src/freertos.c ****     {
+ 109              		.loc 1 183 5 view .LVU28
+ 183:Core/Src/freertos.c ****     {
+ 110              		.loc 1 183 24 is_stmt 0 view .LVU29
  111 0052 064B     		ldr	r3, .L6+12
  112 0054 B3F9CC30 		ldrsh	r3, [r3, #204]
- 191:Core/Src/freertos.c ****     {
- 113              		.loc 1 191 8 view .LVU30
+ 183:Core/Src/freertos.c ****     {
+ 113              		.loc 1 183 8 view .LVU30
  114 0058 A342     		cmp	r3, r4
  115 005a ECD1     		bne	.L5
- 191:Core/Src/freertos.c ****     {
- 116              		.loc 1 191 8 view .LVU31
+ 183:Core/Src/freertos.c ****     {
+ 116              		.loc 1 183 8 view .LVU31
  117 005c F4E7     		b	.L2
  118              	.L7:
  119 005e 00BF     		.align	2
@@ -353,47 +345,47 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 1
  134              		.thumb_func
  136              	MX_FREERTOS_Init:
  137              	.LFB168:
- 102:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
- 138              		.loc 1 102 1 is_stmt 1 view -0
+  99:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
+ 138              		.loc 1 99 1 is_stmt 1 view -0
  139              		.cfi_startproc
  140              		@ args = 0, pretend = 0, frame = 0
  141              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 7
-
-
  142 0000 08B5     		push	{r3, lr}
  143              	.LCFI2:
  144              		.cfi_def_cfa_offset 8
  145              		.cfi_offset 3, -8
  146              		.cfi_offset 14, -4
- 125:Core/Src/freertos.c **** 
- 147              		.loc 1 125 3 view .LVU33
- 125:Core/Src/freertos.c **** 
- 148              		.loc 1 125 19 is_stmt 0 view .LVU34
+ 122:Core/Src/freertos.c **** 
+ 147              		.loc 1 122 3 view .LVU33
+ 122:Core/Src/freertos.c **** 
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s 			page 7
+
+
+ 148              		.loc 1 122 19 is_stmt 0 view .LVU34
  149 0002 074A     		ldr	r2, .L10
  150 0004 0021     		movs	r1, #0
  151 0006 0748     		ldr	r0, .L10+4
  152 0008 FFF7FEFF 		bl	osThreadNew
  153              	.LVL9:
- 125:Core/Src/freertos.c **** 
- 154              		.loc 1 125 17 view .LVU35
+ 122:Core/Src/freertos.c **** 
+ 154              		.loc 1 122 17 view .LVU35
  155 000c 064B     		ldr	r3, .L10+8
  156 000e 1860     		str	r0, [r3]
- 128:Core/Src/freertos.c **** 
- 157              		.loc 1 128 3 is_stmt 1 view .LVU36
- 128:Core/Src/freertos.c **** 
- 158              		.loc 1 128 23 is_stmt 0 view .LVU37
+ 125:Core/Src/freertos.c **** 
+ 157              		.loc 1 125 3 is_stmt 1 view .LVU36
+ 125:Core/Src/freertos.c **** 
+ 158              		.loc 1 125 23 is_stmt 0 view .LVU37
  159 0010 064A     		ldr	r2, .L10+12
  160 0012 0021     		movs	r1, #0
  161 0014 0648     		ldr	r0, .L10+16
  162 0016 FFF7FEFF 		bl	osThreadNew
  163              	.LVL10:
- 128:Core/Src/freertos.c **** 
- 164              		.loc 1 128 21 view .LVU38
+ 125:Core/Src/freertos.c **** 
+ 164              		.loc 1 125 21 view .LVU38
  165 001a 064B     		ldr	r3, .L10+20
  166 001c 1860     		str	r0, [r3]
- 137:Core/Src/freertos.c **** 
- 167              		.loc 1 137 1 view .LVU39
+ 134:Core/Src/freertos.c **** 
+ 167              		.loc 1 134 1 view .LVU39
  168 001e 08BD     		pop	{r3, pc}
  169              	.L11:
  170              		.align	2
@@ -410,714 +402,619 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 1
  182              		.global	__aeabi_dmul
  183              		.global	__aeabi_dadd
  184              		.global	__aeabi_dsub
- 185              		.section	.text.analyze_volatge,"ax",%progbits
- 186              		.align	1
- 187              		.global	analyze_volatge
- 188              		.syntax unified
- 189              		.thumb
- 190              		.thumb_func
- 192              	analyze_volatge:
- 193              	.LFB171:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 8
+ 185              		.global	__aeabi_d2iz
+ 186              		.section	.text.analyze_volatge,"ax",%progbits
+ 187              		.align	1
+ 188              		.global	analyze_volatge
+ 189              		.syntax unified
+ 190              		.thumb
+ 191              		.thumb_func
+ 193              	analyze_volatge:
+ 194              	.LFB171:
+ 189:Core/Src/freertos.c ****   }
+ 190:Core/Src/freertos.c ****   /* USER CODE END canopen_task */
+ 191:Core/Src/freertos.c **** }
+ 192:Core/Src/freertos.c **** /* Private application code --------------------------------------------------*/
+ 193:Core/Src/freertos.c **** /* USER CODE BEGIN Application */
+ 194:Core/Src/freertos.c **** void analyze_volatge(void)
+ 195:Core/Src/freertos.c **** {
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s 			page 8
 
 
- 197:Core/Src/freertos.c ****   }
- 198:Core/Src/freertos.c ****   /* USER CODE END canopen_task */
- 199:Core/Src/freertos.c **** }
- 200:Core/Src/freertos.c **** /* Private application code --------------------------------------------------*/
- 201:Core/Src/freertos.c **** /* USER CODE BEGIN Application */
- 202:Core/Src/freertos.c **** 
+ 195              		.loc 1 195 1 is_stmt 1 view -0
+ 196              		.cfi_startproc
+ 197              		@ args = 0, pretend = 0, frame = 0
+ 198              		@ frame_needed = 0, uses_anonymous_args = 0
+ 199 0000 38B5     		push	{r3, r4, r5, lr}
+ 200              	.LCFI3:
+ 201              		.cfi_def_cfa_offset 16
+ 202              		.cfi_offset 3, -16
+ 203              		.cfi_offset 4, -12
+ 204              		.cfi_offset 5, -8
+ 205              		.cfi_offset 14, -4
+ 196:Core/Src/freertos.c ****   HAL_ADC_Start(&hadc1);
+ 206              		.loc 1 196 3 view .LVU41
+ 207 0002 274D     		ldr	r5, .L14+24
+ 208 0004 2846     		mov	r0, r5
+ 209 0006 FFF7FEFF 		bl	HAL_ADC_Start
+ 210              	.LVL11:
+ 197:Core/Src/freertos.c ****   HAL_ADC_PollForConversion(&hadc1, 1);
+ 211              		.loc 1 197 3 view .LVU42
+ 212 000a 0121     		movs	r1, #1
+ 213 000c 2846     		mov	r0, r5
+ 214 000e FFF7FEFF 		bl	HAL_ADC_PollForConversion
+ 215              	.LVL12:
+ 198:Core/Src/freertos.c ****   current_voltage = HAL_ADC_GetValue(&hadc1);
+ 216              		.loc 1 198 3 view .LVU43
+ 217              		.loc 1 198 21 is_stmt 0 view .LVU44
+ 218 0012 2846     		mov	r0, r5
+ 219 0014 FFF7FEFF 		bl	HAL_ADC_GetValue
+ 220              	.LVL13:
+ 221              		.loc 1 198 19 view .LVU45
+ 222 0018 FFF7FEFF 		bl	__aeabi_ui2d
+ 223              	.LVL14:
+ 224 001c 214C     		ldr	r4, .L14+28
+ 225 001e C4E90001 		strd	r0, [r4]
+ 199:Core/Src/freertos.c ****   current_voltage = HAL_ADC_GetValue(&hadc1);
+ 226              		.loc 1 199 3 is_stmt 1 view .LVU46
+ 227              		.loc 1 199 21 is_stmt 0 view .LVU47
+ 228 0022 2846     		mov	r0, r5
+ 229 0024 FFF7FEFF 		bl	HAL_ADC_GetValue
+ 230              	.LVL15:
+ 231              		.loc 1 199 19 view .LVU48
+ 232 0028 FFF7FEFF 		bl	__aeabi_ui2d
+ 233              	.LVL16:
+ 234 002c C4E90001 		strd	r0, [r4]
+ 200:Core/Src/freertos.c ****   current_voltage = ((current_voltage / 4096) * 3.3);
+ 235              		.loc 1 200 3 is_stmt 1 view .LVU49
+ 236              		.loc 1 200 39 is_stmt 0 view .LVU50
+ 237 0030 0022     		movs	r2, #0
+ 238 0032 1D4B     		ldr	r3, .L14+32
+ 239 0034 D4E90001 		ldrd	r0, [r4]
+ 240 0038 FFF7FEFF 		bl	__aeabi_dmul
+ 241              	.LVL17:
+ 242              		.loc 1 200 47 view .LVU51
+ 243 003c 12A3     		adr	r3, .L14
+ 244 003e D3E90023 		ldrd	r2, [r3]
+ 245 0042 FFF7FEFF 		bl	__aeabi_dmul
+ 246              	.LVL18:
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s 			page 9
+
+
+ 247              		.loc 1 200 19 view .LVU52
+ 248 0046 C4E90001 		strd	r0, [r4]
+ 201:Core/Src/freertos.c ****   current_angle = (int)(((current_voltage * 2) - 1.6) * 26.5 - 34.45);
+ 249              		.loc 1 201 3 is_stmt 1 view .LVU53
+ 250              		.loc 1 201 43 is_stmt 0 view .LVU54
+ 251 004a D4E90001 		ldrd	r0, [r4]
+ 252 004e 0246     		mov	r2, r0
+ 253 0050 0B46     		mov	r3, r1
+ 254 0052 FFF7FEFF 		bl	__aeabi_dadd
+ 255              	.LVL19:
+ 256              		.loc 1 201 48 view .LVU55
+ 257 0056 0EA3     		adr	r3, .L14+8
+ 258 0058 D3E90023 		ldrd	r2, [r3]
+ 259 005c FFF7FEFF 		bl	__aeabi_dsub
+ 260              	.LVL20:
+ 261              		.loc 1 201 55 view .LVU56
+ 262 0060 0022     		movs	r2, #0
+ 263 0062 124B     		ldr	r3, .L14+36
+ 264 0064 FFF7FEFF 		bl	__aeabi_dmul
+ 265              	.LVL21:
+ 266              		.loc 1 201 62 view .LVU57
+ 267 0068 0BA3     		adr	r3, .L14+16
+ 268 006a D3E90023 		ldrd	r2, [r3]
+ 269 006e FFF7FEFF 		bl	__aeabi_dsub
+ 270              	.LVL22:
+ 271              		.loc 1 201 19 view .LVU58
+ 272 0072 FFF7FEFF 		bl	__aeabi_d2iz
+ 273              	.LVL23:
+ 274              		.loc 1 201 17 view .LVU59
+ 275 0076 FFF7FEFF 		bl	__aeabi_i2d
+ 276              	.LVL24:
+ 277 007a 0D4B     		ldr	r3, .L14+40
+ 278 007c C3E90001 		strd	r0, [r3]
+ 202:Core/Src/freertos.c **** }
+ 279              		.loc 1 202 1 view .LVU60
+ 280 0080 38BD     		pop	{r3, r4, r5, pc}
+ 281              	.L15:
+ 282 0082 00BFAFF3 		.align	3
+ 282      0080
+ 283              	.L14:
+ 284 0088 66666666 		.word	1717986918
+ 285 008c 66660A40 		.word	1074423398
+ 286 0090 9A999999 		.word	-1717986918
+ 287 0094 9999F93F 		.word	1073322393
+ 288 0098 9A999999 		.word	-1717986918
+ 289 009c 99394140 		.word	1078016409
+ 290 00a0 00000000 		.word	hadc1
+ 291 00a4 00000000 		.word	.LANCHOR5
+ 292 00a8 0000303F 		.word	1060110336
+ 293 00ac 00803A40 		.word	1077575680
+ 294 00b0 00000000 		.word	.LANCHOR6
+ 295              		.cfi_endproc
+ 296              	.LFE171:
+ 298              		.section	.text.PID_init,"ax",%progbits
+ 299              		.align	1
+ 300              		.global	PID_init
+ 301              		.syntax unified
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s 			page 10
+
+
+ 302              		.thumb
+ 303              		.thumb_func
+ 305              	PID_init:
+ 306              	.LFB172:
  203:Core/Src/freertos.c **** 
- 204:Core/Src/freertos.c **** void analyze_volatge(void)
+ 204:Core/Src/freertos.c **** void PID_init(void)
  205:Core/Src/freertos.c **** {
- 194              		.loc 1 205 1 is_stmt 1 view -0
- 195              		.cfi_startproc
- 196              		@ args = 0, pretend = 0, frame = 0
- 197              		@ frame_needed = 0, uses_anonymous_args = 0
- 198 0000 10B5     		push	{r4, lr}
- 199              	.LCFI3:
- 200              		.cfi_def_cfa_offset 8
- 201              		.cfi_offset 4, -8
- 202              		.cfi_offset 14, -4
- 206:Core/Src/freertos.c ****   HAL_ADC_Start(&hadc1);
- 203              		.loc 1 206 3 view .LVU41
- 204 0002 194C     		ldr	r4, .L14+8
- 205 0004 2046     		mov	r0, r4
- 206 0006 FFF7FEFF 		bl	HAL_ADC_Start
- 207              	.LVL11:
- 207:Core/Src/freertos.c ****   HAL_ADC_PollForConversion(&hadc1, 1);
- 208              		.loc 1 207 3 view .LVU42
- 209 000a 0121     		movs	r1, #1
- 210 000c 2046     		mov	r0, r4
- 211 000e FFF7FEFF 		bl	HAL_ADC_PollForConversion
- 212              	.LVL12:
- 208:Core/Src/freertos.c ****   current_voltage = HAL_ADC_GetValue(&hadc1);
- 213              		.loc 1 208 3 view .LVU43
- 214              		.loc 1 208 21 is_stmt 0 view .LVU44
- 215 0012 2046     		mov	r0, r4
- 216 0014 FFF7FEFF 		bl	HAL_ADC_GetValue
- 217              	.LVL13:
- 218              		.loc 1 208 19 view .LVU45
- 219 0018 FFF7FEFF 		bl	__aeabi_ui2d
- 220              	.LVL14:
- 221 001c 134C     		ldr	r4, .L14+12
- 222 001e C4E90001 		strd	r0, [r4]
- 209:Core/Src/freertos.c ****   current_voltage = ((current_voltage / 4096) * 3.3);
- 223              		.loc 1 209 3 is_stmt 1 view .LVU46
- 224              		.loc 1 209 39 is_stmt 0 view .LVU47
- 225 0022 0022     		movs	r2, #0
- 226 0024 124B     		ldr	r3, .L14+16
- 227 0026 D4E90001 		ldrd	r0, [r4]
- 228 002a FFF7FEFF 		bl	__aeabi_dmul
- 229              	.LVL15:
- 230              		.loc 1 209 47 view .LVU48
- 231 002e 0CA3     		adr	r3, .L14
- 232 0030 D3E90023 		ldrd	r2, [r3]
- 233 0034 FFF7FEFF 		bl	__aeabi_dmul
- 234              	.LVL16:
- 235              		.loc 1 209 19 view .LVU49
- 236 0038 C4E90001 		strd	r0, [r4]
- 210:Core/Src/freertos.c ****   current_angle = (((current_voltage)*2 * 22.5) - 45) / 1;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 9
+ 307              		.loc 1 205 1 is_stmt 1 view -0
+ 308              		.cfi_startproc
+ 309              		@ args = 0, pretend = 0, frame = 0
+ 310              		@ frame_needed = 0, uses_anonymous_args = 0
+ 311 0000 30B5     		push	{r4, r5, lr}
+ 312              	.LCFI4:
+ 313              		.cfi_def_cfa_offset 12
+ 314              		.cfi_offset 4, -12
+ 315              		.cfi_offset 5, -8
+ 316              		.cfi_offset 14, -4
+ 317 0002 83B0     		sub	sp, sp, #12
+ 318              	.LCFI5:
+ 319              		.cfi_def_cfa_offset 24
+ 206:Core/Src/freertos.c ****   TIM2->CCR2 = 0; // CCR_value bigger the rpm will highter 0~100
+ 320              		.loc 1 206 3 view .LVU62
+ 321              		.loc 1 206 14 is_stmt 0 view .LVU63
+ 322 0004 0025     		movs	r5, #0
+ 323 0006 4FF08043 		mov	r3, #1073741824
+ 324 000a 9D63     		str	r5, [r3, #56]
+ 207:Core/Src/freertos.c ****   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
+ 325              		.loc 1 207 3 is_stmt 1 view .LVU64
+ 326 000c 0421     		movs	r1, #4
+ 327 000e 2248     		ldr	r0, .L18+40
+ 328 0010 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 329              	.LVL25:
+ 208:Core/Src/freertos.c ****   HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
+ 330              		.loc 1 208 3 view .LVU65
+ 331 0014 0122     		movs	r2, #1
+ 332 0016 0821     		movs	r1, #8
+ 333 0018 4FF09040 		mov	r0, #1207959552
+ 334 001c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 335              	.LVL26:
+ 209:Core/Src/freertos.c ****   analyze_volatge();
+ 336              		.loc 1 209 3 view .LVU66
+ 337 0020 FFF7FEFF 		bl	analyze_volatge
+ 338              	.LVL27:
+ 210:Core/Src/freertos.c ****   db_target_angle = Virtual_target_angle;
+ 339              		.loc 1 210 3 view .LVU67
+ 340              		.loc 1 210 19 is_stmt 0 view .LVU68
+ 341 0024 1D4B     		ldr	r3, .L18+44
+ 342 0026 0020     		movs	r0, #0
+ 343 0028 1D49     		ldr	r1, .L18+48
+ 344 002a C3E90001 		strd	r0, [r3]
+ 211:Core/Src/freertos.c ****   PID(&TPID, &current_angle, &CCR_value, &db_target_angle, 1, 0.15, 0, _PID_P_ON_E, _PID_CD_DIRECT)
+ 345              		.loc 1 211 3 is_stmt 1 view .LVU69
+ 346 002e 1D4C     		ldr	r4, .L18+52
+ 347 0030 0195     		str	r5, [sp, #4]
+ 348 0032 0125     		movs	r5, #1
+ 349 0034 0095     		str	r5, [sp]
+ 350 0036 9FED0E2B 		vldr.64	d2, .L18
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s 			page 11
 
 
- 237              		.loc 1 210 3 is_stmt 1 view .LVU50
- 238              		.loc 1 210 38 is_stmt 0 view .LVU51
- 239 003c D4E90001 		ldrd	r0, [r4]
- 240 0040 0246     		mov	r2, r0
- 241 0042 0B46     		mov	r3, r1
- 242 0044 FFF7FEFF 		bl	__aeabi_dadd
- 243              	.LVL17:
- 244              		.loc 1 210 41 view .LVU52
- 245 0048 0022     		movs	r2, #0
- 246 004a 0A4B     		ldr	r3, .L14+20
- 247 004c FFF7FEFF 		bl	__aeabi_dmul
- 248              	.LVL18:
- 249              		.loc 1 210 55 view .LVU53
- 250 0050 0022     		movs	r2, #0
- 251 0052 094B     		ldr	r3, .L14+24
- 252 0054 FFF7FEFF 		bl	__aeabi_dsub
- 253              	.LVL19:
- 254              		.loc 1 210 17 view .LVU54
- 255 0058 084B     		ldr	r3, .L14+28
- 256 005a C3E90001 		strd	r0, [r3]
- 211:Core/Src/freertos.c **** }
- 257              		.loc 1 211 1 view .LVU55
- 258 005e 10BD     		pop	{r4, pc}
- 259              	.L15:
- 260              		.align	3
- 261              	.L14:
- 262 0060 66666666 		.word	1717986918
- 263 0064 66660A40 		.word	1074423398
- 264 0068 00000000 		.word	hadc1
- 265 006c 00000000 		.word	.LANCHOR5
- 266 0070 0000303F 		.word	1060110336
- 267 0074 00803640 		.word	1077313536
- 268 0078 00804640 		.word	1078362112
- 269 007c 00000000 		.word	.LANCHOR6
- 270              		.cfi_endproc
- 271              	.LFE171:
- 273              		.global	__aeabi_dcmplt
- 274              		.section	.text.CW_CCW_dected,"ax",%progbits
- 275              		.align	1
- 276              		.global	CW_CCW_dected
- 277              		.syntax unified
- 278              		.thumb
- 279              		.thumb_func
- 281              	CW_CCW_dected:
- 282              	.LFB172:
- 212:Core/Src/freertos.c **** void CW_CCW_dected(void)
- 213:Core/Src/freertos.c **** {
- 283              		.loc 1 213 1 is_stmt 1 view -0
- 284              		.cfi_startproc
- 285              		@ args = 0, pretend = 0, frame = 0
- 286              		@ frame_needed = 0, uses_anonymous_args = 0
- 287 0000 08B5     		push	{r3, lr}
- 288              	.LCFI4:
- 289              		.cfi_def_cfa_offset 8
- 290              		.cfi_offset 3, -8
- 291              		.cfi_offset 14, -4
- 214:Core/Src/freertos.c ****   if (current_angle < db_target_angle)
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 10
+ 351 003a 9FED0F1B 		vldr.64	d1, .L18+8
+ 352 003e 9FED100B 		vldr.64	d0, .L18+16
+ 353 0042 194A     		ldr	r2, .L18+56
+ 354 0044 1949     		ldr	r1, .L18+60
+ 355 0046 2046     		mov	r0, r4
+ 356 0048 FFF7FEFF 		bl	PID
+ 357              	.LVL28:
+ 212:Core/Src/freertos.c ****   PID_SetMode(&TPID, _PID_MODE_AUTOMATIC);
+ 358              		.loc 1 212 3 view .LVU70
+ 359 004c 2946     		mov	r1, r5
+ 360 004e 2046     		mov	r0, r4
+ 361 0050 FFF7FEFF 		bl	PID_SetMode
+ 362              	.LVL29:
+ 213:Core/Src/freertos.c ****   PID_SetSampleTime(&TPID, 100);
+ 363              		.loc 1 213 3 view .LVU71
+ 364 0054 6421     		movs	r1, #100
+ 365 0056 2046     		mov	r0, r4
+ 366 0058 FFF7FEFF 		bl	PID_SetSampleTime
+ 367              	.LVL30:
+ 214:Core/Src/freertos.c ****   PID_SetOutputLimits(&TPID, -30, 30);
+ 368              		.loc 1 214 3 view .LVU72
+ 369 005c 9FED0A1B 		vldr.64	d1, .L18+24
+ 370 0060 9FED0B0B 		vldr.64	d0, .L18+32
+ 371 0064 2046     		mov	r0, r4
+ 372 0066 FFF7FEFF 		bl	PID_SetOutputLimits
+ 373              	.LVL31:
+ 215:Core/Src/freertos.c **** }
+ 374              		.loc 1 215 1 is_stmt 0 view .LVU73
+ 375 006a 03B0     		add	sp, sp, #12
+ 376              	.LCFI6:
+ 377              		.cfi_def_cfa_offset 12
+ 378              		@ sp needed
+ 379 006c 30BD     		pop	{r4, r5, pc}
+ 380              	.L19:
+ 381 006e 00BF     		.align	3
+ 382              	.L18:
+ 383 0070 00000000 		.word	0
+ 384 0074 00000000 		.word	0
+ 385 0078 33333333 		.word	858993459
+ 386 007c 3333C33F 		.word	1069757235
+ 387 0080 00000000 		.word	0
+ 388 0084 0000F03F 		.word	1072693248
+ 389 0088 00000000 		.word	0
+ 390 008c 00003E40 		.word	1077805056
+ 391 0090 00000000 		.word	0
+ 392 0094 00003EC0 		.word	-1069678592
+ 393 0098 00000000 		.word	htim2
+ 394 009c 00000000 		.word	.LANCHOR0
+ 395 00a0 000034C0 		.word	-1070333952
+ 396 00a4 00000000 		.word	.LANCHOR8
+ 397 00a8 00000000 		.word	.LANCHOR7
+ 398 00ac 00000000 		.word	.LANCHOR6
+ 399              		.cfi_endproc
+ 400              	.LFE172:
+ 402              		.global	__aeabi_dcmplt
+ 403              		.section	.text.CW_CCW_deect,"ax",%progbits
+ 404              		.align	1
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s 			page 12
 
 
- 292              		.loc 1 214 3 view .LVU57
- 293              		.loc 1 214 21 is_stmt 0 view .LVU58
- 294 0002 0B4B     		ldr	r3, .L23
- 295 0004 D3E90001 		ldrd	r0, [r3]
- 296              		.loc 1 214 6 view .LVU59
- 297 0008 0A4B     		ldr	r3, .L23+4
- 298 000a D3E90023 		ldrd	r2, [r3]
- 299 000e FFF7FEFF 		bl	__aeabi_dcmplt
- 300              	.LVL20:
- 301 0012 30B1     		cbz	r0, .L21
- 215:Core/Src/freertos.c ****   {
- 216:Core/Src/freertos.c ****     HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 0);
- 302              		.loc 1 216 5 is_stmt 1 view .LVU60
- 303 0014 0022     		movs	r2, #0
- 304 0016 0821     		movs	r1, #8
- 305 0018 4FF09040 		mov	r0, #1207959552
- 306 001c FFF7FEFF 		bl	HAL_GPIO_WritePin
- 307              	.LVL21:
- 308              	.L16:
- 217:Core/Src/freertos.c ****   }
- 218:Core/Src/freertos.c ****   else
+ 405              		.global	CW_CCW_deect
+ 406              		.syntax unified
+ 407              		.thumb
+ 408              		.thumb_func
+ 410              	CW_CCW_deect:
+ 411              	.LFB173:
+ 216:Core/Src/freertos.c **** void CW_CCW_deect(void)
+ 217:Core/Src/freertos.c **** {
+ 412              		.loc 1 217 1 is_stmt 1 view -0
+ 413              		.cfi_startproc
+ 414              		@ args = 0, pretend = 0, frame = 0
+ 415              		@ frame_needed = 0, uses_anonymous_args = 0
+ 416 0000 08B5     		push	{r3, lr}
+ 417              	.LCFI7:
+ 418              		.cfi_def_cfa_offset 8
+ 419              		.cfi_offset 3, -8
+ 420              		.cfi_offset 14, -4
+ 218:Core/Src/freertos.c ****   if (current_angle < db_target_angle)
+ 421              		.loc 1 218 3 view .LVU75
+ 422              		.loc 1 218 21 is_stmt 0 view .LVU76
+ 423 0002 0B4B     		ldr	r3, .L27
+ 424 0004 D3E90001 		ldrd	r0, [r3]
+ 425              		.loc 1 218 6 view .LVU77
+ 426 0008 0A4B     		ldr	r3, .L27+4
+ 427 000a D3E90023 		ldrd	r2, [r3]
+ 428 000e FFF7FEFF 		bl	__aeabi_dcmplt
+ 429              	.LVL32:
+ 430 0012 30B1     		cbz	r0, .L25
  219:Core/Src/freertos.c ****   {
- 220:Core/Src/freertos.c ****     HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
+ 220:Core/Src/freertos.c ****     HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 0);
+ 431              		.loc 1 220 5 is_stmt 1 view .LVU78
+ 432 0014 0022     		movs	r2, #0
+ 433 0016 0821     		movs	r1, #8
+ 434 0018 4FF09040 		mov	r0, #1207959552
+ 435 001c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 436              	.LVL33:
+ 437              	.L20:
  221:Core/Src/freertos.c ****   }
- 222:Core/Src/freertos.c **** }
- 309              		.loc 1 222 1 is_stmt 0 view .LVU61
- 310 0020 08BD     		pop	{r3, pc}
- 311              	.L21:
- 220:Core/Src/freertos.c ****   }
- 312              		.loc 1 220 5 is_stmt 1 view .LVU62
- 313 0022 0122     		movs	r2, #1
- 314 0024 0821     		movs	r1, #8
- 315 0026 4FF09040 		mov	r0, #1207959552
- 316 002a FFF7FEFF 		bl	HAL_GPIO_WritePin
- 317              	.LVL22:
- 318              		.loc 1 222 1 is_stmt 0 view .LVU63
- 319 002e F7E7     		b	.L16
- 320              	.L24:
- 321              		.align	2
- 322              	.L23:
- 323 0030 00000000 		.word	.LANCHOR6
- 324 0034 00000000 		.word	.LANCHOR0
- 325              		.cfi_endproc
- 326              	.LFE172:
- 328              		.section	.text.PID_error_handler,"ax",%progbits
- 329              		.align	1
- 330              		.global	PID_error_handler
- 331              		.syntax unified
- 332              		.thumb
- 333              		.thumb_func
- 335              	PID_error_handler:
- 336              	.LFB173:
- 223:Core/Src/freertos.c **** void PID_error_handler(void)
- 224:Core/Src/freertos.c **** {
- 337              		.loc 1 224 1 is_stmt 1 view -0
- 338              		.cfi_startproc
- 339              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 11
+ 222:Core/Src/freertos.c ****   else
+ 223:Core/Src/freertos.c ****   {
+ 224:Core/Src/freertos.c ****     HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
+ 225:Core/Src/freertos.c ****   }
+ 226:Core/Src/freertos.c **** }
+ 438              		.loc 1 226 1 is_stmt 0 view .LVU79
+ 439 0020 08BD     		pop	{r3, pc}
+ 440              	.L25:
+ 224:Core/Src/freertos.c ****   }
+ 441              		.loc 1 224 5 is_stmt 1 view .LVU80
+ 442 0022 0122     		movs	r2, #1
+ 443 0024 0821     		movs	r1, #8
+ 444 0026 4FF09040 		mov	r0, #1207959552
+ 445 002a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 446              	.LVL34:
+ 447              		.loc 1 226 1 is_stmt 0 view .LVU81
+ 448 002e F7E7     		b	.L20
+ 449              	.L28:
+ 450              		.align	2
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s 			page 13
 
 
- 340              		@ frame_needed = 0, uses_anonymous_args = 0
- 341 0000 08B5     		push	{r3, lr}
- 342              	.LCFI5:
- 343              		.cfi_def_cfa_offset 8
- 344              		.cfi_offset 3, -8
- 345              		.cfi_offset 14, -4
- 225:Core/Src/freertos.c ****   TIM2->CCR2 = 0;
- 346              		.loc 1 225 3 view .LVU65
- 347              		.loc 1 225 14 is_stmt 0 view .LVU66
- 348 0002 4FF08043 		mov	r3, #1073741824
- 349 0006 0022     		movs	r2, #0
- 350 0008 9A63     		str	r2, [r3, #56]
- 226:Core/Src/freertos.c ****   PID_lock = true;
- 351              		.loc 1 226 3 is_stmt 1 view .LVU67
- 352              		.loc 1 226 12 is_stmt 0 view .LVU68
- 353 000a 044B     		ldr	r3, .L27
- 354 000c 0122     		movs	r2, #1
- 355 000e 1A70     		strb	r2, [r3]
- 227:Core/Src/freertos.c ****   HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
- 356              		.loc 1 227 3 is_stmt 1 view .LVU69
- 357 0010 0821     		movs	r1, #8
- 358 0012 0348     		ldr	r0, .L27+4
- 359 0014 FFF7FEFF 		bl	HAL_GPIO_TogglePin
- 360              	.LVL23:
- 228:Core/Src/freertos.c **** }
- 361              		.loc 1 228 1 is_stmt 0 view .LVU70
- 362 0018 08BD     		pop	{r3, pc}
- 363              	.L28:
- 364 001a 00BF     		.align	2
- 365              	.L27:
- 366 001c 00000000 		.word	.LANCHOR7
- 367 0020 00040048 		.word	1207960576
- 368              		.cfi_endproc
- 369              	.LFE173:
- 371              		.global	__aeabi_d2iz
- 372              		.section	.text.PID_sys_init,"ax",%progbits
- 373              		.align	1
- 374              		.global	PID_sys_init
- 375              		.syntax unified
- 376              		.thumb
- 377              		.thumb_func
- 379              	PID_sys_init:
- 380              	.LFB174:
- 229:Core/Src/freertos.c **** void PID_sys_init(void)
- 230:Core/Src/freertos.c **** {
- 381              		.loc 1 230 1 is_stmt 1 view -0
- 382              		.cfi_startproc
- 383              		@ args = 0, pretend = 0, frame = 0
- 384              		@ frame_needed = 0, uses_anonymous_args = 0
- 385 0000 70B5     		push	{r4, r5, r6, lr}
- 386              	.LCFI6:
- 387              		.cfi_def_cfa_offset 16
- 388              		.cfi_offset 4, -16
- 389              		.cfi_offset 5, -12
- 390              		.cfi_offset 6, -8
- 391              		.cfi_offset 14, -4
- 392 0002 82B0     		sub	sp, sp, #8
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 12
+ 451              	.L27:
+ 452 0030 00000000 		.word	.LANCHOR6
+ 453 0034 00000000 		.word	.LANCHOR0
+ 454              		.cfi_endproc
+ 455              	.LFE173:
+ 457              		.section	.text.StartPIDTask,"ax",%progbits
+ 458              		.align	1
+ 459              		.global	StartPIDTask
+ 460              		.syntax unified
+ 461              		.thumb
+ 462              		.thumb_func
+ 464              	StartPIDTask:
+ 465              	.LVL35:
+ 466              	.LFB169:
+ 144:Core/Src/freertos.c ****   /* USER CODE BEGIN StartPIDTask */
+ 467              		.loc 1 144 1 is_stmt 1 view -0
+ 468              		.cfi_startproc
+ 469              		@ Volatile: function does not return.
+ 470              		@ args = 0, pretend = 0, frame = 0
+ 471              		@ frame_needed = 0, uses_anonymous_args = 0
+ 144:Core/Src/freertos.c ****   /* USER CODE BEGIN StartPIDTask */
+ 472              		.loc 1 144 1 is_stmt 0 view .LVU83
+ 473 0000 08B5     		push	{r3, lr}
+ 474              	.LCFI8:
+ 475              		.cfi_def_cfa_offset 8
+ 476              		.cfi_offset 3, -8
+ 477              		.cfi_offset 14, -4
+ 146:Core/Src/freertos.c ****   /* Infinite loop */
+ 478              		.loc 1 146 3 is_stmt 1 view .LVU84
+ 479 0002 FFF7FEFF 		bl	PID_init
+ 480              	.LVL36:
+ 481              	.L30:
+ 148:Core/Src/freertos.c ****   {
+ 482              		.loc 1 148 3 discriminator 1 view .LVU85
+ 150:Core/Src/freertos.c ****     CW_CCW_deect();
+ 483              		.loc 1 150 5 discriminator 1 view .LVU86
+ 484 0006 FFF7FEFF 		bl	analyze_volatge
+ 485              	.LVL37:
+ 151:Core/Src/freertos.c ****     PID_Compute(&TPID);
+ 486              		.loc 1 151 5 discriminator 1 view .LVU87
+ 487 000a FFF7FEFF 		bl	CW_CCW_deect
+ 488              	.LVL38:
+ 152:Core/Src/freertos.c ****     CCR_value = abs(CCR_value);
+ 489              		.loc 1 152 5 discriminator 1 view .LVU88
+ 490 000e 0D48     		ldr	r0, .L32
+ 491 0010 FFF7FEFF 		bl	PID_Compute
+ 492              	.LVL39:
+ 153:Core/Src/freertos.c ****     TIM2->CCR2 = ((int)CCR_value);
+ 493              		.loc 1 153 5 discriminator 1 view .LVU89
+ 153:Core/Src/freertos.c ****     TIM2->CCR2 = ((int)CCR_value);
+ 494              		.loc 1 153 17 is_stmt 0 discriminator 1 view .LVU90
+ 495 0014 0C4C     		ldr	r4, .L32+4
+ 496 0016 D4E90001 		ldrd	r0, [r4]
+ 497 001a FFF7FEFF 		bl	__aeabi_d2iz
+ 498              	.LVL40:
+ 153:Core/Src/freertos.c ****     TIM2->CCR2 = ((int)CCR_value);
+ 499              		.loc 1 153 15 discriminator 1 view .LVU91
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s 			page 14
 
 
- 393              	.LCFI7:
- 394              		.cfi_def_cfa_offset 24
- 231:Core/Src/freertos.c ****   TIM2->CCR2 = (int)CCR_value; // CCR_value bigger the rpm will highter , CCR range : 0~100
- 395              		.loc 1 231 3 view .LVU72
- 396              		.loc 1 231 16 is_stmt 0 view .LVU73
- 397 0004 244E     		ldr	r6, .L31+40
- 398 0006 D6E90001 		ldrd	r0, [r6]
- 399 000a FFF7FEFF 		bl	__aeabi_d2iz
- 400              	.LVL24:
- 401              		.loc 1 231 14 view .LVU74
- 402 000e 4FF08043 		mov	r3, #1073741824
- 403 0012 9863     		str	r0, [r3, #56]
- 232:Core/Src/freertos.c ****   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
- 404              		.loc 1 232 3 is_stmt 1 view .LVU75
- 405 0014 0421     		movs	r1, #4
- 406 0016 2148     		ldr	r0, .L31+44
- 407 0018 FFF7FEFF 		bl	HAL_TIM_PWM_Start
- 408              	.LVL25:
- 233:Core/Src/freertos.c ****   HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
- 409              		.loc 1 233 3 view .LVU76
- 410 001c 0122     		movs	r2, #1
- 411 001e 0821     		movs	r1, #8
- 412 0020 4FF09040 		mov	r0, #1207959552
- 413 0024 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 414              	.LVL26:
- 234:Core/Src/freertos.c ****   analyze_volatge();
- 415              		.loc 1 234 3 view .LVU77
- 416 0028 FFF7FEFF 		bl	analyze_volatge
- 417              	.LVL27:
- 235:Core/Src/freertos.c ****   PID(&TPID, &current_angle, &CCR_value, &db_target_angle, 1, 0.15, 0, _PID_P_ON_E, _PID_CD_DIRECT)
- 418              		.loc 1 235 3 view .LVU78
- 419 002c 1C4C     		ldr	r4, .L31+48
- 420 002e 0023     		movs	r3, #0
- 421 0030 0193     		str	r3, [sp, #4]
- 422 0032 0125     		movs	r5, #1
- 423 0034 0095     		str	r5, [sp]
- 424 0036 9FED0E2B 		vldr.64	d2, .L31
- 425 003a 9FED0F1B 		vldr.64	d1, .L31+8
- 426 003e 9FED100B 		vldr.64	d0, .L31+16
- 427 0042 184B     		ldr	r3, .L31+52
- 428 0044 3246     		mov	r2, r6
- 429 0046 1849     		ldr	r1, .L31+56
- 430 0048 2046     		mov	r0, r4
- 431 004a FFF7FEFF 		bl	PID
- 432              	.LVL28:
- 236:Core/Src/freertos.c ****   PID_SetMode(&TPID, _PID_MODE_AUTOMATIC);
- 433              		.loc 1 236 3 view .LVU79
- 434 004e 2946     		mov	r1, r5
- 435 0050 2046     		mov	r0, r4
- 436 0052 FFF7FEFF 		bl	PID_SetMode
- 437              	.LVL29:
- 237:Core/Src/freertos.c ****   PID_SetSampleTime(&TPID, 100);
- 438              		.loc 1 237 3 view .LVU80
- 439 0056 6421     		movs	r1, #100
- 440 0058 2046     		mov	r0, r4
- 441 005a FFF7FEFF 		bl	PID_SetSampleTime
- 442              	.LVL30:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 13
+ 500 001e 0028     		cmp	r0, #0
+ 501 0020 B8BF     		it	lt
+ 502 0022 4042     		rsblt	r0, r0, #0
+ 503 0024 FFF7FEFF 		bl	__aeabi_i2d
+ 504              	.LVL41:
+ 505 0028 C4E90001 		strd	r0, [r4]
+ 154:Core/Src/freertos.c ****     osDelay(100);
+ 506              		.loc 1 154 5 is_stmt 1 discriminator 1 view .LVU92
+ 154:Core/Src/freertos.c ****     osDelay(100);
+ 507              		.loc 1 154 19 is_stmt 0 discriminator 1 view .LVU93
+ 508 002c D4E90001 		ldrd	r0, [r4]
+ 509 0030 FFF7FEFF 		bl	__aeabi_d2iz
+ 510              	.LVL42:
+ 154:Core/Src/freertos.c ****     osDelay(100);
+ 511              		.loc 1 154 16 discriminator 1 view .LVU94
+ 512 0034 4FF08043 		mov	r3, #1073741824
+ 513 0038 9863     		str	r0, [r3, #56]
+ 155:Core/Src/freertos.c ****   }
+ 514              		.loc 1 155 5 is_stmt 1 discriminator 1 view .LVU95
+ 515 003a 6420     		movs	r0, #100
+ 516 003c FFF7FEFF 		bl	osDelay
+ 517              	.LVL43:
+ 148:Core/Src/freertos.c ****   {
+ 518              		.loc 1 148 9 discriminator 1 view .LVU96
+ 519 0040 E1E7     		b	.L30
+ 520              	.L33:
+ 521 0042 00BF     		.align	2
+ 522              	.L32:
+ 523 0044 00000000 		.word	.LANCHOR8
+ 524 0048 00000000 		.word	.LANCHOR7
+ 525              		.cfi_endproc
+ 526              	.LFE169:
+ 528              		.section	.text.PID_Error_handler,"ax",%progbits
+ 529              		.align	1
+ 530              		.global	PID_Error_handler
+ 531              		.syntax unified
+ 532              		.thumb
+ 533              		.thumb_func
+ 535              	PID_Error_handler:
+ 536              	.LFB174:
+ 227:Core/Src/freertos.c **** void PID_Error_handler(void)
+ 228:Core/Src/freertos.c **** {
+ 537              		.loc 1 228 1 view -0
+ 538              		.cfi_startproc
+ 539              		@ args = 0, pretend = 0, frame = 0
+ 540              		@ frame_needed = 0, uses_anonymous_args = 0
+ 541              		@ link register save eliminated.
+ 229:Core/Src/freertos.c ****   TIM2->CCR2 = 0;
+ 542              		.loc 1 229 3 view .LVU98
+ 543              		.loc 1 229 14 is_stmt 0 view .LVU99
+ 544 0000 4FF08043 		mov	r3, #1073741824
+ 545 0004 0022     		movs	r2, #0
+ 546 0006 9A63     		str	r2, [r3, #56]
+ 230:Core/Src/freertos.c **** }
+ 547              		.loc 1 230 1 view .LVU100
+ 548 0008 7047     		bx	lr
+ 549              		.cfi_endproc
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s 			page 15
 
 
- 238:Core/Src/freertos.c ****   PID_SetOutputLimits(&TPID, -70, 70);
- 443              		.loc 1 238 3 view .LVU81
- 444 005e 9FED0A1B 		vldr.64	d1, .L31+24
- 445 0062 9FED0B0B 		vldr.64	d0, .L31+32
- 446 0066 2046     		mov	r0, r4
- 447 0068 FFF7FEFF 		bl	PID_SetOutputLimits
- 448              	.LVL31:
- 239:Core/Src/freertos.c **** }
- 449              		.loc 1 239 1 is_stmt 0 view .LVU82
- 450 006c 02B0     		add	sp, sp, #8
- 451              	.LCFI8:
- 452              		.cfi_def_cfa_offset 16
- 453              		@ sp needed
- 454 006e 70BD     		pop	{r4, r5, r6, pc}
- 455              	.L32:
- 456              		.align	3
- 457              	.L31:
- 458 0070 00000000 		.word	0
- 459 0074 00000000 		.word	0
- 460 0078 33333333 		.word	858993459
- 461 007c 3333C33F 		.word	1069757235
- 462 0080 00000000 		.word	0
- 463 0084 0000F03F 		.word	1072693248
- 464 0088 00000000 		.word	0
- 465 008c 00805140 		.word	1079083008
- 466 0090 00000000 		.word	0
- 467 0094 008051C0 		.word	-1068400640
- 468 0098 00000000 		.word	.LANCHOR8
- 469 009c 00000000 		.word	htim2
- 470 00a0 00000000 		.word	.LANCHOR9
- 471 00a4 00000000 		.word	.LANCHOR0
- 472 00a8 00000000 		.word	.LANCHOR6
- 473              		.cfi_endproc
- 474              	.LFE174:
- 476              		.global	__aeabi_dcmpgt
- 477              		.section	.text.steering_protection,"ax",%progbits
- 478              		.align	1
- 479              		.global	steering_protection
- 480              		.syntax unified
- 481              		.thumb
- 482              		.thumb_func
- 484              	steering_protection:
- 485              	.LFB175:
- 240:Core/Src/freertos.c **** void steering_protection(void)
- 241:Core/Src/freertos.c **** {
- 486              		.loc 1 241 1 is_stmt 1 view -0
- 487              		.cfi_startproc
- 488              		@ args = 0, pretend = 0, frame = 0
- 489              		@ frame_needed = 0, uses_anonymous_args = 0
- 490 0000 08B5     		push	{r3, lr}
- 491              	.LCFI9:
- 492              		.cfi_def_cfa_offset 8
- 493              		.cfi_offset 3, -8
- 494              		.cfi_offset 14, -4
- 242:Core/Src/freertos.c ****   if (current_voltage > 4.5 || current_angle < 0.5)
- 495              		.loc 1 242 3 view .LVU84
- 496              		.loc 1 242 6 is_stmt 0 view .LVU85
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 14
+ 550              	.LFE174:
+ 552              		.global	db_target_angle
+ 553              		.global	current_angle
+ 554              		.global	current_voltage
+ 555              		.global	CCR_value
+ 556              		.global	TPID
+ 557              		.global	canopenTask_attributes
+ 558              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 559              		.align	2
+ 560              	.LC0:
+ 561 0000 63616E6F 		.ascii	"canopenTask\000"
+ 561      70656E54 
+ 561      61736B00 
+ 562              		.global	canopenTaskHandle
+ 563              		.global	PIDTask_attributes
+ 564              		.align	2
+ 565              	.LC1:
+ 566 000c 50494454 		.ascii	"PIDTask\000"
+ 566      61736B00 
+ 567              		.global	PIDTaskHandle
+ 568              		.section	.bss.CCR_value,"aw",%nobits
+ 569              		.align	3
+ 570              		.set	.LANCHOR7,. + 0
+ 573              	CCR_value:
+ 574 0000 00000000 		.space	8
+ 574      00000000 
+ 575              		.section	.bss.PIDTaskHandle,"aw",%nobits
+ 576              		.align	2
+ 577              		.set	.LANCHOR2,. + 0
+ 580              	PIDTaskHandle:
+ 581 0000 00000000 		.space	4
+ 582              		.section	.bss.TPID,"aw",%nobits
+ 583              		.align	3
+ 584              		.set	.LANCHOR8,. + 0
+ 587              	TPID:
+ 588 0000 00000000 		.space	112
+ 588      00000000 
+ 588      00000000 
+ 588      00000000 
+ 588      00000000 
+ 589              		.section	.bss.canopenTaskHandle,"aw",%nobits
+ 590              		.align	2
+ 591              		.set	.LANCHOR4,. + 0
+ 594              	canopenTaskHandle:
+ 595 0000 00000000 		.space	4
+ 596              		.section	.bss.current_angle,"aw",%nobits
+ 597              		.align	3
+ 598              		.set	.LANCHOR6,. + 0
+ 601              	current_angle:
+ 602 0000 00000000 		.space	8
+ 602      00000000 
+ 603              		.section	.bss.current_voltage,"aw",%nobits
+ 604              		.align	3
+ 605              		.set	.LANCHOR5,. + 0
+ 608              	current_voltage:
+ 609 0000 00000000 		.space	8
+ 609      00000000 
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s 			page 16
 
 
- 497 0002 0022     		movs	r2, #0
- 498 0004 084B     		ldr	r3, .L38
- 499 0006 0949     		ldr	r1, .L38+4
- 500 0008 D1E90001 		ldrd	r0, [r1]
- 501 000c FFF7FEFF 		bl	__aeabi_dcmpgt
- 502              	.LVL32:
- 503 0010 38B9     		cbnz	r0, .L34
- 504              		.loc 1 242 29 discriminator 1 view .LVU86
- 505 0012 0022     		movs	r2, #0
- 506 0014 064B     		ldr	r3, .L38+8
- 507 0016 0749     		ldr	r1, .L38+12
- 508 0018 D1E90001 		ldrd	r0, [r1]
- 509 001c FFF7FEFF 		bl	__aeabi_dcmplt
- 510              	.LVL33:
- 511 0020 08B1     		cbz	r0, .L33
- 512              	.L34:
- 243:Core/Src/freertos.c ****   {
- 244:Core/Src/freertos.c ****     PID_error_handler();
- 513              		.loc 1 244 5 is_stmt 1 view .LVU87
- 514 0022 FFF7FEFF 		bl	PID_error_handler
- 515              	.LVL34:
- 516              	.L33:
- 245:Core/Src/freertos.c ****   }
- 246:Core/Src/freertos.c **** }
- 517              		.loc 1 246 1 is_stmt 0 view .LVU88
- 518 0026 08BD     		pop	{r3, pc}
- 519              	.L39:
- 520              		.align	2
- 521              	.L38:
- 522 0028 00001240 		.word	1074921472
- 523 002c 00000000 		.word	.LANCHOR5
- 524 0030 0000E03F 		.word	1071644672
- 525 0034 00000000 		.word	.LANCHOR6
- 526              		.cfi_endproc
- 527              	.LFE175:
- 529              		.section	.text.StartPIDTask,"ax",%progbits
- 530              		.align	1
- 531              		.global	StartPIDTask
- 532              		.syntax unified
- 533              		.thumb
- 534              		.thumb_func
- 536              	StartPIDTask:
- 537              	.LVL35:
- 538              	.LFB169:
- 147:Core/Src/freertos.c ****   /* USER CODE BEGIN StartPIDTask */
- 539              		.loc 1 147 1 is_stmt 1 view -0
- 540              		.cfi_startproc
- 541              		@ Volatile: function does not return.
- 542              		@ args = 0, pretend = 0, frame = 0
- 543              		@ frame_needed = 0, uses_anonymous_args = 0
- 147:Core/Src/freertos.c ****   /* USER CODE BEGIN StartPIDTask */
- 544              		.loc 1 147 1 is_stmt 0 view .LVU90
- 545 0000 08B5     		push	{r3, lr}
- 546              	.LCFI10:
- 547              		.cfi_def_cfa_offset 8
- 548              		.cfi_offset 3, -8
- 549              		.cfi_offset 14, -4
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 15
+ 610              		.section	.bss.db_target_angle,"aw",%nobits
+ 611              		.align	3
+ 612              		.set	.LANCHOR0,. + 0
+ 615              	db_target_angle:
+ 616 0000 00000000 		.space	8
+ 616      00000000 
+ 617              		.section	.rodata.PIDTask_attributes,"a"
+ 618              		.align	2
+ 619              		.set	.LANCHOR1,. + 0
+ 622              	PIDTask_attributes:
+ 623 0000 0C000000 		.word	.LC1
+ 624 0004 00000000 		.space	16
+ 624      00000000 
+ 624      00000000 
+ 624      00000000 
+ 625 0014 00020000 		.word	512
+ 626 0018 28000000 		.word	40
+ 627 001c 00000000 		.space	8
+ 627      00000000 
+ 628              		.section	.rodata.canopenTask_attributes,"a"
+ 629              		.align	2
+ 630              		.set	.LANCHOR3,. + 0
+ 633              	canopenTask_attributes:
+ 634 0000 00000000 		.word	.LC0
+ 635 0004 00000000 		.space	16
+ 635      00000000 
+ 635      00000000 
+ 635      00000000 
+ 636 0014 00020000 		.word	512
+ 637 0018 30000000 		.word	48
+ 638 001c 00000000 		.space	8
+ 638      00000000 
+ 639              		.text
+ 640              	.Letext0:
+ 641              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 642              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 643              		.file 4 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 644              		.file 5 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h"
+ 645              		.file 6 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f3xx.h"
+ 646              		.file 7 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
+ 647              		.file 8 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h"
+ 648              		.file 9 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc_ex.h"
+ 649              		.file 10 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h"
+ 650              		.file 11 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_can.h"
+ 651              		.file 12 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h"
+ 652              		.file 13 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
+ 653              		.file 14 "Middlewares/Third_Party/CANopenNode_STM32/CO_driver_target.h"
+ 654              		.file 15 "Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h"
+ 655              		.file 16 "Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h"
+ 656              		.file 17 "Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h"
+ 657              		.file 18 "Middlewares/Third_Party/CANopenNode/301/CO_HBconsumer.h"
+ 658              		.file 19 "Middlewares/Third_Party/CANopenNode/301/CO_SDOserver.h"
+ 659              		.file 20 "Middlewares/Third_Party/CANopenNode/301/CO_SYNC.h"
+ 660              		.file 21 "Middlewares/Third_Party/CANopenNode/301/CO_PDO.h"
+ 661              		.file 22 "Middlewares/Third_Party/CANopenNode/301/CO_TIME.h"
+ 662              		.file 23 "Middlewares/Third_Party/CANopenNode/303/CO_LEDs.h"
+ 663              		.file 24 "Middlewares/Third_Party/CANopenNode/305/CO_LSS.h"
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s 			page 17
 
 
- 149:Core/Src/freertos.c ****   db_target_angle = 35;
- 550              		.loc 1 149 3 is_stmt 1 view .LVU91
- 551 0002 FFF7FEFF 		bl	PID_sys_init
- 552              	.LVL36:
- 150:Core/Src/freertos.c ****   /* Infinite loop */
- 553              		.loc 1 150 3 view .LVU92
- 150:Core/Src/freertos.c ****   /* Infinite loop */
- 554              		.loc 1 150 19 is_stmt 0 view .LVU93
- 555 0006 154B     		ldr	r3, .L45
- 556 0008 0020     		movs	r0, #0
- 557 000a 1549     		ldr	r1, .L45+4
- 558 000c C3E90001 		strd	r0, [r3]
- 559 0010 15E0     		b	.L42
- 560              	.L44:
- 160:Core/Src/freertos.c ****       TIM2->CCR2 = ((int)CCR_value);
- 561              		.loc 1 160 7 is_stmt 1 view .LVU94
- 160:Core/Src/freertos.c ****       TIM2->CCR2 = ((int)CCR_value);
- 562              		.loc 1 160 19 is_stmt 0 view .LVU95
- 563 0012 144C     		ldr	r4, .L45+8
- 564 0014 D4E90001 		ldrd	r0, [r4]
- 565 0018 FFF7FEFF 		bl	__aeabi_d2iz
- 566              	.LVL37:
- 160:Core/Src/freertos.c ****       TIM2->CCR2 = ((int)CCR_value);
- 567              		.loc 1 160 17 view .LVU96
- 568 001c 0028     		cmp	r0, #0
- 569 001e B8BF     		it	lt
- 570 0020 4042     		rsblt	r0, r0, #0
- 571 0022 FFF7FEFF 		bl	__aeabi_i2d
- 572              	.LVL38:
- 573 0026 C4E90001 		strd	r0, [r4]
- 161:Core/Src/freertos.c ****     }
- 574              		.loc 1 161 7 is_stmt 1 view .LVU97
- 161:Core/Src/freertos.c ****     }
- 575              		.loc 1 161 21 is_stmt 0 view .LVU98
- 576 002a D4E90001 		ldrd	r0, [r4]
- 577 002e FFF7FEFF 		bl	__aeabi_d2iz
- 578              	.LVL39:
- 161:Core/Src/freertos.c ****     }
- 579              		.loc 1 161 18 view .LVU99
- 580 0032 4FF08043 		mov	r3, #1073741824
- 581 0036 9863     		str	r0, [r3, #56]
- 582              	.L41:
- 163:Core/Src/freertos.c ****   }
- 583              		.loc 1 163 5 is_stmt 1 view .LVU100
- 584 0038 6420     		movs	r0, #100
- 585 003a FFF7FEFF 		bl	osDelay
- 586              	.LVL40:
- 152:Core/Src/freertos.c ****   {
- 587              		.loc 1 152 9 view .LVU101
- 588              	.L42:
- 152:Core/Src/freertos.c ****   {
- 589              		.loc 1 152 3 view .LVU102
- 154:Core/Src/freertos.c ****     PID_Compute(&TPID);
- 590              		.loc 1 154 5 view .LVU103
- 591 003e FFF7FEFF 		bl	analyze_volatge
- 592              	.LVL41:
- 155:Core/Src/freertos.c ****     CW_CCW_dected();
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 16
-
-
- 593              		.loc 1 155 5 view .LVU104
- 594 0042 0948     		ldr	r0, .L45+12
- 595 0044 FFF7FEFF 		bl	PID_Compute
- 596              	.LVL42:
- 156:Core/Src/freertos.c ****     steering_protection();
- 597              		.loc 1 156 5 view .LVU105
- 598 0048 FFF7FEFF 		bl	CW_CCW_dected
- 599              	.LVL43:
- 157:Core/Src/freertos.c ****     if (PID_lock == false)
- 600              		.loc 1 157 5 view .LVU106
- 601 004c FFF7FEFF 		bl	steering_protection
- 602              	.LVL44:
- 158:Core/Src/freertos.c ****     {
- 603              		.loc 1 158 5 view .LVU107
- 158:Core/Src/freertos.c ****     {
- 604              		.loc 1 158 18 is_stmt 0 view .LVU108
- 605 0050 064B     		ldr	r3, .L45+16
- 606 0052 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 158:Core/Src/freertos.c ****     {
- 607              		.loc 1 158 8 view .LVU109
- 608 0054 002B     		cmp	r3, #0
- 609 0056 DCD0     		beq	.L44
- 610 0058 EEE7     		b	.L41
- 611              	.L46:
- 612 005a 00BF     		.align	2
- 613              	.L45:
- 614 005c 00000000 		.word	.LANCHOR0
- 615 0060 00804140 		.word	1078034432
- 616 0064 00000000 		.word	.LANCHOR8
- 617 0068 00000000 		.word	.LANCHOR9
- 618 006c 00000000 		.word	.LANCHOR7
- 619              		.cfi_endproc
- 620              	.LFE169:
- 622              		.global	TPID
- 623              		.global	PID_lock
- 624              		.global	db_target_angle
- 625              		.global	current_angle
- 626              		.global	current_voltage
- 627              		.global	CCR_value
- 628              		.global	canopenTask_attributes
- 629              		.section	.rodata.str1.4,"aMS",%progbits,1
- 630              		.align	2
- 631              	.LC0:
- 632 0000 63616E6F 		.ascii	"canopenTask\000"
- 632      70656E54 
- 632      61736B00 
- 633              		.global	canopenTaskHandle
- 634              		.global	PIDTask_attributes
- 635              		.align	2
- 636              	.LC1:
- 637 000c 50494454 		.ascii	"PIDTask\000"
- 637      61736B00 
- 638              		.global	PIDTaskHandle
- 639              		.section	.bss.CCR_value,"aw",%nobits
- 640              		.align	3
- 641              		.set	.LANCHOR8,. + 0
- 644              	CCR_value:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 17
-
-
- 645 0000 00000000 		.space	8
- 645      00000000 
- 646              		.section	.bss.PIDTaskHandle,"aw",%nobits
- 647              		.align	2
- 648              		.set	.LANCHOR2,. + 0
- 651              	PIDTaskHandle:
- 652 0000 00000000 		.space	4
- 653              		.section	.bss.PID_lock,"aw",%nobits
- 654              		.set	.LANCHOR7,. + 0
- 657              	PID_lock:
- 658 0000 00       		.space	1
- 659              		.section	.bss.TPID,"aw",%nobits
- 660              		.align	3
- 661              		.set	.LANCHOR9,. + 0
- 664              	TPID:
- 665 0000 00000000 		.space	112
- 665      00000000 
- 665      00000000 
- 665      00000000 
- 665      00000000 
- 666              		.section	.bss.canopenTaskHandle,"aw",%nobits
- 667              		.align	2
- 668              		.set	.LANCHOR4,. + 0
- 671              	canopenTaskHandle:
- 672 0000 00000000 		.space	4
- 673              		.section	.bss.current_angle,"aw",%nobits
- 674              		.align	3
- 675              		.set	.LANCHOR6,. + 0
- 678              	current_angle:
- 679 0000 00000000 		.space	8
- 679      00000000 
- 680              		.section	.bss.current_voltage,"aw",%nobits
- 681              		.align	3
- 682              		.set	.LANCHOR5,. + 0
- 685              	current_voltage:
- 686 0000 00000000 		.space	8
- 686      00000000 
- 687              		.section	.bss.db_target_angle,"aw",%nobits
- 688              		.align	3
- 689              		.set	.LANCHOR0,. + 0
- 692              	db_target_angle:
- 693 0000 00000000 		.space	8
- 693      00000000 
- 694              		.section	.rodata.PIDTask_attributes,"a"
- 695              		.align	2
- 696              		.set	.LANCHOR1,. + 0
- 699              	PIDTask_attributes:
- 700 0000 0C000000 		.word	.LC1
- 701 0004 00000000 		.space	16
- 701      00000000 
- 701      00000000 
- 701      00000000 
- 702 0014 00020000 		.word	512
- 703 0018 28000000 		.word	40
- 704 001c 00000000 		.space	8
- 704      00000000 
- 705              		.section	.rodata.canopenTask_attributes,"a"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 18
-
-
- 706              		.align	2
- 707              		.set	.LANCHOR3,. + 0
- 710              	canopenTask_attributes:
- 711 0000 00000000 		.word	.LC0
- 712 0004 00000000 		.space	16
- 712      00000000 
- 712      00000000 
- 712      00000000 
- 713 0014 00020000 		.word	512
- 714 0018 30000000 		.word	48
- 715 001c 00000000 		.space	8
- 715      00000000 
- 716              		.text
- 717              	.Letext0:
- 718              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 719              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 720              		.file 4 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 721              		.file 5 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h"
- 722              		.file 6 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f3xx.h"
- 723              		.file 7 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
- 724              		.file 8 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h"
- 725              		.file 9 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc_ex.h"
- 726              		.file 10 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h"
- 727              		.file 11 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_can.h"
- 728              		.file 12 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h"
- 729              		.file 13 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
- 730              		.file 14 "Middlewares/Third_Party/CANopenNode_STM32/CO_driver_target.h"
- 731              		.file 15 "Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h"
- 732              		.file 16 "Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h"
- 733              		.file 17 "Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h"
- 734              		.file 18 "Middlewares/Third_Party/CANopenNode/301/CO_HBconsumer.h"
- 735              		.file 19 "Middlewares/Third_Party/CANopenNode/301/CO_SDOserver.h"
- 736              		.file 20 "Middlewares/Third_Party/CANopenNode/301/CO_SYNC.h"
- 737              		.file 21 "Middlewares/Third_Party/CANopenNode/301/CO_PDO.h"
- 738              		.file 22 "Middlewares/Third_Party/CANopenNode/301/CO_TIME.h"
- 739              		.file 23 "Middlewares/Third_Party/CANopenNode/303/CO_LEDs.h"
- 740              		.file 24 "Middlewares/Third_Party/CANopenNode/305/CO_LSS.h"
- 741              		.file 25 "Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h"
- 742              		.file 26 "Middlewares/Third_Party/CANopenNode/CANopen.h"
- 743              		.file 27 "Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.h"
- 744              		.file 28 "Middlewares/Third_Party/CANopenNode_STM32/OD.h"
- 745              		.file 29 "Core/Inc/tim.h"
- 746              		.file 30 "Core/Inc/can.h"
- 747              		.file 31 "Core/Inc/pid.h"
- 748              		.file 32 "Core/Inc/adc.h"
- 749              		.file 33 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_gpio.h"
- 750              		.file 34 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 19
+ 664              		.file 25 "Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h"
+ 665              		.file 26 "Middlewares/Third_Party/CANopenNode/CANopen.h"
+ 666              		.file 27 "Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.h"
+ 667              		.file 28 "Middlewares/Third_Party/CANopenNode_STM32/OD.h"
+ 668              		.file 29 "Core/Inc/tim.h"
+ 669              		.file 30 "Core/Inc/can.h"
+ 670              		.file 31 "Core/Inc/pid.h"
+ 671              		.file 32 "Core/Inc/adc.h"
+ 672              		.file 33 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_gpio.h"
+ 673              		.file 34 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s 			page 18
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 freertos.c
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:21     .text.canopen_task:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:27     .text.canopen_task:00000000 canopen_task
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:121    .text.canopen_task:00000060 $d
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:130    .text.MX_FREERTOS_Init:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:136    .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:172    .text.MX_FREERTOS_Init:00000020 $d
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:536    .text.StartPIDTask:00000000 StartPIDTask
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:186    .text.analyze_volatge:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:192    .text.analyze_volatge:00000000 analyze_volatge
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:262    .text.analyze_volatge:00000060 $d
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:275    .text.CW_CCW_dected:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:281    .text.CW_CCW_dected:00000000 CW_CCW_dected
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:323    .text.CW_CCW_dected:00000030 $d
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:329    .text.PID_error_handler:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:335    .text.PID_error_handler:00000000 PID_error_handler
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:366    .text.PID_error_handler:0000001c $d
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:373    .text.PID_sys_init:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:379    .text.PID_sys_init:00000000 PID_sys_init
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:458    .text.PID_sys_init:00000070 $d
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:478    .text.steering_protection:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:484    .text.steering_protection:00000000 steering_protection
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:522    .text.steering_protection:00000028 $d
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:530    .text.StartPIDTask:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:614    .text.StartPIDTask:0000005c $d
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:664    .bss.TPID:00000000 TPID
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:657    .bss.PID_lock:00000000 PID_lock
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:692    .bss.db_target_angle:00000000 db_target_angle
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:678    .bss.current_angle:00000000 current_angle
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:685    .bss.current_voltage:00000000 current_voltage
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:644    .bss.CCR_value:00000000 CCR_value
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:710    .rodata.canopenTask_attributes:00000000 canopenTask_attributes
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:630    .rodata.str1.4:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:671    .bss.canopenTaskHandle:00000000 canopenTaskHandle
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:699    .rodata.PIDTask_attributes:00000000 PIDTask_attributes
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:651    .bss.PIDTaskHandle:00000000 PIDTaskHandle
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:640    .bss.CCR_value:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:647    .bss.PIDTaskHandle:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:658    .bss.PID_lock:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:660    .bss.TPID:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:667    .bss.canopenTaskHandle:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:674    .bss.current_angle:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:681    .bss.current_voltage:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:688    .bss.db_target_angle:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:695    .rodata.PIDTask_attributes:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s:706    .rodata.canopenTask_attributes:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:21     .text.canopen_task:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:27     .text.canopen_task:00000000 canopen_task
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:121    .text.canopen_task:00000060 $d
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:130    .text.MX_FREERTOS_Init:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:136    .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:172    .text.MX_FREERTOS_Init:00000020 $d
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:464    .text.StartPIDTask:00000000 StartPIDTask
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:187    .text.analyze_volatge:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:193    .text.analyze_volatge:00000000 analyze_volatge
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:284    .text.analyze_volatge:00000088 $d
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:299    .text.PID_init:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:305    .text.PID_init:00000000 PID_init
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:383    .text.PID_init:00000070 $d
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:404    .text.CW_CCW_deect:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:410    .text.CW_CCW_deect:00000000 CW_CCW_deect
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:452    .text.CW_CCW_deect:00000030 $d
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:458    .text.StartPIDTask:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:523    .text.StartPIDTask:00000044 $d
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:529    .text.PID_Error_handler:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:535    .text.PID_Error_handler:00000000 PID_Error_handler
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:615    .bss.db_target_angle:00000000 db_target_angle
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:601    .bss.current_angle:00000000 current_angle
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:608    .bss.current_voltage:00000000 current_voltage
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:573    .bss.CCR_value:00000000 CCR_value
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:587    .bss.TPID:00000000 TPID
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:633    .rodata.canopenTask_attributes:00000000 canopenTask_attributes
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:559    .rodata.str1.4:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:594    .bss.canopenTaskHandle:00000000 canopenTaskHandle
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:622    .rodata.PIDTask_attributes:00000000 PIDTask_attributes
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:580    .bss.PIDTaskHandle:00000000 PIDTaskHandle
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:569    .bss.CCR_value:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:576    .bss.PIDTaskHandle:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:583    .bss.TPID:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:590    .bss.canopenTaskHandle:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:597    .bss.current_angle:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:604    .bss.current_voltage:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:611    .bss.db_target_angle:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:618    .rodata.PIDTask_attributes:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s:629    .rodata.canopenTask_attributes:00000000 $d
 
 UNDEFINED SYMBOLS
 __aeabi_i2d
@@ -1128,28 +1025,26 @@ hcan
 MX_CAN_Init
 htim17
 OD_PERSIST_COMM
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfNAk5F.s 			page 20
-
-
 osThreadNew
 __aeabi_ui2d
 __aeabi_dmul
 __aeabi_dadd
 __aeabi_dsub
+__aeabi_d2iz
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc2tJ3TZ.s 			page 19
+
+
 HAL_ADC_Start
 HAL_ADC_PollForConversion
 HAL_ADC_GetValue
 hadc1
-__aeabi_dcmplt
-HAL_GPIO_WritePin
-HAL_GPIO_TogglePin
-__aeabi_d2iz
 HAL_TIM_PWM_Start
+HAL_GPIO_WritePin
 PID
 PID_SetMode
 PID_SetSampleTime
 PID_SetOutputLimits
 htim2
-__aeabi_dcmpgt
-osDelay
+__aeabi_dcmplt
 PID_Compute
+osDelay

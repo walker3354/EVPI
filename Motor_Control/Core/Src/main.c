@@ -55,7 +55,9 @@ void SystemClock_Config(void);
 void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
 uint32_t get_NodeID(void);
+int16_t *get_time_counter(void);
 uint32_t NodeID[1];
+int16_t timer_counter = 0;
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -97,7 +99,9 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM2_Init();
   MX_ADC1_Init();
+  MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
+  HAL_TIM_Base_Start_IT(&htim6);
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -169,6 +173,11 @@ uint32_t get_NodeID(void)
 {
   return NodeID[0];
 }
+
+int16_t *get_time_counter(void)
+{
+  return &timer_counter;
+}
 /* USER CODE END 4 */
 
 /**
@@ -191,6 +200,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   if (htim == canopenNodeSTM32->timerHandle)
   {
     canopen_app_interrupt();
+  }
+  if (htim->Instance == TIM6)
+  {
+    timer_counter = (timer_counter + 1) % 5;
   }
   /* USER CODE END Callback 1 */
 }
