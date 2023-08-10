@@ -22,7 +22,6 @@
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
-#include "stdlib.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "CO_app_STM32.h"
@@ -79,10 +78,19 @@ volatile double current_voltage = 0;
 volatile double current_angle = 0;
 volatile double db_target_angle = 0;
 
+int voltage_counter = 0;
+volatile double previous_voltage = 0;
+volatile double previos_error = 0;
+
+bool protection_lock = false;
+bool PID_safe_lock = false;
+
 void analyze_volatge(void);
 void PID_Error_handler(void);
 void CW_CCW_deect(void);
 void PID_init(void);
+void PID_protection(void);
+double abs(double a);
 /* USER CODE END FunctionPrototypes */
 
 void StartPIDTask(void *argument);
@@ -151,7 +159,15 @@ void StartPIDTask(void *argument)
     CW_CCW_deect();
     PID_Compute(&TPID);
     CCR_value = abs(CCR_value);
-    TIM2->CCR2 = ((int)CCR_value);
+    PID_protection();
+    if (PID_safe_lock == false)
+    {
+      TIM2->CCR2 = ((int)CCR_value);
+    }
+    else
+    {
+      HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+    }
     osDelay(100);
   }
   /* USER CODE END StartPIDTask */
@@ -193,25 +209,54 @@ void canopen_task(void *argument)
 /* USER CODE BEGIN Application */
 void analyze_volatge(void)
 {
+  if (voltage_counter == 0)
+  {
+    previous_voltage = current_voltage;
+    previos_error = abs(current_angle - db_target_angle);
+  }
   HAL_ADC_Start(&hadc1);
   HAL_ADC_PollForConversion(&hadc1, 1);
   current_voltage = HAL_ADC_GetValue(&hadc1);
-  current_voltage = HAL_ADC_GetValue(&hadc1);
   current_voltage = ((current_voltage / 4096) * 3.3);
   current_angle = (int)(((current_voltage * 2) - 1.6) * 26.5 - 34.45);
+  if (voltage_counter == 4)
+  {
+    protection_lock = true;
+  }
+  else
+  {
+    protection_lock = false;
+  }
+  voltage_counter = (voltage_counter + 1) % 5;
 }
+void PID_protection(void)
+{
+  if (current_voltage * 2 > 4.2 || current_voltage * 2 < 1.9) // outof voltage range 4.4v~1.6v
+  {
+    PID_Error_handler();
+  }
+  if ((abs(current_voltage - previous_voltage) > 1 || abs(current_voltage - previous_voltage) < 0.03) && abs(current_angle - db_target_angle) > 5 && previous_voltage != 0 && protection_lock) // voltage difference too hight and static voltage
+  {
+    PID_Error_handler();
+  }
+  if (abs((current_angle - db_target_angle) - previos_error) < 2 && abs(current_angle - db_target_angle) > 5 && previos_error != 0 && protection_lock)
+  {
 
+    PID_Error_handler();
+  }
+}
 void PID_init(void)
 {
   TIM2->CCR2 = 0; // CCR_value bigger the rpm will highter 0~100
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
   HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
+  osDelay(500);
   analyze_volatge();
   db_target_angle = Virtual_target_angle;
   PID(&TPID, &current_angle, &CCR_value, &db_target_angle, 1, 0.15, 0, _PID_P_ON_E, _PID_CD_DIRECT); // input output target
   PID_SetMode(&TPID, _PID_MODE_AUTOMATIC);
   PID_SetSampleTime(&TPID, 100);
-  PID_SetOutputLimits(&TPID, -30, 30);
+  PID_SetOutputLimits(&TPID, -70, 70);
 }
 void CW_CCW_deect(void)
 {
@@ -227,5 +272,14 @@ void CW_CCW_deect(void)
 void PID_Error_handler(void)
 {
   TIM2->CCR2 = 0;
+  PID_safe_lock = true;
+}
+double abs(double a)
+{
+  if (a < 0)
+  {
+    return (a * -1);
+  }
+  return a;
 }
 /* USER CODE END Application */
