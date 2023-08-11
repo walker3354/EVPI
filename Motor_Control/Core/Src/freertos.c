@@ -241,7 +241,6 @@ void PID_protection(void)
   }
   if (abs((current_angle - db_target_angle) - previos_error) < 2 && abs(current_angle - db_target_angle) > 5 && previos_error != 0 && protection_lock)
   {
-
     PID_Error_handler();
   }
 }

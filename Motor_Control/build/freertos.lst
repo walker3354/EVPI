@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
   26:Core/Src/freertos.c **** /* USER CODE BEGIN Includes */
   27:Core/Src/freertos.c **** #include "CO_app_STM32.h"
   28:Core/Src/freertos.c **** #include "OD.h"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 2
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 2
 
 
   29:Core/Src/freertos.c **** #include "tim.h"
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
   83:Core/Src/freertos.c **** volatile double previos_error = 0;
   84:Core/Src/freertos.c **** 
   85:Core/Src/freertos.c **** bool protection_lock = false;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 3
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 3
 
 
   86:Core/Src/freertos.c **** bool PID_safe_lock = false;
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  140:Core/Src/freertos.c ****   /* add events, ... */
  141:Core/Src/freertos.c ****   /* USER CODE END RTOS_EVENTS */
  142:Core/Src/freertos.c **** }
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 4
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 4
 
 
  143:Core/Src/freertos.c **** 
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
   43              		.cfi_def_cfa_offset 32
  185:Core/Src/freertos.c ****   /* USER CODE BEGIN canopen_task */
  186:Core/Src/freertos.c ****   CANopenNodeSTM32 canOpenNodeSTM32;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 5
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 5
 
 
   44              		.loc 1 186 3 is_stmt 1 view .LVU2
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  200:Core/Src/freertos.c ****     {
  201:Core/Src/freertos.c ****       pre_target_angle = OD_PERSIST_COMM.x6001_target_angle;
   85              		.loc 1 201 7 is_stmt 1 view .LVU19
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 6
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 6
 
 
   86              		.loc 1 201 24 is_stmt 0 view .LVU20
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  131              		.global	MX_FREERTOS_Init
  132              		.syntax unified
  133              		.thumb
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 7
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 7
 
 
  134              		.thumb_func
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  182              		.section	.text.CW_CCW_deect,"ax",%progbits
  183              		.align	1
  184              		.global	CW_CCW_deect
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 8
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 8
 
 
  185              		.syntax unified
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  254:Core/Src/freertos.c ****   db_target_angle = Virtual_target_angle;
  255:Core/Src/freertos.c ****   PID(&TPID, &current_angle, &CCR_value, &db_target_angle, 1, 0.15, 0, _PID_P_ON_E, _PID_CD_DIRECT)
  256:Core/Src/freertos.c ****   PID_SetMode(&TPID, _PID_MODE_AUTOMATIC);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 9
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 9
 
 
  257:Core/Src/freertos.c ****   PID_SetSampleTime(&TPID, 100);
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  230              	.L19:
  231 0030 00000000 		.word	.LANCHOR5
  232 0034 00000000 		.word	.LANCHOR0
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 10
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 10
 
 
  233              		.cfi_endproc
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  284 0000 38B5     		push	{r3, r4, r5, lr}
  285              	.LCFI4:
  286              		.cfi_def_cfa_offset 16
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 11
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 11
 
 
  287              		.cfi_offset 3, -16
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  334 0000 10B5     		push	{r4, lr}
  335              	.LCFI5:
  336              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 12
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 12
 
 
  337              		.cfi_offset 4, -8
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  379 0044 FFF7FEFF 		bl	HAL_ADC_GetValue
  380              	.LVL21:
  219:Core/Src/freertos.c ****   current_voltage = ((current_voltage / 4096) * 3.3);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 13
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 13
 
 
  381              		.loc 1 219 19 view .LVU75
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  221:Core/Src/freertos.c ****   if (voltage_counter == 4)
  425              		.loc 1 221 17 view .LVU86
  426 0098 FFF7FEFF 		bl	__aeabi_i2d
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 14
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 14
 
 
  427              	.LVL30:
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  468 00d8 66666666 		.word	1717986918
  469 00dc 66660A40 		.word	1074423398
  470 00e0 9A999999 		.word	-1717986918
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 15
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 15
 
 
  471 00e4 9999F93F 		.word	1073322393
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  522 0016 0821     		movs	r1, #8
  523 0018 4FF09040 		mov	r0, #1207959552
  524 001c FFF7FEFF 		bl	HAL_GPIO_WritePin
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 16
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 16
 
 
  525              	.LVL32:
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  570              	.LCFI8:
  571              		.cfi_def_cfa_offset 12
  572              		@ sp needed
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 17
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 17
 
 
  573 0074 30BD     		pop	{r4, r5, pc}
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  625 0010 4DA3     		adr	r3, .L63
  626 0012 D3E90023 		ldrd	r2, [r3]
  627 0016 FFF7FEFF 		bl	__aeabi_dcmpgt
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 18
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 18
 
 
  628              	.LVL40:
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  675 0074 FFF7FEFF 		bl	abs
  676              	.LVL48:
  677 0078 51EC100B 		vmov	r0, r1, d0
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 19
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 19
 
 
  238:Core/Src/freertos.c ****   {
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  724 00d2 274B     		ldr	r3, .L63+40
  725 00d4 D3E90023 		ldrd	r2, [r3]
  726 00d8 FFF7FEFF 		bl	__aeabi_dsub
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 20
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 20
 
 
  727              	.LVL55:
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  774 013a 08BD     		pop	{r3, pc}
  775              	.L62:
  244:Core/Src/freertos.c ****   }
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 21
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 21
 
 
  776              		.loc 1 244 5 is_stmt 1 view .LVU139
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  826 0006 09E0     		b	.L68
  827              	.L70:
  165:Core/Src/freertos.c ****     }
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 22
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 22
 
 
  828              		.loc 1 165 7 is_stmt 1 view .LVU145
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  868 003e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  163:Core/Src/freertos.c ****     {
  869              		.loc 1 163 8 view .LVU160
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 23
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 23
 
 
  870 0040 002B     		cmp	r3, #0
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  924              		.set	.LANCHOR6,. + 0
  927              	PID_safe_lock:
  928 0000 00       		.space	1
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 24
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 24
 
 
  929              		.section	.bss.TPID,"aw",%nobits
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  992              		.align	2
  993              		.set	.LANCHOR1,. + 0
  996              	PIDTask_attributes:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 25
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 25
 
 
  997 0000 0C000000 		.word	.LC1
@@ -1498,70 +1498,70 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 1
  1045              		.file 32 "Core/Inc/adc.h"
  1046              		.file 33 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_gpio.h"
  1047              		.file 34 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 26
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 26
 
 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 27
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 27
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 freertos.c
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:21     .text.canopen_task:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:27     .text.canopen_task:00000000 canopen_task
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:121    .text.canopen_task:00000060 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:130    .text.MX_FREERTOS_Init:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:136    .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:172    .text.MX_FREERTOS_Init:00000020 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:808    .text.StartPIDTask:00000000 StartPIDTask
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:183    .text.CW_CCW_deect:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:189    .text.CW_CCW_deect:00000000 CW_CCW_deect
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:231    .text.CW_CCW_deect:00000030 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:237    .text.PID_Error_handler:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:243    .text.PID_Error_handler:00000000 PID_Error_handler
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:265    .text.PID_Error_handler:00000010 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:270    .text.abs:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:276    .text.abs:00000000 abs
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:322    .text.analyze_volatge:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:328    .text.analyze_volatge:00000000 analyze_volatge
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:468    .text.analyze_volatge:000000d8 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:489    .text.PID_init:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:495    .text.PID_init:00000000 PID_init
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:577    .text.PID_init:00000078 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:599    .text.PID_protection:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:605    .text.PID_protection:00000000 PID_protection
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:784    .text.PID_protection:00000148 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:802    .text.StartPIDTask:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:881    .text.StartPIDTask:00000050 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:927    .bss.PID_safe_lock:00000000 PID_safe_lock
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:982    .bss.protection_lock:00000000 protection_lock
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:969    .bss.previos_error:00000000 previos_error
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:976    .bss.previous_voltage:00000000 previous_voltage
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:989    .bss.voltage_counter:00000000 voltage_counter
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:962    .bss.db_target_angle:00000000 db_target_angle
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:948    .bss.current_angle:00000000 current_angle
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:955    .bss.current_voltage:00000000 current_voltage
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:914    .bss.CCR_value:00000000 CCR_value
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:934    .bss.TPID:00000000 TPID
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:1007   .rodata.canopenTask_attributes:00000000 canopenTask_attributes
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:900    .rodata.str1.4:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:941    .bss.canopenTaskHandle:00000000 canopenTaskHandle
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:996    .rodata.PIDTask_attributes:00000000 PIDTask_attributes
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:921    .bss.PIDTaskHandle:00000000 PIDTaskHandle
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:910    .bss.CCR_value:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:917    .bss.PIDTaskHandle:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:928    .bss.PID_safe_lock:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:930    .bss.TPID:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:937    .bss.canopenTaskHandle:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:944    .bss.current_angle:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:951    .bss.current_voltage:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:958    .bss.db_target_angle:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:965    .bss.previos_error:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:972    .bss.previous_voltage:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:983    .bss.protection_lock:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:985    .bss.voltage_counter:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:992    .rodata.PIDTask_attributes:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s:1003   .rodata.canopenTask_attributes:00000000 $d
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4pnBJs.s 			page 28
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:21     .text.canopen_task:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:27     .text.canopen_task:00000000 canopen_task
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:121    .text.canopen_task:00000060 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:130    .text.MX_FREERTOS_Init:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:136    .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:172    .text.MX_FREERTOS_Init:00000020 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:808    .text.StartPIDTask:00000000 StartPIDTask
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:183    .text.CW_CCW_deect:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:189    .text.CW_CCW_deect:00000000 CW_CCW_deect
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:231    .text.CW_CCW_deect:00000030 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:237    .text.PID_Error_handler:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:243    .text.PID_Error_handler:00000000 PID_Error_handler
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:265    .text.PID_Error_handler:00000010 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:270    .text.abs:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:276    .text.abs:00000000 abs
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:322    .text.analyze_volatge:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:328    .text.analyze_volatge:00000000 analyze_volatge
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:468    .text.analyze_volatge:000000d8 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:489    .text.PID_init:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:495    .text.PID_init:00000000 PID_init
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:577    .text.PID_init:00000078 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:599    .text.PID_protection:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:605    .text.PID_protection:00000000 PID_protection
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:784    .text.PID_protection:00000148 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:802    .text.StartPIDTask:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:881    .text.StartPIDTask:00000050 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:927    .bss.PID_safe_lock:00000000 PID_safe_lock
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:982    .bss.protection_lock:00000000 protection_lock
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:969    .bss.previos_error:00000000 previos_error
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:976    .bss.previous_voltage:00000000 previous_voltage
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:989    .bss.voltage_counter:00000000 voltage_counter
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:962    .bss.db_target_angle:00000000 db_target_angle
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:948    .bss.current_angle:00000000 current_angle
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:955    .bss.current_voltage:00000000 current_voltage
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:914    .bss.CCR_value:00000000 CCR_value
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:934    .bss.TPID:00000000 TPID
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:1007   .rodata.canopenTask_attributes:00000000 canopenTask_attributes
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:900    .rodata.str1.4:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:941    .bss.canopenTaskHandle:00000000 canopenTaskHandle
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:996    .rodata.PIDTask_attributes:00000000 PIDTask_attributes
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:921    .bss.PIDTaskHandle:00000000 PIDTaskHandle
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:910    .bss.CCR_value:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:917    .bss.PIDTaskHandle:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:928    .bss.PID_safe_lock:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:930    .bss.TPID:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:937    .bss.canopenTaskHandle:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:944    .bss.current_angle:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:951    .bss.current_voltage:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:958    .bss.db_target_angle:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:965    .bss.previos_error:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:972    .bss.previous_voltage:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:983    .bss.protection_lock:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:985    .bss.voltage_counter:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:992    .rodata.PIDTask_attributes:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccR84abd.s:1003   .rodata.canopenTask_attributes:00000000 $d
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccR84abd.s 			page 28
 
 
 
