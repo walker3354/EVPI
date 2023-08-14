@@ -3753,51 +3753,51 @@ LOAD c:/program files (x86)/gnu arm embedded toolchain/10 2021.10/bin/../lib/gcc
 LOAD c:/program files (x86)/gnu arm embedded toolchain/10 2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a
 LOAD c:/program files (x86)/gnu arm embedded toolchain/10 2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m+fp/hard\libgcc.a
 
-.debug_info     0x00000000    0x3e204
+.debug_info     0x00000000    0x3e205
  .debug_info    0x00000000     0x2988 build/main.o
  .debug_info    0x00002988      0x3ce build/gpio.o
- .debug_info    0x00002d56     0x3b3a build/freertos.o
- .debug_info    0x00006890      0xbed build/can.o
- .debug_info    0x0000747d     0x1370 build/tim.o
- .debug_info    0x000087ed      0xb59 build/pid.o
- .debug_info    0x00009346     0x100e build/stm32f3xx_it.o
- .debug_info    0x0000a354      0x341 build/stm32f3xx_hal_msp.o
- .debug_info    0x0000a695      0xe93 build/stm32f3xx_hal_timebase_tim.o
- .debug_info    0x0000b528     0x15d2 build/stm32f3xx_hal_can.o
- .debug_info    0x0000cafa      0x8a8 build/stm32f3xx_hal.o
- .debug_info    0x0000d3a2     0x16db build/stm32f3xx_hal_rcc.o
- .debug_info    0x0000ea7d      0x6a4 build/stm32f3xx_hal_rcc_ex.o
- .debug_info    0x0000f121      0x824 build/stm32f3xx_hal_gpio.o
- .debug_info    0x0000f945      0x8f7 build/stm32f3xx_hal_dma.o
- .debug_info    0x0001023c      0xe2e build/stm32f3xx_hal_cortex.o
- .debug_info    0x0001106a     0x453a build/stm32f3xx_hal_tim.o
- .debug_info    0x000155a4     0x1f0f build/stm32f3xx_hal_tim_ex.o
- .debug_info    0x000174b3      0x47d build/system_stm32f3xx.o
- .debug_info    0x00017930      0x309 build/list.o
- .debug_info    0x00017c39     0x286e build/queue.o
- .debug_info    0x0001a4a7     0x31b8 build/tasks.o
- .debug_info    0x0001d65f     0x1a78 build/timers.o
- .debug_info    0x0001f0d7     0x4d85 build/cmsis_os2.o
- .debug_info    0x00023e5c      0x49b build/heap_4.o
- .debug_info    0x000242f7      0x5c8 build/port.o
- .debug_info    0x000248bf      0xce8 build/CO_ODinterface.o
- .debug_info    0x000255a7     0x122f build/CO_NMT_Heartbeat.o
- .debug_info    0x000267d6     0x1410 build/CO_HBconsumer.o
- .debug_info    0x00027be6     0x15ec build/CO_Emergency.o
- .debug_info    0x000291d2     0x1fcf build/CO_SDOserver.o
- .debug_info    0x0002b1a1      0xc2e build/CO_TIME.o
- .debug_info    0x0002bdcf     0x1566 build/CO_SYNC.o
- .debug_info    0x0002d335     0x2ceb build/CO_PDO.o
- .debug_info    0x00030020      0x437 build/CO_LEDs.o
- .debug_info    0x00030457      0xda6 build/CO_LSSslave.o
- .debug_info    0x000311fd     0x2ad5 build/CANopen.o
- .debug_info    0x00033cd2     0x3891 build/CO_app_STM32.o
- .debug_info    0x00037563     0x3131 build/CO_driver_STM32.o
- .debug_info    0x0003a694      0xc2f build/OD.o
- .debug_info    0x0003b2c3      0x345 build/dma.o
- .debug_info    0x0003b608      0xc22 build/adc.o
- .debug_info    0x0003c22a     0x1fb8 build/stm32f3xx_hal_adc_ex.o
- .debug_info    0x0003e1e2       0x22 build/startup_stm32f303x8.o
+ .debug_info    0x00002d56     0x3b3b build/freertos.o
+ .debug_info    0x00006891      0xbed build/can.o
+ .debug_info    0x0000747e     0x1370 build/tim.o
+ .debug_info    0x000087ee      0xb59 build/pid.o
+ .debug_info    0x00009347     0x100e build/stm32f3xx_it.o
+ .debug_info    0x0000a355      0x341 build/stm32f3xx_hal_msp.o
+ .debug_info    0x0000a696      0xe93 build/stm32f3xx_hal_timebase_tim.o
+ .debug_info    0x0000b529     0x15d2 build/stm32f3xx_hal_can.o
+ .debug_info    0x0000cafb      0x8a8 build/stm32f3xx_hal.o
+ .debug_info    0x0000d3a3     0x16db build/stm32f3xx_hal_rcc.o
+ .debug_info    0x0000ea7e      0x6a4 build/stm32f3xx_hal_rcc_ex.o
+ .debug_info    0x0000f122      0x824 build/stm32f3xx_hal_gpio.o
+ .debug_info    0x0000f946      0x8f7 build/stm32f3xx_hal_dma.o
+ .debug_info    0x0001023d      0xe2e build/stm32f3xx_hal_cortex.o
+ .debug_info    0x0001106b     0x453a build/stm32f3xx_hal_tim.o
+ .debug_info    0x000155a5     0x1f0f build/stm32f3xx_hal_tim_ex.o
+ .debug_info    0x000174b4      0x47d build/system_stm32f3xx.o
+ .debug_info    0x00017931      0x309 build/list.o
+ .debug_info    0x00017c3a     0x286e build/queue.o
+ .debug_info    0x0001a4a8     0x31b8 build/tasks.o
+ .debug_info    0x0001d660     0x1a78 build/timers.o
+ .debug_info    0x0001f0d8     0x4d85 build/cmsis_os2.o
+ .debug_info    0x00023e5d      0x49b build/heap_4.o
+ .debug_info    0x000242f8      0x5c8 build/port.o
+ .debug_info    0x000248c0      0xce8 build/CO_ODinterface.o
+ .debug_info    0x000255a8     0x122f build/CO_NMT_Heartbeat.o
+ .debug_info    0x000267d7     0x1410 build/CO_HBconsumer.o
+ .debug_info    0x00027be7     0x15ec build/CO_Emergency.o
+ .debug_info    0x000291d3     0x1fcf build/CO_SDOserver.o
+ .debug_info    0x0002b1a2      0xc2e build/CO_TIME.o
+ .debug_info    0x0002bdd0     0x1566 build/CO_SYNC.o
+ .debug_info    0x0002d336     0x2ceb build/CO_PDO.o
+ .debug_info    0x00030021      0x437 build/CO_LEDs.o
+ .debug_info    0x00030458      0xda6 build/CO_LSSslave.o
+ .debug_info    0x000311fe     0x2ad5 build/CANopen.o
+ .debug_info    0x00033cd3     0x3891 build/CO_app_STM32.o
+ .debug_info    0x00037564     0x3131 build/CO_driver_STM32.o
+ .debug_info    0x0003a695      0xc2f build/OD.o
+ .debug_info    0x0003b2c4      0x345 build/dma.o
+ .debug_info    0x0003b609      0xc22 build/adc.o
+ .debug_info    0x0003c22b     0x1fb8 build/stm32f3xx_hal_adc_ex.o
+ .debug_info    0x0003e1e3       0x22 build/startup_stm32f303x8.o
 
 .debug_abbrev   0x00000000     0x754b
  .debug_abbrev  0x00000000      0x2ff build/main.o

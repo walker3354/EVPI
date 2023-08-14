@@ -131,12 +131,12 @@ void StartTranslate_CCR(void *argument)
 {
   /* USER CODE BEGIN StartTranslate_CCR */
   /* Infinite loop */
-  volatile int angle_data = OD_PERSIST_COMM.x6000_angle_data;
+  volatile int angle_data = OD_PERSIST_COMM.x6001_angle_data;
   for (;;)
   {
-    if (OD_PERSIST_COMM.x6000_angle_data != angle_data)
+    if (OD_PERSIST_COMM.x6001_angle_data != angle_data)
     {
-      angle_data = OD_PERSIST_COMM.x6000_angle_data;
+      angle_data = OD_PERSIST_COMM.x6001_angle_data;
       TIM2->CCR2 = 1200 + (angle_data * 20);
     }
   }
