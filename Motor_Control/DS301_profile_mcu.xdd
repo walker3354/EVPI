@@ -15,7 +15,7 @@
         <ProfileTechnology>CANopen</ProfileTechnology>
       </ISO15745Reference>
     </ProfileHeader>
-    <ProfileBody xmlns:q1="http://www.canopen.org/xml/1.1" xsi:type="q1:ProfileBody_Device_CANopen" formatName="CANopen" formatVersion="1.0" fileName="DS301_profile_mcu.xdd" fileCreator="Justin Zhang" fileCreationDate="2020-11-23" fileCreationTime="13:00:00.0000000+08:00" fileModifiedBy="" fileModificationDate="2023-08-04" fileModificationTime="11:26:11.7001900+08:00" fileVersion="1" supportedLanguages="en" xmlns="">
+    <ProfileBody xmlns:q1="http://www.canopen.org/xml/1.1" xsi:type="q1:ProfileBody_Device_CANopen" formatName="CANopen" formatVersion="1.0" fileName="DS301_profile_mcu.xdd" fileCreator="Justin Zhang" fileCreationDate="2020-11-23" fileCreationTime="13:00:00.0000000+08:00" fileModifiedBy="" fileModificationDate="2023-08-14" fileModificationTime="09:56:28.7925258+08:00" fileVersion="1" supportedLanguages="en" xmlns="">
       <q1:DeviceIdentity>
         <q1:vendorName>Taipei Tech</q1:vendorName>
         <q1:vendorID>0</q1:vendorID>
@@ -964,7 +964,7 @@
           <q1:parameter uniqueID="UID_SUB_1A0000" access="readWrite">
             <label lang="en">Number of mapped application objects in PDO</label>
             <USINT />
-            <q1:defaultValue value="1" />
+            <q1:defaultValue value="2" />
           </q1:parameter>
           <q1:parameter uniqueID="UID_SUB_1A0001" access="readWrite">
             <label lang="en">Application object 1</label>
@@ -974,7 +974,7 @@
           <q1:parameter uniqueID="UID_SUB_1A0002" access="readWrite">
             <label lang="en">Application object 2</label>
             <UDINT />
-            <q1:defaultValue value="0x00000000" />
+            <q1:defaultValue value="0x60030008" />
           </q1:parameter>
           <q1:parameter uniqueID="UID_SUB_1A0003" access="readWrite">
             <label lang="en">Application object 3</label>
@@ -1018,6 +1018,12 @@
             <q1:defaultValue value="0" />
             <q1:property name="CO_storageGroup" value="PERSIST_COMM" />
           </q1:parameter>
+          <q1:parameter uniqueID="UID_OBJ_6003" access="readWriteInput">
+            <label lang="en">status</label>
+            <USINT />
+            <q1:defaultValue value="0" />
+            <q1:property name="CO_storageGroup" value="PERSIST_COMM" />
+          </q1:parameter>
         </q1:parameterList>
       </q1:ApplicationProcess>
     </ProfileBody>
@@ -1035,7 +1041,7 @@
         <ProfileTechnology>CANopen</ProfileTechnology>
       </ISO15745Reference>
     </ProfileHeader>
-    <ProfileBody xmlns:q2="http://www.canopen.org/xml/1.1" xsi:type="q2:ProfileBody_CommunicationNetwork_CANopen" formatName="CANopen" formatVersion="1.0" fileName="DS301_profile_mcu.xdd" fileCreator="Justin Zhang" fileCreationDate="2020-11-23" fileCreationTime="13:00:00.0000000+08:00" fileModificationDate="2023-08-04" fileModificationTime="11:26:11.7001900+08:00" fileVersion="1" supportedLanguages="en" xmlns="">
+    <ProfileBody xmlns:q2="http://www.canopen.org/xml/1.1" xsi:type="q2:ProfileBody_CommunicationNetwork_CANopen" formatName="CANopen" formatVersion="1.0" fileName="DS301_profile_mcu.xdd" fileCreator="Justin Zhang" fileCreationDate="2020-11-23" fileCreationTime="13:00:00.0000000+08:00" fileModificationDate="2023-08-14" fileModificationTime="09:56:28.7925258+08:00" fileVersion="1" supportedLanguages="en" xmlns="">
       <ApplicationLayers>
         <q2:CANopenObjectList>
           <CANopenObject index="1000" name="Device type" objectType="7" PDOmapping="no" uniqueIDRef="UID_OBJ_1000" />
@@ -1205,6 +1211,7 @@
           </CANopenObject>
           <CANopenObject index="6000" name="current_angle" objectType="7" PDOmapping="TPDO" uniqueIDRef="UID_OBJ_6000" />
           <CANopenObject index="6001" name="target_angle" objectType="7" PDOmapping="RPDO" uniqueIDRef="UID_OBJ_6001" />
+          <CANopenObject index="6003" name="status" objectType="7" PDOmapping="TPDO" uniqueIDRef="UID_OBJ_6003" />
         </q2:CANopenObjectList>
         <dummyUsage>
           <dummy entry="Dummy0001=0" />

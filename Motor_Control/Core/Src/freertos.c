@@ -32,8 +32,7 @@
 #include "pid.h"
 #include "adc.h"
 #define Virtual_target_angle -20
-#define portTICK_RATE_MS portTICK_PERIOD_MS
-#define portTICK_PERIOD_MS ((TickType_t)1000 / configTICK_RATE_HZ)
+#define Timer_ARR 5
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -85,7 +84,8 @@ volatile double previos_error = 0;
 bool protection_lock = false;
 bool PID_safe_lock = false;
 
-void analyze_volatge(void);
+void TPDO_tarnsmit(uint8_t status, int16_t angle);
+void analyze_voltage(void);
 void PID_Error_handler(void);
 void CW_CCW_deect(void);
 void PID_init(void);
@@ -155,7 +155,7 @@ void StartPIDTask(void *argument)
   /* Infinite loop */
   for (;;)
   {
-    analyze_volatge();
+    analyze_voltage();
     CW_CCW_deect();
     PID_Compute(&TPID);
     CCR_value = abs(CCR_value);
@@ -207,7 +207,7 @@ void canopen_task(void *argument)
 }
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
-void analyze_volatge(void)
+void analyze_voltage(void)
 {
   if (voltage_counter == 0)
   {
@@ -218,7 +218,7 @@ void analyze_volatge(void)
   HAL_ADC_PollForConversion(&hadc1, 1);
   current_voltage = HAL_ADC_GetValue(&hadc1);
   current_voltage = ((current_voltage / 4096) * 3.3);
-  current_angle = (int)(((current_voltage * 2) - 1.6) * 26.5 - 34.45);
+  current_angle = (int)(((current_voltage * 2) - 1.6) * 25 - 25); // min_voltage => 1.6  mid_voltage => 2.6 Max_voltage => 4.4  25degree/1Voltage
   if (voltage_counter == 4)
   {
     protection_lock = true;
@@ -227,30 +227,39 @@ void analyze_volatge(void)
   {
     protection_lock = false;
   }
-  voltage_counter = (voltage_counter + 1) % 5;
+  voltage_counter = (voltage_counter + 1) % Timer_ARR;
 }
+
 void PID_protection(void)
 {
-  if (current_voltage * 2 > 4.2 || current_voltage * 2 < 1.9) // outof voltage range 4.4v~1.6v
+  if (current_voltage * 2 > 4.2 || current_voltage * 2 < 1.8) // outof voltage range 4.4v ~ 1.6v
   {
     PID_Error_handler();
+    TPDO_tarnsmit(2, 99); // 2.reach limit
   }
   if ((abs(current_voltage - previous_voltage) > 1 || abs(current_voltage - previous_voltage) < 0.03) && abs(current_angle - db_target_angle) > 5 && previous_voltage != 0 && protection_lock) // voltage difference too hight and static voltage
   {
     PID_Error_handler();
+    TPDO_tarnsmit(3, 99); // 3. Angle reader abnormal
   }
-  if (abs((current_angle - db_target_angle) - previos_error) < 2 && abs(current_angle - db_target_angle) > 5 && previos_error != 0 && protection_lock)
+  if (abs((current_angle - db_target_angle) - previos_error) < 2 && abs(current_angle - db_target_angle) > 5 && previos_error != 0 && protection_lock) // angle error
   {
     PID_Error_handler();
+    TPDO_tarnsmit(4, 99); // 4. Error not decrease
+  }
+  else
+  {
+    TPDO_tarnsmit(0, current_angle); // 0.normal output
   }
 }
+
 void PID_init(void)
 {
   TIM2->CCR2 = 0; // CCR_value bigger the rpm will highter 0~100
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
   HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
   osDelay(500);
-  analyze_volatge();
+  analyze_voltage();
   db_target_angle = Virtual_target_angle;
   PID(&TPID, &current_angle, &CCR_value, &db_target_angle, 1, 0.15, 0, _PID_P_ON_E, _PID_CD_DIRECT); // input output target
   PID_SetMode(&TPID, _PID_MODE_AUTOMATIC);
@@ -280,5 +289,13 @@ double abs(double a)
     return (a * -1);
   }
   return a;
+}
+void TPDO_tarnsmit(uint8_t status, int16_t angle)
+{
+  OD_PERSIST_COMM.x6000_current_angle = angle;
+  OD_PERSIST_COMM.x6003_status = status;
+  OD_set_u16(OD_find(OD, 0x6000), 0x000, OD_PERSIST_COMM.x6000_current_angle, false); // change_obj, index change , value,false
+  OD_set_u8(OD_find(OD, 0x6003), 0x000, OD_PERSIST_COMM.x6003_status, false);
+  CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
 }
 /* USER CODE END Application */
