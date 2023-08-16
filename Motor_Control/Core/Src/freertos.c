@@ -31,7 +31,6 @@
 #include "can.h"
 #include "pid.h"
 #include "adc.h"
-#define Virtual_target_angle -20
 #define Timer_ARR 5
 /* USER CODE END Includes */
 
@@ -166,13 +165,13 @@ void StartPIDTask(void *argument)
     PID_protection();
     if (PID_safe_lock == false)
     {
-      TIM2->CCR2 = ((int)CCR_value);
+      TIM2->CCR2 = ((int)CCR_value * 10);
     }
     else
     {
       HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
     }
-    osDelay(100);
+    osDelay(50);
   }
   /* USER CODE END StartPIDTask */
 }
@@ -213,19 +212,19 @@ void canopen_task(void *argument)
       {
         db_target_angle = (double)OD_PERSIST_COMM.x6001_target_angle;
       }
-      else if (OD_PERSIST_COMM.x6001_target_angle > 20 && OD_PERSIST_COMM.x6004_target_CW_CCW == 1)
+      else if (OD_PERSIST_COMM.x6001_target_angle > 40 && OD_PERSIST_COMM.x6004_target_CW_CCW == 1)
       {
-        db_target_angle = 20 * -1;
+        db_target_angle = 40 * -1;
         TPDO_tarnsmit(6, 99);
       }
-      else if (OD_PERSIST_COMM.x6001_target_angle < 20 && OD_PERSIST_COMM.x6004_target_CW_CCW == 1)
+      else if (OD_PERSIST_COMM.x6001_target_angle < 40 && OD_PERSIST_COMM.x6004_target_CW_CCW == 1)
       {
         db_target_angle = (double)OD_PERSIST_COMM.x6001_target_angle * -1;
       }
       pre_target_angle = OD_PERSIST_COMM.x6001_target_angle;
       pre_target_CW_CCW = OD_PERSIST_COMM.x6004_target_CW_CCW;
     }
-    vTaskDelay(1);
+    osDelay(100);
   }
   /* USER CODE END canopen_task */
 }
@@ -252,11 +251,17 @@ void analyze_voltage(void)
     protection_lock = false;
   }
   voltage_counter = (voltage_counter + 1) % Timer_ARR;
+  if (current_angle >= 0)
+  {
+    OD_PERSIST_COMM.x6005_current_CW_CCW = 1;
+  }
+  else
+  {
+    OD_PERSIST_COMM.x6005_current_CW_CCW = 0;
+  }
 }
-
 void PID_protection(void)
 {
-
   if (current_angle > 40 || current_voltage < -25) // outof voltage range 4.4v ~ 1.6v
   {
     PID_Error_handler();
@@ -279,7 +284,6 @@ void PID_protection(void)
     TPDO_tarnsmit(0, abs(current_angle)); // 0.normal output
   }
 }
-
 void PID_init(void)
 {
   TIM2->CCR2 = 0; // CCR_value bigger the rpm will highter 0~100
@@ -288,22 +292,20 @@ void PID_init(void)
   osDelay(500);
   analyze_voltage();
   // db_target_angle = Virtual_target_angle;
-  PID(&TPID, &current_angle, &CCR_value, &db_target_angle, 1, 0.15, 0, _PID_P_ON_E, _PID_CD_DIRECT); // input output target
+  PID(&TPID, &current_angle, &CCR_value, &db_target_angle, 0.3, 0.02, 0, _PID_P_ON_E, _PID_CD_DIRECT); // input output target
   PID_SetMode(&TPID, _PID_MODE_AUTOMATIC);
-  PID_SetSampleTime(&TPID, 100);
-  PID_SetOutputLimits(&TPID, -70, 70);
+  PID_SetSampleTime(&TPID, 50);
+  PID_SetOutputLimits(&TPID, -10, 10);
 }
 void CW_CCW_deect(void)
 {
   if (current_angle < db_target_angle)
   {
     HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 0);
-    OD_PERSIST_COMM.x6005_current_CW_CCW = 0;
   }
   else
   {
     HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
-    OD_PERSIST_COMM.x6005_current_CW_CCW = 1;
   }
 }
 void PID_Error_handler(void)
