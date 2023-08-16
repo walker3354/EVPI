@@ -53,16 +53,16 @@
 /* Definitions for RPM_CalcuateTas */
 osThreadId_t RPM_CalcuateTasHandle;
 const osThreadAttr_t RPM_CalcuateTas_attributes = {
-  .name = "RPM_CalcuateTas",
-  .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityHigh,
+    .name = "RPM_CalcuateTas",
+    .stack_size = 128 * 4,
+    .priority = (osPriority_t)osPriorityHigh,
 };
 /* Definitions for canopenTask */
 osThreadId_t canopenTaskHandle;
 const osThreadAttr_t canopenTask_attributes = {
-  .name = "canopenTask",
-  .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityRealtime,
+    .name = "canopenTask",
+    .stack_size = 128 * 4,
+    .priority = (osPriority_t)osPriorityRealtime,
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -76,11 +76,12 @@ void canopen_task(void *argument);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /**
-  * @brief  FreeRTOS initialization
-  * @param  None
-  * @retval None
-  */
-void MX_FREERTOS_Init(void) {
+ * @brief  FreeRTOS initialization
+ * @param  None
+ * @retval None
+ */
+void MX_FREERTOS_Init(void)
+{
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
@@ -115,15 +116,14 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_EVENTS */
   /* add events, ... */
   /* USER CODE END RTOS_EVENTS */
-
 }
 
 /* USER CODE BEGIN Header_StartRPM_Calcuate */
 /**
-  * @brief  Function implementing the RPM_CalcuateTas thread.
-  * @param  argument: Not used
-  * @retval None
-  */
+ * @brief  Function implementing the RPM_CalcuateTas thread.
+ * @param  argument: Not used
+ * @retval None
+ */
 /* USER CODE END Header_StartRPM_Calcuate */
 void StartRPM_Calcuate(void *argument)
 {
@@ -180,4 +180,3 @@ void canopen_task(void *argument)
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
 /* USER CODE END Application */
-

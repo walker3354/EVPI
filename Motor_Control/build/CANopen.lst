@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
   27:Middlewares/Third_Party/CANopenNode/CANopen.c **** 
   28:Middlewares/Third_Party/CANopenNode/CANopen.c **** /* Get values from CO_config_t or from single default OD.h ********************/
   29:Middlewares/Third_Party/CANopenNode/CANopen.c **** #ifdef CO_MULTIPLE_OD
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 2
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 2
 
 
   30:Middlewares/Third_Party/CANopenNode/CANopen.c **** #define CO_GET_CO(obj) co->obj
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
   84:Middlewares/Third_Party/CANopenNode/CANopen.c **** #if (CO_CONFIG_EM) & CO_CONFIG_EM_PRODUCER
   85:Middlewares/Third_Party/CANopenNode/CANopen.c ****  #if OD_CNT_EM_PROD == 1
   86:Middlewares/Third_Party/CANopenNode/CANopen.c ****   #define CO_TX_CNT_EM_PROD OD_CNT_EM_PROD
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 3
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 3
 
 
   87:Middlewares/Third_Party/CANopenNode/CANopen.c ****  #else
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  141:Middlewares/Third_Party/CANopenNode/CANopen.c **** #endif
  142:Middlewares/Third_Party/CANopenNode/CANopen.c **** 
  143:Middlewares/Third_Party/CANopenNode/CANopen.c **** #if (CO_CONFIG_SYNC) & CO_CONFIG_SYNC_ENABLE
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 4
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 4
 
 
  144:Middlewares/Third_Party/CANopenNode/CANopen.c ****  #if !defined OD_CNT_SYNC
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  198:Middlewares/Third_Party/CANopenNode/CANopen.c **** #if (CO_CONFIG_GFC) & CO_CONFIG_GFC_ENABLE
  199:Middlewares/Third_Party/CANopenNode/CANopen.c ****  #if !defined OD_CNT_GFC
  200:Middlewares/Third_Party/CANopenNode/CANopen.c ****   #define OD_CNT_GFC 0
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 5
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 5
 
 
  201:Middlewares/Third_Party/CANopenNode/CANopen.c ****   #define OD_ENTRY_H1300 NULL
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  255:Middlewares/Third_Party/CANopenNode/CANopen.c **** #endif
  256:Middlewares/Third_Party/CANopenNode/CANopen.c **** 
  257:Middlewares/Third_Party/CANopenNode/CANopen.c **** /* Indexes of CO_CANrx_t and CO_CANtx_t objects in CO_CANmodule_t and total
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 6
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 6
 
 
  258:Middlewares/Third_Party/CANopenNode/CANopen.c ****  * number of them. Indexes are sorted in a way, that objects with highest
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  312:Middlewares/Third_Party/CANopenNode/CANopen.c **** #endif
  313:Middlewares/Third_Party/CANopenNode/CANopen.c **** 
  314:Middlewares/Third_Party/CANopenNode/CANopen.c **** /* Define macros for allocation */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 7
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 7
 
 
  315:Middlewares/Third_Party/CANopenNode/CANopen.c **** #define CO_alloc_break_on_fail(var, num, size)   if (((var) = CO_alloc((num), (size))) != NULL) { m
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  369:Middlewares/Third_Party/CANopenNode/CANopen.c ****             ON_MULTI_OD(RX_CNT_NMT_SLV = 1);
  370:Middlewares/Third_Party/CANopenNode/CANopen.c ****  #if (CO_CONFIG_NMT) & CO_CONFIG_NMT_MASTER
  371:Middlewares/Third_Party/CANopenNode/CANopen.c ****             ON_MULTI_OD(TX_CNT_NMT_MST = 1);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 8
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 8
 
 
  372:Middlewares/Third_Party/CANopenNode/CANopen.c ****  #endif
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  426:Middlewares/Third_Party/CANopenNode/CANopen.c ****         ON_MULTI_OD(uint8_t TX_CNT_TIME = 0);
  427:Middlewares/Third_Party/CANopenNode/CANopen.c ****         if (CO_GET_CNT(TIME) == 1) {
  428:Middlewares/Third_Party/CANopenNode/CANopen.c ****             CO_alloc_break_on_fail(co->TIME, CO_GET_CNT(TIME), sizeof(*co->TIME));
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 9
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 9
 
 
  429:Middlewares/Third_Party/CANopenNode/CANopen.c ****             ON_MULTI_OD(RX_CNT_TIME = 1);
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  483:Middlewares/Third_Party/CANopenNode/CANopen.c ****         if (CO_GET_CNT(SRDO) > 0) {
  484:Middlewares/Third_Party/CANopenNode/CANopen.c ****             CO_alloc_break_on_fail(co->SRDOGuard, 1, sizeof(*co->SRDOGuard));
  485:Middlewares/Third_Party/CANopenNode/CANopen.c ****             CO_alloc_break_on_fail(co->SRDO, CO_GET_CNT(SRDO), sizeof(*co->SRDO));
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 10
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 10
 
 
  486:Middlewares/Third_Party/CANopenNode/CANopen.c ****             ON_MULTI_OD(RX_CNT_SRDO = config->CNT_SRDO * 2);
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  540:Middlewares/Third_Party/CANopenNode/CANopen.c ****         co->RX_IDX_SRDO = idxRx; idxRx += RX_CNT_SRDO * 2;
  541:Middlewares/Third_Party/CANopenNode/CANopen.c **** #endif
  542:Middlewares/Third_Party/CANopenNode/CANopen.c **** #if (CO_CONFIG_PDO) & CO_CONFIG_RPDO_ENABLE
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 11
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 11
 
 
  543:Middlewares/Third_Party/CANopenNode/CANopen.c ****         co->RX_IDX_RPDO = idxRx; idxRx += RX_CNT_RPDO;
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  597:Middlewares/Third_Party/CANopenNode/CANopen.c **** 
  598:Middlewares/Third_Party/CANopenNode/CANopen.c ****         /* CAN TX blocks */
  599:Middlewares/Third_Party/CANopenNode/CANopen.c ****         CO_alloc_break_on_fail(co->CANtx, CO_GET_CO(CNT_ALL_TX_MSGS), sizeof(*co->CANtx));
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 12
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 12
 
 
  600:Middlewares/Third_Party/CANopenNode/CANopen.c **** 
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
   58              	.LVL4:
  625:Middlewares/Third_Party/CANopenNode/CANopen.c ****     CO_free(co->CANmodule);
   59              		.loc 1 625 5 view .LVU8
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 13
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 13
 
 
   60 001a 6068     		ldr	r0, [r4, #4]
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
   78              	.LVL9:
  662:Middlewares/Third_Party/CANopenNode/CANopen.c **** #endif
  663:Middlewares/Third_Party/CANopenNode/CANopen.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 14
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 14
 
 
  664:Middlewares/Third_Party/CANopenNode/CANopen.c **** #if (CO_CONFIG_SYNC) & CO_CONFIG_SYNC_ENABLE
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  690:Middlewares/Third_Party/CANopenNode/CANopen.c ****     /* NMT_Heartbeat */
  691:Middlewares/Third_Party/CANopenNode/CANopen.c ****     CO_free(co->NMT);
  107              		.loc 1 691 5 view .LVU20
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 15
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 15
 
 
  108 0062 2069     		ldr	r0, [r4, #16]
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  338:Middlewares/Third_Party/CANopenNode/CANopen.c **** #ifdef CO_MULTIPLE_OD
  155              		.loc 1 338 5 view .LVU29
  353:Middlewares/Third_Party/CANopenNode/CANopen.c **** #endif
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 16
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 16
 
 
  156              		.loc 1 353 9 view .LVU30
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  378:Middlewares/Third_Party/CANopenNode/CANopen.c ****             uint8_t countOfMonitoredNodes = CO_GET_CNT(ARR_1016);
  193              		.loc 1 378 9 discriminator 1 view .LVU48
  194              	.LBB24:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 17
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 17
 
 
  379:Middlewares/Third_Party/CANopenNode/CANopen.c ****             CO_alloc_break_on_fail(co->HBcons, CO_GET_CNT(HB_CONS), sizeof(*co->HBcons));
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  395:Middlewares/Third_Party/CANopenNode/CANopen.c ****  #endif
  235              		.loc 1 395 44 view .LVU63
  398:Middlewares/Third_Party/CANopenNode/CANopen.c ****             if (fifoSize >= 2) {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 18
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 18
 
 
  236              		.loc 1 398 13 view .LVU64
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  274 006e A062     		str	r0, [r4, #40]
  275 0070 0028     		cmp	r0, #0
  276 0072 53D0     		beq	.L18
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 19
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 19
 
 
  428:Middlewares/Third_Party/CANopenNode/CANopen.c ****             ON_MULTI_OD(RX_CNT_TIME = 1);
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  312              		.loc 1 458 9 discriminator 1 view .LVU99
  459:Middlewares/Third_Party/CANopenNode/CANopen.c ****             ON_MULTI_OD(TX_CNT_TPDO = config->CNT_TPDO);
  313              		.loc 1 459 13 discriminator 1 view .LVU100
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 20
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 20
 
 
  314 0092 4FF4B671 		mov	r1, #364
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  593:Middlewares/Third_Party/CANopenNode/CANopen.c **** 
  353              		.loc 1 593 9 discriminator 1 view .LVU116
  354 00be 3821     		movs	r1, #56
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 21
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 21
 
 
  355 00c0 0120     		movs	r0, #1
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  609:Middlewares/Third_Party/CANopenNode/CANopen.c ****         *heapMemoryUsed = mem;
  395              		.loc 1 609 5 is_stmt 1 view .LVU131
  609:Middlewares/Third_Party/CANopenNode/CANopen.c ****         *heapMemoryUsed = mem;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 22
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 22
 
 
  396              		.loc 1 609 8 is_stmt 0 view .LVU132
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  439 010a 4FF48E76 		mov	r6, #284
  440 010e F1E7     		b	.L8
  441              	.LVL67:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 23
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 23
 
 
  442              	.L16:
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  495:Middlewares/Third_Party/CANopenNode/CANopen.c ****             ON_MULTI_OD(RX_CNT_LSS_SLV = 1);
  487              		.loc 1 495 13 view .LVU153
  488 0140 4FF4D166 		mov	r6, #1672
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 24
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 24
 
 
  489 0144 D6E7     		b	.L8
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  726:Middlewares/Third_Party/CANopenNode/CANopen.c **** #endif
  727:Middlewares/Third_Party/CANopenNode/CANopen.c **** #if (CO_CONFIG_PDO) & CO_CONFIG_RPDO_ENABLE
  728:Middlewares/Third_Party/CANopenNode/CANopen.c ****     static CO_RPDO_t COO_RPDO[OD_CNT_RPDO];
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 25
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 25
 
 
  729:Middlewares/Third_Party/CANopenNode/CANopen.c **** #endif
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  783:Middlewares/Third_Party/CANopenNode/CANopen.c **** #if (CO_CONFIG_TIME) & CO_CONFIG_TIME_ENABLE
  784:Middlewares/Third_Party/CANopenNode/CANopen.c ****     co->TIME = &COO_TIME;
  785:Middlewares/Third_Party/CANopenNode/CANopen.c **** #endif
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 26
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 26
 
 
  786:Middlewares/Third_Party/CANopenNode/CANopen.c **** #if (CO_CONFIG_SYNC) & CO_CONFIG_SYNC_ENABLE
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  835:Middlewares/Third_Party/CANopenNode/CANopen.c ****     (void) co; /* may be unused */
  518              		.loc 1 835 5 view .LVU157
  836:Middlewares/Third_Party/CANopenNode/CANopen.c ****     bool_t en = false;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 27
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 27
 
 
  519              		.loc 1 836 5 view .LVU158
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  848:Middlewares/Third_Party/CANopenNode/CANopen.c **** 
  849:Middlewares/Third_Party/CANopenNode/CANopen.c ****     co->CANmodule->CANnormal = false;
  563              		.loc 1 849 5 is_stmt 1 view .LVU169
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 28
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 28
 
 
  564              		.loc 1 849 7 is_stmt 0 view .LVU170
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  847:Middlewares/Third_Party/CANopenNode/CANopen.c **** 
  605              		.loc 1 847 28 view .LVU179
  606 0032 4FF0FF30 		mov	r0, #-1
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 29
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 29
 
 
  607              	.LVL86:
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  644              		.loc 1 879 5 is_stmt 1 view .LVU187
  645              		.loc 1 879 11 is_stmt 0 view .LVU188
  646 000c 4368     		ldr	r3, [r0, #4]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 30
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 30
 
 
  647              	.LVL89:
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  689              		.thumb
  690              		.thumb_func
  692              	CO_CANopenInit:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 31
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 31
 
 
  693              	.LVL94:
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  726 0018 0446     		mov	r4, r0
  913:Middlewares/Third_Party/CANopenNode/CANopen.c ****         || (CO_GET_CNT(NMT) == 0 && NMT == NULL)
  914:Middlewares/Third_Party/CANopenNode/CANopen.c ****         || (CO_GET_CNT(EM) == 0 && em == NULL)
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 32
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 32
 
 
  915:Middlewares/Third_Party/CANopenNode/CANopen.c ****     ) {
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  754              	.LVL97:
  755              		.loc 1 941 15 view .LVU216
  756 002e FFF7FEFF 		bl	CO_LEDs_init
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 33
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 33
 
 
  757              	.LVL98:
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  957:Middlewares/Third_Party/CANopenNode/CANopen.c ****                          co->em_fifo,
  958:Middlewares/Third_Party/CANopenNode/CANopen.c ****                          (CO_GET_CNT(ARR_1003) + 1),
  959:Middlewares/Third_Party/CANopenNode/CANopen.c ****  #endif
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 34
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 34
 
 
  960:Middlewares/Third_Party/CANopenNode/CANopen.c ****  #if (CO_CONFIG_EM) & CO_CONFIG_EM_PRODUCER
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
 1008:Middlewares/Third_Party/CANopenNode/CANopen.c ****                                  em,
 1009:Middlewares/Third_Party/CANopenNode/CANopen.c ****                                  co->HBconsMonitoredNodes,
 1010:Middlewares/Third_Party/CANopenNode/CANopen.c ****                                  CO_GET_CNT(ARR_1016),
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 35
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 35
 
 
 1011:Middlewares/Third_Party/CANopenNode/CANopen.c ****                                  OD_GET(H1016, OD_H1016_CONSUMER_HB_TIME),
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
 1065:Middlewares/Third_Party/CANopenNode/CANopen.c ****                            errInfo);
 1066:Middlewares/Third_Party/CANopenNode/CANopen.c ****         if (err) return err;
 1067:Middlewares/Third_Party/CANopenNode/CANopen.c ****     }
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 36
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 36
 
 
 1068:Middlewares/Third_Party/CANopenNode/CANopen.c **** #endif
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
 1122:Middlewares/Third_Party/CANopenNode/CANopen.c ****                                co->SDO[0],
 1123:Middlewares/Third_Party/CANopenNode/CANopen.c ****                                nodeId,
 1124:Middlewares/Third_Party/CANopenNode/CANopen.c ****                                ((i == 0) ? CO_CAN_ID_SRDO_1 : 0),
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 37
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 37
 
 
 1125:Middlewares/Third_Party/CANopenNode/CANopen.c ****                                SRDOcomm++,
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
 1179:Middlewares/Third_Party/CANopenNode/CANopen.c ****         for (uint16_t i = 0; i < CO_GET_CNT(TRACE); i++) {
 1180:Middlewares/Third_Party/CANopenNode/CANopen.c ****             err = CO_trace_init(co->trace[i],
 1181:Middlewares/Third_Party/CANopenNode/CANopen.c ****                                 co->SDO[0],
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 38
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 38
 
 
 1182:Middlewares/Third_Party/CANopenNode/CANopen.c ****                                 OD_traceConfig[i].axisNo,
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  827              		.loc 1 983 5 is_stmt 1 view .LVU235
  984:Middlewares/Third_Party/CANopenNode/CANopen.c ****                           OD_GET(H1017, OD_H1017_PRODUCER_HB_TIME),
  828              		.loc 1 984 9 view .LVU236
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 39
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 39
 
 
  985:Middlewares/Third_Party/CANopenNode/CANopen.c ****                           em,
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  874 00cc 6268     		ldr	r2, [r4, #4]
  875 00ce 0192     		str	r2, [sp, #4]
  876 00d0 8433     		adds	r3, r3, #132
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 40
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 40
 
 
  877 00d2 0093     		str	r3, [sp]
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  916 00f4 1B68     		ldr	r3, [r3]
  917 00f6 5968     		ldr	r1, [r3, #4]
 1057:Middlewares/Third_Party/CANopenNode/CANopen.c ****                            OD_GET(H1012, OD_H1012_COBID_TIME),
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 41
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 41
 
 
  918              		.loc 1 1057 15 view .LVU261
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  963              	.LVL115:
  964 0140 0346     		mov	r3, r0
  965              	.LVL116:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 42
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 42
 
 
 1085:Middlewares/Third_Party/CANopenNode/CANopen.c ****     }
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  1010              	.LVL122:
 1023:Middlewares/Third_Party/CANopenNode/CANopen.c ****                                     od,
  1011              		.loc 1 1023 19 discriminator 2 view .LVU281
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 43
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 43
 
 
  1012 018a 5A46     		mov	r2, fp
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  1054              		@ frame_needed = 0, uses_anonymous_args = 0
 1212:Middlewares/Third_Party/CANopenNode/CANopen.c ****     if (co == NULL) {
  1055              		.loc 1 1212 5 view .LVU288
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 44
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 44
 
 
  1056              		.loc 1 1212 8 is_stmt 0 view .LVU289
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  1099              		.loc 1 1222 21 view .LVU299
  1100 0026 02F1CC0C 		add	ip, r2, #204
  1101              	.LVL130:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 45
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 45
 
 
 1223:Middlewares/Third_Party/CANopenNode/CANopen.c ****         OD_entry_t *RPDOmap = OD_GET(H1600, OD_H1600_RXPDO_1_MAPPING);
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  1141 0044 02F10C0B 		add	fp, r2, #12
  1142              	.LVL136:
  1143              		.loc 1 1237 19 view .LVU318
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 46
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 46
 
 
  1144 0048 1FFA80F9 		uxth	r9, r0
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  1182 0084 D446     		mov	ip, r10
  1183 0086 D2E7     		b	.L64
  1184              	.LVL142:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 47
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 47
 
 
  1185              	.L61:
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  1225              		.loc 1 1257 9 is_stmt 1 view .LVU337
  1226              		.loc 1 1257 21 is_stmt 0 view .LVU338
  1227 00a6 F032     		adds	r2, r2, #240
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 48
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 48
 
 
  1228              	.LVL147:
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  1250              	.LCFI17:
  1251              		.cfi_remember_state
  1252              		.cfi_def_cfa_offset 36
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 49
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 49
 
 
  1253              		@ sp needed
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  1295 00e4 0391     		str	r1, [sp, #12]
  1296 00e6 0292     		str	r2, [sp, #8]
  1297 00e8 CDF804C0 		str	ip, [sp, #4]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 50
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 50
 
 
  1298 00ec 0093     		str	r3, [sp]
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  1343              		.cfi_restore 9
  1344              		.cfi_restore 10
  1345              		.cfi_restore 11
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 51
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 51
 
 
  1346              		.cfi_restore 14
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  1392              		.cfi_offset 14, -4
  1393 0004 8BB0     		sub	sp, sp, #44
  1394              	.LCFI21:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 52
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 52
 
 
  1395              		.cfi_def_cfa_offset 80
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
   38:Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h **** 
   39:Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h **** #ifdef __cplusplus
   40:Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h **** extern "C" {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 53
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 53
 
 
   41:Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h **** #endif
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
   95:Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h ****     /** 0, No command */
   96:Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h ****     CO_NMT_NO_COMMAND = 0,
   97:Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h ****     /** 1, Start device */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 54
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 54
 
 
   98:Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h ****     CO_NMT_ENTER_OPERATIONAL = 1,
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  152:Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h ****     /** If bit is set and CO_NMT_ERR_ON_xx condition is met, then device will
  153:Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h ****      * enter NMT stopped state, otherwise it will enter NMT pre-op state. */
  154:Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h ****     CO_NMT_ERR_TO_STOPPED = 0x4000U,
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 55
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 55
 
 
  155:Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h ****     /** If bit is set and device is pre-operational, it enters NMT operational
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  209:Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h ****  *
  210:Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h ****  * Function must be called in the communication reset section.
  211:Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h ****  *
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 56
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 56
 
 
  212:Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h ****  * @param NMT This object will be initialized.
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  266:Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h ****  * Can be NULL
  267:Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h ****  * @param pFunctSignal Pointer to the callback function. Not called if NULL.
  268:Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h ****  */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 57
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 57
 
 
  269:Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h **** void CO_NMT_initCallbackPre(CO_NMT_t *NMT,
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  1412              		.loc 2 319 48 is_stmt 0 view .LVU380
  1413 000e 002B     		cmp	r3, #0
  1414 0010 34D0     		beq	.L95
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 58
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 58
 
 
  1415 0012 93F90030 		ldrsb	r3, [r3]
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  1452              		.loc 1 1316 5 is_stmt 1 view .LVU394
  1453              		.loc 1 1316 12 is_stmt 0 view .LVU395
  1454 0038 2368     		ldr	r3, [r4]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 59
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 59
 
 
  1455              	.LVL172:
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
   35:Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h **** #ifdef __cplusplus
   36:Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h **** extern "C" {
   37:Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h **** #endif
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 60
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 60
 
 
   38:Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h **** 
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
   92:Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h ****     CO_LSS_address_t        lssSelect;        /**< Received LSS Address by select */
   93:Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h **** 
   94:Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h ****     CO_LSS_address_t        lssFastscan;      /**< Received LSS Address by fastscan */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 61
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 61
 
 
   95:Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h ****     uint8_t                 fastscanPos;      /**< Current state of fastscan */
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  149:Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h ****  * @param [in,out] pendingBitRate Pending bit rate of the CAN interface
  150:Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h ****  * @param [in,out] pendingNodeID Pending node ID or 0xFF - invalid
  151:Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h ****  * @param CANdevRx CAN device for LSS slave reception.
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 62
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 62
 
 
  152:Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h ****  * @param CANdevRxIdx Index of receive buffer in the above CAN device.
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  1481 0044 012A     		cmp	r2, #1
  1482 0046 27D0     		beq	.L100
 1318:Middlewares/Third_Party/CANopenNode/CANopen.c ****  #if (CO_CONFIG_LSS) & CO_CONFIG_LSS_SLAVE
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 63
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 63
 
 
  1483              		.loc 1 1318 12 view .LVU407
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
   12:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  *
   13:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  * Licensed under the Apache License, Version 2.0 (the "License");
   14:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  * you may not use this file except in compliance with the License.
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 64
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 64
 
 
   15:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  * You may obtain a copy of the License at
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
   69:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  * (with CANopen Emergency message) only the first time after it occurs.
   70:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  * Internal state of specific error condition is indicated by internal bitfield
   71:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  * variable, with space for maximum @ref CO_CONFIG_EM_ERR_STATUS_BITS_COUNT
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 65
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 65
 
 
   72:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  * bits. Meaning for each bit is described by @ref CO_EM_errorStatusBits_t.
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  126:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h **** } CO_errorRegister_t;
  127:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h **** 
  128:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 66
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 66
 
 
  129:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h **** /**
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  183:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****     /** 0x8140, recovered from bus off */
  184:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****     CO_EMC_BUS_OFF_RECOVERED = 0x8140U,
  185:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****     /** 0x8150, CAN-ID collision */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 67
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 67
 
 
  186:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****     CO_EMC_CAN_ID_COLLISION = 0x8150U,
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  240:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  * uses first 6 bytes. Additional 4 bytes are pre-defined for manufacturer
  241:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  * or device specific error indications, by default.
  242:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 68
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 68
 
 
  243:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h **** typedef enum {
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  297:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****     CO_EM_SYNC_TIME_OUT             = 0x18U,
  298:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****     /** 0x19, communication, critical, Unexpected SYNC data length */
  299:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****     CO_EM_SYNC_LENGTH               = 0x19U,
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 69
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 69
 
 
  300:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****     /** 0x1A, communication, critical, Error with PDO mapping */
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  354:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****      */
  355:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****     CO_EM_MANUFACTURER_START        = 0x30U,
  356:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****     /** (@ref CO_CONFIG_EM_ERR_STATUS_BITS_COUNT - 1), largest value of the
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 70
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 70
 
 
  357:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****      * Error status bit. */
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  411:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****     uint8_t fifoCount;
  412:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h **** #endif /* (CO_CONFIG_EM) & (CO_CONFIG_EM_PRODUCER | CO_CONFIG_EM_HISTORY) */
  413:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 71
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 71
 
 
  414:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h **** #if ((CO_CONFIG_EM) & CO_CONFIG_EM_PRODUCER) || defined CO_DOXYGEN
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  468:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  * Initialize Emergency object.
  469:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  *
  470:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  * Function must be called in the communication reset section.
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 72
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 72
 
 
  471:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  *
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  525:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h **** #endif
  526:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****                             const uint8_t nodeId,
  527:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****                             uint32_t *errInfo);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 73
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 73
 
 
  528:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h **** 
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  582:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  *
  583:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  * @param em This object.
  584:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  * @param NMTisPreOrOperational True if this node is NMT_PRE_OPERATIONAL or
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 74
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 74
 
 
  585:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  * NMT_OPERATIONAL state.
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  639:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  *
  640:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  * @return true if Error is present.
  641:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h ****  */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 75
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 75
 
 
  642:Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h **** static inline bool_t CO_isError(CO_EM_t *em, const uint8_t errorBit) {
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  1553              		.loc 1 1318 12 view .LVU426
  1554 0092 4FF0000E 		mov	lr, #0
  1555 0096 D9E7     		b	.L85
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 76
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 76
 
 
  1556              	.LVL184:
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  1602 00b6 3BB3     		cbz	r3, .L106
  1603              		.loc 4 647 36 view .LVU441
  1604 00b8 DB78     		ldrb	r3, [r3, #3]	@ zero_extendqisi2
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 77
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 77
 
 
  1605              	.LVL192:
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  1642              		.loc 4 658 58 is_stmt 0 view .LVU454
  1643 00ce 0BB3     		cbz	r3, .L109
  1644              		.loc 4 658 29 view .LVU455
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 78
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 78
 
 
  1645 00d0 DB68     		ldr	r3, [r3, #12]
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
 1358:Middlewares/Third_Party/CANopenNode/CANopen.c ****                       timerNext_us);
 1359:Middlewares/Third_Party/CANopenNode/CANopen.c ****     }
 1360:Middlewares/Third_Party/CANopenNode/CANopen.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 79
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 79
 
 
 1361:Middlewares/Third_Party/CANopenNode/CANopen.c ****     /* NMT_Heartbeat */
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  1692              	.LCFI23:
  1693              		.cfi_restore_state
 1340:Middlewares/Third_Party/CANopenNode/CANopen.c ****                         || CO_isError(co->em, CO_EM_HB_CONSUMER_REMOTE_RESET)),
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 80
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 80
 
 
  1694              		.loc 1 1340 25 view .LVU465
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  1741 0136 8146     		mov	r9, r0
  1742              	.LVL210:
 1368:Middlewares/Third_Party/CANopenNode/CANopen.c ****                              || NMTstate == CO_NMT_OPERATIONAL);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 81
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 81
 
 
  1743              		.loc 1 1368 5 is_stmt 1 view .LVU476
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
 1403:Middlewares/Third_Party/CANopenNode/CANopen.c **** }
  1783              		.loc 1 1403 12 is_stmt 0 view .LVU491
  1784 0162 CDE7     		b	.L91
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 82
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 82
 
 
  1785              	.LVL215:
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  1829              		.syntax unified
  1830              		.thumb
  1831              		.thumb_func
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 83
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 83
 
 
  1833              	CO_process_SYNC:
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
 1417:Middlewares/Third_Party/CANopenNode/CANopen.c ****         bool_t NMTisPreOrOperational = (NMTstate == CO_NMT_PRE_OPERATIONAL
  1874              		.loc 1 1417 9 is_stmt 1 view .LVU515
 1418:Middlewares/Third_Party/CANopenNode/CANopen.c ****                                         || NMTstate == CO_NMT_OPERATIONAL);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 84
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 84
 
 
  1875              		.loc 1 1418 41 is_stmt 0 view .LVU516
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  1914              	.LBB68:
  1915              		.loc 2 319 48 is_stmt 0 view .LVU527
  1916 0036 0022     		movs	r2, #0
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 85
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 85
 
 
  1917              	.LVL235:
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
 1437:Middlewares/Third_Party/CANopenNode/CANopen.c **** }
  1957              		.loc 1 1437 12 is_stmt 0 view .LVU540
  1958 004a FBE7     		b	.L117
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 86
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 86
 
 
  1959              		.cfi_endproc
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
 1452:Middlewares/Third_Party/CANopenNode/CANopen.c ****     }
 1453:Middlewares/Third_Party/CANopenNode/CANopen.c **** 
 1454:Middlewares/Third_Party/CANopenNode/CANopen.c ****     bool_t NMTisOperational =
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 87
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 87
 
 
  2002              		.loc 1 1454 5 is_stmt 1 view .LVU548
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  2043              		.cfi_remember_state
  2044              		.cfi_def_cfa_offset 28
  2045              		@ sp needed
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 88
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 88
 
 
  2046 0030 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  2095              	.LVL256:
  2096              	.LFB174:
 1467:Middlewares/Third_Party/CANopenNode/CANopen.c **** #endif
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 89
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 89
 
 
 1468:Middlewares/Third_Party/CANopenNode/CANopen.c **** 
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  2134              	.LBB78:
  2135              		.loc 2 319 5 view .LVU581
  2136              		.loc 2 319 48 is_stmt 0 view .LVU582
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 90
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 90
 
 
  2137 0014 73B1     		cbz	r3, .L141
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  2180 0038 EFE7     		b	.L138
  2181              	.LVL264:
  2182              	.L140:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 91
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 91
 
 
  2183              		.loc 2 319 48 view .LVU593
@@ -5454,35 +5454,35 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 1
  2227              		.file 18 "Middlewares/Third_Party/CANopenNode/CANopen.h"
  2228              		.file 19 "Middlewares/Third_Party/CANopenNode_STM32/OD.h"
  2229              		.file 20 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s 			page 92
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc4jENxc.s 			page 92
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 CANopen.c
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:20     .text.CO_delete:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:26     .text.CO_delete:00000000 CO_delete
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:129    .text.CO_new:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:135    .text.CO_new:00000000 CO_new
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:504    .text.CO_isLSSslaveEnabled:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:510    .text.CO_isLSSslaveEnabled:00000000 CO_isLSSslaveEnabled
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:532    .text.CO_CANinit:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:538    .text.CO_CANinit:00000000 CO_CANinit
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:614    .text.CO_LSSinit:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:620    .text.CO_LSSinit:00000000 CO_LSSinit
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:686    .text.CO_CANopenInit:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:692    .text.CO_CANopenInit:00000000 CO_CANopenInit
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:1037   .text.CO_CANopenInit:000001a0 $d
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:1042   .text.CO_CANopenInitPDO:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:1048   .text.CO_CANopenInitPDO:00000000 CO_CANopenInitPDO
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:1362   .text.CO_CANopenInitPDO:00000120 $d
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:1367   .text.CO_process:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:1373   .text.CO_process:00000000 CO_process
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:1827   .text.CO_process_SYNC:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:1833   .text.CO_process_SYNC:00000000 CO_process_SYNC
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:1963   .text.CO_process_RPDO:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:1969   .text.CO_process_RPDO:00000000 CO_process_RPDO
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:2088   .text.CO_process_TPDO:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccsu5kDE.s:2094   .text.CO_process_TPDO:00000000 CO_process_TPDO
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:20     .text.CO_delete:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:26     .text.CO_delete:00000000 CO_delete
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:129    .text.CO_new:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:135    .text.CO_new:00000000 CO_new
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:504    .text.CO_isLSSslaveEnabled:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:510    .text.CO_isLSSslaveEnabled:00000000 CO_isLSSslaveEnabled
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:532    .text.CO_CANinit:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:538    .text.CO_CANinit:00000000 CO_CANinit
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:614    .text.CO_LSSinit:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:620    .text.CO_LSSinit:00000000 CO_LSSinit
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:686    .text.CO_CANopenInit:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:692    .text.CO_CANopenInit:00000000 CO_CANopenInit
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:1037   .text.CO_CANopenInit:000001a0 $d
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:1042   .text.CO_CANopenInitPDO:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:1048   .text.CO_CANopenInitPDO:00000000 CO_CANopenInitPDO
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:1362   .text.CO_CANopenInitPDO:00000120 $d
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:1367   .text.CO_process:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:1373   .text.CO_process:00000000 CO_process
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:1827   .text.CO_process_SYNC:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:1833   .text.CO_process_SYNC:00000000 CO_process_SYNC
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:1963   .text.CO_process_RPDO:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:1969   .text.CO_process_RPDO:00000000 CO_process_RPDO
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:2088   .text.CO_process_TPDO:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc4jENxc.s:2094   .text.CO_process_TPDO:00000000 CO_process_TPDO
 
 UNDEFINED SYMBOLS
 CO_CANmodule_disable

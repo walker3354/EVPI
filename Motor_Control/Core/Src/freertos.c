@@ -77,6 +77,7 @@ volatile double current_voltage = 0;
 volatile double current_angle = 0;
 volatile double db_target_angle = 0;
 
+bool PID_contorl_lock = false;
 int voltage_counter = 0;
 volatile double previous_voltage = 0;
 volatile double previos_error = 0;
@@ -155,6 +156,9 @@ void StartPIDTask(void *argument)
   /* Infinite loop */
   for (;;)
   {
+    while (!PID_contorl_lock)
+    {
+    }
     analyze_voltage();
     CW_CCW_deect();
     PID_Compute(&TPID);
@@ -190,16 +194,36 @@ void canopen_task(void *argument)
   canOpenNodeSTM32.desiredNodeID = 17;
   canOpenNodeSTM32.baudrate = 125;
   canopen_app_init(&canOpenNodeSTM32);
-  int16_t pre_target_angle = OD_PERSIST_COMM.x6001_target_angle;
+  int8_t pre_target_angle = OD_PERSIST_COMM.x6001_target_angle;
+  uint8_t pre_target_CW_CCW = OD_PERSIST_COMM.x6004_target_CW_CCW;
   db_target_angle = OD_PERSIST_COMM.x6001_target_angle;
   /* Infinite loop */
   for (;;)
   {
     canopen_app_process();
-    if (OD_PERSIST_COMM.x6000_current_angle != pre_target_angle)
+    if (OD_PERSIST_COMM.x6001_target_angle != pre_target_angle || OD_PERSIST_COMM.x6004_target_CW_CCW != pre_target_CW_CCW)
     {
+      PID_contorl_lock = true;
+      if (OD_PERSIST_COMM.x6001_target_angle > 40 && OD_PERSIST_COMM.x6004_target_CW_CCW == 0)
+      {
+        db_target_angle = 35;
+        TPDO_tarnsmit(6, 99);
+      }
+      else if (OD_PERSIST_COMM.x6001_target_angle < 40 && OD_PERSIST_COMM.x6004_target_CW_CCW == 0)
+      {
+        db_target_angle = (double)OD_PERSIST_COMM.x6001_target_angle;
+      }
+      else if (OD_PERSIST_COMM.x6001_target_angle > 20 && OD_PERSIST_COMM.x6004_target_CW_CCW == 1)
+      {
+        db_target_angle = 20 * -1;
+        TPDO_tarnsmit(6, 99);
+      }
+      else if (OD_PERSIST_COMM.x6001_target_angle < 20 && OD_PERSIST_COMM.x6004_target_CW_CCW == 1)
+      {
+        db_target_angle = (double)OD_PERSIST_COMM.x6001_target_angle * -1;
+      }
       pre_target_angle = OD_PERSIST_COMM.x6001_target_angle;
-      db_target_angle = (double)OD_PERSIST_COMM.x6001_target_angle;
+      pre_target_CW_CCW = OD_PERSIST_COMM.x6004_target_CW_CCW;
     }
     vTaskDelay(1);
   }
@@ -232,11 +256,13 @@ void analyze_voltage(void)
 
 void PID_protection(void)
 {
-  if (current_voltage * 2 > 4.2 || current_voltage * 2 < 1.8) // outof voltage range 4.4v ~ 1.6v
+
+  if (current_angle > 40 || current_voltage < -25) // outof voltage range 4.4v ~ 1.6v
   {
     PID_Error_handler();
     TPDO_tarnsmit(2, 99); // 2.reach limit
   }
+  /*
   if ((abs(current_voltage - previous_voltage) > 1 || abs(current_voltage - previous_voltage) < 0.03) && abs(current_angle - db_target_angle) > 5 && previous_voltage != 0 && protection_lock) // voltage difference too hight and static voltage
   {
     PID_Error_handler();
@@ -247,9 +273,10 @@ void PID_protection(void)
     PID_Error_handler();
     TPDO_tarnsmit(4, 99); // 4. Error not decrease
   }
+  */
   else
   {
-    TPDO_tarnsmit(0, current_angle); // 0.normal output
+    TPDO_tarnsmit(0, abs(current_angle)); // 0.normal output
   }
 }
 
@@ -260,7 +287,7 @@ void PID_init(void)
   HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
   osDelay(500);
   analyze_voltage();
-  db_target_angle = Virtual_target_angle;
+  // db_target_angle = Virtual_target_angle;
   PID(&TPID, &current_angle, &CCR_value, &db_target_angle, 1, 0.15, 0, _PID_P_ON_E, _PID_CD_DIRECT); // input output target
   PID_SetMode(&TPID, _PID_MODE_AUTOMATIC);
   PID_SetSampleTime(&TPID, 100);
@@ -271,10 +298,12 @@ void CW_CCW_deect(void)
   if (current_angle < db_target_angle)
   {
     HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 0);
+    OD_PERSIST_COMM.x6005_current_CW_CCW = 0;
   }
   else
   {
     HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
+    OD_PERSIST_COMM.x6005_current_CW_CCW = 1;
   }
 }
 void PID_Error_handler(void)
@@ -296,6 +325,7 @@ void TPDO_tarnsmit(uint8_t status, int16_t angle)
   OD_PERSIST_COMM.x6003_status = status;
   OD_set_u16(OD_find(OD, 0x6000), 0x000, OD_PERSIST_COMM.x6000_current_angle, false); // change_obj, index change , value,false
   OD_set_u8(OD_find(OD, 0x6003), 0x000, OD_PERSIST_COMM.x6003_status, false);
+  OD_set_u8(OD_find(OD, 0x6005), 0x000, OD_PERSIST_COMM.x6005_current_CW_CCW, false);
   CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
 }
 /* USER CODE END Application */

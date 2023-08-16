@@ -52,9 +52,9 @@ OD_ATTR_PERSIST_COMM OD_PERSIST_COMM_t OD_PERSIST_COMM = {
         .eventTimer = 0x0000
     },
     .x1600_RPDOMappingParameter = {
-        .numberOfMappedApplicationObjectsInPDO = 0x01,
-        .applicationObject1 = 0x60010010,
-        .applicationObject2 = 0x00000000,
+        .numberOfMappedApplicationObjectsInPDO = 0x02,
+        .applicationObject1 = 0x60040008,
+        .applicationObject2 = 0x60010008,
         .applicationObject3 = 0x00000000,
         .applicationObject4 = 0x00000000,
         .applicationObject5 = 0x00000000,
@@ -71,10 +71,10 @@ OD_ATTR_PERSIST_COMM OD_PERSIST_COMM_t OD_PERSIST_COMM = {
         .SYNCStartValue = 0x00
     },
     .x1A00_TPDOMappingParameter = {
-        .numberOfMappedApplicationObjectsInPDO = 0x02,
-        .applicationObject1 = 0x60000010,
-        .applicationObject2 = 0x60030008,
-        .applicationObject3 = 0x00000000,
+        .numberOfMappedApplicationObjectsInPDO = 0x03,
+        .applicationObject1 = 0x60050008,
+        .applicationObject2 = 0x60000008,
+        .applicationObject3 = 0x60030008,
         .applicationObject4 = 0x00000000,
         .applicationObject5 = 0x00000000,
         .applicationObject6 = 0x00000000,
@@ -83,7 +83,9 @@ OD_ATTR_PERSIST_COMM OD_PERSIST_COMM_t OD_PERSIST_COMM = {
     },
     .x6000_current_angle = 0,
     .x6001_target_angle = 0,
-    .x6003_status = 0x00
+    .x6003_status = 0x00,
+    .x6004_target_CW_CCW = 0x00,
+    .x6005_current_CW_CCW = 0x00
 };
 
 OD_ATTR_RAM OD_RAM_t OD_RAM = {
@@ -129,6 +131,8 @@ typedef struct {
     OD_obj_var_t o_6000_current_angle;
     OD_obj_var_t o_6001_target_angle;
     OD_obj_var_t o_6003_status;
+    OD_obj_var_t o_6004_target_CW_CCW;
+    OD_obj_var_t o_6005_current_CW_CCW;
 } ODObjs_t;
 
 static CO_PROGMEM ODObjs_t ODObjs = {
@@ -470,16 +474,26 @@ static CO_PROGMEM ODObjs_t ODObjs = {
     },
     .o_6000_current_angle = {
         .dataOrig = &OD_PERSIST_COMM.x6000_current_angle,
-        .attribute = ODA_SDO_RW | ODA_TPDO | ODA_MB,
-        .dataLength = 2
+        .attribute = ODA_SDO_RW | ODA_TPDO,
+        .dataLength = 1
     },
     .o_6001_target_angle = {
         .dataOrig = &OD_PERSIST_COMM.x6001_target_angle,
-        .attribute = ODA_SDO_RW | ODA_RPDO | ODA_MB,
-        .dataLength = 2
+        .attribute = ODA_SDO_RW | ODA_RPDO,
+        .dataLength = 1
     },
     .o_6003_status = {
         .dataOrig = &OD_PERSIST_COMM.x6003_status,
+        .attribute = ODA_SDO_RW | ODA_TPDO,
+        .dataLength = 1
+    },
+    .o_6004_target_CW_CCW = {
+        .dataOrig = &OD_PERSIST_COMM.x6004_target_CW_CCW,
+        .attribute = ODA_SDO_RW | ODA_RPDO,
+        .dataLength = 1
+    },
+    .o_6005_current_CW_CCW = {
+        .dataOrig = &OD_PERSIST_COMM.x6005_current_CW_CCW,
         .attribute = ODA_SDO_RW | ODA_TPDO,
         .dataLength = 1
     }
@@ -514,6 +528,8 @@ static OD_ATTR_OD OD_entry_t ODList[] = {
     {0x6000, 0x01, ODT_VAR, &ODObjs.o_6000_current_angle, NULL},
     {0x6001, 0x01, ODT_VAR, &ODObjs.o_6001_target_angle, NULL},
     {0x6003, 0x01, ODT_VAR, &ODObjs.o_6003_status, NULL},
+    {0x6004, 0x01, ODT_VAR, &ODObjs.o_6004_target_CW_CCW, NULL},
+    {0x6005, 0x01, ODT_VAR, &ODObjs.o_6005_current_CW_CCW, NULL},
     {0x0000, 0x00, 0, NULL, NULL}
 };
 

@@ -16,7 +16,7 @@
 
         Created:      2020/11/23 下午 01:00:00
         Created By:   Justin Zhang
-        Modified:     2023/8/14 上午 09:56:28
+        Modified:     2023/8/15 下午 04:02:52
         Modified By:  
 
     Device Info:
@@ -121,9 +121,11 @@ typedef struct {
         uint32_t applicationObject7;
         uint32_t applicationObject8;
     } x1A00_TPDOMappingParameter;
-    int16_t x6000_current_angle;
-    int16_t x6001_target_angle;
+    int8_t x6000_current_angle;
+    int8_t x6001_target_angle;
     uint8_t x6003_status;
+    uint8_t x6004_target_CW_CCW;
+    uint8_t x6005_current_CW_CCW;
 } OD_PERSIST_COMM_t;
 
 typedef struct {
@@ -182,6 +184,8 @@ extern OD_ATTR_OD OD_t *OD;
 #define OD_ENTRY_H6000 &OD->list[21]
 #define OD_ENTRY_H6001 &OD->list[22]
 #define OD_ENTRY_H6003 &OD->list[23]
+#define OD_ENTRY_H6004 &OD->list[24]
+#define OD_ENTRY_H6005 &OD->list[25]
 
 
 /*******************************************************************************
@@ -211,6 +215,8 @@ extern OD_ATTR_OD OD_t *OD;
 #define OD_ENTRY_H6000_current_angle &OD->list[21]
 #define OD_ENTRY_H6001_target_angle &OD->list[22]
 #define OD_ENTRY_H6003_status &OD->list[23]
+#define OD_ENTRY_H6004_target_CW_CCW &OD->list[24]
+#define OD_ENTRY_H6005_current_CW_CCW &OD->list[25]
 
 
 /*******************************************************************************
