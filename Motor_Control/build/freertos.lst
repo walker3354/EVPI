@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
   28:Core/Src/freertos.c **** #include "OD.h"
   29:Core/Src/freertos.c **** #include "tim.h"
   30:Core/Src/freertos.c **** #include "comment.h"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 2
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 2
 
 
   31:Core/Src/freertos.c **** #include "can.h"
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
   85:Core/Src/freertos.c **** bool PID_safe_lock = false;
   86:Core/Src/freertos.c **** 
   87:Core/Src/freertos.c **** void TPDO_tarnsmit(uint8_t status, int16_t angle);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 3
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 3
 
 
   88:Core/Src/freertos.c **** void analyze_voltage(void);
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
   40 0002 074A     		ldr	r2, .L3
   41 0004 0021     		movs	r1, #0
   42 0006 0748     		ldr	r0, .L3+4
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 4
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 4
 
 
   43 0008 FFF7FEFF 		bl	osThreadNew
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  148:Core/Src/freertos.c ****  * @retval None
  149:Core/Src/freertos.c ****  */
  150:Core/Src/freertos.c **** /* USER CODE END Header_StartPIDTask */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 5
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 5
 
 
  151:Core/Src/freertos.c **** void StartPIDTask(void *argument)
@@ -258,147 +258,154 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  165:Core/Src/freertos.c ****     PID_protection();
  166:Core/Src/freertos.c ****     if (PID_safe_lock == false)
  167:Core/Src/freertos.c ****     {
- 168:Core/Src/freertos.c ****       TIM2->CCR2 = ((int)CCR_value * 10);
- 169:Core/Src/freertos.c ****     }
- 170:Core/Src/freertos.c ****     else
- 171:Core/Src/freertos.c ****     {
- 172:Core/Src/freertos.c ****       HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
- 173:Core/Src/freertos.c ****     }
- 174:Core/Src/freertos.c ****     osDelay(50);
- 175:Core/Src/freertos.c ****   }
- 176:Core/Src/freertos.c ****   /* USER CODE END StartPIDTask */
- 177:Core/Src/freertos.c **** }
- 178:Core/Src/freertos.c **** 
- 179:Core/Src/freertos.c **** /* USER CODE BEGIN Header_canopen_task */
- 180:Core/Src/freertos.c **** /**
- 181:Core/Src/freertos.c ****  * @brief Function implementing the canopenTask thread.
- 182:Core/Src/freertos.c ****  * @param argument: Not used
- 183:Core/Src/freertos.c ****  * @retval None
- 184:Core/Src/freertos.c ****  */
- 185:Core/Src/freertos.c **** /* USER CODE END Header_canopen_task */
- 186:Core/Src/freertos.c **** void canopen_task(void *argument)
- 187:Core/Src/freertos.c **** {
- 188:Core/Src/freertos.c ****   /* USER CODE BEGIN canopen_task */
- 189:Core/Src/freertos.c ****   CANopenNodeSTM32 canOpenNodeSTM32;
- 190:Core/Src/freertos.c ****   canOpenNodeSTM32.CANHandle = &hcan;
- 191:Core/Src/freertos.c ****   canOpenNodeSTM32.HWInitFunction = MX_CAN_Init;
- 192:Core/Src/freertos.c ****   canOpenNodeSTM32.timerHandle = &htim17;
- 193:Core/Src/freertos.c ****   canOpenNodeSTM32.desiredNodeID = 17;
- 194:Core/Src/freertos.c ****   canOpenNodeSTM32.baudrate = 125;
- 195:Core/Src/freertos.c ****   canopen_app_init(&canOpenNodeSTM32);
- 196:Core/Src/freertos.c ****   int8_t pre_target_angle = OD_PERSIST_COMM.x6001_target_angle;
- 197:Core/Src/freertos.c ****   uint8_t pre_target_CW_CCW = OD_PERSIST_COMM.x6004_target_CW_CCW;
- 198:Core/Src/freertos.c ****   db_target_angle = OD_PERSIST_COMM.x6001_target_angle;
- 199:Core/Src/freertos.c ****   /* Infinite loop */
- 200:Core/Src/freertos.c ****   for (;;)
- 201:Core/Src/freertos.c ****   {
- 202:Core/Src/freertos.c ****     canopen_app_process();
- 203:Core/Src/freertos.c ****     if (OD_PERSIST_COMM.x6001_target_angle != pre_target_angle || OD_PERSIST_COMM.x6004_target_CW_C
- 204:Core/Src/freertos.c ****     {
- 205:Core/Src/freertos.c ****       PID_contorl_lock = true;
- 206:Core/Src/freertos.c ****       if (OD_PERSIST_COMM.x6001_target_angle > 40 && OD_PERSIST_COMM.x6004_target_CW_CCW == 0)
- 207:Core/Src/freertos.c ****       {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 6
+ 168:Core/Src/freertos.c ****       if (abs(current_angle - db_target_angle) < 2)
+ 169:Core/Src/freertos.c ****       {
+ 170:Core/Src/freertos.c ****         TIM2->CCR2 = 0;
+ 171:Core/Src/freertos.c ****       }
+ 172:Core/Src/freertos.c ****       else
+ 173:Core/Src/freertos.c ****       {
+ 174:Core/Src/freertos.c ****         TIM2->CCR2 = ((int)CCR_value * 10);
+ 175:Core/Src/freertos.c ****       }
+ 176:Core/Src/freertos.c ****     }
+ 177:Core/Src/freertos.c ****     else
+ 178:Core/Src/freertos.c ****     {
+ 179:Core/Src/freertos.c ****       HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+ 180:Core/Src/freertos.c ****     }
+ 181:Core/Src/freertos.c ****     osDelay(50);
+ 182:Core/Src/freertos.c ****   }
+ 183:Core/Src/freertos.c ****   /* USER CODE END StartPIDTask */
+ 184:Core/Src/freertos.c **** }
+ 185:Core/Src/freertos.c **** 
+ 186:Core/Src/freertos.c **** /* USER CODE BEGIN Header_canopen_task */
+ 187:Core/Src/freertos.c **** /**
+ 188:Core/Src/freertos.c ****  * @brief Function implementing the canopenTask thread.
+ 189:Core/Src/freertos.c ****  * @param argument: Not used
+ 190:Core/Src/freertos.c ****  * @retval None
+ 191:Core/Src/freertos.c ****  */
+ 192:Core/Src/freertos.c **** /* USER CODE END Header_canopen_task */
+ 193:Core/Src/freertos.c **** void canopen_task(void *argument)
+ 194:Core/Src/freertos.c **** {
+ 195:Core/Src/freertos.c ****   /* USER CODE BEGIN canopen_task */
+ 196:Core/Src/freertos.c ****   CANopenNodeSTM32 canOpenNodeSTM32;
+ 197:Core/Src/freertos.c ****   canOpenNodeSTM32.CANHandle = &hcan;
+ 198:Core/Src/freertos.c ****   canOpenNodeSTM32.HWInitFunction = MX_CAN_Init;
+ 199:Core/Src/freertos.c ****   canOpenNodeSTM32.timerHandle = &htim17;
+ 200:Core/Src/freertos.c ****   canOpenNodeSTM32.desiredNodeID = 17;
+ 201:Core/Src/freertos.c ****   canOpenNodeSTM32.baudrate = 125;
+ 202:Core/Src/freertos.c ****   canopen_app_init(&canOpenNodeSTM32);
+ 203:Core/Src/freertos.c ****   int8_t pre_target_angle = OD_PERSIST_COMM.x6001_target_angle;
+ 204:Core/Src/freertos.c ****   uint8_t pre_target_CW_CCW = OD_PERSIST_COMM.x6004_target_CW_CCW;
+ 205:Core/Src/freertos.c ****   db_target_angle = OD_PERSIST_COMM.x6001_target_angle;
+ 206:Core/Src/freertos.c ****   /* Infinite loop */
+ 207:Core/Src/freertos.c ****   for (;;)
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 6
 
 
- 208:Core/Src/freertos.c ****         db_target_angle = 35;
- 209:Core/Src/freertos.c ****         TPDO_tarnsmit(6, 99);
- 210:Core/Src/freertos.c ****       }
- 211:Core/Src/freertos.c ****       else if (OD_PERSIST_COMM.x6001_target_angle < 40 && OD_PERSIST_COMM.x6004_target_CW_CCW == 0)
- 212:Core/Src/freertos.c ****       {
- 213:Core/Src/freertos.c ****         db_target_angle = (double)OD_PERSIST_COMM.x6001_target_angle;
- 214:Core/Src/freertos.c ****       }
- 215:Core/Src/freertos.c ****       else if (OD_PERSIST_COMM.x6001_target_angle > 40 && OD_PERSIST_COMM.x6004_target_CW_CCW == 1)
- 216:Core/Src/freertos.c ****       {
- 217:Core/Src/freertos.c ****         db_target_angle = 40 * -1;
- 218:Core/Src/freertos.c ****         TPDO_tarnsmit(6, 99);
- 219:Core/Src/freertos.c ****       }
- 220:Core/Src/freertos.c ****       else if (OD_PERSIST_COMM.x6001_target_angle < 40 && OD_PERSIST_COMM.x6004_target_CW_CCW == 1)
- 221:Core/Src/freertos.c ****       {
- 222:Core/Src/freertos.c ****         db_target_angle = (double)OD_PERSIST_COMM.x6001_target_angle * -1;
- 223:Core/Src/freertos.c ****       }
- 224:Core/Src/freertos.c ****       pre_target_angle = OD_PERSIST_COMM.x6001_target_angle;
- 225:Core/Src/freertos.c ****       pre_target_CW_CCW = OD_PERSIST_COMM.x6004_target_CW_CCW;
- 226:Core/Src/freertos.c ****     }
- 227:Core/Src/freertos.c ****     osDelay(100);
- 228:Core/Src/freertos.c ****   }
- 229:Core/Src/freertos.c ****   /* USER CODE END canopen_task */
- 230:Core/Src/freertos.c **** }
- 231:Core/Src/freertos.c **** /* Private application code --------------------------------------------------*/
- 232:Core/Src/freertos.c **** /* USER CODE BEGIN Application */
- 233:Core/Src/freertos.c **** void analyze_voltage(void)
- 234:Core/Src/freertos.c **** {
- 235:Core/Src/freertos.c ****   if (voltage_counter == 0)
- 236:Core/Src/freertos.c ****   {
- 237:Core/Src/freertos.c ****     previous_voltage = current_voltage;
- 238:Core/Src/freertos.c ****     previos_error = abs(current_angle - db_target_angle);
- 239:Core/Src/freertos.c ****   }
- 240:Core/Src/freertos.c ****   HAL_ADC_Start(&hadc1);
- 241:Core/Src/freertos.c ****   HAL_ADC_PollForConversion(&hadc1, 1);
- 242:Core/Src/freertos.c ****   current_voltage = HAL_ADC_GetValue(&hadc1);
- 243:Core/Src/freertos.c ****   current_voltage = ((current_voltage / 4096) * 3.3);
- 244:Core/Src/freertos.c ****   current_angle = (int)(((current_voltage * 2) - 1.6) * 25 - 25); // min_voltage => 1.6  mid_voltag
- 245:Core/Src/freertos.c ****   if (voltage_counter == 4)
- 246:Core/Src/freertos.c ****   {
- 247:Core/Src/freertos.c ****     protection_lock = true;
- 248:Core/Src/freertos.c ****   }
- 249:Core/Src/freertos.c ****   else
- 250:Core/Src/freertos.c ****   {
- 251:Core/Src/freertos.c ****     protection_lock = false;
- 252:Core/Src/freertos.c ****   }
- 253:Core/Src/freertos.c ****   voltage_counter = (voltage_counter + 1) % Timer_ARR;
- 254:Core/Src/freertos.c ****   if (current_angle >= 0)
- 255:Core/Src/freertos.c ****   {
- 256:Core/Src/freertos.c ****     OD_PERSIST_COMM.x6005_current_CW_CCW = 1;
- 257:Core/Src/freertos.c ****   }
- 258:Core/Src/freertos.c ****   else
- 259:Core/Src/freertos.c ****   {
- 260:Core/Src/freertos.c ****     OD_PERSIST_COMM.x6005_current_CW_CCW = 0;
- 261:Core/Src/freertos.c ****   }
- 262:Core/Src/freertos.c **** }
- 263:Core/Src/freertos.c **** void PID_protection(void)
- 264:Core/Src/freertos.c **** {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 7
+ 208:Core/Src/freertos.c ****   {
+ 209:Core/Src/freertos.c ****     canopen_app_process();
+ 210:Core/Src/freertos.c ****     if (OD_PERSIST_COMM.x6001_target_angle != pre_target_angle || OD_PERSIST_COMM.x6004_target_CW_C
+ 211:Core/Src/freertos.c ****     {
+ 212:Core/Src/freertos.c ****       PID_contorl_lock = true;
+ 213:Core/Src/freertos.c ****       if (OD_PERSIST_COMM.x6001_target_angle > 40 && OD_PERSIST_COMM.x6004_target_CW_CCW == 0)
+ 214:Core/Src/freertos.c ****       {
+ 215:Core/Src/freertos.c ****         db_target_angle = 35;
+ 216:Core/Src/freertos.c ****         TPDO_tarnsmit(6, 99);
+ 217:Core/Src/freertos.c ****       }
+ 218:Core/Src/freertos.c ****       else if (OD_PERSIST_COMM.x6001_target_angle < 40 && OD_PERSIST_COMM.x6004_target_CW_CCW == 0)
+ 219:Core/Src/freertos.c ****       {
+ 220:Core/Src/freertos.c ****         db_target_angle = (double)OD_PERSIST_COMM.x6001_target_angle;
+ 221:Core/Src/freertos.c ****       }
+ 222:Core/Src/freertos.c ****       else if (OD_PERSIST_COMM.x6001_target_angle > 40 && OD_PERSIST_COMM.x6004_target_CW_CCW == 1)
+ 223:Core/Src/freertos.c ****       {
+ 224:Core/Src/freertos.c ****         db_target_angle = 40 * -1;
+ 225:Core/Src/freertos.c ****         TPDO_tarnsmit(6, 99);
+ 226:Core/Src/freertos.c ****       }
+ 227:Core/Src/freertos.c ****       else if (OD_PERSIST_COMM.x6001_target_angle < 40 && OD_PERSIST_COMM.x6004_target_CW_CCW == 1)
+ 228:Core/Src/freertos.c ****       {
+ 229:Core/Src/freertos.c ****         db_target_angle = (double)OD_PERSIST_COMM.x6001_target_angle * -1;
+ 230:Core/Src/freertos.c ****       }
+ 231:Core/Src/freertos.c ****       pre_target_angle = OD_PERSIST_COMM.x6001_target_angle;
+ 232:Core/Src/freertos.c ****       pre_target_CW_CCW = OD_PERSIST_COMM.x6004_target_CW_CCW;
+ 233:Core/Src/freertos.c ****     }
+ 234:Core/Src/freertos.c ****     osDelay(100);
+ 235:Core/Src/freertos.c ****   }
+ 236:Core/Src/freertos.c ****   /* USER CODE END canopen_task */
+ 237:Core/Src/freertos.c **** }
+ 238:Core/Src/freertos.c **** /* Private application code --------------------------------------------------*/
+ 239:Core/Src/freertos.c **** /* USER CODE BEGIN Application */
+ 240:Core/Src/freertos.c **** void analyze_voltage(void)
+ 241:Core/Src/freertos.c **** {
+ 242:Core/Src/freertos.c ****   if (voltage_counter == 0)
+ 243:Core/Src/freertos.c ****   {
+ 244:Core/Src/freertos.c ****     previous_voltage = current_voltage;
+ 245:Core/Src/freertos.c ****     previos_error = abs(current_angle - db_target_angle);
+ 246:Core/Src/freertos.c ****   }
+ 247:Core/Src/freertos.c ****   HAL_ADC_Start(&hadc1);
+ 248:Core/Src/freertos.c ****   HAL_ADC_PollForConversion(&hadc1, 1);
+ 249:Core/Src/freertos.c ****   current_voltage = HAL_ADC_GetValue(&hadc1);
+ 250:Core/Src/freertos.c ****   current_voltage = ((current_voltage / 4096) * 3.3);
+ 251:Core/Src/freertos.c ****   current_angle = (int)(((current_voltage * 2) - 1.6) * 25 - 25); // min_voltage => 1.6  mid_voltag
+ 252:Core/Src/freertos.c ****   if (voltage_counter == 4)
+ 253:Core/Src/freertos.c ****   {
+ 254:Core/Src/freertos.c ****     protection_lock = true;
+ 255:Core/Src/freertos.c ****   }
+ 256:Core/Src/freertos.c ****   else
+ 257:Core/Src/freertos.c ****   {
+ 258:Core/Src/freertos.c ****     protection_lock = false;
+ 259:Core/Src/freertos.c ****   }
+ 260:Core/Src/freertos.c ****   voltage_counter = (voltage_counter + 1) % Timer_ARR;
+ 261:Core/Src/freertos.c ****   if (current_angle >= 0)
+ 262:Core/Src/freertos.c ****   {
+ 263:Core/Src/freertos.c ****     OD_PERSIST_COMM.x6005_current_CW_CCW = 0;
+ 264:Core/Src/freertos.c ****   }
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 7
 
 
- 265:Core/Src/freertos.c ****   if (current_angle > 40 || current_voltage < -25) // outof voltage range 4.4v ~ 1.6v
+ 265:Core/Src/freertos.c ****   else
  266:Core/Src/freertos.c ****   {
- 267:Core/Src/freertos.c ****     PID_Error_handler();
- 268:Core/Src/freertos.c ****     TPDO_tarnsmit(2, 99); // 2.reach limit
- 269:Core/Src/freertos.c ****   }
- 270:Core/Src/freertos.c ****   /*
- 271:Core/Src/freertos.c ****   if ((abs(current_voltage - previous_voltage) > 1 || abs(current_voltage - previous_voltage) < 0.0
- 272:Core/Src/freertos.c ****   {
- 273:Core/Src/freertos.c ****     PID_Error_handler();
- 274:Core/Src/freertos.c ****     TPDO_tarnsmit(3, 99); // 3. Angle reader abnormal
- 275:Core/Src/freertos.c ****   }
- 276:Core/Src/freertos.c ****   if (abs((current_angle - db_target_angle) - previos_error) < 2 && abs(current_angle - db_target_a
- 277:Core/Src/freertos.c ****   {
- 278:Core/Src/freertos.c ****     PID_Error_handler();
- 279:Core/Src/freertos.c ****     TPDO_tarnsmit(4, 99); // 4. Error not decrease
- 280:Core/Src/freertos.c ****   }
- 281:Core/Src/freertos.c ****   */
- 282:Core/Src/freertos.c ****   else
- 283:Core/Src/freertos.c ****   {
- 284:Core/Src/freertos.c ****     TPDO_tarnsmit(0, abs(current_angle)); // 0.normal output
- 285:Core/Src/freertos.c ****   }
- 286:Core/Src/freertos.c **** }
- 287:Core/Src/freertos.c **** void PID_init(void)
- 288:Core/Src/freertos.c **** {
- 289:Core/Src/freertos.c ****   TIM2->CCR2 = 0; // CCR_value bigger the rpm will highter 0~100
- 290:Core/Src/freertos.c ****   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
- 291:Core/Src/freertos.c ****   HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
- 292:Core/Src/freertos.c ****   osDelay(500);
- 293:Core/Src/freertos.c ****   analyze_voltage();
- 294:Core/Src/freertos.c ****   // db_target_angle = Virtual_target_angle;
- 295:Core/Src/freertos.c ****   PID(&TPID, &current_angle, &CCR_value, &db_target_angle, 0.3, 0.02, 0, _PID_P_ON_E, _PID_CD_DIREC
- 296:Core/Src/freertos.c ****   PID_SetMode(&TPID, _PID_MODE_AUTOMATIC);
- 297:Core/Src/freertos.c ****   PID_SetSampleTime(&TPID, 50);
- 298:Core/Src/freertos.c ****   PID_SetOutputLimits(&TPID, -10, 10);
- 299:Core/Src/freertos.c **** }
- 300:Core/Src/freertos.c **** void CW_CCW_deect(void)
- 301:Core/Src/freertos.c **** {
-  82              		.loc 1 301 1 is_stmt 1 view -0
+ 267:Core/Src/freertos.c ****     OD_PERSIST_COMM.x6005_current_CW_CCW = 1;
+ 268:Core/Src/freertos.c ****   }
+ 269:Core/Src/freertos.c **** }
+ 270:Core/Src/freertos.c **** void PID_protection(void)
+ 271:Core/Src/freertos.c **** {
+ 272:Core/Src/freertos.c ****   if (current_angle > 40 || current_voltage < -40) // outof voltage range 4.4v ~ 1.6v
+ 273:Core/Src/freertos.c ****   {
+ 274:Core/Src/freertos.c ****     PID_Error_handler();
+ 275:Core/Src/freertos.c ****     TPDO_tarnsmit(2, 99); // 2.reach limit
+ 276:Core/Src/freertos.c ****   }
+ 277:Core/Src/freertos.c ****   /*
+ 278:Core/Src/freertos.c ****   if ((abs(current_voltage - previous_voltage) > 1 || abs(current_voltage - previous_voltage) < 0.0
+ 279:Core/Src/freertos.c ****   {
+ 280:Core/Src/freertos.c ****     PID_Error_handler();
+ 281:Core/Src/freertos.c ****     TPDO_tarnsmit(3, 99); // 3. Angle reader abnormal
+ 282:Core/Src/freertos.c ****   }
+ 283:Core/Src/freertos.c ****   if (abs((current_angle - db_target_angle) - previos_error) < 2 && abs(current_angle - db_target_a
+ 284:Core/Src/freertos.c ****   {
+ 285:Core/Src/freertos.c ****     PID_Error_handler();
+ 286:Core/Src/freertos.c ****     TPDO_tarnsmit(4, 99); // 4. Error not decrease
+ 287:Core/Src/freertos.c ****   }
+ 288:Core/Src/freertos.c ****   */
+ 289:Core/Src/freertos.c ****   else
+ 290:Core/Src/freertos.c ****   {
+ 291:Core/Src/freertos.c ****     TPDO_tarnsmit(0, abs(current_angle)); // 0.normal output
+ 292:Core/Src/freertos.c ****   }
+ 293:Core/Src/freertos.c **** }
+ 294:Core/Src/freertos.c **** void PID_init(void)
+ 295:Core/Src/freertos.c **** {
+ 296:Core/Src/freertos.c ****   TIM2->CCR2 = 0; // CCR_value bigger the rpm will highter 0~100
+ 297:Core/Src/freertos.c ****   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
+ 298:Core/Src/freertos.c ****   HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
+ 299:Core/Src/freertos.c ****   osDelay(500);
+ 300:Core/Src/freertos.c ****   analyze_voltage();
+ 301:Core/Src/freertos.c ****   // db_target_angle = Virtual_target_angle;
+ 302:Core/Src/freertos.c ****   PID(&TPID, &current_angle, &CCR_value, &db_target_angle, 0.3, 0, 0, _PID_P_ON_E, _PID_CD_DIRECT);
+ 303:Core/Src/freertos.c ****   PID_SetMode(&TPID, _PID_MODE_AUTOMATIC);
+ 304:Core/Src/freertos.c ****   PID_SetSampleTime(&TPID, 50);
+ 305:Core/Src/freertos.c ****   PID_SetOutputLimits(&TPID, -10, 10);
+ 306:Core/Src/freertos.c **** }
+ 307:Core/Src/freertos.c **** void CW_CCW_deect(void)
+ 308:Core/Src/freertos.c **** {
+  82              		.loc 1 308 1 is_stmt 1 view -0
   83              		.cfi_startproc
   84              		@ args = 0, pretend = 0, frame = 0
   85              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -407,46 +414,46 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
   88              		.cfi_def_cfa_offset 8
   89              		.cfi_offset 3, -8
   90              		.cfi_offset 14, -4
- 302:Core/Src/freertos.c ****   if (current_angle < db_target_angle)
-  91              		.loc 1 302 3 view .LVU9
-  92              		.loc 1 302 21 is_stmt 0 view .LVU10
+ 309:Core/Src/freertos.c ****   if (current_angle < db_target_angle)
+  91              		.loc 1 309 3 view .LVU9
+  92              		.loc 1 309 21 is_stmt 0 view .LVU10
   93 0002 0B4B     		ldr	r3, .L12
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 8
+
+
   94 0004 D3E90001 		ldrd	r0, [r3]
-  95              		.loc 1 302 6 view .LVU11
+  95              		.loc 1 309 6 view .LVU11
   96 0008 0A4B     		ldr	r3, .L12+4
   97 000a D3E90023 		ldrd	r2, [r3]
   98 000e FFF7FEFF 		bl	__aeabi_dcmplt
   99              	.LVL2:
  100 0012 30B1     		cbz	r0, .L10
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 8
-
-
- 303:Core/Src/freertos.c ****   {
- 304:Core/Src/freertos.c ****     HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 0);
- 101              		.loc 1 304 5 is_stmt 1 view .LVU12
+ 310:Core/Src/freertos.c ****   {
+ 311:Core/Src/freertos.c ****     HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 0);
+ 101              		.loc 1 311 5 is_stmt 1 view .LVU12
  102 0014 0022     		movs	r2, #0
  103 0016 0821     		movs	r1, #8
  104 0018 4FF09040 		mov	r0, #1207959552
  105 001c FFF7FEFF 		bl	HAL_GPIO_WritePin
  106              	.LVL3:
  107              	.L5:
- 305:Core/Src/freertos.c ****   }
- 306:Core/Src/freertos.c ****   else
- 307:Core/Src/freertos.c ****   {
- 308:Core/Src/freertos.c ****     HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
- 309:Core/Src/freertos.c ****   }
- 310:Core/Src/freertos.c **** }
- 108              		.loc 1 310 1 is_stmt 0 view .LVU13
+ 312:Core/Src/freertos.c ****   }
+ 313:Core/Src/freertos.c ****   else
+ 314:Core/Src/freertos.c ****   {
+ 315:Core/Src/freertos.c ****     HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
+ 316:Core/Src/freertos.c ****   }
+ 317:Core/Src/freertos.c **** }
+ 108              		.loc 1 317 1 is_stmt 0 view .LVU13
  109 0020 08BD     		pop	{r3, pc}
  110              	.L10:
- 308:Core/Src/freertos.c ****   }
- 111              		.loc 1 308 5 is_stmt 1 view .LVU14
+ 315:Core/Src/freertos.c ****   }
+ 111              		.loc 1 315 5 is_stmt 1 view .LVU14
  112 0022 0122     		movs	r2, #1
  113 0024 0821     		movs	r1, #8
  114 0026 4FF09040 		mov	r0, #1207959552
  115 002a FFF7FEFF 		bl	HAL_GPIO_WritePin
  116              	.LVL4:
- 117              		.loc 1 310 1 is_stmt 0 view .LVU15
+ 117              		.loc 1 317 1 is_stmt 0 view .LVU15
  118 002e F7E7     		b	.L5
  119              	.L13:
  120              		.align	2
@@ -463,30 +470,30 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  132              		.thumb_func
  134              	PID_Error_handler:
  135              	.LFB175:
- 311:Core/Src/freertos.c **** void PID_Error_handler(void)
- 312:Core/Src/freertos.c **** {
- 136              		.loc 1 312 1 is_stmt 1 view -0
+ 318:Core/Src/freertos.c **** void PID_Error_handler(void)
+ 319:Core/Src/freertos.c **** {
+ 136              		.loc 1 319 1 is_stmt 1 view -0
  137              		.cfi_startproc
  138              		@ args = 0, pretend = 0, frame = 0
  139              		@ frame_needed = 0, uses_anonymous_args = 0
  140              		@ link register save eliminated.
- 313:Core/Src/freertos.c ****   TIM2->CCR2 = 0;
- 141              		.loc 1 313 3 view .LVU17
- 142              		.loc 1 313 14 is_stmt 0 view .LVU18
+ 320:Core/Src/freertos.c ****   TIM2->CCR2 = 0;
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 9
+
+
+ 141              		.loc 1 320 3 view .LVU17
+ 142              		.loc 1 320 14 is_stmt 0 view .LVU18
  143 0000 4FF08043 		mov	r3, #1073741824
  144 0004 0022     		movs	r2, #0
  145 0006 9A63     		str	r2, [r3, #56]
- 314:Core/Src/freertos.c ****   PID_safe_lock = true;
- 146              		.loc 1 314 3 is_stmt 1 view .LVU19
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 9
-
-
- 147              		.loc 1 314 17 is_stmt 0 view .LVU20
+ 321:Core/Src/freertos.c ****   PID_safe_lock = true;
+ 146              		.loc 1 321 3 is_stmt 1 view .LVU19
+ 147              		.loc 1 321 17 is_stmt 0 view .LVU20
  148 0008 014B     		ldr	r3, .L15
  149 000a 0122     		movs	r2, #1
  150 000c 1A70     		strb	r2, [r3]
- 315:Core/Src/freertos.c **** }
- 151              		.loc 1 315 1 view .LVU21
+ 322:Core/Src/freertos.c **** }
+ 151              		.loc 1 322 1 view .LVU21
  152 000e 7047     		bx	lr
  153              	.L16:
  154              		.align	2
@@ -503,13 +510,13 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  167              	abs:
  168              	.LVL5:
  169              	.LFB176:
- 316:Core/Src/freertos.c **** double abs(double a)
- 317:Core/Src/freertos.c **** {
- 170              		.loc 1 317 1 is_stmt 1 view -0
+ 323:Core/Src/freertos.c **** double abs(double a)
+ 324:Core/Src/freertos.c **** {
+ 170              		.loc 1 324 1 is_stmt 1 view -0
  171              		.cfi_startproc
  172              		@ args = 0, pretend = 0, frame = 0
  173              		@ frame_needed = 0, uses_anonymous_args = 0
- 174              		.loc 1 317 1 is_stmt 0 view .LVU23
+ 174              		.loc 1 324 1 is_stmt 0 view .LVU23
  175 0000 38B5     		push	{r3, r4, r5, lr}
  176              	.LCFI2:
  177              		.cfi_def_cfa_offset 16
@@ -518,35 +525,35 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  180              		.cfi_offset 5, -8
  181              		.cfi_offset 14, -4
  182 0002 55EC104B 		vmov	r4, r5, d0
- 318:Core/Src/freertos.c ****   if (a < 0)
- 183              		.loc 1 318 3 is_stmt 1 view .LVU24
- 184              		.loc 1 318 6 is_stmt 0 view .LVU25
+ 325:Core/Src/freertos.c ****   if (a < 0)
+ 183              		.loc 1 325 3 is_stmt 1 view .LVU24
+ 184              		.loc 1 325 6 is_stmt 0 view .LVU25
  185 0006 0022     		movs	r2, #0
  186 0008 0023     		movs	r3, #0
  187 000a 10EE100A 		vmov	r0, s0	@ int
  188 000e 2946     		mov	r1, r5
  189 0010 FFF7FEFF 		bl	__aeabi_dcmplt
  190              	.LVL6:
- 191              		.loc 1 318 6 view .LVU26
+ 191              		.loc 1 325 6 view .LVU26
  192 0014 10B9     		cbnz	r0, .L22
  193              	.L18:
- 319:Core/Src/freertos.c ****   {
- 320:Core/Src/freertos.c ****     return (a * -1);
- 321:Core/Src/freertos.c ****   }
- 322:Core/Src/freertos.c ****   return a;
- 323:Core/Src/freertos.c **** }
- 194              		.loc 1 323 1 view .LVU27
+ 326:Core/Src/freertos.c ****   {
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 10
+
+
+ 327:Core/Src/freertos.c ****     return (a * -1);
+ 328:Core/Src/freertos.c ****   }
+ 329:Core/Src/freertos.c ****   return a;
+ 330:Core/Src/freertos.c **** }
+ 194              		.loc 1 330 1 view .LVU27
  195 0016 45EC104B 		vmov	d0, r4, r5
  196 001a 38BD     		pop	{r3, r4, r5, pc}
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 10
-
-
  197              	.LVL7:
  198              	.L22:
- 320:Core/Src/freertos.c ****   }
- 199              		.loc 1 320 5 is_stmt 1 view .LVU28
- 320:Core/Src/freertos.c ****   }
- 200              		.loc 1 320 15 is_stmt 0 view .LVU29
+ 327:Core/Src/freertos.c ****   }
+ 199              		.loc 1 327 5 is_stmt 1 view .LVU28
+ 327:Core/Src/freertos.c ****   }
+ 200              		.loc 1 327 15 is_stmt 0 view .LVU29
  201 001c 05F10043 		add	r3, r5, #-2147483648
  202 0020 1D46     		mov	r5, r3
  203 0022 F8E7     		b	.L18
@@ -567,8 +574,8 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  219              		.thumb_func
  221              	analyze_voltage:
  222              	.LFB171:
- 234:Core/Src/freertos.c ****   if (voltage_counter == 0)
- 223              		.loc 1 234 1 is_stmt 1 view -0
+ 241:Core/Src/freertos.c ****   if (voltage_counter == 0)
+ 223              		.loc 1 241 1 is_stmt 1 view -0
  224              		.cfi_startproc
  225              		@ args = 0, pretend = 0, frame = 0
  226              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -577,30 +584,30 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  229              		.cfi_def_cfa_offset 8
  230              		.cfi_offset 4, -8
  231              		.cfi_offset 14, -4
- 235:Core/Src/freertos.c ****   {
- 232              		.loc 1 235 3 view .LVU31
- 235:Core/Src/freertos.c ****   {
- 233              		.loc 1 235 23 is_stmt 0 view .LVU32
+ 242:Core/Src/freertos.c ****   {
+ 232              		.loc 1 242 3 view .LVU31
+ 242:Core/Src/freertos.c ****   {
+ 233              		.loc 1 242 23 is_stmt 0 view .LVU32
  234 0002 414B     		ldr	r3, .L34+16
  235 0004 1B68     		ldr	r3, [r3]
- 235:Core/Src/freertos.c ****   {
- 236              		.loc 1 235 6 view .LVU33
+ 242:Core/Src/freertos.c ****   {
+ 236              		.loc 1 242 6 view .LVU33
  237 0006 A3B9     		cbnz	r3, .L24
- 237:Core/Src/freertos.c ****     previos_error = abs(current_angle - db_target_angle);
- 238              		.loc 1 237 5 is_stmt 1 view .LVU34
- 237:Core/Src/freertos.c ****     previos_error = abs(current_angle - db_target_angle);
- 239              		.loc 1 237 22 is_stmt 0 view .LVU35
+ 244:Core/Src/freertos.c ****     previos_error = abs(current_angle - db_target_angle);
+ 238              		.loc 1 244 5 is_stmt 1 view .LVU34
+ 244:Core/Src/freertos.c ****     previos_error = abs(current_angle - db_target_angle);
+ 239              		.loc 1 244 22 is_stmt 0 view .LVU35
  240 0008 404B     		ldr	r3, .L34+20
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 11
+
+
  241 000a D3E90001 		ldrd	r0, [r3]
  242 000e 404B     		ldr	r3, .L34+24
  243 0010 C3E90001 		strd	r0, [r3]
- 238:Core/Src/freertos.c ****   }
- 244              		.loc 1 238 5 is_stmt 1 view .LVU36
- 238:Core/Src/freertos.c ****   }
- 245              		.loc 1 238 21 is_stmt 0 view .LVU37
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 11
-
-
+ 245:Core/Src/freertos.c ****   }
+ 244              		.loc 1 245 5 is_stmt 1 view .LVU36
+ 245:Core/Src/freertos.c ****   }
+ 245              		.loc 1 245 21 is_stmt 0 view .LVU37
  246 0014 3F4B     		ldr	r3, .L34+28
  247 0016 D3E90001 		ldrd	r0, [r3]
  248 001a 3F4B     		ldr	r3, .L34+32
@@ -610,136 +617,136 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  252 0024 41EC100B 		vmov	d0, r0, r1
  253 0028 FFF7FEFF 		bl	abs
  254              	.LVL9:
- 238:Core/Src/freertos.c ****   }
- 255              		.loc 1 238 19 view .LVU38
+ 245:Core/Src/freertos.c ****   }
+ 255              		.loc 1 245 19 view .LVU38
  256 002c 3B4B     		ldr	r3, .L34+36
  257 002e 83ED000B 		vstr.64	d0, [r3]
  258              	.L24:
- 240:Core/Src/freertos.c ****   HAL_ADC_PollForConversion(&hadc1, 1);
- 259              		.loc 1 240 3 is_stmt 1 view .LVU39
+ 247:Core/Src/freertos.c ****   HAL_ADC_PollForConversion(&hadc1, 1);
+ 259              		.loc 1 247 3 is_stmt 1 view .LVU39
  260 0032 3B4C     		ldr	r4, .L34+40
  261 0034 2046     		mov	r0, r4
  262 0036 FFF7FEFF 		bl	HAL_ADC_Start
  263              	.LVL10:
- 241:Core/Src/freertos.c ****   current_voltage = HAL_ADC_GetValue(&hadc1);
- 264              		.loc 1 241 3 view .LVU40
+ 248:Core/Src/freertos.c ****   current_voltage = HAL_ADC_GetValue(&hadc1);
+ 264              		.loc 1 248 3 view .LVU40
  265 003a 0121     		movs	r1, #1
  266 003c 2046     		mov	r0, r4
  267 003e FFF7FEFF 		bl	HAL_ADC_PollForConversion
  268              	.LVL11:
- 242:Core/Src/freertos.c ****   current_voltage = ((current_voltage / 4096) * 3.3);
- 269              		.loc 1 242 3 view .LVU41
- 242:Core/Src/freertos.c ****   current_voltage = ((current_voltage / 4096) * 3.3);
- 270              		.loc 1 242 21 is_stmt 0 view .LVU42
+ 249:Core/Src/freertos.c ****   current_voltage = ((current_voltage / 4096) * 3.3);
+ 269              		.loc 1 249 3 view .LVU41
+ 249:Core/Src/freertos.c ****   current_voltage = ((current_voltage / 4096) * 3.3);
+ 270              		.loc 1 249 21 is_stmt 0 view .LVU42
  271 0042 2046     		mov	r0, r4
  272 0044 FFF7FEFF 		bl	HAL_ADC_GetValue
  273              	.LVL12:
- 242:Core/Src/freertos.c ****   current_voltage = ((current_voltage / 4096) * 3.3);
- 274              		.loc 1 242 19 view .LVU43
+ 249:Core/Src/freertos.c ****   current_voltage = ((current_voltage / 4096) * 3.3);
+ 274              		.loc 1 249 19 view .LVU43
  275 0048 FFF7FEFF 		bl	__aeabi_ui2d
  276              	.LVL13:
  277 004c 2F4C     		ldr	r4, .L34+20
  278 004e C4E90001 		strd	r0, [r4]
- 243:Core/Src/freertos.c ****   current_angle = (int)(((current_voltage * 2) - 1.6) * 25 - 25); // min_voltage => 1.6  mid_voltag
- 279              		.loc 1 243 3 is_stmt 1 view .LVU44
- 243:Core/Src/freertos.c ****   current_angle = (int)(((current_voltage * 2) - 1.6) * 25 - 25); // min_voltage => 1.6  mid_voltag
- 280              		.loc 1 243 39 is_stmt 0 view .LVU45
+ 250:Core/Src/freertos.c ****   current_angle = (int)(((current_voltage * 2) - 1.6) * 25 - 25); // min_voltage => 1.6  mid_voltag
+ 279              		.loc 1 250 3 is_stmt 1 view .LVU44
+ 250:Core/Src/freertos.c ****   current_angle = (int)(((current_voltage * 2) - 1.6) * 25 - 25); // min_voltage => 1.6  mid_voltag
+ 280              		.loc 1 250 39 is_stmt 0 view .LVU45
  281 0052 0022     		movs	r2, #0
  282 0054 334B     		ldr	r3, .L34+44
  283 0056 D4E90001 		ldrd	r0, [r4]
  284 005a FFF7FEFF 		bl	__aeabi_dmul
  285              	.LVL14:
- 243:Core/Src/freertos.c ****   current_angle = (int)(((current_voltage * 2) - 1.6) * 25 - 25); // min_voltage => 1.6  mid_voltag
- 286              		.loc 1 243 47 view .LVU46
+ 250:Core/Src/freertos.c ****   current_angle = (int)(((current_voltage * 2) - 1.6) * 25 - 25); // min_voltage => 1.6  mid_voltag
+ 286              		.loc 1 250 47 view .LVU46
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 12
+
+
  287 005e 26A3     		adr	r3, .L34
  288 0060 D3E90023 		ldrd	r2, [r3]
  289 0064 FFF7FEFF 		bl	__aeabi_dmul
  290              	.LVL15:
- 243:Core/Src/freertos.c ****   current_angle = (int)(((current_voltage * 2) - 1.6) * 25 - 25); // min_voltage => 1.6  mid_voltag
- 291              		.loc 1 243 19 view .LVU47
+ 250:Core/Src/freertos.c ****   current_angle = (int)(((current_voltage * 2) - 1.6) * 25 - 25); // min_voltage => 1.6  mid_voltag
+ 291              		.loc 1 250 19 view .LVU47
  292 0068 C4E90001 		strd	r0, [r4]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 12
-
-
- 244:Core/Src/freertos.c ****   if (voltage_counter == 4)
- 293              		.loc 1 244 3 is_stmt 1 view .LVU48
- 244:Core/Src/freertos.c ****   if (voltage_counter == 4)
- 294              		.loc 1 244 43 is_stmt 0 view .LVU49
+ 251:Core/Src/freertos.c ****   if (voltage_counter == 4)
+ 293              		.loc 1 251 3 is_stmt 1 view .LVU48
+ 251:Core/Src/freertos.c ****   if (voltage_counter == 4)
+ 294              		.loc 1 251 43 is_stmt 0 view .LVU49
  295 006c D4E90001 		ldrd	r0, [r4]
  296 0070 0246     		mov	r2, r0
  297 0072 0B46     		mov	r3, r1
  298 0074 FFF7FEFF 		bl	__aeabi_dadd
  299              	.LVL16:
- 244:Core/Src/freertos.c ****   if (voltage_counter == 4)
- 300              		.loc 1 244 48 view .LVU50
+ 251:Core/Src/freertos.c ****   if (voltage_counter == 4)
+ 300              		.loc 1 251 48 view .LVU50
  301 0078 21A3     		adr	r3, .L34+8
  302 007a D3E90023 		ldrd	r2, [r3]
  303 007e FFF7FEFF 		bl	__aeabi_dsub
  304              	.LVL17:
- 244:Core/Src/freertos.c ****   if (voltage_counter == 4)
- 305              		.loc 1 244 55 view .LVU51
+ 251:Core/Src/freertos.c ****   if (voltage_counter == 4)
+ 305              		.loc 1 251 55 view .LVU51
  306 0082 0022     		movs	r2, #0
  307 0084 284B     		ldr	r3, .L34+48
  308 0086 FFF7FEFF 		bl	__aeabi_dmul
  309              	.LVL18:
- 244:Core/Src/freertos.c ****   if (voltage_counter == 4)
- 310              		.loc 1 244 60 view .LVU52
+ 251:Core/Src/freertos.c ****   if (voltage_counter == 4)
+ 310              		.loc 1 251 60 view .LVU52
  311 008a 0022     		movs	r2, #0
  312 008c 264B     		ldr	r3, .L34+48
  313 008e FFF7FEFF 		bl	__aeabi_dsub
  314              	.LVL19:
- 244:Core/Src/freertos.c ****   if (voltage_counter == 4)
- 315              		.loc 1 244 19 view .LVU53
+ 251:Core/Src/freertos.c ****   if (voltage_counter == 4)
+ 315              		.loc 1 251 19 view .LVU53
  316 0092 FFF7FEFF 		bl	__aeabi_d2iz
  317              	.LVL20:
- 244:Core/Src/freertos.c ****   if (voltage_counter == 4)
- 318              		.loc 1 244 17 view .LVU54
+ 251:Core/Src/freertos.c ****   if (voltage_counter == 4)
+ 318              		.loc 1 251 17 view .LVU54
  319 0096 FFF7FEFF 		bl	__aeabi_i2d
  320              	.LVL21:
  321 009a 1E4B     		ldr	r3, .L34+28
  322 009c C3E90001 		strd	r0, [r3]
- 245:Core/Src/freertos.c ****   {
- 323              		.loc 1 245 3 is_stmt 1 view .LVU55
- 245:Core/Src/freertos.c ****   {
- 324              		.loc 1 245 23 is_stmt 0 view .LVU56
+ 252:Core/Src/freertos.c ****   {
+ 323              		.loc 1 252 3 is_stmt 1 view .LVU55
+ 252:Core/Src/freertos.c ****   {
+ 324              		.loc 1 252 23 is_stmt 0 view .LVU56
  325 00a0 194B     		ldr	r3, .L34+16
  326 00a2 1A68     		ldr	r2, [r3]
- 245:Core/Src/freertos.c ****   {
- 327              		.loc 1 245 6 view .LVU57
+ 252:Core/Src/freertos.c ****   {
+ 327              		.loc 1 252 6 view .LVU57
  328 00a4 042A     		cmp	r2, #4
  329 00a6 1BD0     		beq	.L33
- 251:Core/Src/freertos.c ****   }
- 330              		.loc 1 251 5 is_stmt 1 view .LVU58
- 251:Core/Src/freertos.c ****   }
- 331              		.loc 1 251 21 is_stmt 0 view .LVU59
+ 258:Core/Src/freertos.c ****   }
+ 330              		.loc 1 258 5 is_stmt 1 view .LVU58
+ 258:Core/Src/freertos.c ****   }
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 13
+
+
+ 331              		.loc 1 258 21 is_stmt 0 view .LVU59
  332 00a8 204B     		ldr	r3, .L34+52
  333 00aa 0021     		movs	r1, #0
  334 00ac 1970     		strb	r1, [r3]
  335              	.L26:
- 253:Core/Src/freertos.c ****   if (current_angle >= 0)
- 336              		.loc 1 253 3 is_stmt 1 view .LVU60
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 13
-
-
- 253:Core/Src/freertos.c ****   if (current_angle >= 0)
- 337              		.loc 1 253 38 is_stmt 0 view .LVU61
+ 260:Core/Src/freertos.c ****   if (current_angle >= 0)
+ 336              		.loc 1 260 3 is_stmt 1 view .LVU60
+ 260:Core/Src/freertos.c ****   if (current_angle >= 0)
+ 337              		.loc 1 260 38 is_stmt 0 view .LVU61
  338 00ae 0132     		adds	r2, r2, #1
- 253:Core/Src/freertos.c ****   if (current_angle >= 0)
- 339              		.loc 1 253 43 view .LVU62
+ 260:Core/Src/freertos.c ****   if (current_angle >= 0)
+ 339              		.loc 1 260 43 view .LVU62
  340 00b0 1F49     		ldr	r1, .L34+56
  341 00b2 81FB0231 		smull	r3, r1, r1, r2
  342 00b6 D317     		asrs	r3, r2, #31
  343 00b8 C3EB6103 		rsb	r3, r3, r1, asr #1
  344 00bc 03EB8303 		add	r3, r3, r3, lsl #2
  345 00c0 D31A     		subs	r3, r2, r3
- 253:Core/Src/freertos.c ****   if (current_angle >= 0)
- 346              		.loc 1 253 19 view .LVU63
+ 260:Core/Src/freertos.c ****   if (current_angle >= 0)
+ 346              		.loc 1 260 19 view .LVU63
  347 00c2 114A     		ldr	r2, .L34+16
  348 00c4 1360     		str	r3, [r2]
- 254:Core/Src/freertos.c ****   {
- 349              		.loc 1 254 3 is_stmt 1 view .LVU64
- 254:Core/Src/freertos.c ****   {
- 350              		.loc 1 254 6 is_stmt 0 view .LVU65
+ 261:Core/Src/freertos.c ****   {
+ 349              		.loc 1 261 3 is_stmt 1 view .LVU64
+ 261:Core/Src/freertos.c ****   {
+ 350              		.loc 1 261 6 is_stmt 0 view .LVU65
  351 00c6 0022     		movs	r2, #0
  352 00c8 0023     		movs	r3, #0
  353 00ca 1249     		ldr	r1, .L34+28
@@ -747,40 +754,40 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  355 00d0 FFF7FEFF 		bl	__aeabi_dcmpge
  356              	.LVL22:
  357 00d4 40B1     		cbz	r0, .L31
- 256:Core/Src/freertos.c ****   }
- 358              		.loc 1 256 5 is_stmt 1 view .LVU66
- 256:Core/Src/freertos.c ****   }
- 359              		.loc 1 256 42 is_stmt 0 view .LVU67
+ 263:Core/Src/freertos.c ****   }
+ 358              		.loc 1 263 5 is_stmt 1 view .LVU66
+ 263:Core/Src/freertos.c ****   }
+ 359              		.loc 1 263 42 is_stmt 0 view .LVU67
  360 00d6 174B     		ldr	r3, .L34+60
- 361 00d8 0122     		movs	r2, #1
+ 361 00d8 0022     		movs	r2, #0
  362 00da 83F8D020 		strb	r2, [r3, #208]
  363              	.L23:
- 262:Core/Src/freertos.c **** void PID_protection(void)
- 364              		.loc 1 262 1 view .LVU68
+ 269:Core/Src/freertos.c **** void PID_protection(void)
+ 364              		.loc 1 269 1 view .LVU68
  365 00de 10BD     		pop	{r4, pc}
  366              	.L33:
- 247:Core/Src/freertos.c ****   }
- 367              		.loc 1 247 5 is_stmt 1 view .LVU69
- 247:Core/Src/freertos.c ****   }
- 368              		.loc 1 247 21 is_stmt 0 view .LVU70
+ 254:Core/Src/freertos.c ****   }
+ 367              		.loc 1 254 5 is_stmt 1 view .LVU69
+ 254:Core/Src/freertos.c ****   }
+ 368              		.loc 1 254 21 is_stmt 0 view .LVU70
  369 00e0 124B     		ldr	r3, .L34+52
  370 00e2 0121     		movs	r1, #1
  371 00e4 1970     		strb	r1, [r3]
  372 00e6 E2E7     		b	.L26
  373              	.L31:
- 260:Core/Src/freertos.c ****   }
- 374              		.loc 1 260 5 is_stmt 1 view .LVU71
- 260:Core/Src/freertos.c ****   }
- 375              		.loc 1 260 42 is_stmt 0 view .LVU72
+ 267:Core/Src/freertos.c ****   }
+ 374              		.loc 1 267 5 is_stmt 1 view .LVU71
+ 267:Core/Src/freertos.c ****   }
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 14
+
+
+ 375              		.loc 1 267 42 is_stmt 0 view .LVU72
  376 00e8 124B     		ldr	r3, .L34+60
- 377 00ea 0022     		movs	r2, #0
+ 377 00ea 0122     		movs	r2, #1
  378 00ec 83F8D020 		strb	r2, [r3, #208]
- 262:Core/Src/freertos.c **** void PID_protection(void)
- 379              		.loc 1 262 1 view .LVU73
+ 269:Core/Src/freertos.c **** void PID_protection(void)
+ 379              		.loc 1 269 1 view .LVU73
  380 00f0 F5E7     		b	.L23
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 14
-
-
  381              	.L35:
  382 00f2 00BFAFF3 		.align	3
  382      0080
@@ -811,8 +818,8 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  408              		.thumb_func
  410              	PID_init:
  411              	.LFB173:
- 288:Core/Src/freertos.c ****   TIM2->CCR2 = 0; // CCR_value bigger the rpm will highter 0~100
- 412              		.loc 1 288 1 is_stmt 1 view -0
+ 295:Core/Src/freertos.c ****   TIM2->CCR2 = 0; // CCR_value bigger the rpm will highter 0~100
+ 412              		.loc 1 295 1 is_stmt 1 view -0
  413              		.cfi_startproc
  414              		@ args = 0, pretend = 0, frame = 0
  415              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -825,161 +832,161 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  422 0002 83B0     		sub	sp, sp, #12
  423              	.LCFI5:
  424              		.cfi_def_cfa_offset 24
- 289:Core/Src/freertos.c ****   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
- 425              		.loc 1 289 3 view .LVU75
- 289:Core/Src/freertos.c ****   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
- 426              		.loc 1 289 14 is_stmt 0 view .LVU76
+ 296:Core/Src/freertos.c ****   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
+ 425              		.loc 1 296 3 view .LVU75
+ 296:Core/Src/freertos.c ****   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
+ 426              		.loc 1 296 14 is_stmt 0 view .LVU76
  427 0004 0025     		movs	r5, #0
  428 0006 4FF08043 		mov	r3, #1073741824
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 15
+
+
  429 000a 9D63     		str	r5, [r3, #56]
- 290:Core/Src/freertos.c ****   HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
- 430              		.loc 1 290 3 is_stmt 1 view .LVU77
+ 297:Core/Src/freertos.c ****   HAL_GPIO_WritePin(CW_CCW_control_GPIO_Port, CW_CCW_control_Pin, 1);
+ 430              		.loc 1 297 3 is_stmt 1 view .LVU77
  431 000c 0421     		movs	r1, #4
- 432 000e 2248     		ldr	r0, .L38+40
+ 432 000e 2248     		ldr	r0, .L38+32
  433 0010 FFF7FEFF 		bl	HAL_TIM_PWM_Start
  434              	.LVL23:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 15
-
-
- 291:Core/Src/freertos.c ****   osDelay(500);
- 435              		.loc 1 291 3 view .LVU78
+ 298:Core/Src/freertos.c ****   osDelay(500);
+ 435              		.loc 1 298 3 view .LVU78
  436 0014 0122     		movs	r2, #1
  437 0016 0821     		movs	r1, #8
  438 0018 4FF09040 		mov	r0, #1207959552
  439 001c FFF7FEFF 		bl	HAL_GPIO_WritePin
  440              	.LVL24:
- 292:Core/Src/freertos.c ****   analyze_voltage();
- 441              		.loc 1 292 3 view .LVU79
+ 299:Core/Src/freertos.c ****   analyze_voltage();
+ 441              		.loc 1 299 3 view .LVU79
  442 0020 4FF4FA70 		mov	r0, #500
  443 0024 FFF7FEFF 		bl	osDelay
  444              	.LVL25:
- 293:Core/Src/freertos.c ****   // db_target_angle = Virtual_target_angle;
- 445              		.loc 1 293 3 view .LVU80
+ 300:Core/Src/freertos.c ****   // db_target_angle = Virtual_target_angle;
+ 445              		.loc 1 300 3 view .LVU80
  446 0028 FFF7FEFF 		bl	analyze_voltage
  447              	.LVL26:
- 295:Core/Src/freertos.c ****   PID_SetMode(&TPID, _PID_MODE_AUTOMATIC);
- 448              		.loc 1 295 3 view .LVU81
- 449 002c 1B4C     		ldr	r4, .L38+44
- 450 002e 0195     		str	r5, [sp, #4]
- 451 0030 0125     		movs	r5, #1
- 452 0032 0095     		str	r5, [sp]
- 453 0034 9FED0E2B 		vldr.64	d2, .L38
- 454 0038 9FED0F1B 		vldr.64	d1, .L38+8
- 455 003c 9FED100B 		vldr.64	d0, .L38+16
- 456 0040 174B     		ldr	r3, .L38+48
- 457 0042 184A     		ldr	r2, .L38+52
- 458 0044 1849     		ldr	r1, .L38+56
- 459 0046 2046     		mov	r0, r4
- 460 0048 FFF7FEFF 		bl	PID
- 461              	.LVL27:
- 296:Core/Src/freertos.c ****   PID_SetSampleTime(&TPID, 50);
- 462              		.loc 1 296 3 view .LVU82
- 463 004c 2946     		mov	r1, r5
- 464 004e 2046     		mov	r0, r4
- 465 0050 FFF7FEFF 		bl	PID_SetMode
- 466              	.LVL28:
- 297:Core/Src/freertos.c ****   PID_SetOutputLimits(&TPID, -10, 10);
- 467              		.loc 1 297 3 view .LVU83
- 468 0054 3221     		movs	r1, #50
- 469 0056 2046     		mov	r0, r4
- 470 0058 FFF7FEFF 		bl	PID_SetSampleTime
- 471              	.LVL29:
- 298:Core/Src/freertos.c **** }
- 472              		.loc 1 298 3 view .LVU84
- 473 005c 9FED0A1B 		vldr.64	d1, .L38+24
- 474 0060 9FED0B0B 		vldr.64	d0, .L38+32
- 475 0064 2046     		mov	r0, r4
- 476 0066 FFF7FEFF 		bl	PID_SetOutputLimits
- 477              	.LVL30:
- 299:Core/Src/freertos.c **** void CW_CCW_deect(void)
- 478              		.loc 1 299 1 is_stmt 0 view .LVU85
- 479 006a 03B0     		add	sp, sp, #12
- 480              	.LCFI6:
- 481              		.cfi_def_cfa_offset 12
- 482              		@ sp needed
- 483 006c 30BD     		pop	{r4, r5, pc}
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 16
+ 302:Core/Src/freertos.c ****   PID_SetMode(&TPID, _PID_MODE_AUTOMATIC);
+ 448              		.loc 1 302 3 view .LVU81
+ 449 002c 9FED121B 		vldr.64	d1, .L38
+ 450 0030 1A4C     		ldr	r4, .L38+36
+ 451 0032 0195     		str	r5, [sp, #4]
+ 452 0034 0125     		movs	r5, #1
+ 453 0036 0095     		str	r5, [sp]
+ 454 0038 B0EE412A 		vmov.f32	s4, s2
+ 455 003c F0EE612A 		vmov.f32	s5, s3
+ 456 0040 9FED0F0B 		vldr.64	d0, .L38+8
+ 457 0044 164B     		ldr	r3, .L38+40
+ 458 0046 174A     		ldr	r2, .L38+44
+ 459 0048 1749     		ldr	r1, .L38+48
+ 460 004a 2046     		mov	r0, r4
+ 461 004c FFF7FEFF 		bl	PID
+ 462              	.LVL27:
+ 303:Core/Src/freertos.c ****   PID_SetSampleTime(&TPID, 50);
+ 463              		.loc 1 303 3 view .LVU82
+ 464 0050 2946     		mov	r1, r5
+ 465 0052 2046     		mov	r0, r4
+ 466 0054 FFF7FEFF 		bl	PID_SetMode
+ 467              	.LVL28:
+ 304:Core/Src/freertos.c ****   PID_SetOutputLimits(&TPID, -10, 10);
+ 468              		.loc 1 304 3 view .LVU83
+ 469 0058 3221     		movs	r1, #50
+ 470 005a 2046     		mov	r0, r4
+ 471 005c FFF7FEFF 		bl	PID_SetSampleTime
+ 472              	.LVL29:
+ 305:Core/Src/freertos.c **** }
+ 473              		.loc 1 305 3 view .LVU84
+ 474 0060 9FED091B 		vldr.64	d1, .L38+16
+ 475 0064 9FED0A0B 		vldr.64	d0, .L38+24
+ 476 0068 2046     		mov	r0, r4
+ 477 006a FFF7FEFF 		bl	PID_SetOutputLimits
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 16
 
 
- 484              	.L39:
- 485 006e 00BF     		.align	3
- 486              	.L38:
- 487 0070 00000000 		.word	0
- 488 0074 00000000 		.word	0
- 489 0078 7B14AE47 		.word	1202590843
- 490 007c E17A943F 		.word	1066695393
- 491 0080 33333333 		.word	858993459
- 492 0084 3333D33F 		.word	1070805811
- 493 0088 00000000 		.word	0
- 494 008c 00002440 		.word	1076101120
- 495 0090 00000000 		.word	0
- 496 0094 000024C0 		.word	-1071382528
- 497 0098 00000000 		.word	htim2
- 498 009c 00000000 		.word	.LANCHOR13
- 499 00a0 00000000 		.word	.LANCHOR5
- 500 00a4 00000000 		.word	.LANCHOR12
- 501 00a8 00000000 		.word	.LANCHOR4
- 502              		.cfi_endproc
- 503              	.LFE173:
- 505              		.section	.text.TPDO_tarnsmit,"ax",%progbits
- 506              		.align	1
- 507              		.global	TPDO_tarnsmit
- 508              		.syntax unified
- 509              		.thumb
- 510              		.thumb_func
- 512              	TPDO_tarnsmit:
- 513              	.LVL31:
- 514              	.LFB177:
- 324:Core/Src/freertos.c **** void TPDO_tarnsmit(uint8_t status, int16_t angle)
- 325:Core/Src/freertos.c **** {
- 515              		.loc 1 325 1 is_stmt 1 view -0
- 516              		.cfi_startproc
- 517              		@ args = 0, pretend = 0, frame = 8
- 518              		@ frame_needed = 0, uses_anonymous_args = 0
- 519              		.loc 1 325 1 is_stmt 0 view .LVU87
- 520 0000 70B5     		push	{r4, r5, r6, lr}
- 521              	.LCFI7:
- 522              		.cfi_def_cfa_offset 16
- 523              		.cfi_offset 4, -16
- 524              		.cfi_offset 5, -12
- 525              		.cfi_offset 6, -8
- 526              		.cfi_offset 14, -4
- 527 0002 84B0     		sub	sp, sp, #16
- 528              	.LCFI8:
- 529              		.cfi_def_cfa_offset 32
- 326:Core/Src/freertos.c ****   OD_PERSIST_COMM.x6000_current_angle = angle;
- 530              		.loc 1 326 3 is_stmt 1 view .LVU88
- 531              		.loc 1 326 39 is_stmt 0 view .LVU89
- 532 0004 204D     		ldr	r5, .L43
- 533 0006 85F8CC10 		strb	r1, [r5, #204]
- 327:Core/Src/freertos.c ****   OD_PERSIST_COMM.x6003_status = status;
- 534              		.loc 1 327 3 is_stmt 1 view .LVU90
- 535              		.loc 1 327 32 is_stmt 0 view .LVU91
- 536 000a 85F8CE00 		strb	r0, [r5, #206]
- 328:Core/Src/freertos.c ****   OD_set_u16(OD_find(OD, 0x6000), 0x000, OD_PERSIST_COMM.x6000_current_angle, false); // change_obj
- 537              		.loc 1 328 3 is_stmt 1 view .LVU92
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 17
+ 478              	.LVL30:
+ 306:Core/Src/freertos.c **** void CW_CCW_deect(void)
+ 479              		.loc 1 306 1 is_stmt 0 view .LVU85
+ 480 006e 03B0     		add	sp, sp, #12
+ 481              	.LCFI6:
+ 482              		.cfi_def_cfa_offset 12
+ 483              		@ sp needed
+ 484 0070 30BD     		pop	{r4, r5, pc}
+ 485              	.L39:
+ 486 0072 00BFAFF3 		.align	3
+ 486      0080
+ 487              	.L38:
+ 488 0078 00000000 		.word	0
+ 489 007c 00000000 		.word	0
+ 490 0080 33333333 		.word	858993459
+ 491 0084 3333D33F 		.word	1070805811
+ 492 0088 00000000 		.word	0
+ 493 008c 00002440 		.word	1076101120
+ 494 0090 00000000 		.word	0
+ 495 0094 000024C0 		.word	-1071382528
+ 496 0098 00000000 		.word	htim2
+ 497 009c 00000000 		.word	.LANCHOR13
+ 498 00a0 00000000 		.word	.LANCHOR5
+ 499 00a4 00000000 		.word	.LANCHOR12
+ 500 00a8 00000000 		.word	.LANCHOR4
+ 501              		.cfi_endproc
+ 502              	.LFE173:
+ 504              		.section	.text.TPDO_tarnsmit,"ax",%progbits
+ 505              		.align	1
+ 506              		.global	TPDO_tarnsmit
+ 507              		.syntax unified
+ 508              		.thumb
+ 509              		.thumb_func
+ 511              	TPDO_tarnsmit:
+ 512              	.LVL31:
+ 513              	.LFB177:
+ 331:Core/Src/freertos.c **** void TPDO_tarnsmit(uint8_t status, int16_t angle)
+ 332:Core/Src/freertos.c **** {
+ 514              		.loc 1 332 1 is_stmt 1 view -0
+ 515              		.cfi_startproc
+ 516              		@ args = 0, pretend = 0, frame = 8
+ 517              		@ frame_needed = 0, uses_anonymous_args = 0
+ 518              		.loc 1 332 1 is_stmt 0 view .LVU87
+ 519 0000 70B5     		push	{r4, r5, r6, lr}
+ 520              	.LCFI7:
+ 521              		.cfi_def_cfa_offset 16
+ 522              		.cfi_offset 4, -16
+ 523              		.cfi_offset 5, -12
+ 524              		.cfi_offset 6, -8
+ 525              		.cfi_offset 14, -4
+ 526 0002 84B0     		sub	sp, sp, #16
+ 527              	.LCFI8:
+ 528              		.cfi_def_cfa_offset 32
+ 333:Core/Src/freertos.c ****   OD_PERSIST_COMM.x6000_current_angle = angle;
+ 529              		.loc 1 333 3 is_stmt 1 view .LVU88
+ 530              		.loc 1 333 39 is_stmt 0 view .LVU89
+ 531 0004 204D     		ldr	r5, .L43
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 17
 
 
- 538 000e 1F4E     		ldr	r6, .L43+4
- 539              		.loc 1 328 14 is_stmt 0 view .LVU93
- 540 0010 4FF4C041 		mov	r1, #24576
- 541              	.LVL32:
- 542              		.loc 1 328 14 view .LVU94
- 543 0014 3068     		ldr	r0, [r6]
- 544              	.LVL33:
- 545              		.loc 1 328 14 view .LVU95
- 546 0016 FFF7FEFF 		bl	OD_find
- 547              	.LVL34:
- 548              		.loc 1 328 57 view .LVU96
- 549 001a 95F9CC30 		ldrsb	r3, [r5, #204]
- 550              	.LVL35:
- 551              		.loc 1 328 57 view .LVU97
- 552 001e ADF80E30 		strh	r3, [sp, #14]	@ movhi
- 553              	.LVL36:
- 554              	.LBB10:
- 555              	.LBI10:
- 556              		.file 2 "Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h"
+ 532 0006 85F8CC10 		strb	r1, [r5, #204]
+ 334:Core/Src/freertos.c ****   OD_PERSIST_COMM.x6003_status = status;
+ 533              		.loc 1 334 3 is_stmt 1 view .LVU90
+ 534              		.loc 1 334 32 is_stmt 0 view .LVU91
+ 535 000a 85F8CE00 		strb	r0, [r5, #206]
+ 335:Core/Src/freertos.c ****   OD_set_u16(OD_find(OD, 0x6000), 0x000, OD_PERSIST_COMM.x6000_current_angle, false); // change_obj
+ 536              		.loc 1 335 3 is_stmt 1 view .LVU92
+ 537 000e 1F4E     		ldr	r6, .L43+4
+ 538              		.loc 1 335 14 is_stmt 0 view .LVU93
+ 539 0010 4FF4C041 		mov	r1, #24576
+ 540              	.LVL32:
+ 541              		.loc 1 335 14 view .LVU94
+ 542 0014 3068     		ldr	r0, [r6]
+ 543              	.LVL33:
+ 544              		.loc 1 335 14 view .LVU95
+ 545 0016 FFF7FEFF 		bl	OD_find
+ 546              	.LVL34:
+ 547              		.loc 1 335 57 view .LVU96
+ 548 001a 95F9CC30 		ldrsb	r3, [r5, #204]
+ 549              	.LVL35:
+ 550              		.loc 1 335 57 view .LVU97
+ 551 001e ADF80E30 		strh	r3, [sp, #14]	@ movhi
+ 552              	.LVL36:
+ 553              	.LBB10:
+ 554              	.LBI10:
+ 555              		.file 2 "Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h"
    1:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /**
    2:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * CANopen Object Dictionary interface
    3:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
@@ -1011,6 +1018,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
   29:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** #include "301/CO_driver.h"
   30:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
   31:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** #ifdef __cplusplus
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 18
+
+
   32:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** extern "C" {
   33:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** #endif
   34:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
@@ -1018,9 +1028,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
   36:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @defgroup CO_ODinterface OD interface
   37:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * CANopen Object Dictionary interface.
   38:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 18
-
-
   39:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @ingroup CO_CANopen_301
   40:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @{
   41:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * See @ref doc/objectDictionary.md
@@ -1071,6 +1078,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
   86:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1013_HIGH_RES_TIMESTAMP = 0x1013U,/**< High resolution timestamp */
   87:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1014_COBID_EMERGENCY    = 0x1014U,/**< Emergency message cob-id */
   88:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1015_INHIBIT_TIME_EMCY  = 0x1015U,/**< Inhibit time emergency message */
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 19
+
+
   89:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1016_CONSUMER_HB_TIME   = 0x1016U,/**< Consumer heartbeat time */
   90:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1017_PRODUCER_HB_TIME   = 0x1017U,/**< Producer heartbeat time */
   91:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1018_IDENTITY_OBJECT    = 0x1018U,/**< Identity object */
@@ -1078,9 +1088,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
   93:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1020_VERIFY_CONFIG      = 0x1020U,/**< Verify configuration */
   94:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1021_STORE_EDS          = 0x1021U,/**< Store EDS */
   95:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1022_STORE_FORMAT       = 0x1022U,/**< Store format */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 19
-
-
   96:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1023_OS_CMD             = 0x1023U,/**< OS command */
   97:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1024_OS_CMD_MODE        = 0x1024U,/**< OS command mode */
   98:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1025_OS_DBG_INTERFACE   = 0x1025U,/**< OS debug interface */
@@ -1131,6 +1138,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  143:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /* !!!! WARNING !!!!
  144:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * If changing these values, change also OD_getSDOabCode() function!
  145:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  */
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 20
+
+
  146:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** Read/write is only partial, make more calls */
  147:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     ODR_PARTIAL = -1,
  148:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** SDO abort 0x00000000 - Read/write successfully finished */
@@ -1138,9 +1148,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  150:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** SDO abort 0x05040005 - Out of memory */
  151:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     ODR_OUT_OF_MEM = 1,
  152:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** SDO abort 0x06010000 - Unsupported access to an object */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 20
-
-
  153:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     ODR_UNSUPP_ACCESS = 2,
  154:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** SDO abort 0x06010001 - Attempt to read a write only object */
  155:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     ODR_WRITEONLY = 3,
@@ -1191,6 +1198,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  200:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** Last element, number of responses */
  201:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     ODR_COUNT = 26
  202:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** } ODR_t;
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 21
+
+
  203:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  204:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  205:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /**
@@ -1198,9 +1208,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  207:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @ref OD_IO_t.
  208:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  */
  209:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** typedef struct {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 21
-
-
  210:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** Pointer to original data object, defined by Object Dictionary. Default
  211:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * read/write functions operate on it. If memory for data object is not
  212:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * specified by Object Dictionary, then dataOrig is NULL.
@@ -1251,6 +1258,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  257:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * not large enough. ("*returnCode" must not return 'ODR_PARTIAL', if there
  258:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * is still space in "buf".)
  259:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      *
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 22
+
+
  260:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * @warning When accessing OD variables by calling the read() function, it
  261:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * may be necessary to use @ref CO_LOCK_OD() and @ref CO_UNLOCK_OD() macros.
  262:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * See @ref CO_critical_sections for more information.
@@ -1258,9 +1268,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  264:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * @param stream Object Dictionary stream object.
  265:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * @param buf Pointer to external buffer, where to data will be copied.
  266:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * @param count Size of the external buffer in bytes.
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 22
-
-
  267:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * @param [out] countRead If return value is "ODR_OK" or "ODR_PARTIAL",
  268:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * then number of bytes successfully read must be returned here.
  269:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      *
@@ -1311,6 +1318,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  314:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     void *object;
  315:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** Application specified read function pointer. If NULL, then read will be
  316:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * disabled. @ref OD_readOriginal can be used here to keep the original read
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 23
+
+
  317:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * function. For function description see @ref OD_IO_t. */
  318:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     ODR_t (*read)(OD_stream_t *stream, void *buf,
  319:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                   OD_size_t count, OD_size_t *countRead);
@@ -1318,9 +1328,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  321:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * be disabled. @ref OD_writeOriginal can be used here to keep the original
  322:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * write function. For function description see @ref OD_IO_t. */
  323:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     ODR_t (*write)(OD_stream_t *stream, const void *buf,
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 23
-
-
  324:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                    OD_size_t count, OD_size_t *countWritten);
  325:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** #if OD_FLAGS_PDO_SIZE > 0
  326:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /**PDO flags bit-field provides one bit for each OD variable, which exist
@@ -1371,6 +1378,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  371:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_entry_t *list;
  372:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** } OD_t;
  373:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 24
+
+
  374:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  375:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /**
  376:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * Read value from original OD location
@@ -1378,9 +1388,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  378:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * This function can be used inside read / write functions, specified by
  379:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @ref OD_extension_init(). It reads data directly from memory location
  380:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * specified by Object dictionary. If no IO extension is used on OD entry, then
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 24
-
-
  381:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * io->read returned by @ref OD_getSub() equals to this function. See
  382:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * also @ref OD_IO_t.
  383:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  */
@@ -1431,6 +1438,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  428:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** ODR_t OD_getSub(const OD_entry_t *entry, uint8_t subIndex,
  429:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                 OD_IO_t *io, bool_t odOrig);
  430:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 25
+
+
  431:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  432:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /**
  433:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * Return index from OD entry
@@ -1438,9 +1448,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  435:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @param entry OD entry returned by @ref OD_find().
  436:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
  437:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @return OD index
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 25
-
-
  438:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  */
  439:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** static inline uint16_t OD_getIndex(const OD_entry_t *entry) {
  440:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     return (entry != NULL) ? entry->index : 0;
@@ -1491,6 +1498,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  485:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     if (entry != NULL && entry->extension != NULL) {
  486:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****         return &entry->extension->flagsPDO[0];
  487:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     }
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 26
+
+
  488:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** #endif
  489:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     return 0;
  490:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
@@ -1498,9 +1508,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  492:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  493:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /**
  494:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * Request TPDO, to which OD variable is mapped
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 26
-
-
  495:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
  496:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * Function clears the flagPDO bit, which corresponds to OD variable at specific
  497:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * OD index and subindex. For this functionality to work, @ref OD_extension_t
@@ -1551,6 +1558,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  542:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     return false;
  543:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
  544:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 27
+
+
  545:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  546:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /**
  547:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * Get SDO abort code from returnCode
@@ -1558,9 +1568,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  549:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @param returnCode Returned from some OD access functions
  550:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
  551:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @return Corresponding @ref CO_SDO_abortCode_t
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 27
-
-
  552:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  */
  553:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** uint32_t OD_getSDOabCode(ODR_t returnCode);
  554:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
@@ -1611,6 +1618,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  599:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @{
  600:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
  601:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * Getter and setter helper functions for accessing different types of Object
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 28
+
+
  602:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * Dictionary variables.
  603:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  */
  604:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /**
@@ -1618,9 +1628,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  606:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
  607:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @param entry OD entry returned by @ref OD_find().
  608:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @param subIndex Sub-index of the variable from the OD object.
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 28
-
-
  609:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @param [out] val Value will be written here.
  610:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @param len Size of value to retrieve from OD.
  611:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @param odOrig If true, then potential IO extension on entry will be
@@ -1671,6 +1678,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  656:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /** Get uint16_t variable from Object Dictionary, see @ref OD_get_value */
  657:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** static inline ODR_t OD_get_u16(const OD_entry_t *entry, uint8_t subIndex,
  658:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                                uint16_t *val, bool_t odOrig)
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 29
+
+
  659:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** {
  660:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     return OD_get_value(entry, subIndex, val, sizeof(*val), odOrig);
  661:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
@@ -1678,9 +1688,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  663:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /** Get uint32_t variable from Object Dictionary, see @ref OD_get_value */
  664:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** static inline ODR_t OD_get_u32(const OD_entry_t *entry, uint8_t subIndex,
  665:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                                uint32_t *val, bool_t odOrig)
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 29
-
-
  666:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** {
  667:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     return OD_get_value(entry, subIndex, val, sizeof(*val), odOrig);
  668:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
@@ -1731,6 +1738,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  713:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
  714:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  715:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /** Set int16_t variable in Object Dictionary, see @ref OD_set_value */
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 30
+
+
  716:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** static inline ODR_t OD_set_i16(const OD_entry_t *entry, uint8_t subIndex,
  717:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                                int16_t val, bool_t odOrig)
  718:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** {
@@ -1738,9 +1748,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  720:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
  721:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  722:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /** Set int32_t variable in Object Dictionary, see @ref OD_set_value */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 30
-
-
  723:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** static inline ODR_t OD_set_i32(const OD_entry_t *entry, uint8_t subIndex,
  724:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                                int32_t val, bool_t odOrig)
  725:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** {
@@ -1763,121 +1770,121 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  742:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  743:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /** Set uint16_t variable in Object Dictionary, see @ref OD_set_value */
  744:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** static inline ODR_t OD_set_u16(const OD_entry_t *entry, uint8_t subIndex,
- 557              		.loc 2 744 21 is_stmt 1 view .LVU98
- 558              	.LBB11:
+ 556              		.loc 2 744 21 is_stmt 1 view .LVU98
+ 557              	.LBB11:
  745:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                                uint16_t val, bool_t odOrig)
  746:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** {
  747:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     return OD_set_value(entry, subIndex, &val, sizeof(val), odOrig);
- 559              		.loc 2 747 5 view .LVU99
- 560              		.loc 2 747 12 is_stmt 0 view .LVU100
- 561 0022 0024     		movs	r4, #0
- 562 0024 0094     		str	r4, [sp]
- 563 0026 0223     		movs	r3, #2
- 564              	.LVL37:
- 565              		.loc 2 747 12 view .LVU101
- 566 0028 0DF10E02 		add	r2, sp, #14
- 567              	.LVL38:
- 568              		.loc 2 747 12 view .LVU102
- 569 002c 2146     		mov	r1, r4
- 570 002e FFF7FEFF 		bl	OD_set_value
- 571              	.LVL39:
- 572              		.loc 2 747 12 view .LVU103
- 573              	.LBE11:
- 574              	.LBE10:
- 329:Core/Src/freertos.c ****   OD_set_u8(OD_find(OD, 0x6003), 0x000, OD_PERSIST_COMM.x6003_status, false);
- 575              		.loc 1 329 3 is_stmt 1 view .LVU104
- 576              		.loc 1 329 13 is_stmt 0 view .LVU105
- 577 0032 46F20301 		movw	r1, #24579
- 578 0036 3068     		ldr	r0, [r6]
- 579 0038 FFF7FEFF 		bl	OD_find
- 580              	.LVL40:
- 581              		.loc 1 329 3 view .LVU106
- 582 003c 95F8CE30 		ldrb	r3, [r5, #206]	@ zero_extendqisi2
- 583              	.LVL41:
- 584              		.loc 1 329 3 view .LVU107
- 585 0040 8DF80E30 		strb	r3, [sp, #14]
- 586              	.LVL42:
- 587              	.LBB12:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 31
+ 558              		.loc 2 747 5 view .LVU99
+ 559              		.loc 2 747 12 is_stmt 0 view .LVU100
+ 560 0022 0024     		movs	r4, #0
+ 561 0024 0094     		str	r4, [sp]
+ 562 0026 0223     		movs	r3, #2
+ 563              	.LVL37:
+ 564              		.loc 2 747 12 view .LVU101
+ 565 0028 0DF10E02 		add	r2, sp, #14
+ 566              	.LVL38:
+ 567              		.loc 2 747 12 view .LVU102
+ 568 002c 2146     		mov	r1, r4
+ 569 002e FFF7FEFF 		bl	OD_set_value
+ 570              	.LVL39:
+ 571              		.loc 2 747 12 view .LVU103
+ 572              	.LBE11:
+ 573              	.LBE10:
+ 336:Core/Src/freertos.c ****   OD_set_u8(OD_find(OD, 0x6003), 0x000, OD_PERSIST_COMM.x6003_status, false);
+ 574              		.loc 1 336 3 is_stmt 1 view .LVU104
+ 575              		.loc 1 336 13 is_stmt 0 view .LVU105
+ 576 0032 46F20301 		movw	r1, #24579
+ 577 0036 3068     		ldr	r0, [r6]
+ 578 0038 FFF7FEFF 		bl	OD_find
+ 579              	.LVL40:
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 31
 
 
- 588              	.LBI12:
+ 580              		.loc 1 336 3 view .LVU106
+ 581 003c 95F8CE30 		ldrb	r3, [r5, #206]	@ zero_extendqisi2
+ 582              	.LVL41:
+ 583              		.loc 1 336 3 view .LVU107
+ 584 0040 8DF80E30 		strb	r3, [sp, #14]
+ 585              	.LVL42:
+ 586              	.LBB12:
+ 587              	.LBI12:
  737:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                               uint8_t val, bool_t odOrig)
- 589              		.loc 2 737 21 is_stmt 1 view .LVU108
- 590              	.LBB13:
+ 588              		.loc 2 737 21 is_stmt 1 view .LVU108
+ 589              	.LBB13:
  740:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
- 591              		.loc 2 740 5 view .LVU109
+ 590              		.loc 2 740 5 view .LVU109
  740:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
- 592              		.loc 2 740 12 is_stmt 0 view .LVU110
- 593 0044 0094     		str	r4, [sp]
- 594 0046 0123     		movs	r3, #1
- 595              	.LVL43:
+ 591              		.loc 2 740 12 is_stmt 0 view .LVU110
+ 592 0044 0094     		str	r4, [sp]
+ 593 0046 0123     		movs	r3, #1
+ 594              	.LVL43:
  740:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
- 596              		.loc 2 740 12 view .LVU111
- 597 0048 0DF10E02 		add	r2, sp, #14
- 598              	.LVL44:
+ 595              		.loc 2 740 12 view .LVU111
+ 596 0048 0DF10E02 		add	r2, sp, #14
+ 597              	.LVL44:
  740:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
- 599              		.loc 2 740 12 view .LVU112
- 600 004c 2146     		mov	r1, r4
- 601 004e FFF7FEFF 		bl	OD_set_value
- 602              	.LVL45:
+ 598              		.loc 2 740 12 view .LVU112
+ 599 004c 2146     		mov	r1, r4
+ 600 004e FFF7FEFF 		bl	OD_set_value
+ 601              	.LVL45:
  740:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
- 603              		.loc 2 740 12 view .LVU113
- 604              	.LBE13:
- 605              	.LBE12:
- 330:Core/Src/freertos.c ****   OD_set_u8(OD_find(OD, 0x6005), 0x000, OD_PERSIST_COMM.x6005_current_CW_CCW, false);
- 606              		.loc 1 330 3 is_stmt 1 view .LVU114
- 607              		.loc 1 330 13 is_stmt 0 view .LVU115
- 608 0052 46F20501 		movw	r1, #24581
- 609 0056 3068     		ldr	r0, [r6]
- 610 0058 FFF7FEFF 		bl	OD_find
- 611              	.LVL46:
- 612              		.loc 1 330 3 view .LVU116
- 613 005c 95F8D030 		ldrb	r3, [r5, #208]	@ zero_extendqisi2
- 614              	.LVL47:
- 615              		.loc 1 330 3 view .LVU117
- 616 0060 8DF80E30 		strb	r3, [sp, #14]
- 617              	.LVL48:
- 618              	.LBB14:
- 619              	.LBI14:
+ 602              		.loc 2 740 12 view .LVU113
+ 603              	.LBE13:
+ 604              	.LBE12:
+ 337:Core/Src/freertos.c ****   OD_set_u8(OD_find(OD, 0x6005), 0x000, OD_PERSIST_COMM.x6005_current_CW_CCW, false);
+ 605              		.loc 1 337 3 is_stmt 1 view .LVU114
+ 606              		.loc 1 337 13 is_stmt 0 view .LVU115
+ 607 0052 46F20501 		movw	r1, #24581
+ 608 0056 3068     		ldr	r0, [r6]
+ 609 0058 FFF7FEFF 		bl	OD_find
+ 610              	.LVL46:
+ 611              		.loc 1 337 3 view .LVU116
+ 612 005c 95F8D030 		ldrb	r3, [r5, #208]	@ zero_extendqisi2
+ 613              	.LVL47:
+ 614              		.loc 1 337 3 view .LVU117
+ 615 0060 8DF80E30 		strb	r3, [sp, #14]
+ 616              	.LVL48:
+ 617              	.LBB14:
+ 618              	.LBI14:
  737:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                               uint8_t val, bool_t odOrig)
- 620              		.loc 2 737 21 is_stmt 1 view .LVU118
- 621              	.LBB15:
+ 619              		.loc 2 737 21 is_stmt 1 view .LVU118
+ 620              	.LBB15:
  740:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
- 622              		.loc 2 740 5 view .LVU119
+ 621              		.loc 2 740 5 view .LVU119
  740:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
- 623              		.loc 2 740 12 is_stmt 0 view .LVU120
- 624 0064 0094     		str	r4, [sp]
- 625 0066 0123     		movs	r3, #1
- 626              	.LVL49:
+ 622              		.loc 2 740 12 is_stmt 0 view .LVU120
+ 623 0064 0094     		str	r4, [sp]
+ 624 0066 0123     		movs	r3, #1
+ 625              	.LVL49:
  740:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
- 627              		.loc 2 740 12 view .LVU121
- 628 0068 0DF10E02 		add	r2, sp, #14
- 629              	.LVL50:
- 740:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
- 630              		.loc 2 740 12 view .LVU122
- 631 006c 2146     		mov	r1, r4
- 632 006e FFF7FEFF 		bl	OD_set_value
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 32
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 32
 
 
- 633              	.LVL51:
+ 626              		.loc 2 740 12 view .LVU121
+ 627 0068 0DF10E02 		add	r2, sp, #14
+ 628              	.LVL50:
  740:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
- 634              		.loc 2 740 12 view .LVU123
- 635              	.LBE15:
- 636              	.LBE14:
- 331:Core/Src/freertos.c ****   CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
- 637              		.loc 1 331 3 is_stmt 1 view .LVU124
- 638              		.loc 1 331 39 is_stmt 0 view .LVU125
- 639 0072 074B     		ldr	r3, .L43+8
- 640 0074 1B68     		ldr	r3, [r3]
- 641 0076 5B69     		ldr	r3, [r3, #20]
- 642              		.loc 1 331 3 view .LVU126
- 643 0078 5B6B     		ldr	r3, [r3, #52]
- 644              	.LVL52:
- 645              	.LBB16:
- 646              	.LBI16:
- 647              		.file 3 "Middlewares/Third_Party/CANopenNode/301/CO_PDO.h"
+ 629              		.loc 2 740 12 view .LVU122
+ 630 006c 2146     		mov	r1, r4
+ 631 006e FFF7FEFF 		bl	OD_set_value
+ 632              	.LVL51:
+ 740:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
+ 633              		.loc 2 740 12 view .LVU123
+ 634              	.LBE15:
+ 635              	.LBE14:
+ 338:Core/Src/freertos.c ****   CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
+ 636              		.loc 1 338 3 is_stmt 1 view .LVU124
+ 637              		.loc 1 338 39 is_stmt 0 view .LVU125
+ 638 0072 074B     		ldr	r3, .L43+8
+ 639 0074 1B68     		ldr	r3, [r3]
+ 640 0076 5B69     		ldr	r3, [r3, #20]
+ 641              		.loc 1 338 3 view .LVU126
+ 642 0078 5B6B     		ldr	r3, [r3, #52]
+ 643              	.LVL52:
+ 644              	.LBB16:
+ 645              	.LBI16:
+ 646              		.file 3 "Middlewares/Third_Party/CANopenNode/301/CO_PDO.h"
    1:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
    2:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * CANopen Process Data Object protocol.
    3:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
@@ -1911,6 +1918,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
   31:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #include "301/CO_SYNC.h"
   32:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
   33:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /* default configuration, see CO_config.h */
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 33
+
+
   34:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #ifndef CO_CONFIG_PDO
   35:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #define CO_CONFIG_PDO (CO_CONFIG_RPDO_ENABLE | \
   36:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_TPDO_ENABLE | \
@@ -1918,9 +1928,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
   38:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_TPDO_TIMERS_ENABLE | \
   39:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_PDO_SYNC_ENABLE | \
   40:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_PDO_OD_IO_ACCESS | \
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 33
-
-
   41:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_GLOBAL_RT_FLAG_CALLBACK_PRE | \
   42:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_GLOBAL_FLAG_TIMERNEXT | \
   43:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_GLOBAL_FLAG_OD_DYNAMIC)
@@ -1971,6 +1978,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
   88:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
   89:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @anchor CO_PDO_CAN_ID
   90:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * ### CAN identifiers for PDO
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 34
+
+
   91:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
   92:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Each PDO can be configured with any valid 11-bit CAN identifier. Lower
   93:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * numbers have higher priorities on CAN bus. As a general rule, each CAN
@@ -1978,9 +1988,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
   95:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * single source. The same is with PDO objects: Any TPDO produced on the CANopen
   96:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * network must have unique CAN-ID and there can be zero to many RPDOs (from
   97:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * different devices) configured to match the CAN-ID of the TPDO of interest.
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 34
-
-
   98:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
   99:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * CANopen standard provides pre-defined connection sets for four RPDOs and four
  100:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * TPDOs on each device with specific 7-bit Node-ID. These are default values
@@ -2031,6 +2038,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  145:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
  146:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
  147:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /** Number of CANopen RPDO objects, which uses default CAN indentifiers.
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 35
+
+
  148:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * By default first four RPDOs have pre-defined CAN identifiers, which depends
  149:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * on node-id. This constant may be set to 0 to disable functionality or set
  150:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * to any other value. For example, if there are several logical devices inside
@@ -2038,9 +2048,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  152:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * identifiers. In that case RPDO5 has CAN_ID=0x200+NodeId+1, RPDO6 has
  153:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * CAN_ID=0x300+NodeId+1, RPDO9 has CAN_ID=0x200+NodeId+2 and so on. */
  154:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #ifndef CO_RPDO_DEFAULT_CANID_COUNT
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 35
-
-
  155:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #define CO_RPDO_DEFAULT_CANID_COUNT 4
  156:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
  157:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
@@ -2091,6 +2098,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  202:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * special usage with PDO. It stores information about mappedLength of
  203:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * the variable. mappedLength can be less or equal to the OD_IO.dataLength.
  204:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * mappedLength greater than OD_IO.dataLength indicates erroneous mapping.
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 36
+
+
  205:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * OD_IO.dataOffset is set to 0 before read/write function call and after
  206:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * the call OD_IO.dataOffset is set back to mappedLength. */
  207:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     OD_IO_t OD_IO[CO_PDO_MAX_MAPPED_ENTRIES];
@@ -2098,9 +2108,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  209:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Pointer to byte, which contains PDO flag bit from @ref OD_extension_t */
  210:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t *flagPDObyte[CO_PDO_MAX_MAPPED_ENTRIES];
  211:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Bitmask for the flagPDObyte */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 36
-
-
  212:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t flagPDObitmask[CO_PDO_MAX_MAPPED_ENTRIES];
  213:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****   #endif
  214:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #else
@@ -2151,6 +2158,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  259:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** PDO common properties, must be first element in this object */
  260:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_PDO_common_t PDO_common;
  261:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Variable indicates, if new PDO message received from CAN bus. */
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 37
+
+
  262:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     volatile void *CANrxNew[CO_RPDO_CAN_BUFFERS_COUNT];
  263:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** CO_PDO_MAX_SIZE data bytes of the received message. */
  264:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t CANrxData[CO_RPDO_CAN_BUFFERS_COUNT][CO_PDO_MAX_SIZE];
@@ -2158,9 +2168,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  266:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t receiveError;
  267:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_PDO_SYNC_ENABLE) || defined CO_DOXYGEN
  268:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** From CO_RPDO_init() */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 37
-
-
  269:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_SYNC_t *SYNC;
  270:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** True if transmissionType <= 240 */
  271:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     bool_t synchronous;
@@ -2211,6 +2218,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  316:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               CO_SYNC_t *SYNC,
  317:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
  318:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               uint16_t preDefinedCanId,
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 38
+
+
  319:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               OD_entry_t *OD_14xx_RPDOCommPar,
  320:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               OD_entry_t *OD_16xx_RPDOMapPar,
  321:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               CO_CANmodule_t *CANdevRx,
@@ -2218,9 +2228,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  323:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               uint32_t *errInfo);
  324:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
  325:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 38
-
-
  326:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_FLAG_CALLBACK_PRE) || defined CO_DOXYGEN
  327:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
  328:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Initialize RPDO callback function.
@@ -2271,6 +2278,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  373:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
  374:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * TPDO object.
  375:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 39
+
+
  376:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** typedef struct {
  377:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** PDO common properties, must be first element in this object */
  378:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_PDO_common_t PDO_common;
@@ -2278,9 +2288,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  380:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_CANtx_t *CANtxBuff;
  381:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Copy of the variable from object dictionary */
  382:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t transmissionType;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 39
-
-
  383:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** If this flag is set and TPDO is event driven (transmission type is 0,
  384:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * 254 or 255), then PDO will be sent by CO_TPDO_process(). */
  385:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     bool_t sendRequest;
@@ -2331,6 +2338,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  430:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** CO_ReturnError_t CO_TPDO_init(CO_TPDO_t *TPDO,
  431:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               OD_t *OD,
  432:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               CO_EM_t *em,
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 40
+
+
  433:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_PDO_SYNC_ENABLE) || defined CO_DOXYGEN
  434:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               CO_SYNC_t *SYNC,
  435:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
@@ -2338,9 +2348,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  437:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               OD_entry_t *OD_18xx_TPDOCommPar,
  438:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               OD_entry_t *OD_1Axx_TPDOMapPar,
  439:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               CO_CANmodule_t *CANdevTx,
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 40
-
-
  440:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               uint16_t CANdevTxIdx,
  441:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               uint32_t *errInfo);
  442:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
@@ -2355,774 +2362,810 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 1
  451:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param TPDO TPDO object.
  452:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
  453:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** static inline void CO_TPDOsendRequest(CO_TPDO_t *TPDO) {
- 648              		.loc 3 453 20 is_stmt 1 view .LVU127
- 649              	.LBB17:
+ 647              		.loc 3 453 20 is_stmt 1 view .LVU127
+ 648              	.LBB17:
  454:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     if (TPDO != NULL) TPDO->sendRequest = true;
- 650              		.loc 3 454 5 view .LVU128
- 651              		.loc 3 454 8 is_stmt 0 view .LVU129
- 652 007a 13B1     		cbz	r3, .L40
- 653              		.loc 3 454 23 is_stmt 1 view .LVU130
- 654              		.loc 3 454 41 is_stmt 0 view .LVU131
- 655 007c 0122     		movs	r2, #1
- 656 007e C3F85021 		str	r2, [r3, #336]
- 657              	.LVL53:
- 658              	.L40:
- 659              		.loc 3 454 41 view .LVU132
- 660              	.LBE17:
- 661              	.LBE16:
- 332:Core/Src/freertos.c **** }
- 662              		.loc 1 332 1 view .LVU133
- 663 0082 04B0     		add	sp, sp, #16
- 664              	.LCFI9:
- 665              		.cfi_def_cfa_offset 16
- 666              		@ sp needed
- 667 0084 70BD     		pop	{r4, r5, r6, pc}
- 668              	.L44:
- 669 0086 00BF     		.align	2
- 670              	.L43:
- 671 0088 00000000 		.word	OD_PERSIST_COMM
- 672 008c 00000000 		.word	OD
- 673 0090 00000000 		.word	canopenNodeSTM32
- 674              		.cfi_endproc
- 675              	.LFE177:
- 677              		.section	.text.canopen_task,"ax",%progbits
- 678              		.align	1
- 679              		.global	canopen_task
- 680              		.syntax unified
- 681              		.thumb
- 682              		.thumb_func
- 684              	canopen_task:
- 685              	.LVL54:
- 686              	.LFB170:
- 187:Core/Src/freertos.c ****   /* USER CODE BEGIN canopen_task */
- 687              		.loc 1 187 1 is_stmt 1 view -0
- 688              		.cfi_startproc
- 689              		@ args = 0, pretend = 0, frame = 24
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 41
+ 649              		.loc 3 454 5 view .LVU128
+ 650              		.loc 3 454 8 is_stmt 0 view .LVU129
+ 651 007a 13B1     		cbz	r3, .L40
+ 652              		.loc 3 454 23 is_stmt 1 view .LVU130
+ 653              		.loc 3 454 41 is_stmt 0 view .LVU131
+ 654 007c 0122     		movs	r2, #1
+ 655 007e C3F85021 		str	r2, [r3, #336]
+ 656              	.LVL53:
+ 657              	.L40:
+ 658              		.loc 3 454 41 view .LVU132
+ 659              	.LBE17:
+ 660              	.LBE16:
+ 339:Core/Src/freertos.c **** }
+ 661              		.loc 1 339 1 view .LVU133
+ 662 0082 04B0     		add	sp, sp, #16
+ 663              	.LCFI9:
+ 664              		.cfi_def_cfa_offset 16
+ 665              		@ sp needed
+ 666 0084 70BD     		pop	{r4, r5, r6, pc}
+ 667              	.L44:
+ 668 0086 00BF     		.align	2
+ 669              	.L43:
+ 670 0088 00000000 		.word	OD_PERSIST_COMM
+ 671 008c 00000000 		.word	OD
+ 672 0090 00000000 		.word	canopenNodeSTM32
+ 673              		.cfi_endproc
+ 674              	.LFE177:
+ 676              		.section	.text.canopen_task,"ax",%progbits
+ 677              		.align	1
+ 678              		.global	canopen_task
+ 679              		.syntax unified
+ 680              		.thumb
+ 681              		.thumb_func
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 41
 
 
- 690              		@ frame_needed = 0, uses_anonymous_args = 0
- 187:Core/Src/freertos.c ****   /* USER CODE BEGIN canopen_task */
- 691              		.loc 1 187 1 is_stmt 0 view .LVU135
- 692 0000 F0B5     		push	{r4, r5, r6, r7, lr}
- 693              	.LCFI10:
- 694              		.cfi_def_cfa_offset 20
- 695              		.cfi_offset 4, -20
- 696              		.cfi_offset 5, -16
- 697              		.cfi_offset 6, -12
- 698              		.cfi_offset 7, -8
- 699              		.cfi_offset 14, -4
- 700 0002 87B0     		sub	sp, sp, #28
- 701              	.LCFI11:
- 702              		.cfi_def_cfa_offset 48
- 189:Core/Src/freertos.c ****   canOpenNodeSTM32.CANHandle = &hcan;
- 703              		.loc 1 189 3 is_stmt 1 view .LVU136
- 190:Core/Src/freertos.c ****   canOpenNodeSTM32.HWInitFunction = MX_CAN_Init;
- 704              		.loc 1 190 3 view .LVU137
- 190:Core/Src/freertos.c ****   canOpenNodeSTM32.HWInitFunction = MX_CAN_Init;
- 705              		.loc 1 190 30 is_stmt 0 view .LVU138
- 706 0004 384B     		ldr	r3, .L58
- 707 0006 0293     		str	r3, [sp, #8]
- 191:Core/Src/freertos.c ****   canOpenNodeSTM32.timerHandle = &htim17;
- 708              		.loc 1 191 3 is_stmt 1 view .LVU139
- 191:Core/Src/freertos.c ****   canOpenNodeSTM32.timerHandle = &htim17;
- 709              		.loc 1 191 35 is_stmt 0 view .LVU140
- 710 0008 384B     		ldr	r3, .L58+4
- 711 000a 0393     		str	r3, [sp, #12]
- 192:Core/Src/freertos.c ****   canOpenNodeSTM32.desiredNodeID = 17;
- 712              		.loc 1 192 3 is_stmt 1 view .LVU141
- 192:Core/Src/freertos.c ****   canOpenNodeSTM32.desiredNodeID = 17;
- 713              		.loc 1 192 32 is_stmt 0 view .LVU142
- 714 000c 384B     		ldr	r3, .L58+8
- 715 000e 0193     		str	r3, [sp, #4]
- 193:Core/Src/freertos.c ****   canOpenNodeSTM32.baudrate = 125;
- 716              		.loc 1 193 3 is_stmt 1 view .LVU143
- 193:Core/Src/freertos.c ****   canOpenNodeSTM32.baudrate = 125;
- 717              		.loc 1 193 34 is_stmt 0 view .LVU144
- 718 0010 1123     		movs	r3, #17
- 719 0012 8DF80030 		strb	r3, [sp]
- 194:Core/Src/freertos.c ****   canopen_app_init(&canOpenNodeSTM32);
- 720              		.loc 1 194 3 is_stmt 1 view .LVU145
- 194:Core/Src/freertos.c ****   canopen_app_init(&canOpenNodeSTM32);
- 721              		.loc 1 194 29 is_stmt 0 view .LVU146
- 722 0016 7D23     		movs	r3, #125
- 723 0018 8DF80230 		strb	r3, [sp, #2]
- 195:Core/Src/freertos.c ****   int8_t pre_target_angle = OD_PERSIST_COMM.x6001_target_angle;
- 724              		.loc 1 195 3 is_stmt 1 view .LVU147
- 725 001c 6846     		mov	r0, sp
- 726              	.LVL55:
- 195:Core/Src/freertos.c ****   int8_t pre_target_angle = OD_PERSIST_COMM.x6001_target_angle;
- 727              		.loc 1 195 3 is_stmt 0 view .LVU148
- 728 001e FFF7FEFF 		bl	canopen_app_init
- 729              	.LVL56:
- 196:Core/Src/freertos.c ****   uint8_t pre_target_CW_CCW = OD_PERSIST_COMM.x6004_target_CW_CCW;
- 730              		.loc 1 196 3 is_stmt 1 view .LVU149
- 196:Core/Src/freertos.c ****   uint8_t pre_target_CW_CCW = OD_PERSIST_COMM.x6004_target_CW_CCW;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 42
+ 683              	canopen_task:
+ 684              	.LVL54:
+ 685              	.LFB170:
+ 194:Core/Src/freertos.c ****   /* USER CODE BEGIN canopen_task */
+ 686              		.loc 1 194 1 is_stmt 1 view -0
+ 687              		.cfi_startproc
+ 688              		@ args = 0, pretend = 0, frame = 24
+ 689              		@ frame_needed = 0, uses_anonymous_args = 0
+ 194:Core/Src/freertos.c ****   /* USER CODE BEGIN canopen_task */
+ 690              		.loc 1 194 1 is_stmt 0 view .LVU135
+ 691 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 692              	.LCFI10:
+ 693              		.cfi_def_cfa_offset 20
+ 694              		.cfi_offset 4, -20
+ 695              		.cfi_offset 5, -16
+ 696              		.cfi_offset 6, -12
+ 697              		.cfi_offset 7, -8
+ 698              		.cfi_offset 14, -4
+ 699 0002 87B0     		sub	sp, sp, #28
+ 700              	.LCFI11:
+ 701              		.cfi_def_cfa_offset 48
+ 196:Core/Src/freertos.c ****   canOpenNodeSTM32.CANHandle = &hcan;
+ 702              		.loc 1 196 3 is_stmt 1 view .LVU136
+ 197:Core/Src/freertos.c ****   canOpenNodeSTM32.HWInitFunction = MX_CAN_Init;
+ 703              		.loc 1 197 3 view .LVU137
+ 197:Core/Src/freertos.c ****   canOpenNodeSTM32.HWInitFunction = MX_CAN_Init;
+ 704              		.loc 1 197 30 is_stmt 0 view .LVU138
+ 705 0004 384B     		ldr	r3, .L58
+ 706 0006 0293     		str	r3, [sp, #8]
+ 198:Core/Src/freertos.c ****   canOpenNodeSTM32.timerHandle = &htim17;
+ 707              		.loc 1 198 3 is_stmt 1 view .LVU139
+ 198:Core/Src/freertos.c ****   canOpenNodeSTM32.timerHandle = &htim17;
+ 708              		.loc 1 198 35 is_stmt 0 view .LVU140
+ 709 0008 384B     		ldr	r3, .L58+4
+ 710 000a 0393     		str	r3, [sp, #12]
+ 199:Core/Src/freertos.c ****   canOpenNodeSTM32.desiredNodeID = 17;
+ 711              		.loc 1 199 3 is_stmt 1 view .LVU141
+ 199:Core/Src/freertos.c ****   canOpenNodeSTM32.desiredNodeID = 17;
+ 712              		.loc 1 199 32 is_stmt 0 view .LVU142
+ 713 000c 384B     		ldr	r3, .L58+8
+ 714 000e 0193     		str	r3, [sp, #4]
+ 200:Core/Src/freertos.c ****   canOpenNodeSTM32.baudrate = 125;
+ 715              		.loc 1 200 3 is_stmt 1 view .LVU143
+ 200:Core/Src/freertos.c ****   canOpenNodeSTM32.baudrate = 125;
+ 716              		.loc 1 200 34 is_stmt 0 view .LVU144
+ 717 0010 1123     		movs	r3, #17
+ 718 0012 8DF80030 		strb	r3, [sp]
+ 201:Core/Src/freertos.c ****   canopen_app_init(&canOpenNodeSTM32);
+ 719              		.loc 1 201 3 is_stmt 1 view .LVU145
+ 201:Core/Src/freertos.c ****   canopen_app_init(&canOpenNodeSTM32);
+ 720              		.loc 1 201 29 is_stmt 0 view .LVU146
+ 721 0016 7D23     		movs	r3, #125
+ 722 0018 8DF80230 		strb	r3, [sp, #2]
+ 202:Core/Src/freertos.c ****   int8_t pre_target_angle = OD_PERSIST_COMM.x6001_target_angle;
+ 723              		.loc 1 202 3 is_stmt 1 view .LVU147
+ 724 001c 6846     		mov	r0, sp
+ 725              	.LVL55:
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 42
 
 
- 731              		.loc 1 196 10 is_stmt 0 view .LVU150
- 732 0022 344B     		ldr	r3, .L58+12
- 733 0024 93F9CD60 		ldrsb	r6, [r3, #205]
- 734              	.LVL57:
- 197:Core/Src/freertos.c ****   db_target_angle = OD_PERSIST_COMM.x6001_target_angle;
- 735              		.loc 1 197 3 is_stmt 1 view .LVU151
- 197:Core/Src/freertos.c ****   db_target_angle = OD_PERSIST_COMM.x6001_target_angle;
- 736              		.loc 1 197 11 is_stmt 0 view .LVU152
- 737 0028 93F8CF70 		ldrb	r7, [r3, #207]	@ zero_extendqisi2
- 738              	.LVL58:
- 198:Core/Src/freertos.c ****   /* Infinite loop */
- 739              		.loc 1 198 3 is_stmt 1 view .LVU153
- 198:Core/Src/freertos.c ****   /* Infinite loop */
- 740              		.loc 1 198 19 is_stmt 0 view .LVU154
- 741 002c 3046     		mov	r0, r6
- 742 002e FFF7FEFF 		bl	__aeabi_i2d
- 743              	.LVL59:
- 744 0032 314B     		ldr	r3, .L58+16
- 745 0034 C3E90001 		strd	r0, [r3]
- 746 0038 24E0     		b	.L52
- 747              	.L56:
- 203:Core/Src/freertos.c ****     {
- 748              		.loc 1 203 82 discriminator 1 view .LVU155
- 749 003a 93F8CF30 		ldrb	r3, [r3, #207]	@ zero_extendqisi2
- 203:Core/Src/freertos.c ****     {
- 750              		.loc 1 203 64 discriminator 1 view .LVU156
- 751 003e BB42     		cmp	r3, r7
- 752 0040 27D1     		bne	.L46
- 753 0042 1CE0     		b	.L47
- 754              	.L57:
- 208:Core/Src/freertos.c ****         TPDO_tarnsmit(6, 99);
- 755              		.loc 1 208 9 is_stmt 1 view .LVU157
- 208:Core/Src/freertos.c ****         TPDO_tarnsmit(6, 99);
- 756              		.loc 1 208 25 is_stmt 0 view .LVU158
- 757 0044 2C4B     		ldr	r3, .L58+16
- 758 0046 0020     		movs	r0, #0
- 759 0048 2C49     		ldr	r1, .L58+20
- 760 004a C3E90001 		strd	r0, [r3]
- 209:Core/Src/freertos.c ****       }
- 761              		.loc 1 209 9 is_stmt 1 view .LVU159
- 762 004e 6321     		movs	r1, #99
- 763 0050 0620     		movs	r0, #6
- 764 0052 FFF7FEFF 		bl	TPDO_tarnsmit
- 765              	.LVL60:
- 766 0056 0DE0     		b	.L49
- 767              	.L50:
- 215:Core/Src/freertos.c ****       {
- 768              		.loc 1 215 12 view .LVU160
- 215:Core/Src/freertos.c ****       {
- 769              		.loc 1 215 15 is_stmt 0 view .LVU161
- 770 0058 2828     		cmp	r0, #40
- 771 005a 04DD     		ble	.L51
- 215:Core/Src/freertos.c ****       {
- 772              		.loc 1 215 74 discriminator 1 view .LVU162
- 773 005c 254B     		ldr	r3, .L58+12
- 774 005e 93F8CF30 		ldrb	r3, [r3, #207]	@ zero_extendqisi2
- 215:Core/Src/freertos.c ****       {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 43
+ 202:Core/Src/freertos.c ****   int8_t pre_target_angle = OD_PERSIST_COMM.x6001_target_angle;
+ 726              		.loc 1 202 3 is_stmt 0 view .LVU148
+ 727 001e FFF7FEFF 		bl	canopen_app_init
+ 728              	.LVL56:
+ 203:Core/Src/freertos.c ****   uint8_t pre_target_CW_CCW = OD_PERSIST_COMM.x6004_target_CW_CCW;
+ 729              		.loc 1 203 3 is_stmt 1 view .LVU149
+ 203:Core/Src/freertos.c ****   uint8_t pre_target_CW_CCW = OD_PERSIST_COMM.x6004_target_CW_CCW;
+ 730              		.loc 1 203 10 is_stmt 0 view .LVU150
+ 731 0022 344B     		ldr	r3, .L58+12
+ 732 0024 93F9CD60 		ldrsb	r6, [r3, #205]
+ 733              	.LVL57:
+ 204:Core/Src/freertos.c ****   db_target_angle = OD_PERSIST_COMM.x6001_target_angle;
+ 734              		.loc 1 204 3 is_stmt 1 view .LVU151
+ 204:Core/Src/freertos.c ****   db_target_angle = OD_PERSIST_COMM.x6001_target_angle;
+ 735              		.loc 1 204 11 is_stmt 0 view .LVU152
+ 736 0028 93F8CF70 		ldrb	r7, [r3, #207]	@ zero_extendqisi2
+ 737              	.LVL58:
+ 205:Core/Src/freertos.c ****   /* Infinite loop */
+ 738              		.loc 1 205 3 is_stmt 1 view .LVU153
+ 205:Core/Src/freertos.c ****   /* Infinite loop */
+ 739              		.loc 1 205 19 is_stmt 0 view .LVU154
+ 740 002c 3046     		mov	r0, r6
+ 741 002e FFF7FEFF 		bl	__aeabi_i2d
+ 742              	.LVL59:
+ 743 0032 314B     		ldr	r3, .L58+16
+ 744 0034 C3E90001 		strd	r0, [r3]
+ 745 0038 24E0     		b	.L52
+ 746              	.L56:
+ 210:Core/Src/freertos.c ****     {
+ 747              		.loc 1 210 82 discriminator 1 view .LVU155
+ 748 003a 93F8CF30 		ldrb	r3, [r3, #207]	@ zero_extendqisi2
+ 210:Core/Src/freertos.c ****     {
+ 749              		.loc 1 210 64 discriminator 1 view .LVU156
+ 750 003e BB42     		cmp	r3, r7
+ 751 0040 27D1     		bne	.L46
+ 752 0042 1CE0     		b	.L47
+ 753              	.L57:
+ 215:Core/Src/freertos.c ****         TPDO_tarnsmit(6, 99);
+ 754              		.loc 1 215 9 is_stmt 1 view .LVU157
+ 215:Core/Src/freertos.c ****         TPDO_tarnsmit(6, 99);
+ 755              		.loc 1 215 25 is_stmt 0 view .LVU158
+ 756 0044 2C4B     		ldr	r3, .L58+16
+ 757 0046 0020     		movs	r0, #0
+ 758 0048 2C49     		ldr	r1, .L58+20
+ 759 004a C3E90001 		strd	r0, [r3]
+ 216:Core/Src/freertos.c ****       }
+ 760              		.loc 1 216 9 is_stmt 1 view .LVU159
+ 761 004e 6321     		movs	r1, #99
+ 762 0050 0620     		movs	r0, #6
+ 763 0052 FFF7FEFF 		bl	TPDO_tarnsmit
+ 764              	.LVL60:
+ 765 0056 0DE0     		b	.L49
+ 766              	.L50:
+ 222:Core/Src/freertos.c ****       {
+ 767              		.loc 1 222 12 view .LVU160
+ 222:Core/Src/freertos.c ****       {
+ 768              		.loc 1 222 15 is_stmt 0 view .LVU161
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 43
 
 
- 775              		.loc 1 215 56 discriminator 1 view .LVU163
- 776 0062 012B     		cmp	r3, #1
- 777 0064 2CD0     		beq	.L54
- 778              	.L51:
- 220:Core/Src/freertos.c ****       {
- 779              		.loc 1 220 12 is_stmt 1 view .LVU164
- 220:Core/Src/freertos.c ****       {
- 780              		.loc 1 220 15 is_stmt 0 view .LVU165
- 781 0066 2728     		cmp	r0, #39
- 782 0068 04DC     		bgt	.L49
- 220:Core/Src/freertos.c ****       {
- 783              		.loc 1 220 74 discriminator 1 view .LVU166
- 784 006a 224B     		ldr	r3, .L58+12
- 785 006c 93F8CF30 		ldrb	r3, [r3, #207]	@ zero_extendqisi2
- 220:Core/Src/freertos.c ****       {
- 786              		.loc 1 220 56 discriminator 1 view .LVU167
- 787 0070 012B     		cmp	r3, #1
- 788 0072 2FD0     		beq	.L55
- 789              	.L49:
- 224:Core/Src/freertos.c ****       pre_target_CW_CCW = OD_PERSIST_COMM.x6004_target_CW_CCW;
- 790              		.loc 1 224 7 is_stmt 1 view .LVU168
- 224:Core/Src/freertos.c ****       pre_target_CW_CCW = OD_PERSIST_COMM.x6004_target_CW_CCW;
- 791              		.loc 1 224 24 is_stmt 0 view .LVU169
- 792 0074 1F4B     		ldr	r3, .L58+12
- 793 0076 93F9CD60 		ldrsb	r6, [r3, #205]
- 794              	.LVL61:
- 225:Core/Src/freertos.c ****     }
- 795              		.loc 1 225 7 is_stmt 1 view .LVU170
- 225:Core/Src/freertos.c ****     }
- 796              		.loc 1 225 25 is_stmt 0 view .LVU171
- 797 007a 93F8CF70 		ldrb	r7, [r3, #207]	@ zero_extendqisi2
- 798              	.LVL62:
- 799              	.L47:
- 227:Core/Src/freertos.c ****   }
- 800              		.loc 1 227 5 is_stmt 1 view .LVU172
- 801 007e 6420     		movs	r0, #100
- 802 0080 FFF7FEFF 		bl	osDelay
- 803              	.LVL63:
- 200:Core/Src/freertos.c ****   {
- 804              		.loc 1 200 9 view .LVU173
- 805              	.L52:
- 200:Core/Src/freertos.c ****   {
- 806              		.loc 1 200 3 view .LVU174
- 202:Core/Src/freertos.c ****     if (OD_PERSIST_COMM.x6001_target_angle != pre_target_angle || OD_PERSIST_COMM.x6004_target_CW_C
- 807              		.loc 1 202 5 view .LVU175
- 808 0084 FFF7FEFF 		bl	canopen_app_process
- 809              	.LVL64:
- 203:Core/Src/freertos.c ****     {
- 810              		.loc 1 203 5 view .LVU176
- 203:Core/Src/freertos.c ****     {
- 811              		.loc 1 203 24 is_stmt 0 view .LVU177
- 812 0088 1A4B     		ldr	r3, .L58+12
- 813 008a 93F9CD00 		ldrsb	r0, [r3, #205]
- 203:Core/Src/freertos.c ****     {
- 814              		.loc 1 203 8 view .LVU178
- 815 008e B042     		cmp	r0, r6
- 816 0090 D3D0     		beq	.L56
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 44
+ 769 0058 2828     		cmp	r0, #40
+ 770 005a 04DD     		ble	.L51
+ 222:Core/Src/freertos.c ****       {
+ 771              		.loc 1 222 74 discriminator 1 view .LVU162
+ 772 005c 254B     		ldr	r3, .L58+12
+ 773 005e 93F8CF30 		ldrb	r3, [r3, #207]	@ zero_extendqisi2
+ 222:Core/Src/freertos.c ****       {
+ 774              		.loc 1 222 56 discriminator 1 view .LVU163
+ 775 0062 012B     		cmp	r3, #1
+ 776 0064 2CD0     		beq	.L54
+ 777              	.L51:
+ 227:Core/Src/freertos.c ****       {
+ 778              		.loc 1 227 12 is_stmt 1 view .LVU164
+ 227:Core/Src/freertos.c ****       {
+ 779              		.loc 1 227 15 is_stmt 0 view .LVU165
+ 780 0066 2728     		cmp	r0, #39
+ 781 0068 04DC     		bgt	.L49
+ 227:Core/Src/freertos.c ****       {
+ 782              		.loc 1 227 74 discriminator 1 view .LVU166
+ 783 006a 224B     		ldr	r3, .L58+12
+ 784 006c 93F8CF30 		ldrb	r3, [r3, #207]	@ zero_extendqisi2
+ 227:Core/Src/freertos.c ****       {
+ 785              		.loc 1 227 56 discriminator 1 view .LVU167
+ 786 0070 012B     		cmp	r3, #1
+ 787 0072 2FD0     		beq	.L55
+ 788              	.L49:
+ 231:Core/Src/freertos.c ****       pre_target_CW_CCW = OD_PERSIST_COMM.x6004_target_CW_CCW;
+ 789              		.loc 1 231 7 is_stmt 1 view .LVU168
+ 231:Core/Src/freertos.c ****       pre_target_CW_CCW = OD_PERSIST_COMM.x6004_target_CW_CCW;
+ 790              		.loc 1 231 24 is_stmt 0 view .LVU169
+ 791 0074 1F4B     		ldr	r3, .L58+12
+ 792 0076 93F9CD60 		ldrsb	r6, [r3, #205]
+ 793              	.LVL61:
+ 232:Core/Src/freertos.c ****     }
+ 794              		.loc 1 232 7 is_stmt 1 view .LVU170
+ 232:Core/Src/freertos.c ****     }
+ 795              		.loc 1 232 25 is_stmt 0 view .LVU171
+ 796 007a 93F8CF70 		ldrb	r7, [r3, #207]	@ zero_extendqisi2
+ 797              	.LVL62:
+ 798              	.L47:
+ 234:Core/Src/freertos.c ****   }
+ 799              		.loc 1 234 5 is_stmt 1 view .LVU172
+ 800 007e 6420     		movs	r0, #100
+ 801 0080 FFF7FEFF 		bl	osDelay
+ 802              	.LVL63:
+ 207:Core/Src/freertos.c ****   {
+ 803              		.loc 1 207 9 view .LVU173
+ 804              	.L52:
+ 207:Core/Src/freertos.c ****   {
+ 805              		.loc 1 207 3 view .LVU174
+ 209:Core/Src/freertos.c ****     if (OD_PERSIST_COMM.x6001_target_angle != pre_target_angle || OD_PERSIST_COMM.x6004_target_CW_C
+ 806              		.loc 1 209 5 view .LVU175
+ 807 0084 FFF7FEFF 		bl	canopen_app_process
+ 808              	.LVL64:
+ 210:Core/Src/freertos.c ****     {
+ 809              		.loc 1 210 5 view .LVU176
+ 210:Core/Src/freertos.c ****     {
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 44
 
 
- 817              	.L46:
- 205:Core/Src/freertos.c ****       if (OD_PERSIST_COMM.x6001_target_angle > 40 && OD_PERSIST_COMM.x6004_target_CW_CCW == 0)
- 818              		.loc 1 205 7 is_stmt 1 view .LVU179
- 205:Core/Src/freertos.c ****       if (OD_PERSIST_COMM.x6001_target_angle > 40 && OD_PERSIST_COMM.x6004_target_CW_CCW == 0)
- 819              		.loc 1 205 24 is_stmt 0 view .LVU180
- 820 0092 1B4B     		ldr	r3, .L58+24
- 821 0094 0122     		movs	r2, #1
- 822 0096 1A70     		strb	r2, [r3]
- 206:Core/Src/freertos.c ****       {
- 823              		.loc 1 206 7 is_stmt 1 view .LVU181
- 206:Core/Src/freertos.c ****       {
- 824              		.loc 1 206 10 is_stmt 0 view .LVU182
- 825 0098 2828     		cmp	r0, #40
- 826 009a 04DD     		ble	.L48
- 206:Core/Src/freertos.c ****       {
- 827              		.loc 1 206 69 discriminator 1 view .LVU183
- 828 009c 154B     		ldr	r3, .L58+12
- 829 009e 93F8CF30 		ldrb	r3, [r3, #207]	@ zero_extendqisi2
- 206:Core/Src/freertos.c ****       {
- 830              		.loc 1 206 51 discriminator 1 view .LVU184
- 831 00a2 002B     		cmp	r3, #0
- 832 00a4 CED0     		beq	.L57
- 833              	.L48:
- 211:Core/Src/freertos.c ****       {
- 834              		.loc 1 211 12 is_stmt 1 view .LVU185
- 211:Core/Src/freertos.c ****       {
- 835              		.loc 1 211 15 is_stmt 0 view .LVU186
- 836 00a6 2728     		cmp	r0, #39
- 837 00a8 D6DC     		bgt	.L50
- 211:Core/Src/freertos.c ****       {
- 838              		.loc 1 211 74 discriminator 1 view .LVU187
- 839 00aa 124B     		ldr	r3, .L58+12
- 840 00ac 93F8CF30 		ldrb	r3, [r3, #207]	@ zero_extendqisi2
- 211:Core/Src/freertos.c ****       {
- 841              		.loc 1 211 56 discriminator 1 view .LVU188
- 842 00b0 002B     		cmp	r3, #0
- 843 00b2 D1D1     		bne	.L50
- 213:Core/Src/freertos.c ****       }
- 844              		.loc 1 213 9 is_stmt 1 view .LVU189
- 213:Core/Src/freertos.c ****       }
- 845              		.loc 1 213 27 is_stmt 0 view .LVU190
- 846 00b4 FFF7FEFF 		bl	__aeabi_i2d
- 847              	.LVL65:
- 213:Core/Src/freertos.c ****       }
- 848              		.loc 1 213 25 view .LVU191
- 849 00b8 0F4B     		ldr	r3, .L58+16
- 850 00ba C3E90001 		strd	r0, [r3]
- 851 00be D9E7     		b	.L49
- 852              	.L54:
- 217:Core/Src/freertos.c ****         TPDO_tarnsmit(6, 99);
- 853              		.loc 1 217 9 is_stmt 1 view .LVU192
- 217:Core/Src/freertos.c ****         TPDO_tarnsmit(6, 99);
- 854              		.loc 1 217 25 is_stmt 0 view .LVU193
- 855 00c0 0D4B     		ldr	r3, .L58+16
- 856 00c2 0020     		movs	r0, #0
- 857 00c4 0F49     		ldr	r1, .L58+28
- 858 00c6 C3E90001 		strd	r0, [r3]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 45
+ 810              		.loc 1 210 24 is_stmt 0 view .LVU177
+ 811 0088 1A4B     		ldr	r3, .L58+12
+ 812 008a 93F9CD00 		ldrsb	r0, [r3, #205]
+ 210:Core/Src/freertos.c ****     {
+ 813              		.loc 1 210 8 view .LVU178
+ 814 008e B042     		cmp	r0, r6
+ 815 0090 D3D0     		beq	.L56
+ 816              	.L46:
+ 212:Core/Src/freertos.c ****       if (OD_PERSIST_COMM.x6001_target_angle > 40 && OD_PERSIST_COMM.x6004_target_CW_CCW == 0)
+ 817              		.loc 1 212 7 is_stmt 1 view .LVU179
+ 212:Core/Src/freertos.c ****       if (OD_PERSIST_COMM.x6001_target_angle > 40 && OD_PERSIST_COMM.x6004_target_CW_CCW == 0)
+ 818              		.loc 1 212 24 is_stmt 0 view .LVU180
+ 819 0092 1B4B     		ldr	r3, .L58+24
+ 820 0094 0122     		movs	r2, #1
+ 821 0096 1A70     		strb	r2, [r3]
+ 213:Core/Src/freertos.c ****       {
+ 822              		.loc 1 213 7 is_stmt 1 view .LVU181
+ 213:Core/Src/freertos.c ****       {
+ 823              		.loc 1 213 10 is_stmt 0 view .LVU182
+ 824 0098 2828     		cmp	r0, #40
+ 825 009a 04DD     		ble	.L48
+ 213:Core/Src/freertos.c ****       {
+ 826              		.loc 1 213 69 discriminator 1 view .LVU183
+ 827 009c 154B     		ldr	r3, .L58+12
+ 828 009e 93F8CF30 		ldrb	r3, [r3, #207]	@ zero_extendqisi2
+ 213:Core/Src/freertos.c ****       {
+ 829              		.loc 1 213 51 discriminator 1 view .LVU184
+ 830 00a2 002B     		cmp	r3, #0
+ 831 00a4 CED0     		beq	.L57
+ 832              	.L48:
+ 218:Core/Src/freertos.c ****       {
+ 833              		.loc 1 218 12 is_stmt 1 view .LVU185
+ 218:Core/Src/freertos.c ****       {
+ 834              		.loc 1 218 15 is_stmt 0 view .LVU186
+ 835 00a6 2728     		cmp	r0, #39
+ 836 00a8 D6DC     		bgt	.L50
+ 218:Core/Src/freertos.c ****       {
+ 837              		.loc 1 218 74 discriminator 1 view .LVU187
+ 838 00aa 124B     		ldr	r3, .L58+12
+ 839 00ac 93F8CF30 		ldrb	r3, [r3, #207]	@ zero_extendqisi2
+ 218:Core/Src/freertos.c ****       {
+ 840              		.loc 1 218 56 discriminator 1 view .LVU188
+ 841 00b0 002B     		cmp	r3, #0
+ 842 00b2 D1D1     		bne	.L50
+ 220:Core/Src/freertos.c ****       }
+ 843              		.loc 1 220 9 is_stmt 1 view .LVU189
+ 220:Core/Src/freertos.c ****       }
+ 844              		.loc 1 220 27 is_stmt 0 view .LVU190
+ 845 00b4 FFF7FEFF 		bl	__aeabi_i2d
+ 846              	.LVL65:
+ 220:Core/Src/freertos.c ****       }
+ 847              		.loc 1 220 25 view .LVU191
+ 848 00b8 0F4B     		ldr	r3, .L58+16
+ 849 00ba C3E90001 		strd	r0, [r3]
+ 850 00be D9E7     		b	.L49
+ 851              	.L54:
+ 224:Core/Src/freertos.c ****         TPDO_tarnsmit(6, 99);
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 45
 
 
- 218:Core/Src/freertos.c ****       }
- 859              		.loc 1 218 9 is_stmt 1 view .LVU194
- 860 00ca 6321     		movs	r1, #99
- 861 00cc 0620     		movs	r0, #6
- 862 00ce FFF7FEFF 		bl	TPDO_tarnsmit
- 863              	.LVL66:
- 864 00d2 CFE7     		b	.L49
- 865              	.L55:
- 222:Core/Src/freertos.c ****       }
- 866              		.loc 1 222 9 view .LVU195
- 222:Core/Src/freertos.c ****       }
- 867              		.loc 1 222 27 is_stmt 0 view .LVU196
- 868 00d4 FFF7FEFF 		bl	__aeabi_i2d
- 869              	.LVL67:
- 222:Core/Src/freertos.c ****       }
- 870              		.loc 1 222 70 view .LVU197
- 871 00d8 0446     		mov	r4, r0
- 872 00da 01F10045 		add	r5, r1, #-2147483648
- 222:Core/Src/freertos.c ****       }
- 873              		.loc 1 222 25 view .LVU198
- 874 00de 064B     		ldr	r3, .L58+16
- 875 00e0 C3E90045 		strd	r4, [r3]
- 876 00e4 C6E7     		b	.L49
- 877              	.L59:
- 878 00e6 00BF     		.align	2
- 879              	.L58:
- 880 00e8 00000000 		.word	hcan
- 881 00ec 00000000 		.word	MX_CAN_Init
- 882 00f0 00000000 		.word	htim17
- 883 00f4 00000000 		.word	OD_PERSIST_COMM
- 884 00f8 00000000 		.word	.LANCHOR5
- 885 00fc 00804140 		.word	1078034432
- 886 0100 00000000 		.word	.LANCHOR14
- 887 0104 000044C0 		.word	-1069285376
- 888              		.cfi_endproc
- 889              	.LFE170:
- 891              		.global	__aeabi_dcmpgt
- 892              		.section	.text.PID_protection,"ax",%progbits
- 893              		.align	1
- 894              		.global	PID_protection
- 895              		.syntax unified
- 896              		.thumb
- 897              		.thumb_func
- 899              	PID_protection:
- 900              	.LFB172:
- 264:Core/Src/freertos.c ****   if (current_angle > 40 || current_voltage < -25) // outof voltage range 4.4v ~ 1.6v
- 901              		.loc 1 264 1 is_stmt 1 view -0
- 902              		.cfi_startproc
- 903              		@ args = 0, pretend = 0, frame = 0
- 904              		@ frame_needed = 0, uses_anonymous_args = 0
- 905 0000 08B5     		push	{r3, lr}
- 906              	.LCFI12:
- 907              		.cfi_def_cfa_offset 8
- 908              		.cfi_offset 3, -8
- 909              		.cfi_offset 14, -4
- 265:Core/Src/freertos.c ****   {
- 910              		.loc 1 265 3 view .LVU200
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 46
+ 852              		.loc 1 224 9 is_stmt 1 view .LVU192
+ 224:Core/Src/freertos.c ****         TPDO_tarnsmit(6, 99);
+ 853              		.loc 1 224 25 is_stmt 0 view .LVU193
+ 854 00c0 0D4B     		ldr	r3, .L58+16
+ 855 00c2 0020     		movs	r0, #0
+ 856 00c4 0F49     		ldr	r1, .L58+28
+ 857 00c6 C3E90001 		strd	r0, [r3]
+ 225:Core/Src/freertos.c ****       }
+ 858              		.loc 1 225 9 is_stmt 1 view .LVU194
+ 859 00ca 6321     		movs	r1, #99
+ 860 00cc 0620     		movs	r0, #6
+ 861 00ce FFF7FEFF 		bl	TPDO_tarnsmit
+ 862              	.LVL66:
+ 863 00d2 CFE7     		b	.L49
+ 864              	.L55:
+ 229:Core/Src/freertos.c ****       }
+ 865              		.loc 1 229 9 view .LVU195
+ 229:Core/Src/freertos.c ****       }
+ 866              		.loc 1 229 27 is_stmt 0 view .LVU196
+ 867 00d4 FFF7FEFF 		bl	__aeabi_i2d
+ 868              	.LVL67:
+ 229:Core/Src/freertos.c ****       }
+ 869              		.loc 1 229 70 view .LVU197
+ 870 00d8 0446     		mov	r4, r0
+ 871 00da 01F10045 		add	r5, r1, #-2147483648
+ 229:Core/Src/freertos.c ****       }
+ 872              		.loc 1 229 25 view .LVU198
+ 873 00de 064B     		ldr	r3, .L58+16
+ 874 00e0 C3E90045 		strd	r4, [r3]
+ 875 00e4 C6E7     		b	.L49
+ 876              	.L59:
+ 877 00e6 00BF     		.align	2
+ 878              	.L58:
+ 879 00e8 00000000 		.word	hcan
+ 880 00ec 00000000 		.word	MX_CAN_Init
+ 881 00f0 00000000 		.word	htim17
+ 882 00f4 00000000 		.word	OD_PERSIST_COMM
+ 883 00f8 00000000 		.word	.LANCHOR5
+ 884 00fc 00804140 		.word	1078034432
+ 885 0100 00000000 		.word	.LANCHOR14
+ 886 0104 000044C0 		.word	-1069285376
+ 887              		.cfi_endproc
+ 888              	.LFE170:
+ 890              		.global	__aeabi_dcmpgt
+ 891              		.section	.text.PID_protection,"ax",%progbits
+ 892              		.align	1
+ 893              		.global	PID_protection
+ 894              		.syntax unified
+ 895              		.thumb
+ 896              		.thumb_func
+ 898              	PID_protection:
+ 899              	.LFB172:
+ 271:Core/Src/freertos.c ****   if (current_angle > 40 || current_voltage < -40) // outof voltage range 4.4v ~ 1.6v
+ 900              		.loc 1 271 1 is_stmt 1 view -0
+ 901              		.cfi_startproc
+ 902              		@ args = 0, pretend = 0, frame = 0
+ 903              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 46
 
 
- 265:Core/Src/freertos.c ****   {
- 911              		.loc 1 265 6 is_stmt 0 view .LVU201
- 912 0002 0022     		movs	r2, #0
- 913 0004 114B     		ldr	r3, .L67
- 914 0006 1249     		ldr	r1, .L67+4
- 915 0008 D1E90001 		ldrd	r0, [r1]
- 916 000c FFF7FEFF 		bl	__aeabi_dcmpgt
- 917              	.LVL68:
- 918 0010 38B9     		cbnz	r0, .L61
- 265:Core/Src/freertos.c ****   {
- 919              		.loc 1 265 26 discriminator 1 view .LVU202
- 920 0012 0022     		movs	r2, #0
- 921 0014 0F4B     		ldr	r3, .L67+8
- 922 0016 1049     		ldr	r1, .L67+12
- 923 0018 D1E90001 		ldrd	r0, [r1]
- 924 001c FFF7FEFF 		bl	__aeabi_dcmplt
- 925              	.LVL69:
- 926 0020 30B1     		cbz	r0, .L65
- 927              	.L61:
- 267:Core/Src/freertos.c ****     TPDO_tarnsmit(2, 99); // 2.reach limit
- 928              		.loc 1 267 5 is_stmt 1 view .LVU203
- 929 0022 FFF7FEFF 		bl	PID_Error_handler
- 930              	.LVL70:
- 268:Core/Src/freertos.c ****   }
- 931              		.loc 1 268 5 view .LVU204
- 932 0026 6321     		movs	r1, #99
- 933 0028 0220     		movs	r0, #2
- 934 002a FFF7FEFF 		bl	TPDO_tarnsmit
- 935              	.LVL71:
- 936              	.L60:
- 286:Core/Src/freertos.c **** void PID_init(void)
- 937              		.loc 1 286 1 is_stmt 0 view .LVU205
- 938 002e 08BD     		pop	{r3, pc}
- 939              	.L65:
- 284:Core/Src/freertos.c ****   }
- 940              		.loc 1 284 5 is_stmt 1 view .LVU206
- 284:Core/Src/freertos.c ****   }
- 941              		.loc 1 284 22 is_stmt 0 view .LVU207
- 942 0030 074B     		ldr	r3, .L67+4
- 943 0032 93ED000B 		vldr.64	d0, [r3]
- 944 0036 FFF7FEFF 		bl	abs
- 945              	.LVL72:
- 946 003a 51EC100B 		vmov	r0, r1, d0
- 284:Core/Src/freertos.c ****   }
- 947              		.loc 1 284 5 view .LVU208
- 948 003e FFF7FEFF 		bl	__aeabi_d2iz
- 949              	.LVL73:
- 950 0042 01B2     		sxth	r1, r0
- 951 0044 0020     		movs	r0, #0
- 952 0046 FFF7FEFF 		bl	TPDO_tarnsmit
- 953              	.LVL74:
- 286:Core/Src/freertos.c **** void PID_init(void)
- 954              		.loc 1 286 1 view .LVU209
- 955 004a F0E7     		b	.L60
- 956              	.L68:
- 957              		.align	2
- 958              	.L67:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 47
+ 904 0000 08B5     		push	{r3, lr}
+ 905              	.LCFI12:
+ 906              		.cfi_def_cfa_offset 8
+ 907              		.cfi_offset 3, -8
+ 908              		.cfi_offset 14, -4
+ 272:Core/Src/freertos.c ****   {
+ 909              		.loc 1 272 3 view .LVU200
+ 272:Core/Src/freertos.c ****   {
+ 910              		.loc 1 272 6 is_stmt 0 view .LVU201
+ 911 0002 0022     		movs	r2, #0
+ 912 0004 114B     		ldr	r3, .L67
+ 913 0006 1249     		ldr	r1, .L67+4
+ 914 0008 D1E90001 		ldrd	r0, [r1]
+ 915 000c FFF7FEFF 		bl	__aeabi_dcmpgt
+ 916              	.LVL68:
+ 917 0010 38B9     		cbnz	r0, .L61
+ 272:Core/Src/freertos.c ****   {
+ 918              		.loc 1 272 26 discriminator 1 view .LVU202
+ 919 0012 0022     		movs	r2, #0
+ 920 0014 0F4B     		ldr	r3, .L67+8
+ 921 0016 1049     		ldr	r1, .L67+12
+ 922 0018 D1E90001 		ldrd	r0, [r1]
+ 923 001c FFF7FEFF 		bl	__aeabi_dcmplt
+ 924              	.LVL69:
+ 925 0020 30B1     		cbz	r0, .L65
+ 926              	.L61:
+ 274:Core/Src/freertos.c ****     TPDO_tarnsmit(2, 99); // 2.reach limit
+ 927              		.loc 1 274 5 is_stmt 1 view .LVU203
+ 928 0022 FFF7FEFF 		bl	PID_Error_handler
+ 929              	.LVL70:
+ 275:Core/Src/freertos.c ****   }
+ 930              		.loc 1 275 5 view .LVU204
+ 931 0026 6321     		movs	r1, #99
+ 932 0028 0220     		movs	r0, #2
+ 933 002a FFF7FEFF 		bl	TPDO_tarnsmit
+ 934              	.LVL71:
+ 935              	.L60:
+ 293:Core/Src/freertos.c **** void PID_init(void)
+ 936              		.loc 1 293 1 is_stmt 0 view .LVU205
+ 937 002e 08BD     		pop	{r3, pc}
+ 938              	.L65:
+ 291:Core/Src/freertos.c ****   }
+ 939              		.loc 1 291 5 is_stmt 1 view .LVU206
+ 291:Core/Src/freertos.c ****   }
+ 940              		.loc 1 291 22 is_stmt 0 view .LVU207
+ 941 0030 074B     		ldr	r3, .L67+4
+ 942 0032 93ED000B 		vldr.64	d0, [r3]
+ 943 0036 FFF7FEFF 		bl	abs
+ 944              	.LVL72:
+ 945 003a 51EC100B 		vmov	r0, r1, d0
+ 291:Core/Src/freertos.c ****   }
+ 946              		.loc 1 291 5 view .LVU208
+ 947 003e FFF7FEFF 		bl	__aeabi_d2iz
+ 948              	.LVL73:
+ 949 0042 01B2     		sxth	r1, r0
+ 950 0044 0020     		movs	r0, #0
+ 951 0046 FFF7FEFF 		bl	TPDO_tarnsmit
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 47
 
 
- 959 004c 00004440 		.word	1078198272
- 960 0050 00000000 		.word	.LANCHOR4
- 961 0054 000039C0 		.word	-1070006272
- 962 0058 00000000 		.word	.LANCHOR8
- 963              		.cfi_endproc
- 964              	.LFE172:
- 966              		.section	.text.StartPIDTask,"ax",%progbits
- 967              		.align	1
- 968              		.global	StartPIDTask
- 969              		.syntax unified
- 970              		.thumb
- 971              		.thumb_func
- 973              	StartPIDTask:
- 974              	.LVL75:
- 975              	.LFB169:
+ 952              	.LVL74:
+ 293:Core/Src/freertos.c **** void PID_init(void)
+ 953              		.loc 1 293 1 view .LVU209
+ 954 004a F0E7     		b	.L60
+ 955              	.L68:
+ 956              		.align	2
+ 957              	.L67:
+ 958 004c 00004440 		.word	1078198272
+ 959 0050 00000000 		.word	.LANCHOR4
+ 960 0054 000044C0 		.word	-1069285376
+ 961 0058 00000000 		.word	.LANCHOR8
+ 962              		.cfi_endproc
+ 963              	.LFE172:
+ 965              		.section	.text.StartPIDTask,"ax",%progbits
+ 966              		.align	1
+ 967              		.global	StartPIDTask
+ 968              		.syntax unified
+ 969              		.thumb
+ 970              		.thumb_func
+ 972              	StartPIDTask:
+ 973              	.LVL75:
+ 974              	.LFB169:
  152:Core/Src/freertos.c ****   /* USER CODE BEGIN StartPIDTask */
- 976              		.loc 1 152 1 is_stmt 1 view -0
- 977              		.cfi_startproc
- 978              		@ Volatile: function does not return.
- 979              		@ args = 0, pretend = 0, frame = 0
- 980              		@ frame_needed = 0, uses_anonymous_args = 0
+ 975              		.loc 1 152 1 is_stmt 1 view -0
+ 976              		.cfi_startproc
+ 977              		@ Volatile: function does not return.
+ 978              		@ args = 0, pretend = 0, frame = 0
+ 979              		@ frame_needed = 0, uses_anonymous_args = 0
  152:Core/Src/freertos.c ****   /* USER CODE BEGIN StartPIDTask */
- 981              		.loc 1 152 1 is_stmt 0 view .LVU211
- 982 0000 08B5     		push	{r3, lr}
- 983              	.LCFI13:
- 984              		.cfi_def_cfa_offset 8
- 985              		.cfi_offset 3, -8
- 986              		.cfi_offset 14, -4
+ 980              		.loc 1 152 1 is_stmt 0 view .LVU211
+ 981 0000 08B5     		push	{r3, lr}
+ 982              	.LCFI13:
+ 983              		.cfi_def_cfa_offset 8
+ 984              		.cfi_offset 3, -8
+ 985              		.cfi_offset 14, -4
  154:Core/Src/freertos.c ****   /* Infinite loop */
- 987              		.loc 1 154 3 is_stmt 1 view .LVU212
- 988 0002 FFF7FEFF 		bl	PID_init
- 989              	.LVL76:
+ 986              		.loc 1 154 3 is_stmt 1 view .LVU212
+ 987 0002 FFF7FEFF 		bl	PID_init
+ 988              	.LVL76:
  154:Core/Src/freertos.c ****   /* Infinite loop */
- 990              		.loc 1 154 3 is_stmt 0 view .LVU213
- 991 0006 06E0     		b	.L70
- 992              	.L71:
- 172:Core/Src/freertos.c ****     }
- 993              		.loc 1 172 7 is_stmt 1 view .LVU214
- 994 0008 0821     		movs	r1, #8
- 995 000a 1448     		ldr	r0, .L75
- 996 000c FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 989              		.loc 1 154 3 is_stmt 0 view .LVU213
+ 990 0006 0DE0     		b	.L70
+ 991              	.L77:
+ 174:Core/Src/freertos.c ****       }
+ 992              		.loc 1 174 9 is_stmt 1 view .LVU214
+ 174:Core/Src/freertos.c ****       }
+ 993              		.loc 1 174 23 is_stmt 0 view .LVU215
+ 994 0008 214B     		ldr	r3, .L79
+ 995 000a D3E90001 		ldrd	r0, [r3]
+ 996 000e FFF7FEFF 		bl	__aeabi_d2iz
  997              	.LVL77:
- 998              	.L72:
- 174:Core/Src/freertos.c ****   }
- 999              		.loc 1 174 5 view .LVU215
- 1000 0010 3220     		movs	r0, #50
- 1001 0012 FFF7FEFF 		bl	osDelay
- 1002              	.LVL78:
+ 174:Core/Src/freertos.c ****       }
+ 998              		.loc 1 174 38 view .LVU216
+ 999 0012 00EB8000 		add	r0, r0, r0, lsl #2
+ 1000 0016 4000     		lsls	r0, r0, #1
+ 174:Core/Src/freertos.c ****       }
+ 1001              		.loc 1 174 20 view .LVU217
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 48
+
+
+ 1002 0018 4FF08043 		mov	r3, #1073741824
+ 1003 001c 9863     		str	r0, [r3, #56]
+ 1004              	.L74:
+ 181:Core/Src/freertos.c ****   }
+ 1005              		.loc 1 181 5 is_stmt 1 view .LVU218
+ 1006 001e 3220     		movs	r0, #50
+ 1007 0020 FFF7FEFF 		bl	osDelay
+ 1008              	.LVL78:
  156:Core/Src/freertos.c ****   {
- 1003              		.loc 1 156 9 view .LVU216
- 1004              	.L70:
+ 1009              		.loc 1 156 9 view .LVU219
+ 1010              	.L70:
  160:Core/Src/freertos.c ****     analyze_voltage();
- 1005              		.loc 1 160 5 discriminator 1 view .LVU217
+ 1011              		.loc 1 160 5 discriminator 1 view .LVU220
  158:Core/Src/freertos.c ****     {
- 1006              		.loc 1 158 11 discriminator 1 view .LVU218
+ 1012              		.loc 1 158 11 discriminator 1 view .LVU221
  158:Core/Src/freertos.c ****     {
- 1007              		.loc 1 158 12 is_stmt 0 discriminator 1 view .LVU219
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 48
-
-
- 1008 0016 124B     		ldr	r3, .L75+4
- 1009 0018 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1013              		.loc 1 158 12 is_stmt 0 discriminator 1 view .LVU222
+ 1014 0024 1B4B     		ldr	r3, .L79+4
+ 1015 0026 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  158:Core/Src/freertos.c ****     {
- 1010              		.loc 1 158 11 discriminator 1 view .LVU220
- 1011 001a 002B     		cmp	r3, #0
- 1012 001c FBD0     		beq	.L70
+ 1016              		.loc 1 158 11 discriminator 1 view .LVU223
+ 1017 0028 002B     		cmp	r3, #0
+ 1018 002a FBD0     		beq	.L70
  161:Core/Src/freertos.c ****     CW_CCW_deect();
- 1013              		.loc 1 161 5 is_stmt 1 view .LVU221
- 1014 001e FFF7FEFF 		bl	analyze_voltage
- 1015              	.LVL79:
+ 1019              		.loc 1 161 5 is_stmt 1 view .LVU224
+ 1020 002c FFF7FEFF 		bl	analyze_voltage
+ 1021              	.LVL79:
  162:Core/Src/freertos.c ****     PID_Compute(&TPID);
- 1016              		.loc 1 162 5 view .LVU222
- 1017 0022 FFF7FEFF 		bl	CW_CCW_deect
- 1018              	.LVL80:
+ 1022              		.loc 1 162 5 view .LVU225
+ 1023 0030 FFF7FEFF 		bl	CW_CCW_deect
+ 1024              	.LVL80:
  163:Core/Src/freertos.c ****     CCR_value = abs(CCR_value);
- 1019              		.loc 1 163 5 view .LVU223
- 1020 0026 0F48     		ldr	r0, .L75+8
- 1021 0028 FFF7FEFF 		bl	PID_Compute
- 1022              	.LVL81:
+ 1025              		.loc 1 163 5 view .LVU226
+ 1026 0034 1848     		ldr	r0, .L79+8
+ 1027 0036 FFF7FEFF 		bl	PID_Compute
+ 1028              	.LVL81:
  164:Core/Src/freertos.c ****     PID_protection();
- 1023              		.loc 1 164 5 view .LVU224
+ 1029              		.loc 1 164 5 view .LVU227
  164:Core/Src/freertos.c ****     PID_protection();
- 1024              		.loc 1 164 17 is_stmt 0 view .LVU225
- 1025 002c 0E4C     		ldr	r4, .L75+12
- 1026 002e 94ED000B 		vldr.64	d0, [r4]
- 1027 0032 FFF7FEFF 		bl	abs
- 1028              	.LVL82:
+ 1030              		.loc 1 164 17 is_stmt 0 view .LVU228
+ 1031 003a 154C     		ldr	r4, .L79
+ 1032 003c 94ED000B 		vldr.64	d0, [r4]
+ 1033 0040 FFF7FEFF 		bl	abs
+ 1034              	.LVL82:
  164:Core/Src/freertos.c ****     PID_protection();
- 1029              		.loc 1 164 15 view .LVU226
- 1030 0036 84ED000B 		vstr.64	d0, [r4]
+ 1035              		.loc 1 164 15 view .LVU229
+ 1036 0044 84ED000B 		vstr.64	d0, [r4]
  165:Core/Src/freertos.c ****     if (PID_safe_lock == false)
- 1031              		.loc 1 165 5 is_stmt 1 view .LVU227
- 1032 003a FFF7FEFF 		bl	PID_protection
- 1033              	.LVL83:
+ 1037              		.loc 1 165 5 is_stmt 1 view .LVU230
+ 1038 0048 FFF7FEFF 		bl	PID_protection
+ 1039              	.LVL83:
  166:Core/Src/freertos.c ****     {
- 1034              		.loc 1 166 5 view .LVU228
+ 1040              		.loc 1 166 5 view .LVU231
  166:Core/Src/freertos.c ****     {
- 1035              		.loc 1 166 23 is_stmt 0 view .LVU229
- 1036 003e 0B4B     		ldr	r3, .L75+16
- 1037 0040 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1041              		.loc 1 166 23 is_stmt 0 view .LVU232
+ 1042 004c 134B     		ldr	r3, .L79+12
+ 1043 004e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 49
+
+
  166:Core/Src/freertos.c ****     {
- 1038              		.loc 1 166 8 view .LVU230
- 1039 0042 002B     		cmp	r3, #0
- 1040 0044 E0D1     		bne	.L71
- 168:Core/Src/freertos.c ****     }
- 1041              		.loc 1 168 7 is_stmt 1 view .LVU231
- 168:Core/Src/freertos.c ****     }
- 1042              		.loc 1 168 21 is_stmt 0 view .LVU232
- 1043 0046 D4E90001 		ldrd	r0, [r4]
- 1044 004a FFF7FEFF 		bl	__aeabi_d2iz
- 1045              	.LVL84:
- 168:Core/Src/freertos.c ****     }
- 1046              		.loc 1 168 36 view .LVU233
- 1047 004e 00EB8000 		add	r0, r0, r0, lsl #2
- 1048 0052 4000     		lsls	r0, r0, #1
- 168:Core/Src/freertos.c ****     }
- 1049              		.loc 1 168 18 view .LVU234
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 49
+ 1044              		.loc 1 166 8 view .LVU233
+ 1045 0050 CBB9     		cbnz	r3, .L71
+ 168:Core/Src/freertos.c ****       {
+ 1046              		.loc 1 168 7 is_stmt 1 view .LVU234
+ 168:Core/Src/freertos.c ****       {
+ 1047              		.loc 1 168 11 is_stmt 0 view .LVU235
+ 1048 0052 134B     		ldr	r3, .L79+16
+ 1049 0054 D3E90001 		ldrd	r0, [r3]
+ 1050 0058 124B     		ldr	r3, .L79+20
+ 1051 005a D3E90023 		ldrd	r2, [r3]
+ 1052 005e FFF7FEFF 		bl	__aeabi_dsub
+ 1053              	.LVL84:
+ 1054 0062 41EC100B 		vmov	d0, r0, r1
+ 1055 0066 FFF7FEFF 		bl	abs
+ 1056              	.LVL85:
+ 1057 006a 51EC100B 		vmov	r0, r1, d0
+ 168:Core/Src/freertos.c ****       {
+ 1058              		.loc 1 168 10 view .LVU236
+ 1059 006e 0022     		movs	r2, #0
+ 1060 0070 4FF08043 		mov	r3, #1073741824
+ 1061 0074 FFF7FEFF 		bl	__aeabi_dcmplt
+ 1062              	.LVL86:
+ 1063 0078 0028     		cmp	r0, #0
+ 1064 007a C5D0     		beq	.L77
+ 170:Core/Src/freertos.c ****       }
+ 1065              		.loc 1 170 9 is_stmt 1 view .LVU237
+ 170:Core/Src/freertos.c ****       }
+ 1066              		.loc 1 170 20 is_stmt 0 view .LVU238
+ 1067 007c 4FF08043 		mov	r3, #1073741824
+ 1068 0080 0022     		movs	r2, #0
+ 1069 0082 9A63     		str	r2, [r3, #56]
+ 1070 0084 CBE7     		b	.L74
+ 1071              	.L71:
+ 179:Core/Src/freertos.c ****     }
+ 1072              		.loc 1 179 7 is_stmt 1 view .LVU239
+ 1073 0086 0821     		movs	r1, #8
+ 1074 0088 0748     		ldr	r0, .L79+24
+ 1075 008a FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 1076              	.LVL87:
+ 1077 008e C6E7     		b	.L74
+ 1078              	.L80:
+ 1079              		.align	2
+ 1080              	.L79:
+ 1081 0090 00000000 		.word	.LANCHOR12
+ 1082 0094 00000000 		.word	.LANCHOR14
+ 1083 0098 00000000 		.word	.LANCHOR13
+ 1084 009c 00000000 		.word	.LANCHOR6
+ 1085 00a0 00000000 		.word	.LANCHOR4
+ 1086 00a4 00000000 		.word	.LANCHOR5
+ 1087 00a8 00040048 		.word	1207960576
+ 1088              		.cfi_endproc
+ 1089              	.LFE169:
+ 1091              		.global	PID_safe_lock
+ 1092              		.global	protection_lock
+ 1093              		.global	previos_error
+ 1094              		.global	previous_voltage
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 50
 
 
- 1050 0054 4FF08043 		mov	r3, #1073741824
- 1051 0058 9863     		str	r0, [r3, #56]
- 1052 005a D9E7     		b	.L72
- 1053              	.L76:
- 1054              		.align	2
- 1055              	.L75:
- 1056 005c 00040048 		.word	1207960576
- 1057 0060 00000000 		.word	.LANCHOR14
- 1058 0064 00000000 		.word	.LANCHOR13
- 1059 0068 00000000 		.word	.LANCHOR12
- 1060 006c 00000000 		.word	.LANCHOR6
- 1061              		.cfi_endproc
- 1062              	.LFE169:
- 1064              		.global	PID_safe_lock
- 1065              		.global	protection_lock
- 1066              		.global	previos_error
- 1067              		.global	previous_voltage
- 1068              		.global	voltage_counter
- 1069              		.global	PID_contorl_lock
- 1070              		.global	db_target_angle
- 1071              		.global	current_angle
- 1072              		.global	current_voltage
- 1073              		.global	CCR_value
- 1074              		.global	TPID
- 1075              		.global	canopenTask_attributes
- 1076              		.section	.rodata.str1.4,"aMS",%progbits,1
- 1077              		.align	2
- 1078              	.LC0:
- 1079 0000 63616E6F 		.ascii	"canopenTask\000"
- 1079      70656E54 
- 1079      61736B00 
- 1080              		.global	canopenTaskHandle
- 1081              		.global	PIDTask_attributes
- 1082              		.align	2
- 1083              	.LC1:
- 1084 000c 50494454 		.ascii	"PIDTask\000"
- 1084      61736B00 
- 1085              		.global	PIDTaskHandle
- 1086              		.section	.bss.CCR_value,"aw",%nobits
- 1087              		.align	3
- 1088              		.set	.LANCHOR12,. + 0
- 1091              	CCR_value:
- 1092 0000 00000000 		.space	8
- 1092      00000000 
- 1093              		.section	.bss.PIDTaskHandle,"aw",%nobits
- 1094              		.align	2
- 1095              		.set	.LANCHOR1,. + 0
- 1098              	PIDTaskHandle:
- 1099 0000 00000000 		.space	4
- 1100              		.section	.bss.PID_contorl_lock,"aw",%nobits
- 1101              		.set	.LANCHOR14,. + 0
- 1104              	PID_contorl_lock:
- 1105 0000 00       		.space	1
- 1106              		.section	.bss.PID_safe_lock,"aw",%nobits
- 1107              		.set	.LANCHOR6,. + 0
- 1110              	PID_safe_lock:
- 1111 0000 00       		.space	1
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 50
+ 1095              		.global	voltage_counter
+ 1096              		.global	PID_contorl_lock
+ 1097              		.global	db_target_angle
+ 1098              		.global	current_angle
+ 1099              		.global	current_voltage
+ 1100              		.global	CCR_value
+ 1101              		.global	TPID
+ 1102              		.global	canopenTask_attributes
+ 1103              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 1104              		.align	2
+ 1105              	.LC0:
+ 1106 0000 63616E6F 		.ascii	"canopenTask\000"
+ 1106      70656E54 
+ 1106      61736B00 
+ 1107              		.global	canopenTaskHandle
+ 1108              		.global	PIDTask_attributes
+ 1109              		.align	2
+ 1110              	.LC1:
+ 1111 000c 50494454 		.ascii	"PIDTask\000"
+ 1111      61736B00 
+ 1112              		.global	PIDTaskHandle
+ 1113              		.section	.bss.CCR_value,"aw",%nobits
+ 1114              		.align	3
+ 1115              		.set	.LANCHOR12,. + 0
+ 1118              	CCR_value:
+ 1119 0000 00000000 		.space	8
+ 1119      00000000 
+ 1120              		.section	.bss.PIDTaskHandle,"aw",%nobits
+ 1121              		.align	2
+ 1122              		.set	.LANCHOR1,. + 0
+ 1125              	PIDTaskHandle:
+ 1126 0000 00000000 		.space	4
+ 1127              		.section	.bss.PID_contorl_lock,"aw",%nobits
+ 1128              		.set	.LANCHOR14,. + 0
+ 1131              	PID_contorl_lock:
+ 1132 0000 00       		.space	1
+ 1133              		.section	.bss.PID_safe_lock,"aw",%nobits
+ 1134              		.set	.LANCHOR6,. + 0
+ 1137              	PID_safe_lock:
+ 1138 0000 00       		.space	1
+ 1139              		.section	.bss.TPID,"aw",%nobits
+ 1140              		.align	3
+ 1141              		.set	.LANCHOR13,. + 0
+ 1144              	TPID:
+ 1145 0000 00000000 		.space	112
+ 1145      00000000 
+ 1145      00000000 
+ 1145      00000000 
+ 1145      00000000 
+ 1146              		.section	.bss.canopenTaskHandle,"aw",%nobits
+ 1147              		.align	2
+ 1148              		.set	.LANCHOR3,. + 0
+ 1151              	canopenTaskHandle:
+ 1152 0000 00000000 		.space	4
+ 1153              		.section	.bss.current_angle,"aw",%nobits
+ 1154              		.align	3
+ 1155              		.set	.LANCHOR4,. + 0
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 51
 
 
- 1112              		.section	.bss.TPID,"aw",%nobits
- 1113              		.align	3
- 1114              		.set	.LANCHOR13,. + 0
- 1117              	TPID:
- 1118 0000 00000000 		.space	112
- 1118      00000000 
- 1118      00000000 
- 1118      00000000 
- 1118      00000000 
- 1119              		.section	.bss.canopenTaskHandle,"aw",%nobits
- 1120              		.align	2
- 1121              		.set	.LANCHOR3,. + 0
- 1124              	canopenTaskHandle:
- 1125 0000 00000000 		.space	4
- 1126              		.section	.bss.current_angle,"aw",%nobits
- 1127              		.align	3
- 1128              		.set	.LANCHOR4,. + 0
- 1131              	current_angle:
- 1132 0000 00000000 		.space	8
- 1132      00000000 
- 1133              		.section	.bss.current_voltage,"aw",%nobits
- 1134              		.align	3
- 1135              		.set	.LANCHOR8,. + 0
- 1138              	current_voltage:
- 1139 0000 00000000 		.space	8
- 1139      00000000 
- 1140              		.section	.bss.db_target_angle,"aw",%nobits
- 1141              		.align	3
- 1142              		.set	.LANCHOR5,. + 0
- 1145              	db_target_angle:
- 1146 0000 00000000 		.space	8
- 1146      00000000 
- 1147              		.section	.bss.previos_error,"aw",%nobits
- 1148              		.align	3
- 1149              		.set	.LANCHOR10,. + 0
- 1152              	previos_error:
- 1153 0000 00000000 		.space	8
- 1153      00000000 
- 1154              		.section	.bss.previous_voltage,"aw",%nobits
- 1155              		.align	3
- 1156              		.set	.LANCHOR9,. + 0
- 1159              	previous_voltage:
- 1160 0000 00000000 		.space	8
- 1160      00000000 
- 1161              		.section	.bss.protection_lock,"aw",%nobits
- 1162              		.set	.LANCHOR11,. + 0
- 1165              	protection_lock:
- 1166 0000 00       		.space	1
- 1167              		.section	.bss.voltage_counter,"aw",%nobits
- 1168              		.align	2
- 1169              		.set	.LANCHOR7,. + 0
- 1172              	voltage_counter:
- 1173 0000 00000000 		.space	4
- 1174              		.section	.rodata.PIDTask_attributes,"a"
- 1175              		.align	2
- 1176              		.set	.LANCHOR0,. + 0
- 1179              	PIDTask_attributes:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 51
+ 1158              	current_angle:
+ 1159 0000 00000000 		.space	8
+ 1159      00000000 
+ 1160              		.section	.bss.current_voltage,"aw",%nobits
+ 1161              		.align	3
+ 1162              		.set	.LANCHOR8,. + 0
+ 1165              	current_voltage:
+ 1166 0000 00000000 		.space	8
+ 1166      00000000 
+ 1167              		.section	.bss.db_target_angle,"aw",%nobits
+ 1168              		.align	3
+ 1169              		.set	.LANCHOR5,. + 0
+ 1172              	db_target_angle:
+ 1173 0000 00000000 		.space	8
+ 1173      00000000 
+ 1174              		.section	.bss.previos_error,"aw",%nobits
+ 1175              		.align	3
+ 1176              		.set	.LANCHOR10,. + 0
+ 1179              	previos_error:
+ 1180 0000 00000000 		.space	8
+ 1180      00000000 
+ 1181              		.section	.bss.previous_voltage,"aw",%nobits
+ 1182              		.align	3
+ 1183              		.set	.LANCHOR9,. + 0
+ 1186              	previous_voltage:
+ 1187 0000 00000000 		.space	8
+ 1187      00000000 
+ 1188              		.section	.bss.protection_lock,"aw",%nobits
+ 1189              		.set	.LANCHOR11,. + 0
+ 1192              	protection_lock:
+ 1193 0000 00       		.space	1
+ 1194              		.section	.bss.voltage_counter,"aw",%nobits
+ 1195              		.align	2
+ 1196              		.set	.LANCHOR7,. + 0
+ 1199              	voltage_counter:
+ 1200 0000 00000000 		.space	4
+ 1201              		.section	.rodata.PIDTask_attributes,"a"
+ 1202              		.align	2
+ 1203              		.set	.LANCHOR0,. + 0
+ 1206              	PIDTask_attributes:
+ 1207 0000 0C000000 		.word	.LC1
+ 1208 0004 00000000 		.space	16
+ 1208      00000000 
+ 1208      00000000 
+ 1208      00000000 
+ 1209 0014 00020000 		.word	512
+ 1210 0018 28000000 		.word	40
+ 1211 001c 00000000 		.space	8
+ 1211      00000000 
+ 1212              		.section	.rodata.canopenTask_attributes,"a"
+ 1213              		.align	2
+ 1214              		.set	.LANCHOR2,. + 0
+ 1217              	canopenTask_attributes:
+ 1218 0000 00000000 		.word	.LC0
+ 1219 0004 00000000 		.space	16
+ 1219      00000000 
+ 1219      00000000 
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 52
 
 
- 1180 0000 0C000000 		.word	.LC1
- 1181 0004 00000000 		.space	16
- 1181      00000000 
- 1181      00000000 
- 1181      00000000 
- 1182 0014 00020000 		.word	512
- 1183 0018 28000000 		.word	40
- 1184 001c 00000000 		.space	8
- 1184      00000000 
- 1185              		.section	.rodata.canopenTask_attributes,"a"
- 1186              		.align	2
- 1187              		.set	.LANCHOR2,. + 0
- 1190              	canopenTask_attributes:
- 1191 0000 00000000 		.word	.LC0
- 1192 0004 00000000 		.space	16
- 1192      00000000 
- 1192      00000000 
- 1192      00000000 
- 1193 0014 00020000 		.word	512
- 1194 0018 30000000 		.word	48
- 1195 001c 00000000 		.space	8
- 1195      00000000 
- 1196              		.text
- 1197              	.Letext0:
- 1198              		.file 4 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 1199              		.file 5 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 1200              		.file 6 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 1201              		.file 7 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h"
- 1202              		.file 8 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f3xx.h"
- 1203              		.file 9 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
- 1204              		.file 10 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h"
- 1205              		.file 11 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc_ex.h"
- 1206              		.file 12 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h"
- 1207              		.file 13 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_can.h"
- 1208              		.file 14 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h"
- 1209              		.file 15 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
- 1210              		.file 16 "Middlewares/Third_Party/CANopenNode_STM32/CO_driver_target.h"
- 1211              		.file 17 "Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h"
- 1212              		.file 18 "Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h"
- 1213              		.file 19 "Middlewares/Third_Party/CANopenNode/301/CO_HBconsumer.h"
- 1214              		.file 20 "Middlewares/Third_Party/CANopenNode/301/CO_SDOserver.h"
- 1215              		.file 21 "Middlewares/Third_Party/CANopenNode/301/CO_SYNC.h"
- 1216              		.file 22 "Middlewares/Third_Party/CANopenNode/301/CO_TIME.h"
- 1217              		.file 23 "Middlewares/Third_Party/CANopenNode/303/CO_LEDs.h"
- 1218              		.file 24 "Middlewares/Third_Party/CANopenNode/305/CO_LSS.h"
- 1219              		.file 25 "Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h"
- 1220              		.file 26 "Middlewares/Third_Party/CANopenNode/CANopen.h"
- 1221              		.file 27 "Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.h"
- 1222              		.file 28 "Middlewares/Third_Party/CANopenNode_STM32/OD.h"
- 1223              		.file 29 "Core/Inc/tim.h"
- 1224              		.file 30 "Core/Inc/can.h"
- 1225              		.file 31 "Core/Inc/pid.h"
- 1226              		.file 32 "Core/Inc/adc.h"
- 1227              		.file 33 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_gpio.h"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 52
+ 1219      00000000 
+ 1220 0014 00020000 		.word	512
+ 1221 0018 30000000 		.word	48
+ 1222 001c 00000000 		.space	8
+ 1222      00000000 
+ 1223              		.text
+ 1224              	.Letext0:
+ 1225              		.file 4 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 1226              		.file 5 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 1227              		.file 6 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 1228              		.file 7 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h"
+ 1229              		.file 8 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f3xx.h"
+ 1230              		.file 9 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
+ 1231              		.file 10 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h"
+ 1232              		.file 11 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc_ex.h"
+ 1233              		.file 12 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h"
+ 1234              		.file 13 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_can.h"
+ 1235              		.file 14 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h"
+ 1236              		.file 15 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
+ 1237              		.file 16 "Middlewares/Third_Party/CANopenNode_STM32/CO_driver_target.h"
+ 1238              		.file 17 "Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h"
+ 1239              		.file 18 "Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h"
+ 1240              		.file 19 "Middlewares/Third_Party/CANopenNode/301/CO_HBconsumer.h"
+ 1241              		.file 20 "Middlewares/Third_Party/CANopenNode/301/CO_SDOserver.h"
+ 1242              		.file 21 "Middlewares/Third_Party/CANopenNode/301/CO_SYNC.h"
+ 1243              		.file 22 "Middlewares/Third_Party/CANopenNode/301/CO_TIME.h"
+ 1244              		.file 23 "Middlewares/Third_Party/CANopenNode/303/CO_LEDs.h"
+ 1245              		.file 24 "Middlewares/Third_Party/CANopenNode/305/CO_LSS.h"
+ 1246              		.file 25 "Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h"
+ 1247              		.file 26 "Middlewares/Third_Party/CANopenNode/CANopen.h"
+ 1248              		.file 27 "Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.h"
+ 1249              		.file 28 "Middlewares/Third_Party/CANopenNode_STM32/OD.h"
+ 1250              		.file 29 "Core/Inc/tim.h"
+ 1251              		.file 30 "Core/Inc/can.h"
+ 1252              		.file 31 "Core/Inc/pid.h"
+ 1253              		.file 32 "Core/Inc/adc.h"
+ 1254              		.file 33 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_gpio.h"
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 53
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 freertos.c
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:20     .text.MX_FREERTOS_Init:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:26     .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:63     .text.MX_FREERTOS_Init:00000020 $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:973    .text.StartPIDTask:00000000 StartPIDTask
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:684    .text.canopen_task:00000000 canopen_task
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:74     .text.CW_CCW_deect:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:80     .text.CW_CCW_deect:00000000 CW_CCW_deect
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:122    .text.CW_CCW_deect:00000030 $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:128    .text.PID_Error_handler:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:134    .text.PID_Error_handler:00000000 PID_Error_handler
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:156    .text.PID_Error_handler:00000010 $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:161    .text.abs:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:167    .text.abs:00000000 abs
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:215    .text.analyze_voltage:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:221    .text.analyze_voltage:00000000 analyze_voltage
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:384    .text.analyze_voltage:000000f8 $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:404    .text.PID_init:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:410    .text.PID_init:00000000 PID_init
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:487    .text.PID_init:00000070 $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:506    .text.TPDO_tarnsmit:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:512    .text.TPDO_tarnsmit:00000000 TPDO_tarnsmit
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:671    .text.TPDO_tarnsmit:00000088 $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:678    .text.canopen_task:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:880    .text.canopen_task:000000e8 $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:893    .text.PID_protection:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:899    .text.PID_protection:00000000 PID_protection
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:959    .text.PID_protection:0000004c $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:967    .text.StartPIDTask:00000000 $t
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1056   .text.StartPIDTask:0000005c $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1110   .bss.PID_safe_lock:00000000 PID_safe_lock
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1165   .bss.protection_lock:00000000 protection_lock
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1152   .bss.previos_error:00000000 previos_error
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1159   .bss.previous_voltage:00000000 previous_voltage
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1172   .bss.voltage_counter:00000000 voltage_counter
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1104   .bss.PID_contorl_lock:00000000 PID_contorl_lock
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1145   .bss.db_target_angle:00000000 db_target_angle
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1131   .bss.current_angle:00000000 current_angle
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1138   .bss.current_voltage:00000000 current_voltage
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1091   .bss.CCR_value:00000000 CCR_value
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1117   .bss.TPID:00000000 TPID
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1190   .rodata.canopenTask_attributes:00000000 canopenTask_attributes
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1077   .rodata.str1.4:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1124   .bss.canopenTaskHandle:00000000 canopenTaskHandle
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1179   .rodata.PIDTask_attributes:00000000 PIDTask_attributes
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1098   .bss.PIDTaskHandle:00000000 PIDTaskHandle
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1087   .bss.CCR_value:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1094   .bss.PIDTaskHandle:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1105   .bss.PID_contorl_lock:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1111   .bss.PID_safe_lock:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1113   .bss.TPID:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1120   .bss.canopenTaskHandle:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1127   .bss.current_angle:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1134   .bss.current_voltage:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1141   .bss.db_target_angle:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1148   .bss.previos_error:00000000 $d
-ARM GAS  C:\Users\walker\AppData\Local\Temp\cck52ndS.s 			page 53
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:20     .text.MX_FREERTOS_Init:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:26     .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:63     .text.MX_FREERTOS_Init:00000020 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:972    .text.StartPIDTask:00000000 StartPIDTask
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:683    .text.canopen_task:00000000 canopen_task
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:74     .text.CW_CCW_deect:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:80     .text.CW_CCW_deect:00000000 CW_CCW_deect
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:122    .text.CW_CCW_deect:00000030 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:128    .text.PID_Error_handler:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:134    .text.PID_Error_handler:00000000 PID_Error_handler
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:156    .text.PID_Error_handler:00000010 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:161    .text.abs:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:167    .text.abs:00000000 abs
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:215    .text.analyze_voltage:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:221    .text.analyze_voltage:00000000 analyze_voltage
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:384    .text.analyze_voltage:000000f8 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:404    .text.PID_init:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:410    .text.PID_init:00000000 PID_init
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:488    .text.PID_init:00000078 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:505    .text.TPDO_tarnsmit:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:511    .text.TPDO_tarnsmit:00000000 TPDO_tarnsmit
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:670    .text.TPDO_tarnsmit:00000088 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:677    .text.canopen_task:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:879    .text.canopen_task:000000e8 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:892    .text.PID_protection:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:898    .text.PID_protection:00000000 PID_protection
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:958    .text.PID_protection:0000004c $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:966    .text.StartPIDTask:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1081   .text.StartPIDTask:00000090 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1137   .bss.PID_safe_lock:00000000 PID_safe_lock
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1192   .bss.protection_lock:00000000 protection_lock
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1179   .bss.previos_error:00000000 previos_error
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1186   .bss.previous_voltage:00000000 previous_voltage
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1199   .bss.voltage_counter:00000000 voltage_counter
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1131   .bss.PID_contorl_lock:00000000 PID_contorl_lock
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1172   .bss.db_target_angle:00000000 db_target_angle
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1158   .bss.current_angle:00000000 current_angle
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1165   .bss.current_voltage:00000000 current_voltage
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1118   .bss.CCR_value:00000000 CCR_value
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1144   .bss.TPID:00000000 TPID
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1217   .rodata.canopenTask_attributes:00000000 canopenTask_attributes
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1104   .rodata.str1.4:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1151   .bss.canopenTaskHandle:00000000 canopenTaskHandle
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1206   .rodata.PIDTask_attributes:00000000 PIDTask_attributes
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1125   .bss.PIDTaskHandle:00000000 PIDTaskHandle
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1114   .bss.CCR_value:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1121   .bss.PIDTaskHandle:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1132   .bss.PID_contorl_lock:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1138   .bss.PID_safe_lock:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1140   .bss.TPID:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1147   .bss.canopenTaskHandle:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1154   .bss.current_angle:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1161   .bss.current_voltage:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1168   .bss.db_target_angle:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1175   .bss.previos_error:00000000 $d
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s 			page 54
 
 
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1155   .bss.previous_voltage:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1166   .bss.protection_lock:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1168   .bss.voltage_counter:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1175   .rodata.PIDTask_attributes:00000000 $d
-C:\Users\walker\AppData\Local\Temp\cck52ndS.s:1186   .rodata.canopenTask_attributes:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1182   .bss.previous_voltage:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1193   .bss.protection_lock:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1195   .bss.voltage_counter:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1202   .rodata.PIDTask_attributes:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccfBY3Nf.s:1213   .rodata.canopenTask_attributes:00000000 $d
 
 UNDEFINED SYMBOLS
 osThreadNew
@@ -3157,5 +3200,5 @@ hcan
 MX_CAN_Init
 htim17
 __aeabi_dcmpgt
-HAL_GPIO_TogglePin
 PID_Compute
+HAL_GPIO_TogglePin

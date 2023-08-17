@@ -22,7 +22,6 @@
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "CO_app_STM32.h"
@@ -34,7 +33,9 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+volatile uint16_t rpm = 0; // volatile use to let gdp get value
+volatile int timer_counter = 0;
+volatile int encoder_raw_data = 0;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -129,24 +130,11 @@ void StartRPM_Calcuate(void *argument)
 {
   /* USER CODE BEGIN StartRPM_Calcuate */
   /* Infinite loop */
-  volatile int rpm = 0; // volatile use to let gdp get value
-  volatile int16_t pre_wheel_counter = get_counter();
-  volatile int16_t pre_timer = get_timer_counter();
+
   for (;;)
   {
-    if (get_timer_counter() > 5) // 0.5s
-    {
-      set_timer_counter(0);
-      rpm = ((get_counter() - pre_wheel_counter) * 60 * 2) / 600;
-      pre_wheel_counter = get_counter();
-    }
-    if (pre_timer - get_timer_counter() > 1)
-    {
-      OD_PERSIST_COMM.x6000_rpm_data = rpm;
-      OD_set_u16(OD_find(OD, 0x6000), 0x000, OD_PERSIST_COMM.x6000_rpm_data, false);
-      CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
-      pre_timer = get_timer_counter();
-    }
+    CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
+    osDelay(100);
   }
   /* USER CODE END StartRPM_Calcuate */
 }
@@ -179,4 +167,47 @@ void canopen_task(void *argument)
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  /* USER CODE BEGIN Callback 0 */
+  /* USER CODE END Callback 0 */
+  if (htim->Instance == TIM1)
+  {
+    HAL_IncTick();
+  }
+  /* USER CODE BEGIN Callback 1 */
+  if (htim == canopenNodeSTM32->timerHandle)
+  {
+    canopen_app_interrupt();
+  }
+  if (htim->Instance == TIM6)
+  {
+    if (timer_counter == 1)
+    {
+      encoder_raw_data = (int)((TIM2->CNT) >> 2);
+      if (encoder_raw_data < 0) // prevent over flow
+      {
+        encoder_raw_data *= -1;
+      }
+      if (encoder_raw_data > 10000000)
+      {
+        timer_counter = 0;
+        TIM2->CNT &= 0x0;
+      }
+      else
+      {
+        rpm = encoder_raw_data;
+        OD_PERSIST_COMM.x6000_rpm_data = rpm /2;
+        OD_set_u16(OD_find(OD, 0x6000), 0x000, OD_PERSIST_COMM.x6000_rpm_data, false);
+        timer_counter = 0;
+        TIM2->CNT &= 0x0;
+      }
+    }
+    else
+    {
+      timer_counter += 1;
+    }
+  }
+  /* USER CODE END Callback 1 */
+}
 /* USER CODE END Application */

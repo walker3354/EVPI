@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
   28:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****        detection.
   29:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****                     
   30:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****    (#) Use HAL_DMA_Abort() function to abort the current transfer
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 2
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 2
 
 
   31:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****                    
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
   85:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   * @{
   86:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   */
   87:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 3
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 3
 
 
   88:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** #ifdef HAL_DMA_MODULE_ENABLED
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  142:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   {
  143:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****     return HAL_ERROR;
  144:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   }
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 4
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 4
 
 
  145:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  199:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** {
  200:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   /* Check the DMA handle allocation */
  201:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   if(NULL == hdma)
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 5
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 5
 
 
  202:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   {
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  256:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****  ===============================================================================
  257:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****                       #####  IO operation functions  #####
  258:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****  ===============================================================================  
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 6
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 6
 
 
  259:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****     [..]  This section provides functions allowing to:
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  313:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   }  
  314:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** 
  315:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   return status; 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 7
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 7
 
 
  316:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** } 
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  370:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****     /* Remain BUSY */
  371:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****     status = HAL_BUSY;
  372:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   }     
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 8
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 8
 
 
  373:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  427:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****     /* no transfer ongoing */
  428:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****     hdma->ErrorCode = HAL_DMA_ERROR_NO_XFER;
  429:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****         
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 9
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 9
 
 
  430:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****     status = HAL_ERROR;
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  484:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****     return HAL_ERROR;
  485:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   }
  486:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 10
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 10
 
 
  487:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   /* Get the level transfer complete flag */
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  541:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   if(HAL_DMA_FULL_TRANSFER == CompleteLevel)
  542:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   {
  543:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****     /* Clear the transfer complete flag */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 11
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 11
 
 
  544:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****     hdma->DmaBaseAddress->IFCR = DMA_FLAG_TC1 << hdma->ChannelIndex;
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  598:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   {
  599:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   	if((hdma->Instance->CCR & DMA_CCR_CIRC) == 0U)
  600:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   	{
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 12
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 12
 
 
  601:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   		/* Disable the transfer complete  & transfer error interrupts */
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  655:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   *                               a HAL_DMA_CallbackIDTypeDef ENUM as parameter.
  656:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   * @param  pCallback            pointer to private callback function which has pointer to 
  657:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   *                               a DMA_HandleTypeDef structure as parameter.
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 13
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 13
 
 
  658:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   * @retval HAL status
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  712:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** {
  713:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   HAL_StatusTypeDef status = HAL_OK;
  714:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 14
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 14
 
 
  715:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****     /* Process locked */
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  769:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****  ===============================================================================
  770:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****                     ##### State and Errors functions #####
  771:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****  ===============================================================================  
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 15
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 15
 
 
  772:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****     [..]
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
   29              		.loc 1 825 1 view -0
   30              		.cfi_startproc
   31              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 16
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 16
 
 
   32              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  846:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****     
  847:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****     /* Configure DMA Channel destination address */
  848:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****     hdma->Instance->CMAR = DstAddress;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 17
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 17
 
 
   66              		.loc 1 848 5 is_stmt 1 view .LVU14
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  857:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   */
  858:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** static void DMA_CalcBaseAndBitshift(DMA_HandleTypeDef *hdma)
  859:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 18
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 18
 
 
  108              		.loc 1 859 1 is_stmt 1 view -0
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  142              		.section	.text.HAL_DMA_Init,"ax",%progbits
  143              		.align	1
  144              		.global	HAL_DMA_Init
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 19
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 19
 
 
  145              		.syntax unified
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  182              		.loc 1 160 7 view .LVU51
  183 000e 0A68     		ldr	r2, [r1]
  184              	.LVL7:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 20
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 20
 
 
  163:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****                       DMA_CCR_MINC  | DMA_CCR_PINC   | DMA_CCR_CIRC   | \
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  221 0032 1343     		orrs	r3, r3, r2
  222              	.LVL11:
  174:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 21
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 21
 
 
  223              		.loc 1 174 3 is_stmt 1 view .LVU70
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  267              	.LFB124:
  199:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   /* Check the DMA handle allocation */
  268              		.loc 1 199 1 is_stmt 1 view -0
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 22
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 22
 
 
  269              		.cfi_startproc
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  307 001c 9D60     		str	r5, [r3, #8]
  222:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** 
  308              		.loc 1 222 3 is_stmt 1 view .LVU100
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 23
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 23
 
 
  222:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** 
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  343 003a 84F82150 		strb	r5, [r4, #33]
  243:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** 
  344              		.loc 1 243 3 is_stmt 1 view .LVU121
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 24
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 24
 
 
  243:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** 
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  282:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** 
  392              		.loc 1 282 2 is_stmt 1 view .LVU131
  393              	.LVL20:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 25
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 25
 
 
  285:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  430              		.loc 1 293 16 is_stmt 0 view .LVU149
  431 0024 0220     		movs	r0, #2
  432 0026 84F82100 		strb	r0, [r4, #33]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 26
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 26
 
 
  295:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   	
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  477              		.cfi_startproc
  478              		@ args = 0, pretend = 0, frame = 0
  479              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 27
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 27
 
 
  328:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** 	HAL_StatusTypeDef status = HAL_OK;
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  371:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   }     
  518              		.loc 1 371 12 is_stmt 0 view .LVU178
  519 0020 0220     		movs	r0, #2
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 28
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 28
 
 
  520              	.LVL33:
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  558              		.loc 1 363 4 is_stmt 1 view .LVU194
  363:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   }
  559              		.loc 1 363 8 is_stmt 0 view .LVU195
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 29
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 29
 
 
  560 004c 2268     		ldr	r2, [r4]
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  606              		@ link register save eliminated.
  385:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   {
  607              		.loc 1 385 3 view .LVU206
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 30
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 30
 
 
  385:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   {
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  404:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   }
  645              		.loc 1 404 55 is_stmt 0 view .LVU224
  646 002a 036C     		ldr	r3, [r0, #64]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 31
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 31
 
 
  404:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   }
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  690              		.cfi_offset 14, -4
  423:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   
  691              		.loc 1 423 3 is_stmt 1 view .LVU238
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 32
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 32
 
 
  692              	.LVL42:
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  729              		.loc 1 442 54 is_stmt 0 view .LVU255
  730 0026 036C     		ldr	r3, [r0, #64]
  442:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****     
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 33
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 33
 
 
  731              		.loc 1 442 9 view .LVU256
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  772              		.thumb_func
  774              	HAL_DMA_PollForTransfer:
  775              	.LVL49:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 34
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 34
 
 
  776              	.LFB129:
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  816              	.L47:
  560:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** 
  817              		.loc 1 560 1 view .LVU285
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 35
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 35
 
 
  818 001a BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  855              		.loc 1 502 39 view .LVU302
  856 003c 2B68     		ldr	r3, [r5]
  502:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   {
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 36
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 36
 
 
  857              		.loc 1 502 8 view .LVU303
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  534:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** 
  895              		.loc 1 534 9 is_stmt 1 view .LVU320
  534:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 37
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 37
 
 
  896              		.loc 1 534 9 view .LVU321
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  934              		.loc 1 512 7 is_stmt 1 view .LVU337
  512:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** 
  935              		.loc 1 512 23 is_stmt 0 view .LVU338
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 38
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 38
 
 
  936 008e A063     		str	r0, [r4, #56]
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  971              		.loc 1 559 3 view .LVU357
  559:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** }
  972              		.loc 1 559 10 is_stmt 0 view .LVU358
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 39
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 39
 
 
  973 00b6 B0E7     		b	.L47
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  571:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****           
  1018              		.loc 1 571 12 view .LVU370
  1019 0008 2568     		ldr	r5, [r4]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 40
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 40
 
 
  1020              	.LVL64:
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  1057              		.loc 1 589 11 is_stmt 0 view .LVU387
  1058 0034 C36A     		ldr	r3, [r0, #44]
  589:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   	{
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 41
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 41
 
 
  1059              		.loc 1 589 6 view .LVU388
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  610:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   	
  1098              		.loc 1 610 8 view .LVU404
  1099 0062 C26B     		ldr	r2, [r0, #60]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 42
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 42
 
 
  1100              	.LVL68:
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  1138 0090 2360     		str	r3, [r4]
  631:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****     
  1139              		.loc 1 631 5 is_stmt 1 view .LVU421
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 43
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 43
 
 
  631:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****     
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  1179              		.thumb
  1180              		.thumb_func
  1182              	HAL_DMA_RegisterCallback:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 44
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 44
 
 
  1183              	.LVL73:
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  1221              		.loc 1 698 3 is_stmt 1 view .LVU453
  700:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** }
  1222              		.loc 1 700 3 view .LVU454
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 45
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 45
 
 
  700:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** }
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  1261 003c 0020     		movs	r0, #0
  681:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****            
  1262              		.loc 1 681 12 view .LVU471
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 46
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 46
 
 
  1263 003e ECE7     		b	.L71
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  1306 000a 0122     		movs	r2, #1
  1307 000c 80F82020 		strb	r2, [r0, #32]
  716:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****   
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 47
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 47
 
 
  1308              		.loc 1 716 3 discriminator 2 view .LVU485
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  1348 0034 0846     		mov	r0, r1
  724:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c ****        
  1349              		.loc 1 724 12 view .LVU500
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 48
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 48
 
 
  1350 0036 F0E7     		b	.L82
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  1386              		.loc 1 743 12 is_stmt 1 view .LVU518
  1387 0054 E1E7     		b	.L82
  1388              	.LVL84:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 49
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 49
 
 
  1389              	.L89:
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  1438              		.loc 1 800 14 is_stmt 0 view .LVU527
  1439 0000 806B     		ldr	r0, [r0, #56]
  1440              	.LVL89:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 50
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 50
 
 
  801:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c **** 
@@ -2955,45 +2955,45 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 1
  1452              		.file 6 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
  1453              		.file 7 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h"
  1454              		.file 8 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s 			page 51
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s 			page 51
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f3xx_hal_dma.c
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:20     .text.DMA_SetConfig:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:25     .text.DMA_SetConfig:00000000 DMA_SetConfig
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:100    .text.DMA_CalcBaseAndBitshift:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:105    .text.DMA_CalcBaseAndBitshift:00000000 DMA_CalcBaseAndBitshift
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:136    .text.DMA_CalcBaseAndBitshift:00000018 $d
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:143    .text.HAL_DMA_Init:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:149    .text.HAL_DMA_Init:00000000 HAL_DMA_Init
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:259    .text.HAL_DMA_DeInit:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:265    .text.HAL_DMA_DeInit:00000000 HAL_DMA_DeInit
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:370    .text.HAL_DMA_Start:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:376    .text.HAL_DMA_Start:00000000 HAL_DMA_Start
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:467    .text.HAL_DMA_Start_IT:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:473    .text.HAL_DMA_Start_IT:00000000 HAL_DMA_Start_IT
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:593    .text.HAL_DMA_Abort:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:599    .text.HAL_DMA_Abort:00000000 HAL_DMA_Abort
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:672    .text.HAL_DMA_Abort_IT:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:678    .text.HAL_DMA_Abort_IT:00000000 HAL_DMA_Abort_IT
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:768    .text.HAL_DMA_PollForTransfer:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:774    .text.HAL_DMA_PollForTransfer:00000000 HAL_DMA_PollForTransfer
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:988    .text.HAL_DMA_IRQHandler:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:994    .text.HAL_DMA_IRQHandler:00000000 HAL_DMA_IRQHandler
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:1176   .text.HAL_DMA_RegisterCallback:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:1182   .text.HAL_DMA_RegisterCallback:00000000 HAL_DMA_RegisterCallback
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:1232   .text.HAL_DMA_RegisterCallback:0000002a $d
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:1236   .text.HAL_DMA_RegisterCallback:0000002e $t
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:1282   .text.HAL_DMA_UnRegisterCallback:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:1288   .text.HAL_DMA_UnRegisterCallback:00000000 HAL_DMA_UnRegisterCallback
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:1335   .text.HAL_DMA_UnRegisterCallback:0000002a $d
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:1399   .text.HAL_DMA_GetState:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:1405   .text.HAL_DMA_GetState:00000000 HAL_DMA_GetState
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:1423   .text.HAL_DMA_GetError:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:1429   .text.HAL_DMA_GetError:00000000 HAL_DMA_GetError
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:1340   .text.HAL_DMA_UnRegisterCallback:0000002f $d
-C:\Users\walker\AppData\Local\Temp\ccJlIR4c.s:1340   .text.HAL_DMA_UnRegisterCallback:00000030 $t
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:20     .text.DMA_SetConfig:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:25     .text.DMA_SetConfig:00000000 DMA_SetConfig
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:100    .text.DMA_CalcBaseAndBitshift:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:105    .text.DMA_CalcBaseAndBitshift:00000000 DMA_CalcBaseAndBitshift
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:136    .text.DMA_CalcBaseAndBitshift:00000018 $d
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:143    .text.HAL_DMA_Init:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:149    .text.HAL_DMA_Init:00000000 HAL_DMA_Init
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:259    .text.HAL_DMA_DeInit:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:265    .text.HAL_DMA_DeInit:00000000 HAL_DMA_DeInit
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:370    .text.HAL_DMA_Start:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:376    .text.HAL_DMA_Start:00000000 HAL_DMA_Start
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:467    .text.HAL_DMA_Start_IT:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:473    .text.HAL_DMA_Start_IT:00000000 HAL_DMA_Start_IT
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:593    .text.HAL_DMA_Abort:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:599    .text.HAL_DMA_Abort:00000000 HAL_DMA_Abort
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:672    .text.HAL_DMA_Abort_IT:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:678    .text.HAL_DMA_Abort_IT:00000000 HAL_DMA_Abort_IT
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:768    .text.HAL_DMA_PollForTransfer:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:774    .text.HAL_DMA_PollForTransfer:00000000 HAL_DMA_PollForTransfer
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:988    .text.HAL_DMA_IRQHandler:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:994    .text.HAL_DMA_IRQHandler:00000000 HAL_DMA_IRQHandler
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:1176   .text.HAL_DMA_RegisterCallback:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:1182   .text.HAL_DMA_RegisterCallback:00000000 HAL_DMA_RegisterCallback
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:1232   .text.HAL_DMA_RegisterCallback:0000002a $d
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:1236   .text.HAL_DMA_RegisterCallback:0000002e $t
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:1282   .text.HAL_DMA_UnRegisterCallback:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:1288   .text.HAL_DMA_UnRegisterCallback:00000000 HAL_DMA_UnRegisterCallback
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:1335   .text.HAL_DMA_UnRegisterCallback:0000002a $d
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:1399   .text.HAL_DMA_GetState:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:1405   .text.HAL_DMA_GetState:00000000 HAL_DMA_GetState
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:1423   .text.HAL_DMA_GetError:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:1429   .text.HAL_DMA_GetError:00000000 HAL_DMA_GetError
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:1340   .text.HAL_DMA_UnRegisterCallback:0000002f $d
+C:\Users\walker\AppData\Local\Temp\ccEvT3LU.s:1340   .text.HAL_DMA_UnRegisterCallback:00000030 $t
 
 UNDEFINED SYMBOLS
 HAL_GetTick

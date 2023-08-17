@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -26,9 +26,8 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
   23              		.thumb
   24              		.thumb_func
   26              	StartRPM_Calcuate:
-  27              	.LVL0:
-  28              	.LFB169:
-  29              		.file 1 "Core/Src/freertos.c"
+  27              	.LFB169:
+  28              		.file 1 "Core/Src/freertos.c"
    1:Core/Src/freertos.c **** /* USER CODE BEGIN Header */
    2:Core/Src/freertos.c **** /**
    3:Core/Src/freertos.c ****  ******************************************************************************
@@ -53,262 +52,1095 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
   22:Core/Src/freertos.c **** #include "task.h"
   23:Core/Src/freertos.c **** #include "main.h"
   24:Core/Src/freertos.c **** #include "cmsis_os.h"
-  25:Core/Src/freertos.c **** 
-  26:Core/Src/freertos.c **** /* Private includes ----------------------------------------------------------*/
-  27:Core/Src/freertos.c **** /* USER CODE BEGIN Includes */
-  28:Core/Src/freertos.c **** #include "CO_app_STM32.h"
-  29:Core/Src/freertos.c **** #include "OD.h"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 2
+  25:Core/Src/freertos.c **** /* Private includes ----------------------------------------------------------*/
+  26:Core/Src/freertos.c **** /* USER CODE BEGIN Includes */
+  27:Core/Src/freertos.c **** #include "CO_app_STM32.h"
+  28:Core/Src/freertos.c **** #include "OD.h"
+  29:Core/Src/freertos.c **** #include "tim.h"
+  30:Core/Src/freertos.c **** #include "comment.h"
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 2
 
 
-  30:Core/Src/freertos.c **** #include "tim.h"
-  31:Core/Src/freertos.c **** #include "comment.h"
-  32:Core/Src/freertos.c **** #include "can.h"
-  33:Core/Src/freertos.c **** /* USER CODE END Includes */
-  34:Core/Src/freertos.c **** 
-  35:Core/Src/freertos.c **** /* Private typedef -----------------------------------------------------------*/
-  36:Core/Src/freertos.c **** /* USER CODE BEGIN PTD */
-  37:Core/Src/freertos.c **** 
-  38:Core/Src/freertos.c **** /* USER CODE END PTD */
-  39:Core/Src/freertos.c **** 
-  40:Core/Src/freertos.c **** /* Private define ------------------------------------------------------------*/
-  41:Core/Src/freertos.c **** /* USER CODE BEGIN PD */
-  42:Core/Src/freertos.c **** 
-  43:Core/Src/freertos.c **** /* USER CODE END PD */
-  44:Core/Src/freertos.c **** 
-  45:Core/Src/freertos.c **** /* Private macro -------------------------------------------------------------*/
-  46:Core/Src/freertos.c **** /* USER CODE BEGIN PM */
-  47:Core/Src/freertos.c **** 
-  48:Core/Src/freertos.c **** /* USER CODE END PM */
-  49:Core/Src/freertos.c **** 
-  50:Core/Src/freertos.c **** /* Private variables ---------------------------------------------------------*/
-  51:Core/Src/freertos.c **** /* USER CODE BEGIN Variables */
-  52:Core/Src/freertos.c **** /* USER CODE END Variables */
-  53:Core/Src/freertos.c **** /* Definitions for RPM_CalcuateTas */
-  54:Core/Src/freertos.c **** osThreadId_t RPM_CalcuateTasHandle;
-  55:Core/Src/freertos.c **** const osThreadAttr_t RPM_CalcuateTas_attributes = {
-  56:Core/Src/freertos.c ****     .name = "RPM_CalcuateTas",
-  57:Core/Src/freertos.c ****     .stack_size = 128 * 4,
-  58:Core/Src/freertos.c ****     .priority = (osPriority_t)osPriorityHigh,
-  59:Core/Src/freertos.c **** };
-  60:Core/Src/freertos.c **** /* Definitions for canopenTask */
-  61:Core/Src/freertos.c **** osThreadId_t canopenTaskHandle;
-  62:Core/Src/freertos.c **** const osThreadAttr_t canopenTask_attributes = {
-  63:Core/Src/freertos.c ****     .name = "canopenTask",
-  64:Core/Src/freertos.c ****     .stack_size = 128 * 4,
-  65:Core/Src/freertos.c ****     .priority = (osPriority_t)osPriorityRealtime,
-  66:Core/Src/freertos.c **** };
-  67:Core/Src/freertos.c **** 
-  68:Core/Src/freertos.c **** /* Private function prototypes -----------------------------------------------*/
-  69:Core/Src/freertos.c **** /* USER CODE BEGIN FunctionPrototypes */
-  70:Core/Src/freertos.c **** 
-  71:Core/Src/freertos.c **** /* USER CODE END FunctionPrototypes */
-  72:Core/Src/freertos.c **** 
-  73:Core/Src/freertos.c **** void StartRPM_Calcuate(void *argument);
-  74:Core/Src/freertos.c **** void canopen_task(void *argument);
-  75:Core/Src/freertos.c **** 
-  76:Core/Src/freertos.c **** void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
-  77:Core/Src/freertos.c **** 
-  78:Core/Src/freertos.c **** /**
-  79:Core/Src/freertos.c ****  * @brief  FreeRTOS initialization
-  80:Core/Src/freertos.c ****  * @param  None
-  81:Core/Src/freertos.c ****  * @retval None
-  82:Core/Src/freertos.c ****  */
-  83:Core/Src/freertos.c **** void MX_FREERTOS_Init(void)
-  84:Core/Src/freertos.c **** {
-  85:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
-  86:Core/Src/freertos.c **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 3
+  31:Core/Src/freertos.c **** #include "can.h"
+  32:Core/Src/freertos.c **** /* USER CODE END Includes */
+  33:Core/Src/freertos.c **** 
+  34:Core/Src/freertos.c **** /* Private typedef -----------------------------------------------------------*/
+  35:Core/Src/freertos.c **** /* USER CODE BEGIN PTD */
+  36:Core/Src/freertos.c **** volatile uint16_t rpm = 0; // volatile use to let gdp get value
+  37:Core/Src/freertos.c **** volatile int timer_counter = 0;
+  38:Core/Src/freertos.c **** volatile int encoder_raw_data = 0;
+  39:Core/Src/freertos.c **** /* USER CODE END PTD */
+  40:Core/Src/freertos.c **** 
+  41:Core/Src/freertos.c **** /* Private define ------------------------------------------------------------*/
+  42:Core/Src/freertos.c **** /* USER CODE BEGIN PD */
+  43:Core/Src/freertos.c **** 
+  44:Core/Src/freertos.c **** /* USER CODE END PD */
+  45:Core/Src/freertos.c **** 
+  46:Core/Src/freertos.c **** /* Private macro -------------------------------------------------------------*/
+  47:Core/Src/freertos.c **** /* USER CODE BEGIN PM */
+  48:Core/Src/freertos.c **** 
+  49:Core/Src/freertos.c **** /* USER CODE END PM */
+  50:Core/Src/freertos.c **** 
+  51:Core/Src/freertos.c **** /* Private variables ---------------------------------------------------------*/
+  52:Core/Src/freertos.c **** /* USER CODE BEGIN Variables */
+  53:Core/Src/freertos.c **** /* USER CODE END Variables */
+  54:Core/Src/freertos.c **** /* Definitions for RPM_CalcuateTas */
+  55:Core/Src/freertos.c **** osThreadId_t RPM_CalcuateTasHandle;
+  56:Core/Src/freertos.c **** const osThreadAttr_t RPM_CalcuateTas_attributes = {
+  57:Core/Src/freertos.c ****     .name = "RPM_CalcuateTas",
+  58:Core/Src/freertos.c ****     .stack_size = 128 * 4,
+  59:Core/Src/freertos.c ****     .priority = (osPriority_t)osPriorityHigh,
+  60:Core/Src/freertos.c **** };
+  61:Core/Src/freertos.c **** /* Definitions for canopenTask */
+  62:Core/Src/freertos.c **** osThreadId_t canopenTaskHandle;
+  63:Core/Src/freertos.c **** const osThreadAttr_t canopenTask_attributes = {
+  64:Core/Src/freertos.c ****     .name = "canopenTask",
+  65:Core/Src/freertos.c ****     .stack_size = 128 * 4,
+  66:Core/Src/freertos.c ****     .priority = (osPriority_t)osPriorityRealtime,
+  67:Core/Src/freertos.c **** };
+  68:Core/Src/freertos.c **** 
+  69:Core/Src/freertos.c **** /* Private function prototypes -----------------------------------------------*/
+  70:Core/Src/freertos.c **** /* USER CODE BEGIN FunctionPrototypes */
+  71:Core/Src/freertos.c **** 
+  72:Core/Src/freertos.c **** /* USER CODE END FunctionPrototypes */
+  73:Core/Src/freertos.c **** 
+  74:Core/Src/freertos.c **** void StartRPM_Calcuate(void *argument);
+  75:Core/Src/freertos.c **** void canopen_task(void *argument);
+  76:Core/Src/freertos.c **** 
+  77:Core/Src/freertos.c **** void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
+  78:Core/Src/freertos.c **** 
+  79:Core/Src/freertos.c **** /**
+  80:Core/Src/freertos.c ****  * @brief  FreeRTOS initialization
+  81:Core/Src/freertos.c ****  * @param  None
+  82:Core/Src/freertos.c ****  * @retval None
+  83:Core/Src/freertos.c ****  */
+  84:Core/Src/freertos.c **** void MX_FREERTOS_Init(void)
+  85:Core/Src/freertos.c **** {
+  86:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
+  87:Core/Src/freertos.c **** 
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 3
 
 
-  87:Core/Src/freertos.c ****   /* USER CODE END Init */
-  88:Core/Src/freertos.c **** 
-  89:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_MUTEX */
-  90:Core/Src/freertos.c ****   /* add mutexes, ... */
-  91:Core/Src/freertos.c ****   /* USER CODE END RTOS_MUTEX */
-  92:Core/Src/freertos.c **** 
-  93:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_SEMAPHORES */
-  94:Core/Src/freertos.c ****   /* add semaphores, ... */
-  95:Core/Src/freertos.c ****   /* USER CODE END RTOS_SEMAPHORES */
-  96:Core/Src/freertos.c **** 
-  97:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_TIMERS */
-  98:Core/Src/freertos.c ****   /* start timers, add new ones, ... */
-  99:Core/Src/freertos.c ****   /* USER CODE END RTOS_TIMERS */
- 100:Core/Src/freertos.c **** 
- 101:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_QUEUES */
- 102:Core/Src/freertos.c ****   /* add queues, ... */
- 103:Core/Src/freertos.c ****   /* USER CODE END RTOS_QUEUES */
- 104:Core/Src/freertos.c **** 
- 105:Core/Src/freertos.c ****   /* Create the thread(s) */
- 106:Core/Src/freertos.c ****   /* creation of RPM_CalcuateTas */
- 107:Core/Src/freertos.c ****   RPM_CalcuateTasHandle = osThreadNew(StartRPM_Calcuate, NULL, &RPM_CalcuateTas_attributes);
- 108:Core/Src/freertos.c **** 
- 109:Core/Src/freertos.c ****   /* creation of canopenTask */
- 110:Core/Src/freertos.c ****   canopenTaskHandle = osThreadNew(canopen_task, NULL, &canopenTask_attributes);
- 111:Core/Src/freertos.c **** 
- 112:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_THREADS */
- 113:Core/Src/freertos.c ****   /* add threads, ... */
- 114:Core/Src/freertos.c ****   /* USER CODE END RTOS_THREADS */
- 115:Core/Src/freertos.c **** 
- 116:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_EVENTS */
- 117:Core/Src/freertos.c ****   /* add events, ... */
- 118:Core/Src/freertos.c ****   /* USER CODE END RTOS_EVENTS */
- 119:Core/Src/freertos.c **** }
- 120:Core/Src/freertos.c **** 
- 121:Core/Src/freertos.c **** /* USER CODE BEGIN Header_StartRPM_Calcuate */
- 122:Core/Src/freertos.c **** /**
- 123:Core/Src/freertos.c ****  * @brief  Function implementing the RPM_CalcuateTas thread.
- 124:Core/Src/freertos.c ****  * @param  argument: Not used
- 125:Core/Src/freertos.c ****  * @retval None
- 126:Core/Src/freertos.c ****  */
- 127:Core/Src/freertos.c **** /* USER CODE END Header_StartRPM_Calcuate */
- 128:Core/Src/freertos.c **** void StartRPM_Calcuate(void *argument)
- 129:Core/Src/freertos.c **** {
-  30              		.loc 1 129 1 view -0
-  31              		.cfi_startproc
-  32              		@ Volatile: function does not return.
-  33              		@ args = 0, pretend = 0, frame = 16
-  34              		@ frame_needed = 0, uses_anonymous_args = 0
-  35              		.loc 1 129 1 is_stmt 0 view .LVU1
-  36 0000 00B5     		push	{lr}
+  88:Core/Src/freertos.c ****   /* USER CODE END Init */
+  89:Core/Src/freertos.c **** 
+  90:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_MUTEX */
+  91:Core/Src/freertos.c ****   /* add mutexes, ... */
+  92:Core/Src/freertos.c ****   /* USER CODE END RTOS_MUTEX */
+  93:Core/Src/freertos.c **** 
+  94:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_SEMAPHORES */
+  95:Core/Src/freertos.c ****   /* add semaphores, ... */
+  96:Core/Src/freertos.c ****   /* USER CODE END RTOS_SEMAPHORES */
+  97:Core/Src/freertos.c **** 
+  98:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_TIMERS */
+  99:Core/Src/freertos.c ****   /* start timers, add new ones, ... */
+ 100:Core/Src/freertos.c ****   /* USER CODE END RTOS_TIMERS */
+ 101:Core/Src/freertos.c **** 
+ 102:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_QUEUES */
+ 103:Core/Src/freertos.c ****   /* add queues, ... */
+ 104:Core/Src/freertos.c ****   /* USER CODE END RTOS_QUEUES */
+ 105:Core/Src/freertos.c **** 
+ 106:Core/Src/freertos.c ****   /* Create the thread(s) */
+ 107:Core/Src/freertos.c ****   /* creation of RPM_CalcuateTas */
+ 108:Core/Src/freertos.c ****   RPM_CalcuateTasHandle = osThreadNew(StartRPM_Calcuate, NULL, &RPM_CalcuateTas_attributes);
+ 109:Core/Src/freertos.c **** 
+ 110:Core/Src/freertos.c ****   /* creation of canopenTask */
+ 111:Core/Src/freertos.c ****   canopenTaskHandle = osThreadNew(canopen_task, NULL, &canopenTask_attributes);
+ 112:Core/Src/freertos.c **** 
+ 113:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_THREADS */
+ 114:Core/Src/freertos.c ****   /* add threads, ... */
+ 115:Core/Src/freertos.c ****   /* USER CODE END RTOS_THREADS */
+ 116:Core/Src/freertos.c **** 
+ 117:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_EVENTS */
+ 118:Core/Src/freertos.c ****   /* add events, ... */
+ 119:Core/Src/freertos.c ****   /* USER CODE END RTOS_EVENTS */
+ 120:Core/Src/freertos.c **** }
+ 121:Core/Src/freertos.c **** 
+ 122:Core/Src/freertos.c **** /* USER CODE BEGIN Header_StartRPM_Calcuate */
+ 123:Core/Src/freertos.c **** /**
+ 124:Core/Src/freertos.c ****  * @brief  Function implementing the RPM_CalcuateTas thread.
+ 125:Core/Src/freertos.c ****  * @param  argument: Not used
+ 126:Core/Src/freertos.c ****  * @retval None
+ 127:Core/Src/freertos.c ****  */
+ 128:Core/Src/freertos.c **** /* USER CODE END Header_StartRPM_Calcuate */
+ 129:Core/Src/freertos.c **** void StartRPM_Calcuate(void *argument)
+ 130:Core/Src/freertos.c **** {
+  29              		.loc 1 130 1 view -0
+  30              		.cfi_startproc
+  31              		@ Volatile: function does not return.
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              	.LVL0:
+  35              		.loc 1 130 1 is_stmt 0 view .LVU1
+  36 0000 08B5     		push	{r3, lr}
   37              	.LCFI0:
-  38              		.cfi_def_cfa_offset 4
-  39              		.cfi_offset 14, -4
-  40 0002 87B0     		sub	sp, sp, #28
-  41              	.LCFI1:
-  42              		.cfi_def_cfa_offset 32
- 130:Core/Src/freertos.c ****   /* USER CODE BEGIN StartRPM_Calcuate */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 4
+  38              		.cfi_def_cfa_offset 8
+  39              		.cfi_offset 3, -8
+  40              		.cfi_offset 14, -4
+  41 0002 05E0     		b	.L3
+  42              	.LVL1:
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 4
 
 
- 131:Core/Src/freertos.c ****   /* Infinite loop */
- 132:Core/Src/freertos.c ****   volatile int rpm = 0; // volatile use to let gdp get value
-  43              		.loc 1 132 3 is_stmt 1 view .LVU2
-  44              		.loc 1 132 16 is_stmt 0 view .LVU3
-  45 0004 0023     		movs	r3, #0
-  46 0006 0593     		str	r3, [sp, #20]
- 133:Core/Src/freertos.c ****   volatile int16_t pre_wheel_counter = get_counter();
-  47              		.loc 1 133 3 is_stmt 1 view .LVU4
-  48              		.loc 1 133 40 is_stmt 0 view .LVU5
-  49 0008 FFF7FEFF 		bl	get_counter
-  50              	.LVL1:
-  51              		.loc 1 133 20 view .LVU6
-  52 000c 03B2     		sxth	r3, r0
-  53 000e ADF81230 		strh	r3, [sp, #18]	@ movhi
- 134:Core/Src/freertos.c ****   volatile int16_t pre_timer = get_timer_counter();
-  54              		.loc 1 134 3 is_stmt 1 view .LVU7
-  55              		.loc 1 134 32 is_stmt 0 view .LVU8
-  56 0012 FFF7FEFF 		bl	get_timer_counter
-  57              	.LVL2:
-  58              		.loc 1 134 20 view .LVU9
-  59 0016 03B2     		sxth	r3, r0
-  60 0018 ADF81030 		strh	r3, [sp, #16]	@ movhi
-  61 001c 07E0     		b	.L3
-  62              	.L2:
- 135:Core/Src/freertos.c ****   for (;;)
- 136:Core/Src/freertos.c ****   {
- 137:Core/Src/freertos.c ****     if (get_timer_counter() > 5) // 0.5s
- 138:Core/Src/freertos.c ****     {
- 139:Core/Src/freertos.c ****       set_timer_counter(0);
- 140:Core/Src/freertos.c ****       rpm = ((get_counter() - pre_wheel_counter) * 60 * 2) / 600;
- 141:Core/Src/freertos.c ****       pre_wheel_counter = get_counter();
- 142:Core/Src/freertos.c ****     }
- 143:Core/Src/freertos.c ****     if (pre_timer - get_timer_counter() > 1)
-  63              		.loc 1 143 5 is_stmt 1 view .LVU10
-  64              		.loc 1 143 19 is_stmt 0 view .LVU11
-  65 001e BDF81040 		ldrh	r4, [sp, #16]
-  66 0022 24B2     		sxth	r4, r4
-  67              		.loc 1 143 21 view .LVU12
-  68 0024 FFF7FEFF 		bl	get_timer_counter
-  69              	.LVL3:
-  70              		.loc 1 143 19 view .LVU13
-  71 0028 241A     		subs	r4, r4, r0
-  72              		.loc 1 143 8 view .LVU14
-  73 002a 012C     		cmp	r4, #1
-  74 002c 19D8     		bhi	.L7
-  75              	.L3:
- 135:Core/Src/freertos.c ****   for (;;)
-  76              		.loc 1 135 3 is_stmt 1 view .LVU15
- 137:Core/Src/freertos.c ****     {
-  77              		.loc 1 137 5 view .LVU16
- 137:Core/Src/freertos.c ****     {
-  78              		.loc 1 137 9 is_stmt 0 view .LVU17
-  79 002e FFF7FEFF 		bl	get_timer_counter
-  80              	.LVL4:
- 137:Core/Src/freertos.c ****     {
-  81              		.loc 1 137 8 view .LVU18
-  82 0032 0528     		cmp	r0, #5
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 5
+  43              	.L5:
+  44              	.LBB6:
+  45              	.LBB7:
+  46              		.file 2 "Middlewares/Third_Party/CANopenNode/301/CO_PDO.h"
+   1:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
+   2:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * CANopen Process Data Object protocol.
+   3:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+   4:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @file        CO_PDO.h
+   5:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @ingroup     CO_PDO
+   6:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @author      Janez Paternoster
+   7:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @copyright   2021 Janez Paternoster
+   8:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+   9:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * This file is part of CANopenNode, an opensource CANopen Stack.
+  10:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Project home page is <https://github.com/CANopenNode/CANopenNode>.
+  11:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * For more information on CANopen see <http://www.can-cia.org/>.
+  12:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+  13:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Licensed under the Apache License, Version 2.0 (the "License");
+  14:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * you may not use this file except in compliance with the License.
+  15:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * You may obtain a copy of the License at
+  16:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+  17:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *     http://www.apache.org/licenses/LICENSE-2.0
+  18:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+  19:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Unless required by applicable law or agreed to in writing, software
+  20:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * distributed under the License is distributed on an "AS IS" BASIS,
+  21:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  22:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * See the License for the specific language governing permissions and
+  23:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * limitations under the License.
+  24:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
+  25:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+  26:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #ifndef CO_PDO_H
+  27:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #define CO_PDO_H
+  28:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+  29:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #include "301/CO_ODinterface.h"
+  30:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #include "301/CO_Emergency.h"
+  31:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #include "301/CO_SYNC.h"
+  32:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+  33:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /* default configuration, see CO_config.h */
+  34:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #ifndef CO_CONFIG_PDO
+  35:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #define CO_CONFIG_PDO (CO_CONFIG_RPDO_ENABLE | \
+  36:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_TPDO_ENABLE | \
+  37:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_RPDO_TIMERS_ENABLE | \
+  38:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_TPDO_TIMERS_ENABLE | \
+  39:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_PDO_SYNC_ENABLE | \
+  40:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_PDO_OD_IO_ACCESS | \
+  41:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_GLOBAL_RT_FLAG_CALLBACK_PRE | \
+  42:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_GLOBAL_FLAG_TIMERNEXT | \
+  43:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_GLOBAL_FLAG_OD_DYNAMIC)
+  44:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
+  45:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+  46:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & (CO_CONFIG_RPDO_ENABLE | CO_CONFIG_TPDO_ENABLE)) || defined CO_DOXYGEN
+  47:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+  48:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #ifdef __cplusplus
+  49:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** extern "C" {
+  50:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
+  51:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+  52:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
+  53:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @defgroup CO_PDO PDO
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 5
 
 
-  83 0034 F3D9     		bls	.L2
- 139:Core/Src/freertos.c ****       rpm = ((get_counter() - pre_wheel_counter) * 60 * 2) / 600;
-  84              		.loc 1 139 7 is_stmt 1 view .LVU19
-  85 0036 0020     		movs	r0, #0
-  86 0038 FFF7FEFF 		bl	set_timer_counter
-  87              	.LVL5:
- 140:Core/Src/freertos.c ****       pre_wheel_counter = get_counter();
-  88              		.loc 1 140 7 view .LVU20
- 140:Core/Src/freertos.c ****       pre_wheel_counter = get_counter();
-  89              		.loc 1 140 15 is_stmt 0 view .LVU21
-  90 003c FFF7FEFF 		bl	get_counter
-  91              	.LVL6:
- 140:Core/Src/freertos.c ****       pre_wheel_counter = get_counter();
-  92              		.loc 1 140 29 view .LVU22
-  93 0040 BDF81230 		ldrh	r3, [sp, #18]
-  94 0044 1BB2     		sxth	r3, r3
-  95 0046 C01A     		subs	r0, r0, r3
- 140:Core/Src/freertos.c ****       pre_wheel_counter = get_counter();
-  96              		.loc 1 140 60 view .LVU23
-  97 0048 174B     		ldr	r3, .L8
-  98 004a 83FB0023 		smull	r2, r3, r3, r0
-  99 004e C017     		asrs	r0, r0, #31
- 100 0050 C0EB6300 		rsb	r0, r0, r3, asr #1
- 140:Core/Src/freertos.c ****       pre_wheel_counter = get_counter();
- 101              		.loc 1 140 11 view .LVU24
- 102 0054 0590     		str	r0, [sp, #20]
- 141:Core/Src/freertos.c ****     }
- 103              		.loc 1 141 7 is_stmt 1 view .LVU25
- 141:Core/Src/freertos.c ****     }
- 104              		.loc 1 141 27 is_stmt 0 view .LVU26
- 105 0056 FFF7FEFF 		bl	get_counter
- 106              	.LVL7:
- 141:Core/Src/freertos.c ****     }
- 107              		.loc 1 141 25 view .LVU27
- 108 005a 00B2     		sxth	r0, r0
- 109 005c ADF81200 		strh	r0, [sp, #18]	@ movhi
- 110 0060 DDE7     		b	.L2
- 111              	.L7:
- 144:Core/Src/freertos.c ****     {
- 145:Core/Src/freertos.c ****       OD_PERSIST_COMM.x6000_rpm_data = rpm;
- 112              		.loc 1 145 7 is_stmt 1 view .LVU28
- 113              		.loc 1 145 38 is_stmt 0 view .LVU29
- 114 0062 059B     		ldr	r3, [sp, #20]
- 115 0064 114C     		ldr	r4, .L8+4
- 116 0066 A4F89C30 		strh	r3, [r4, #156]	@ movhi
- 146:Core/Src/freertos.c ****       OD_set_u16(OD_find(OD, 0x6000), 0x000, OD_PERSIST_COMM.x6000_rpm_data, false);
- 117              		.loc 1 146 7 is_stmt 1 view .LVU30
- 118              		.loc 1 146 18 is_stmt 0 view .LVU31
- 119 006a 4FF4C041 		mov	r1, #24576
- 120 006e 104B     		ldr	r3, .L8+8
- 121 0070 1868     		ldr	r0, [r3]
- 122 0072 FFF7FEFF 		bl	OD_find
- 123              	.LVL8:
- 124              		.loc 1 146 7 view .LVU32
- 125 0076 B4F89C30 		ldrh	r3, [r4, #156]
- 126              	.LVL9:
- 127              		.loc 1 146 7 view .LVU33
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 6
+  54:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * CANopen Process Data Object protocol.
+  55:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+  56:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @ingroup CO_CANopen_301
+  57:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @{
+  58:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Process data objects are used for real-time data transfer with no protocol
+  59:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * overhead.
+  60:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+  61:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * TPDO with specific identifier is transmitted by one device and recieved by
+  62:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * zero or more devices as RPDO. PDO communication parameters(COB-ID,
+  63:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * transmission type, etc.) are in the Object Dictionary at index 0x1400+ and
+  64:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * 0x1800+. PDO mapping parameters (size and contents of the PDO) are in the
+  65:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Object Dictionary at index 0x1600+ and 0x1A00+.
+  66:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+  67:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Features of the PDO as implemented in CANopenNode:
+  68:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *  - Dynamic PDO mapping.
+  69:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *  - Map granularity of one byte.
+  70:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *  - Data from OD variables are accessed via @ref OD_IO_t read()/write()
+  71:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    functions, which gives a great usefulness to the application.
+  72:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *  - For systems with very low memory and processing capabilities there is a
+  73:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    simplified @ref CO_CONFIG_PDO option, where instead of read()/write()
+  74:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    access, PDO data are copied directly to/from memory locations of
+  75:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    OD variables.
+  76:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *  - After RPDO is received from CAN bus, its data are copied to internal
+  77:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    buffer (inside fast CAN receive interrupt). Function CO_RPDO_process()
+  78:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    (called by application) copies data to the mapped objects in the Object
+  79:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    Dictionary. Synchronous RPDOs are processed AFTER reception of the next
+  80:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    SYNC message.
+  81:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *  - Function CO_TPDO_process() (called by application) sends TPDO when
+  82:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    necessary. There are different transmission types possible, controlled by:
+  83:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    SYNC message, event timer, @ref CO_TPDOsendRequest() by application or
+  84:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    @ref OD_requestTPDO(), where application can request TPDO for OD
+  85:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    variable mapped to any of them. In later case application may, for
+  86:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    example, monitor change of state of the OD variable and indicate TPDO
+  87:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    request on it.
+  88:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+  89:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @anchor CO_PDO_CAN_ID
+  90:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * ### CAN identifiers for PDO
+  91:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+  92:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Each PDO can be configured with any valid 11-bit CAN identifier. Lower
+  93:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * numbers have higher priorities on CAN bus. As a general rule, each CAN
+  94:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * message is identified with own CAN-ID, which must be unique and produced by
+  95:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * single source. The same is with PDO objects: Any TPDO produced on the CANopen
+  96:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * network must have unique CAN-ID and there can be zero to many RPDOs (from
+  97:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * different devices) configured to match the CAN-ID of the TPDO of interest.
+  98:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+  99:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * CANopen standard provides pre-defined connection sets for four RPDOs and four
+ 100:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * TPDOs on each device with specific 7-bit Node-ID. These are default values
+ 101:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * and are usable in configuration, where CANopen network contains a master
+ 102:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * device, which directly communicates with many slaves. In de-centralized
+ 103:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * systems, where devices operate without a master, it makes sense to configure
+ 104:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * CAN-IDs of the RPDOs to the non-default values.
+ 105:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+ 106:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Default CAN identifiers for first four TPDOs on device with specific CANopen
+ 107:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Node-Id are: 0x180+NodeId, 0x280+NodeId, 0x380+NodeId and 0x480+NodeId.
+ 108:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+ 109:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Default CAN identifiers for first four RPDOs on device with specific CANopen
+ 110:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Node-Id are: 0x200+NodeId, 0x300+NodeId, 0x400+NodeId and 0x500+NodeId.
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 6
 
 
- 128 007a ADF80E30 		strh	r3, [sp, #14]	@ movhi
- 129              	.LVL10:
- 130              	.LBB6:
- 131              	.LBI6:
- 132              		.file 2 "Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h"
+ 111:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+ 112:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * CANopenNode handles default (pre-defined) CAN-IDs. If it is detected, that
+ 113:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * PDO is configured with default CAN-ID (when writing to OD variable PDO
+ 114:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * communication parameter, COB-ID), then COB-ID is stored without Node-Id to
+ 115:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * the Object Dictionary. If Node-ID is changed, then COB-ID will always contain
+ 116:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * correct default CAN-ID (default CAN-ID + Node-ID). If PDO is configured with
+ 117:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * non-default CAN-ID, then it will be stored to the Object Dictionary as is.
+ 118:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+ 119:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * If configuration CO_CONFIG_FLAG_OD_DYNAMIC is enabled in @ref CO_CONFIG_PDO,
+ 120:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * then PDOs can be configured dynamically, also in NMT operational state.
+ 121:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Otherwise PDOs are configured only in reset communication section and also
+ 122:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * default CAN-IDs are always stored to OD as is, no default node-id is handled.
+ 123:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+ 124:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Configure PDO by writing to the OD variables in the following procedure:
+ 125:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * - Disable the PDO by setting bit-31 to 1 in PDO communication parameter,
+ 126:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *   COB-ID
+ 127:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * - Node-Id can be configured only when PDO is disabled.
+ 128:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * - Disable mapping by setting PDO mapping parameter, sub index 0 to 0
+ 129:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * - Configure mapping
+ 130:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * - Enable mapping by setting PDO mapping param, sub 0 to number of mapped
+ 131:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *   objects
+ 132:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * - Enable the PDO by setting bit-31 to 0 in PDO communication parameter,
+ 133:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *   COB-ID
+ 134:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
+ 135:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 136:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /** Maximum size of PDO message, 8 for standard CAN */
+ 137:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #ifndef CO_PDO_MAX_SIZE
+ 138:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #define CO_PDO_MAX_SIZE 8
+ 139:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
+ 140:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 141:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /** Maximum number of entries, which can be mapped to PDO, 8 for standard CAN,
+ 142:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * may be less to preserve RAM usage */
+ 143:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #ifndef CO_PDO_MAX_MAPPED_ENTRIES
+ 144:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #define CO_PDO_MAX_MAPPED_ENTRIES 8
+ 145:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
+ 146:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 147:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /** Number of CANopen RPDO objects, which uses default CAN indentifiers.
+ 148:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * By default first four RPDOs have pre-defined CAN identifiers, which depends
+ 149:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * on node-id. This constant may be set to 0 to disable functionality or set
+ 150:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * to any other value. For example, if there are several logical devices inside
+ 151:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * single CANopen device, then more than four RPDOs may have pre-defined CAN
+ 152:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * identifiers. In that case RPDO5 has CAN_ID=0x200+NodeId+1, RPDO6 has
+ 153:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * CAN_ID=0x300+NodeId+1, RPDO9 has CAN_ID=0x200+NodeId+2 and so on. */
+ 154:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #ifndef CO_RPDO_DEFAULT_CANID_COUNT
+ 155:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #define CO_RPDO_DEFAULT_CANID_COUNT 4
+ 156:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
+ 157:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 158:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /** Number of CANopen TPDO objects, which uses default CAN indentifiers.
+ 159:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * If value is more than four, then pre-defined pre-defined CAN identifiers are:
+ 160:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * TPDO5 has CAN_ID=0x180+NodeId+1, TPDO6 has CAN_ID=0x280+NodeId+1,
+ 161:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * TPDO9 has CAN_ID=0x180+NodeId+2 and so on.
+ 162:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * For description see @ref CO_RPDO_DEFAULT_CANID_COUNT. */
+ 163:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #ifndef CO_TPDO_DEFAULT_CANID_COUNT
+ 164:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #define CO_TPDO_DEFAULT_CANID_COUNT 4
+ 165:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
+ 166:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 167:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #ifndef CO_PDO_OWN_TYPES
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 7
+
+
+ 168:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /** Variable of type CO_PDO_size_t contains data length in bytes of PDO */
+ 169:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** typedef uint8_t CO_PDO_size_t;
+ 170:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
+ 171:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 172:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
+ 173:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * PDO transmission Types
+ 174:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
+ 175:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** typedef enum {
+ 176:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_PDO_TRANSM_TYPE_SYNC_ACYCLIC = 0, /**< synchronous (acyclic) */
+ 177:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_PDO_TRANSM_TYPE_SYNC_1 = 1, /**< synchronous (cyclic every sync) */
+ 178:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_PDO_TRANSM_TYPE_SYNC_240 = 0xF0, /**< synchronous (cyclic every 240-th
+ 179:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     sync) */
+ 180:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_PDO_TRANSM_TYPE_SYNC_EVENT_LO = 0xFE, /**< event-driven, lower value
+ 181:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     (manufacturer specific),  */
+ 182:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_PDO_TRANSM_TYPE_SYNC_EVENT_HI = 0xFF /**< event-driven, higher value
+ 183:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     (device profile and application profile specific) */
+ 184:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** } CO_PDO_transmissionTypes_t;
+ 185:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 186:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
+ 187:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * PDO object, common properties
+ 188:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
+ 189:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** typedef struct {
+ 190:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** From CO_xPDO_init() */
+ 191:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_EM_t *em;
+ 192:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** From CO_xPDO_init() */
+ 193:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_CANmodule_t *CANdev;
+ 194:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** True, if PDO is enabled and valid */
+ 195:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     bool_t valid;
+ 196:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Data length of the received PDO message. Calculated from mapping */
+ 197:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_PDO_size_t dataLength;
+ 198:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Number of mapped objects in PDO */
+ 199:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t mappedObjectsCount;
+ 200:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_PDO_OD_IO_ACCESS) || defined CO_DOXYGEN
+ 201:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Object dictionary interface for all mapped entries. OD_IO.dataOffset has
+ 202:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * special usage with PDO. It stores information about mappedLength of
+ 203:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * the variable. mappedLength can be less or equal to the OD_IO.dataLength.
+ 204:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * mappedLength greater than OD_IO.dataLength indicates erroneous mapping.
+ 205:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * OD_IO.dataOffset is set to 0 before read/write function call and after
+ 206:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * the call OD_IO.dataOffset is set back to mappedLength. */
+ 207:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     OD_IO_t OD_IO[CO_PDO_MAX_MAPPED_ENTRIES];
+ 208:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****   #if OD_FLAGS_PDO_SIZE > 0
+ 209:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Pointer to byte, which contains PDO flag bit from @ref OD_extension_t */
+ 210:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t *flagPDObyte[CO_PDO_MAX_MAPPED_ENTRIES];
+ 211:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Bitmask for the flagPDObyte */
+ 212:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t flagPDObitmask[CO_PDO_MAX_MAPPED_ENTRIES];
+ 213:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****   #endif
+ 214:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #else
+ 215:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /* Pointers to data objects inside OD, where PDO will be copied */
+ 216:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t *mapPointer[CO_PDO_MAX_SIZE];
+ 217:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****   #if OD_FLAGS_PDO_SIZE > 0
+ 218:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t *flagPDObyte[CO_PDO_MAX_SIZE];
+ 219:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t flagPDObitmask[CO_PDO_MAX_SIZE];
+ 220:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****   #endif
+ 221:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
+ 222:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_FLAG_OD_DYNAMIC) || defined CO_DOXYGEN
+ 223:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** True for RPDO, false for TPDO */
+ 224:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     bool_t isRPDO;
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 8
+
+
+ 225:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** From CO_xPDO_init() */
+ 226:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     OD_t *OD;
+ 227:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** From CO_xPDO_init() */
+ 228:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint16_t CANdevIdx;
+ 229:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** From CO_xPDO_init() */
+ 230:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint16_t preDefinedCanId;
+ 231:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Currently configured CAN identifier */
+ 232:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint16_t configuredCanId;
+ 233:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Extension for OD object */
+ 234:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     OD_extension_t OD_communicationParam_ext;
+ 235:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Extension for OD object */
+ 236:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     OD_extension_t OD_mappingParam_extension;
+ 237:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
+ 238:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** } CO_PDO_common_t;
+ 239:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 240:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 241:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /*******************************************************************************
+ 242:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *      R P D O
+ 243:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  ******************************************************************************/
+ 244:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_RPDO_ENABLE) || defined CO_DOXYGEN
+ 245:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
+ 246:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Number of buffers for received CAN message for RPDO
+ 247:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
+ 248:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_PDO_SYNC_ENABLE) || defined CO_DOXYGEN
+ 249:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #define CO_RPDO_CAN_BUFFERS_COUNT 2
+ 250:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #else
+ 251:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #define CO_RPDO_CAN_BUFFERS_COUNT 1
+ 252:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
+ 253:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 254:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 255:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
+ 256:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * RPDO object.
+ 257:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
+ 258:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** typedef struct {
+ 259:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** PDO common properties, must be first element in this object */
+ 260:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_PDO_common_t PDO_common;
+ 261:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Variable indicates, if new PDO message received from CAN bus. */
+ 262:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     volatile void *CANrxNew[CO_RPDO_CAN_BUFFERS_COUNT];
+ 263:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** CO_PDO_MAX_SIZE data bytes of the received message. */
+ 264:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t CANrxData[CO_RPDO_CAN_BUFFERS_COUNT][CO_PDO_MAX_SIZE];
+ 265:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Indication of RPDO length errors, use with CO_PDO_receiveErrors_t */
+ 266:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t receiveError;
+ 267:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_PDO_SYNC_ENABLE) || defined CO_DOXYGEN
+ 268:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** From CO_RPDO_init() */
+ 269:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_SYNC_t *SYNC;
+ 270:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** True if transmissionType <= 240 */
+ 271:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     bool_t synchronous;
+ 272:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
+ 273:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_RPDO_TIMERS_ENABLE) || defined CO_DOXYGEN
+ 274:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Maximum timeout time between received PDOs in microseconds. Configurable
+ 275:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * by OD variable RPDO communication parameter, event-timer. */
+ 276:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint32_t timeoutTime_us;
+ 277:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Timeout timer variable in microseconds */
+ 278:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint32_t timeoutTimer;
+ 279:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
+ 280:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_FLAG_CALLBACK_PRE) || defined CO_DOXYGEN
+ 281:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** From CO_RPDO_initCallbackPre() or NULL */
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 9
+
+
+ 282:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     void (*pFunctSignalPre)(void *object);
+ 283:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** From CO_RPDO_initCallbackPre() or NULL */
+ 284:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     void *functSignalObjectPre;
+ 285:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
+ 286:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** } CO_RPDO_t;
+ 287:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 288:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 289:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
+ 290:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Initialize RPDO object.
+ 291:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+ 292:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Function must be called in the end of the communication reset section, after
+ 293:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * all application initialization. Otherwise mapping to application OD variables
+ 294:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * will not be correct.
+ 295:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+ 296:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param RPDO This object will be initialized.
+ 297:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param OD Object Dictionary.
+ 298:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param em Emergency object.
+ 299:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param SYNC SYNC object, may be NULL.
+ 300:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param preDefinedCanId CAN identifier from pre-defined connection set,
+ 301:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * including node-id for first four PDOs, or 0 otherwise, see @ref CO_PDO_CAN_ID
+ 302:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param OD_14xx_RPDOCommPar OD entry for 0x1400+ - "RPDO communication
+ 303:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * parameter", entry is required.
+ 304:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param OD_16xx_RPDOMapPar OD entry for 0x1600+ - "RPDO mapping parameter",
+ 305:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * entry is required.
+ 306:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param CANdevRx CAN device for PDO reception.
+ 307:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param CANdevRxIdx Index of receive buffer in the above CAN device.
+ 308:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param [out] errInfo Additional information in case of error, may be NULL.
+ 309:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+ 310:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @return #CO_ReturnError_t CO_ERROR_NO on success.
+ 311:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
+ 312:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** CO_ReturnError_t CO_RPDO_init(CO_RPDO_t *RPDO,
+ 313:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               OD_t *OD,
+ 314:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               CO_EM_t *em,
+ 315:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_PDO_SYNC_ENABLE) || defined CO_DOXYGEN
+ 316:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               CO_SYNC_t *SYNC,
+ 317:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
+ 318:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               uint16_t preDefinedCanId,
+ 319:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               OD_entry_t *OD_14xx_RPDOCommPar,
+ 320:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               OD_entry_t *OD_16xx_RPDOMapPar,
+ 321:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               CO_CANmodule_t *CANdevRx,
+ 322:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               uint16_t CANdevRxIdx,
+ 323:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               uint32_t *errInfo);
+ 324:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 325:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 326:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_FLAG_CALLBACK_PRE) || defined CO_DOXYGEN
+ 327:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
+ 328:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Initialize RPDO callback function.
+ 329:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+ 330:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Function initializes optional callback function, which should immediately
+ 331:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * start processing of CO_RPDO_process() function.
+ 332:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Callback is called after RPDO message is received from the CAN bus.
+ 333:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+ 334:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param RPDO This object.
+ 335:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param object Pointer to object, which will be passed to pFunctSignalPre().
+ 336:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param pFunctSignalPre Pointer to the callback function. Not called if NULL.
+ 337:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
+ 338:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** void CO_RPDO_initCallbackPre(CO_RPDO_t *RPDO,
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 10
+
+
+ 339:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                              void *object,
+ 340:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                              void (*pFunctSignalPre)(void *object));
+ 341:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
+ 342:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 343:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 344:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
+ 345:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Process received PDO messages.
+ 346:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+ 347:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Function must be called cyclically in any NMT state. It copies data from RPDO
+ 348:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * to Object Dictionary variables if: new PDO receives and PDO is valid and NMT
+ 349:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * operating state is operational. Synchronous RPDOs are processed after next
+ 350:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * SYNC message.
+ 351:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+ 352:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param RPDO This object.
+ 353:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param timeDifference_us Time difference from previous function call.
+ 354:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param [out] timerNext_us info to OS - see CO_process().
+ 355:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param NMTisOperational True if this node is in NMT_OPERATIONAL state.
+ 356:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param syncWas True, if CANopen SYNC message was just received or
+ 357:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * transmitted.
+ 358:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
+ 359:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** void CO_RPDO_process(CO_RPDO_t *RPDO,
+ 360:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_RPDO_TIMERS_ENABLE) || defined CO_DOXYGEN
+ 361:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                      uint32_t timeDifference_us,
+ 362:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                      uint32_t *timerNext_us,
+ 363:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
+ 364:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                      bool_t NMTisOperational,
+ 365:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                      bool_t syncWas);
+ 366:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif /* (CO_CONFIG_PDO) & CO_CONFIG_RPDO_ENABLE */
+ 367:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 368:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 369:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /*******************************************************************************
+ 370:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *      T P D O
+ 371:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  ******************************************************************************/
+ 372:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_TPDO_ENABLE) || defined CO_DOXYGEN
+ 373:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
+ 374:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * TPDO object.
+ 375:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
+ 376:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** typedef struct {
+ 377:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** PDO common properties, must be first element in this object */
+ 378:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_PDO_common_t PDO_common;
+ 379:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** CAN transmit buffer inside CANdev */
+ 380:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_CANtx_t *CANtxBuff;
+ 381:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Copy of the variable from object dictionary */
+ 382:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t transmissionType;
+ 383:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** If this flag is set and TPDO is event driven (transmission type is 0,
+ 384:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * 254 or 255), then PDO will be sent by CO_TPDO_process(). */
+ 385:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     bool_t sendRequest;
+ 386:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_PDO_SYNC_ENABLE) || defined CO_DOXYGEN
+ 387:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** From CO_TPDO_init() */
+ 388:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_SYNC_t *SYNC;
+ 389:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Copy of the variable from object dictionary */
+ 390:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t syncStartValue;
+ 391:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** SYNC counter used for PDO sending */
+ 392:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t syncCounter;
+ 393:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
+ 394:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_TPDO_TIMERS_ENABLE) || defined CO_DOXYGEN
+ 395:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Inhibit time from object dictionary translated to microseconds */
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 11
+
+
+ 396:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint32_t inhibitTime_us;
+ 397:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Event time from object dictionary translated to microseconds */
+ 398:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint32_t eventTime_us;
+ 399:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Inhibit timer variable in microseconds */
+ 400:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint32_t inhibitTimer;
+ 401:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Event timer variable in microseconds */
+ 402:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint32_t eventTimer;
+ 403:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
+ 404:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** } CO_TPDO_t;
+ 405:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 406:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 407:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
+ 408:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Initialize TPDO object.
+ 409:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+ 410:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Function must be called in the end of the communication reset section, after
+ 411:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * all application initialization. Otherwise mapping to application OD variables
+ 412:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * will not be correct.
+ 413:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+ 414:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param TPDO This object will be initialized.
+ 415:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param OD Object Dictionary.
+ 416:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param em Emergency object.
+ 417:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param SYNC SYNC object, may be NULL.
+ 418:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param preDefinedCanId CAN identifier from pre-defined connection set,
+ 419:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * including node-id for first four PDOs, or 0 otherwise, see @ref CO_PDO_CAN_ID
+ 420:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param OD_18xx_TPDOCommPar OD entry for 0x1800+ - "TPDO communication
+ 421:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * parameter", entry is required.
+ 422:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param OD_1Axx_TPDOMapPar OD entry for 0x1A00+ - "TPDO mapping parameter",
+ 423:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * entry is required.
+ 424:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param CANdevTx CAN device used for PDO transmission.
+ 425:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param CANdevTxIdx Index of transmit buffer in the above CAN device.
+ 426:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param [out] errInfo Additional information in case of error, may be NULL.
+ 427:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+ 428:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @return #CO_ReturnError_t CO_ERROR_NO on success.
+ 429:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
+ 430:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** CO_ReturnError_t CO_TPDO_init(CO_TPDO_t *TPDO,
+ 431:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               OD_t *OD,
+ 432:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               CO_EM_t *em,
+ 433:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_PDO_SYNC_ENABLE) || defined CO_DOXYGEN
+ 434:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               CO_SYNC_t *SYNC,
+ 435:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
+ 436:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               uint16_t preDefinedCanId,
+ 437:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               OD_entry_t *OD_18xx_TPDOCommPar,
+ 438:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               OD_entry_t *OD_1Axx_TPDOMapPar,
+ 439:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               CO_CANmodule_t *CANdevTx,
+ 440:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               uint16_t CANdevTxIdx,
+ 441:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               uint32_t *errInfo);
+ 442:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 443:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
+ 444:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
+ 445:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Request transmission of TPDO message.
+ 446:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+ 447:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * If TPDO transmission type is 0, 254 or 255, then TPDO will be sent by
+ 448:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @ref CO_TPDO_process() after inhibit timer expires. See also
+ 449:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @ref OD_requestTPDO() and @ref OD_TPDOtransmitted().
+ 450:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
+ 451:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param TPDO TPDO object.
+ 452:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 12
+
+
+ 453:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** static inline void CO_TPDOsendRequest(CO_TPDO_t *TPDO) {
+ 454:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     if (TPDO != NULL) TPDO->sendRequest = true;
+  47              		.loc 2 454 23 is_stmt 1 view .LVU2
+  48              		.loc 2 454 41 is_stmt 0 view .LVU3
+  49 0004 0122     		movs	r2, #1
+  50 0006 C3F85021 		str	r2, [r3, #336]
+  51              	.L2:
+  52              	.LVL2:
+  53              		.loc 2 454 41 view .LVU4
+  54              	.LBE7:
+  55              	.LBE6:
+ 131:Core/Src/freertos.c ****   /* USER CODE BEGIN StartRPM_Calcuate */
+ 132:Core/Src/freertos.c ****   /* Infinite loop */
+ 133:Core/Src/freertos.c **** 
+ 134:Core/Src/freertos.c ****   for (;;)
+ 135:Core/Src/freertos.c ****   {
+ 136:Core/Src/freertos.c ****     CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
+ 137:Core/Src/freertos.c ****     osDelay(100);
+  56              		.loc 1 137 5 is_stmt 1 view .LVU5
+  57 000a 6420     		movs	r0, #100
+  58 000c FFF7FEFF 		bl	osDelay
+  59              	.LVL3:
+ 134:Core/Src/freertos.c ****   {
+  60              		.loc 1 134 9 view .LVU6
+  61              	.L3:
+ 134:Core/Src/freertos.c ****   {
+  62              		.loc 1 134 3 discriminator 1 view .LVU7
+ 136:Core/Src/freertos.c ****     osDelay(100);
+  63              		.loc 1 136 5 discriminator 1 view .LVU8
+ 136:Core/Src/freertos.c ****     osDelay(100);
+  64              		.loc 1 136 41 is_stmt 0 discriminator 1 view .LVU9
+  65 0010 034B     		ldr	r3, .L6
+  66 0012 1B68     		ldr	r3, [r3]
+  67 0014 5B69     		ldr	r3, [r3, #20]
+ 136:Core/Src/freertos.c ****     osDelay(100);
+  68              		.loc 1 136 5 discriminator 1 view .LVU10
+  69 0016 5B6B     		ldr	r3, [r3, #52]
+  70              	.LVL4:
+  71              	.LBB9:
+  72              	.LBI6:
+ 453:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     if (TPDO != NULL) TPDO->sendRequest = true;
+  73              		.loc 2 453 20 is_stmt 1 discriminator 1 view .LVU11
+  74              	.LBB8:
+  75              		.loc 2 454 5 discriminator 1 view .LVU12
+  76              		.loc 2 454 8 is_stmt 0 discriminator 1 view .LVU13
+  77 0018 002B     		cmp	r3, #0
+  78 001a F3D1     		bne	.L5
+  79 001c F5E7     		b	.L2
+  80              	.L7:
+  81 001e 00BF     		.align	2
+  82              	.L6:
+  83 0020 00000000 		.word	canopenNodeSTM32
+  84              	.LBE8:
+  85              	.LBE9:
+  86              		.cfi_endproc
+  87              	.LFE169:
+  89              		.section	.text.canopen_task,"ax",%progbits
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 13
+
+
+  90              		.align	1
+  91              		.global	canopen_task
+  92              		.syntax unified
+  93              		.thumb
+  94              		.thumb_func
+  96              	canopen_task:
+  97              	.LVL5:
+  98              	.LFB170:
+ 138:Core/Src/freertos.c ****   }
+ 139:Core/Src/freertos.c ****   /* USER CODE END StartRPM_Calcuate */
+ 140:Core/Src/freertos.c **** }
+ 141:Core/Src/freertos.c **** 
+ 142:Core/Src/freertos.c **** /* USER CODE BEGIN Header_canopen_task */
+ 143:Core/Src/freertos.c **** /**
+ 144:Core/Src/freertos.c ****  * @brief Function implementing the canopenTask thread.
+ 145:Core/Src/freertos.c ****  * @param argument: Not used
+ 146:Core/Src/freertos.c ****  * @retval None
+ 147:Core/Src/freertos.c ****  */
+ 148:Core/Src/freertos.c **** /* USER CODE END Header_canopen_task */
+ 149:Core/Src/freertos.c **** void canopen_task(void *argument)
+ 150:Core/Src/freertos.c **** {
+  99              		.loc 1 150 1 is_stmt 1 view -0
+ 100              		.cfi_startproc
+ 101              		@ Volatile: function does not return.
+ 102              		@ args = 0, pretend = 0, frame = 24
+ 103              		@ frame_needed = 0, uses_anonymous_args = 0
+ 104              		.loc 1 150 1 is_stmt 0 view .LVU15
+ 105 0000 00B5     		push	{lr}
+ 106              	.LCFI1:
+ 107              		.cfi_def_cfa_offset 4
+ 108              		.cfi_offset 14, -4
+ 109 0002 87B0     		sub	sp, sp, #28
+ 110              	.LCFI2:
+ 111              		.cfi_def_cfa_offset 32
+ 151:Core/Src/freertos.c ****   /* USER CODE BEGIN canopen_task */
+ 152:Core/Src/freertos.c ****   CANopenNodeSTM32 canOpenNodeSTM32;
+ 112              		.loc 1 152 3 is_stmt 1 view .LVU16
+ 153:Core/Src/freertos.c ****   canOpenNodeSTM32.CANHandle = &hcan;
+ 113              		.loc 1 153 3 view .LVU17
+ 114              		.loc 1 153 30 is_stmt 0 view .LVU18
+ 115 0004 0A4B     		ldr	r3, .L11
+ 116 0006 0293     		str	r3, [sp, #8]
+ 154:Core/Src/freertos.c ****   canOpenNodeSTM32.HWInitFunction = MX_CAN_Init;
+ 117              		.loc 1 154 3 is_stmt 1 view .LVU19
+ 118              		.loc 1 154 35 is_stmt 0 view .LVU20
+ 119 0008 0A4B     		ldr	r3, .L11+4
+ 120 000a 0393     		str	r3, [sp, #12]
+ 155:Core/Src/freertos.c ****   canOpenNodeSTM32.timerHandle = &htim17;
+ 121              		.loc 1 155 3 is_stmt 1 view .LVU21
+ 122              		.loc 1 155 32 is_stmt 0 view .LVU22
+ 123 000c 0A4B     		ldr	r3, .L11+8
+ 124 000e 0193     		str	r3, [sp, #4]
+ 156:Core/Src/freertos.c ****   canOpenNodeSTM32.desiredNodeID = 18;
+ 125              		.loc 1 156 3 is_stmt 1 view .LVU23
+ 126              		.loc 1 156 34 is_stmt 0 view .LVU24
+ 127 0010 1223     		movs	r3, #18
+ 128 0012 8DF80030 		strb	r3, [sp]
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 14
+
+
+ 157:Core/Src/freertos.c ****   canOpenNodeSTM32.baudrate = 125;
+ 129              		.loc 1 157 3 is_stmt 1 view .LVU25
+ 130              		.loc 1 157 29 is_stmt 0 view .LVU26
+ 131 0016 7D23     		movs	r3, #125
+ 132 0018 8DF80230 		strb	r3, [sp, #2]
+ 158:Core/Src/freertos.c ****   canopen_app_init(&canOpenNodeSTM32);
+ 133              		.loc 1 158 3 is_stmt 1 view .LVU27
+ 134 001c 6846     		mov	r0, sp
+ 135              	.LVL6:
+ 136              		.loc 1 158 3 is_stmt 0 view .LVU28
+ 137 001e FFF7FEFF 		bl	canopen_app_init
+ 138              	.LVL7:
+ 139              	.L9:
+ 159:Core/Src/freertos.c ****   /* Infinite loop */
+ 160:Core/Src/freertos.c ****   for (;;)
+ 140              		.loc 1 160 3 is_stmt 1 discriminator 1 view .LVU29
+ 161:Core/Src/freertos.c ****   {
+ 162:Core/Src/freertos.c ****     canopen_app_process();
+ 141              		.loc 1 162 5 discriminator 1 view .LVU30
+ 142 0022 FFF7FEFF 		bl	canopen_app_process
+ 143              	.LVL8:
+ 163:Core/Src/freertos.c ****     vTaskDelay(1);
+ 144              		.loc 1 163 5 discriminator 1 view .LVU31
+ 145 0026 0120     		movs	r0, #1
+ 146 0028 FFF7FEFF 		bl	vTaskDelay
+ 147              	.LVL9:
+ 160:Core/Src/freertos.c ****   {
+ 148              		.loc 1 160 9 discriminator 1 view .LVU32
+ 149 002c F9E7     		b	.L9
+ 150              	.L12:
+ 151 002e 00BF     		.align	2
+ 152              	.L11:
+ 153 0030 00000000 		.word	hcan
+ 154 0034 00000000 		.word	MX_CAN_Init
+ 155 0038 00000000 		.word	htim17
+ 156              		.cfi_endproc
+ 157              	.LFE170:
+ 159              		.section	.text.MX_FREERTOS_Init,"ax",%progbits
+ 160              		.align	1
+ 161              		.global	MX_FREERTOS_Init
+ 162              		.syntax unified
+ 163              		.thumb
+ 164              		.thumb_func
+ 166              	MX_FREERTOS_Init:
+ 167              	.LFB168:
+  85:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
+ 168              		.loc 1 85 1 view -0
+ 169              		.cfi_startproc
+ 170              		@ args = 0, pretend = 0, frame = 0
+ 171              		@ frame_needed = 0, uses_anonymous_args = 0
+ 172 0000 08B5     		push	{r3, lr}
+ 173              	.LCFI3:
+ 174              		.cfi_def_cfa_offset 8
+ 175              		.cfi_offset 3, -8
+ 176              		.cfi_offset 14, -4
+ 108:Core/Src/freertos.c **** 
+ 177              		.loc 1 108 3 view .LVU34
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 15
+
+
+ 108:Core/Src/freertos.c **** 
+ 178              		.loc 1 108 27 is_stmt 0 view .LVU35
+ 179 0002 074A     		ldr	r2, .L15
+ 180 0004 0021     		movs	r1, #0
+ 181 0006 0748     		ldr	r0, .L15+4
+ 182 0008 FFF7FEFF 		bl	osThreadNew
+ 183              	.LVL10:
+ 108:Core/Src/freertos.c **** 
+ 184              		.loc 1 108 25 view .LVU36
+ 185 000c 064B     		ldr	r3, .L15+8
+ 186 000e 1860     		str	r0, [r3]
+ 111:Core/Src/freertos.c **** 
+ 187              		.loc 1 111 3 is_stmt 1 view .LVU37
+ 111:Core/Src/freertos.c **** 
+ 188              		.loc 1 111 23 is_stmt 0 view .LVU38
+ 189 0010 064A     		ldr	r2, .L15+12
+ 190 0012 0021     		movs	r1, #0
+ 191 0014 0648     		ldr	r0, .L15+16
+ 192 0016 FFF7FEFF 		bl	osThreadNew
+ 193              	.LVL11:
+ 111:Core/Src/freertos.c **** 
+ 194              		.loc 1 111 21 view .LVU39
+ 195 001a 064B     		ldr	r3, .L15+20
+ 196 001c 1860     		str	r0, [r3]
+ 120:Core/Src/freertos.c **** 
+ 197              		.loc 1 120 1 view .LVU40
+ 198 001e 08BD     		pop	{r3, pc}
+ 199              	.L16:
+ 200              		.align	2
+ 201              	.L15:
+ 202 0020 00000000 		.word	.LANCHOR0
+ 203 0024 00000000 		.word	StartRPM_Calcuate
+ 204 0028 00000000 		.word	.LANCHOR1
+ 205 002c 00000000 		.word	.LANCHOR2
+ 206 0030 00000000 		.word	canopen_task
+ 207 0034 00000000 		.word	.LANCHOR3
+ 208              		.cfi_endproc
+ 209              	.LFE168:
+ 211              		.section	.text.HAL_TIM_PeriodElapsedCallback,"ax",%progbits
+ 212              		.align	1
+ 213              		.global	HAL_TIM_PeriodElapsedCallback
+ 214              		.syntax unified
+ 215              		.thumb
+ 216              		.thumb_func
+ 218              	HAL_TIM_PeriodElapsedCallback:
+ 219              	.LVL12:
+ 220              	.LFB171:
+ 164:Core/Src/freertos.c ****   }
+ 165:Core/Src/freertos.c ****   /* USER CODE END canopen_task */
+ 166:Core/Src/freertos.c **** }
+ 167:Core/Src/freertos.c **** 
+ 168:Core/Src/freertos.c **** /* Private application code --------------------------------------------------*/
+ 169:Core/Src/freertos.c **** /* USER CODE BEGIN Application */
+ 170:Core/Src/freertos.c **** void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+ 171:Core/Src/freertos.c **** {
+ 221              		.loc 1 171 1 is_stmt 1 view -0
+ 222              		.cfi_startproc
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 16
+
+
+ 223              		@ args = 0, pretend = 0, frame = 8
+ 224              		@ frame_needed = 0, uses_anonymous_args = 0
+ 225              		.loc 1 171 1 is_stmt 0 view .LVU42
+ 226 0000 10B5     		push	{r4, lr}
+ 227              	.LCFI4:
+ 228              		.cfi_def_cfa_offset 8
+ 229              		.cfi_offset 4, -8
+ 230              		.cfi_offset 14, -4
+ 231 0002 84B0     		sub	sp, sp, #16
+ 232              	.LCFI5:
+ 233              		.cfi_def_cfa_offset 24
+ 234 0004 0446     		mov	r4, r0
+ 172:Core/Src/freertos.c ****   /* USER CODE BEGIN Callback 0 */
+ 173:Core/Src/freertos.c ****   /* USER CODE END Callback 0 */
+ 174:Core/Src/freertos.c ****   if (htim->Instance == TIM1)
+ 235              		.loc 1 174 3 is_stmt 1 view .LVU43
+ 236              		.loc 1 174 11 is_stmt 0 view .LVU44
+ 237 0006 0268     		ldr	r2, [r0]
+ 238              		.loc 1 174 6 view .LVU45
+ 239 0008 2D4B     		ldr	r3, .L30
+ 240 000a 9A42     		cmp	r2, r3
+ 241 000c 0AD0     		beq	.L25
+ 242              	.LVL13:
+ 243              	.L18:
+ 175:Core/Src/freertos.c ****   {
+ 176:Core/Src/freertos.c ****     HAL_IncTick();
+ 177:Core/Src/freertos.c ****   }
+ 178:Core/Src/freertos.c ****   /* USER CODE BEGIN Callback 1 */
+ 179:Core/Src/freertos.c ****   if (htim == canopenNodeSTM32->timerHandle)
+ 244              		.loc 1 179 3 is_stmt 1 view .LVU46
+ 245              		.loc 1 179 31 is_stmt 0 view .LVU47
+ 246 000e 2D4B     		ldr	r3, .L30+4
+ 247 0010 1B68     		ldr	r3, [r3]
+ 248 0012 5B68     		ldr	r3, [r3, #4]
+ 249              		.loc 1 179 6 view .LVU48
+ 250 0014 A342     		cmp	r3, r4
+ 251 0016 08D0     		beq	.L26
+ 252              	.L19:
+ 180:Core/Src/freertos.c ****   {
+ 181:Core/Src/freertos.c ****     canopen_app_interrupt();
+ 182:Core/Src/freertos.c ****   }
+ 183:Core/Src/freertos.c ****   if (htim->Instance == TIM6)
+ 253              		.loc 1 183 3 is_stmt 1 view .LVU49
+ 254              		.loc 1 183 11 is_stmt 0 view .LVU50
+ 255 0018 2268     		ldr	r2, [r4]
+ 256              		.loc 1 183 6 view .LVU51
+ 257 001a 2B4B     		ldr	r3, .L30+8
+ 258 001c 9A42     		cmp	r2, r3
+ 259 001e 07D0     		beq	.L27
+ 260              	.LVL14:
+ 261              	.L17:
+ 184:Core/Src/freertos.c ****   {
+ 185:Core/Src/freertos.c ****     if (timer_counter == 1)
+ 186:Core/Src/freertos.c ****     {
+ 187:Core/Src/freertos.c ****       encoder_raw_data = (int)((TIM2->CNT) >> 2);
+ 188:Core/Src/freertos.c ****       if (encoder_raw_data < 0) // prevent over flow
+ 189:Core/Src/freertos.c ****       {
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 17
+
+
+ 190:Core/Src/freertos.c ****         encoder_raw_data *= -1;
+ 191:Core/Src/freertos.c ****       }
+ 192:Core/Src/freertos.c ****       if (encoder_raw_data > 10000000)
+ 193:Core/Src/freertos.c ****       {
+ 194:Core/Src/freertos.c ****         timer_counter = 0;
+ 195:Core/Src/freertos.c ****         TIM2->CNT &= 0x0;
+ 196:Core/Src/freertos.c ****       }
+ 197:Core/Src/freertos.c ****       else
+ 198:Core/Src/freertos.c ****       {
+ 199:Core/Src/freertos.c ****         rpm = encoder_raw_data;
+ 200:Core/Src/freertos.c ****         OD_PERSIST_COMM.x6000_rpm_data = rpm /2;
+ 201:Core/Src/freertos.c ****         OD_set_u16(OD_find(OD, 0x6000), 0x000, OD_PERSIST_COMM.x6000_rpm_data, false);
+ 202:Core/Src/freertos.c ****         timer_counter = 0;
+ 203:Core/Src/freertos.c ****         TIM2->CNT &= 0x0;
+ 204:Core/Src/freertos.c ****       }
+ 205:Core/Src/freertos.c ****     }
+ 206:Core/Src/freertos.c ****     else
+ 207:Core/Src/freertos.c ****     {
+ 208:Core/Src/freertos.c ****       timer_counter += 1;
+ 209:Core/Src/freertos.c ****     }
+ 210:Core/Src/freertos.c ****   }
+ 211:Core/Src/freertos.c ****   /* USER CODE END Callback 1 */
+ 212:Core/Src/freertos.c **** }
+ 262              		.loc 1 212 1 view .LVU52
+ 263 0020 04B0     		add	sp, sp, #16
+ 264              	.LCFI6:
+ 265              		.cfi_remember_state
+ 266              		.cfi_def_cfa_offset 8
+ 267              		@ sp needed
+ 268 0022 10BD     		pop	{r4, pc}
+ 269              	.LVL15:
+ 270              	.L25:
+ 271              	.LCFI7:
+ 272              		.cfi_restore_state
+ 176:Core/Src/freertos.c ****   }
+ 273              		.loc 1 176 5 is_stmt 1 view .LVU53
+ 274 0024 FFF7FEFF 		bl	HAL_IncTick
+ 275              	.LVL16:
+ 176:Core/Src/freertos.c ****   }
+ 276              		.loc 1 176 5 is_stmt 0 view .LVU54
+ 277 0028 F1E7     		b	.L18
+ 278              	.L26:
+ 181:Core/Src/freertos.c ****   }
+ 279              		.loc 1 181 5 is_stmt 1 view .LVU55
+ 280 002a FFF7FEFF 		bl	canopen_app_interrupt
+ 281              	.LVL17:
+ 282 002e F3E7     		b	.L19
+ 283              	.L27:
+ 185:Core/Src/freertos.c ****     {
+ 284              		.loc 1 185 5 view .LVU56
+ 185:Core/Src/freertos.c ****     {
+ 285              		.loc 1 185 23 is_stmt 0 view .LVU57
+ 286 0030 264B     		ldr	r3, .L30+12
+ 287 0032 1B68     		ldr	r3, [r3]
+ 185:Core/Src/freertos.c ****     {
+ 288              		.loc 1 185 8 view .LVU58
+ 289 0034 012B     		cmp	r3, #1
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 18
+
+
+ 290 0036 04D0     		beq	.L28
+ 208:Core/Src/freertos.c ****     }
+ 291              		.loc 1 208 7 is_stmt 1 view .LVU59
+ 208:Core/Src/freertos.c ****     }
+ 292              		.loc 1 208 21 is_stmt 0 view .LVU60
+ 293 0038 244A     		ldr	r2, .L30+12
+ 294 003a 1368     		ldr	r3, [r2]
+ 295 003c 0133     		adds	r3, r3, #1
+ 296 003e 1360     		str	r3, [r2]
+ 297              		.loc 1 212 1 view .LVU61
+ 298 0040 EEE7     		b	.L17
+ 299              	.L28:
+ 187:Core/Src/freertos.c ****       if (encoder_raw_data < 0) // prevent over flow
+ 300              		.loc 1 187 7 is_stmt 1 view .LVU62
+ 187:Core/Src/freertos.c ****       if (encoder_raw_data < 0) // prevent over flow
+ 301              		.loc 1 187 37 is_stmt 0 view .LVU63
+ 302 0042 4FF08043 		mov	r3, #1073741824
+ 303 0046 5B6A     		ldr	r3, [r3, #36]
+ 187:Core/Src/freertos.c ****       if (encoder_raw_data < 0) // prevent over flow
+ 304              		.loc 1 187 44 view .LVU64
+ 305 0048 9B08     		lsrs	r3, r3, #2
+ 187:Core/Src/freertos.c ****       if (encoder_raw_data < 0) // prevent over flow
+ 306              		.loc 1 187 24 view .LVU65
+ 307 004a 214A     		ldr	r2, .L30+16
+ 308 004c 1360     		str	r3, [r2]
+ 188:Core/Src/freertos.c ****       {
+ 309              		.loc 1 188 7 is_stmt 1 view .LVU66
+ 188:Core/Src/freertos.c ****       {
+ 310              		.loc 1 188 28 is_stmt 0 view .LVU67
+ 311 004e 1368     		ldr	r3, [r2]
+ 188:Core/Src/freertos.c ****       {
+ 312              		.loc 1 188 10 view .LVU68
+ 313 0050 002B     		cmp	r3, #0
+ 314 0052 0CDB     		blt	.L29
+ 315              	.L22:
+ 192:Core/Src/freertos.c ****       {
+ 316              		.loc 1 192 7 is_stmt 1 view .LVU69
+ 192:Core/Src/freertos.c ****       {
+ 317              		.loc 1 192 28 is_stmt 0 view .LVU70
+ 318 0054 1E4B     		ldr	r3, .L30+16
+ 319 0056 1A68     		ldr	r2, [r3]
+ 192:Core/Src/freertos.c ****       {
+ 320              		.loc 1 192 10 view .LVU71
+ 321 0058 1E4B     		ldr	r3, .L30+20
+ 322 005a 9A42     		cmp	r2, r3
+ 323 005c 0BDD     		ble	.L23
+ 194:Core/Src/freertos.c ****         TIM2->CNT &= 0x0;
+ 324              		.loc 1 194 9 is_stmt 1 view .LVU72
+ 194:Core/Src/freertos.c ****         TIM2->CNT &= 0x0;
+ 325              		.loc 1 194 23 is_stmt 0 view .LVU73
+ 326 005e 0022     		movs	r2, #0
+ 327 0060 1A4B     		ldr	r3, .L30+12
+ 328 0062 1A60     		str	r2, [r3]
+ 195:Core/Src/freertos.c ****       }
+ 329              		.loc 1 195 9 is_stmt 1 view .LVU74
+ 195:Core/Src/freertos.c ****       }
+ 330              		.loc 1 195 19 is_stmt 0 view .LVU75
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 19
+
+
+ 331 0064 4FF08043 		mov	r3, #1073741824
+ 332 0068 596A     		ldr	r1, [r3, #36]
+ 333 006a 5A62     		str	r2, [r3, #36]
+ 334 006c D8E7     		b	.L17
+ 335              	.L29:
+ 190:Core/Src/freertos.c ****       }
+ 336              		.loc 1 190 9 is_stmt 1 view .LVU76
+ 190:Core/Src/freertos.c ****       }
+ 337              		.loc 1 190 26 is_stmt 0 view .LVU77
+ 338 006e 1368     		ldr	r3, [r2]
+ 339 0070 5B42     		rsbs	r3, r3, #0
+ 340 0072 1360     		str	r3, [r2]
+ 341 0074 EEE7     		b	.L22
+ 342              	.L23:
+ 199:Core/Src/freertos.c ****         OD_PERSIST_COMM.x6000_rpm_data = rpm /2;
+ 343              		.loc 1 199 9 is_stmt 1 view .LVU78
+ 199:Core/Src/freertos.c ****         OD_PERSIST_COMM.x6000_rpm_data = rpm /2;
+ 344              		.loc 1 199 13 is_stmt 0 view .LVU79
+ 345 0076 164B     		ldr	r3, .L30+16
+ 346 0078 1B68     		ldr	r3, [r3]
+ 347 007a 9BB2     		uxth	r3, r3
+ 348 007c 164A     		ldr	r2, .L30+24
+ 349 007e 1380     		strh	r3, [r2]	@ movhi
+ 200:Core/Src/freertos.c ****         OD_set_u16(OD_find(OD, 0x6000), 0x000, OD_PERSIST_COMM.x6000_rpm_data, false);
+ 350              		.loc 1 200 9 is_stmt 1 view .LVU80
+ 200:Core/Src/freertos.c ****         OD_set_u16(OD_find(OD, 0x6000), 0x000, OD_PERSIST_COMM.x6000_rpm_data, false);
+ 351              		.loc 1 200 40 is_stmt 0 view .LVU81
+ 352 0080 1388     		ldrh	r3, [r2]
+ 353 0082 164C     		ldr	r4, .L30+28
+ 354              	.LVL18:
+ 200:Core/Src/freertos.c ****         OD_set_u16(OD_find(OD, 0x6000), 0x000, OD_PERSIST_COMM.x6000_rpm_data, false);
+ 355              		.loc 1 200 40 view .LVU82
+ 356 0084 C3F34E03 		ubfx	r3, r3, #1, #15
+ 357 0088 A4F89C30 		strh	r3, [r4, #156]	@ movhi
+ 201:Core/Src/freertos.c ****         timer_counter = 0;
+ 358              		.loc 1 201 9 is_stmt 1 view .LVU83
+ 201:Core/Src/freertos.c ****         timer_counter = 0;
+ 359              		.loc 1 201 20 is_stmt 0 view .LVU84
+ 360 008c 4FF4C041 		mov	r1, #24576
+ 361 0090 134B     		ldr	r3, .L30+32
+ 362 0092 1868     		ldr	r0, [r3]
+ 363 0094 FFF7FEFF 		bl	OD_find
+ 364              	.LVL19:
+ 201:Core/Src/freertos.c ****         timer_counter = 0;
+ 365              		.loc 1 201 9 view .LVU85
+ 366 0098 B4F89C30 		ldrh	r3, [r4, #156]
+ 367              	.LVL20:
+ 201:Core/Src/freertos.c ****         timer_counter = 0;
+ 368              		.loc 1 201 9 view .LVU86
+ 369 009c ADF80E30 		strh	r3, [sp, #14]	@ movhi
+ 370              	.LVL21:
+ 371              	.LBB10:
+ 372              	.LBI10:
+ 373              		.file 3 "Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h"
    1:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /**
    2:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * CANopen Object Dictionary interface
    3:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 20
+
+
    4:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @file        CO_ODinterface.h
    5:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @ingroup     CO_ODinterface
    6:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @author      Janez Paternoster
@@ -358,9 +1190,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
   50:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
   51:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** #ifndef OD_FLAGS_PDO_SIZE
   52:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /** Size of of flagsPDO variable inside @ref OD_extension_t, from 0 to 32. */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 7
-
-
   53:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** #define OD_FLAGS_PDO_SIZE 4
   54:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** #endif
   55:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
@@ -369,6 +1198,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
   58:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * Object Dictionary (OD.c file usually) */
   59:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** #define CO_PROGMEM const
   60:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** #endif
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 21
+
+
   61:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
   62:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
   63:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /**
@@ -418,9 +1250,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  107:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1381_SRDO_1_MAPPING     = 0x1381U,/**< SRDO mapping parameter */
  108:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H13FE_SRDO_VALID         = 0x13FEU,/**< SRDO Configuration valid */
  109:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H13FF_SRDO_CHECKSUM      = 0x13FFU,/**< SRDO configuration checksum */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 8
-
-
  110:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1400_RXPDO_1_PARAM      = 0x1400U,/**< RXPDO communication parameter */
  111:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1600_RXPDO_1_MAPPING    = 0x1600U,/**< RXPDO mapping parameters */
  112:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_H1800_TXPDO_1_PARAM      = 0x1800U,/**< TXPDO communication parameter */
@@ -429,6 +1258,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  115:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  116:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  117:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /**
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 22
+
+
  118:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * Attributes (bit masks) for OD sub-object.
  119:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  */
  120:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** typedef enum {
@@ -478,9 +1310,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  164:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** SDO abort 0x06040043 - General parameter incompatibility reasons */
  165:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     ODR_PAR_INCOMPAT = 8,
  166:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** SDO abort 0x06040047 - General internal incompatibility in device */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 9
-
-
  167:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     ODR_DEV_INCOMPAT = 9,
  168:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** SDO abort 0x06060000 - Access failed due to hardware error */
  169:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     ODR_HW = 10,
@@ -489,6 +1318,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  172:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** SDO abort 0x06070012 - Data type does not match, length too high */
  173:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     ODR_DATA_LONG = 12,
  174:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** SDO abort 0x06070013 - Data type does not match, length too short */
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 23
+
+
  175:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     ODR_DATA_SHORT = 13,
  176:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** SDO abort 0x06090011 - Sub index does not exist */
  177:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     ODR_SUB_NOT_EXIST = 14,
@@ -538,9 +1370,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  221:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** In case of large data, dataOffset indicates position of already
  222:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * transferred data */
  223:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_size_t dataOffset;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 10
-
-
  224:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** Attribute bit-field of the OD sub-object, see @ref OD_attributes_t */
  225:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     OD_attr_t attribute;
  226:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     /** Sub index of the OD sub-object, informative */
@@ -549,6 +1378,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  229:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  230:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  231:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /**
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 24
+
+
  232:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * Structure for input / output on the OD variable. It is initialized with
  233:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @ref OD_getSub() function. Access principle to OD variable is via read/write
  234:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * functions operating on stream, similar as standard read/write.
@@ -598,9 +1430,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  278:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * returns 'ODR_OK'. If write is partial, it returns 'ODR_PARTIAL'. In case
  279:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * of errors function returns code similar to SDO abort code.
  280:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      *
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 11
-
-
  281:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * Write can be restarted with @ref OD_rwRestart() function.
  282:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      *
  283:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * At the moment, when Object Dictionary is initialized, every variable has
@@ -609,6 +1438,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  286:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * similar as it can bind "read" function.
  287:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      *
  288:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * "write" function must always copy all available data from buf. If OD
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 25
+
+
  289:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * variable expect more data, then "*returnCode" must return 'ODR_PARTIAL'.
  290:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      *
  291:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * @warning When accessing OD variables by calling the read() function, it
@@ -658,9 +1490,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  335:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****      * See also @ref OD_requestTPDO and @ref OD_TPDOtransmitted. */
  336:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     uint8_t flagsPDO[OD_FLAGS_PDO_SIZE];
  337:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** #endif
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 12
-
-
  338:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** } OD_extension_t;
  339:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  340:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
@@ -669,6 +1498,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  343:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
  344:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * OD entries are collected inside OD_t as array (list). Each OD entry contains
  345:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * basic information about OD object (index and subEntriesCount), pointer to
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 26
+
+
  346:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * odObject with additional information about var, array or record entry and
  347:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * pointer to extension, configurable by application.
  348:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  */
@@ -718,9 +1550,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  392:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @ref OD_extension_init(). It writes data directly to memory location
  393:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * specified by Object dictionary. If no IO extension is used on OD entry, then
  394:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * io->write returned by @ref OD_getSub() equals to this function. See
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 13
-
-
  395:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * also @ref OD_IO_t.
  396:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  */
  397:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** ODR_t OD_writeOriginal(OD_stream_t *stream, const void *buf,
@@ -729,6 +1558,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  400:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  401:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /**
  402:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * Find OD entry in Object Dictionary
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 27
+
+
  403:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
  404:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @param od Object Dictionary
  405:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @param index CANopen Object Dictionary index of object in Object Dictionary
@@ -778,9 +1610,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  449:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
  450:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @param stream Object Dictionary stream object.
  451:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 14
-
-
  452:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @return true, if OD variable is mappable.
  453:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  */
  454:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** static inline bool_t OD_mappable(OD_stream_t *stream) {
@@ -789,6 +1618,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  457:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
  458:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  459:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 28
+
+
  460:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /**
  461:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * Restart read or write operation on OD variable
  462:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
@@ -838,9 +1670,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  506:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
  507:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @param flagsPDO TPDO request flags returned by @ref OD_getFlagsPDO.
  508:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @param subIndex subIndex of the OD variable.
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 15
-
-
  509:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  */
  510:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** static inline void OD_requestTPDO(uint8_t *flagsPDO, uint8_t subIndex) {
  511:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** #if OD_FLAGS_PDO_SIZE > 0
@@ -849,6 +1678,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  514:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****         uint8_t mask = ~(1 << (subIndex & 0x07));
  515:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****         flagsPDO[subIndex >> 3] &= mask;
  516:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     }
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 29
+
+
  517:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** #endif
  518:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
  519:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
@@ -898,9 +1730,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  563:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
  564:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * Before this function specifies extension, OD variables are accessed from
  565:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * original OD location. After this function specifies extension OD variables
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 16
-
-
  566:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * are accessed from read/write functions specified by extension. (Except when
  567:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * "odOrig" argument to @ref OD_getSub() is set to true.)
  568:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
@@ -909,6 +1738,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  571:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  *
  572:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * @warning
  573:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * Object dictionary storage works only directly on OD variables. It does not
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 30
+
+
  574:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * access read function specified here. So, if extended OD objects needs to be
  575:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * preserved, then @ref OD_writeOriginal can be used inside custom write
  576:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****  * function.
@@ -958,9 +1790,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  620:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  621:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /** Get int8_t variable from Object Dictionary, see @ref OD_get_value */
  622:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** static inline ODR_t OD_get_i8(const OD_entry_t *entry, uint8_t subIndex,
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 17
-
-
  623:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                               int8_t *val, bool_t odOrig)
  624:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** {
  625:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     return OD_get_value(entry, subIndex, val, sizeof(*val), odOrig);
@@ -969,6 +1798,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  628:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /** Get int16_t variable from Object Dictionary, see @ref OD_get_value */
  629:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** static inline ODR_t OD_get_i16(const OD_entry_t *entry, uint8_t subIndex,
  630:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                                int16_t *val, bool_t odOrig)
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 31
+
+
  631:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** {
  632:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     return OD_get_value(entry, subIndex, val, sizeof(*val), odOrig);
  633:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
@@ -1018,9 +1850,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  677:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /** Get float32_t variable from Object Dictionary, see @ref OD_get_value */
  678:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** static inline ODR_t OD_get_f32(const OD_entry_t *entry, uint8_t subIndex,
  679:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                                float32_t *val, bool_t odOrig)
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 18
-
-
  680:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** {
  681:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     return OD_get_value(entry, subIndex, val, sizeof(*val), odOrig);
  682:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
@@ -1029,6 +1858,9 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  685:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** static inline ODR_t OD_get_f64(const OD_entry_t *entry, uint8_t subIndex,
  686:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                                float64_t *val, bool_t odOrig)
  687:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** {
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 32
+
+
  688:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     return OD_get_value(entry, subIndex, val, sizeof(*val), odOrig);
  689:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
  690:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
@@ -1078,9 +1910,6 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  734:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** }
  735:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  736:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /** Set uint8_t variable in Object Dictionary, see @ref OD_set_value */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 19
-
-
  737:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** static inline ODR_t OD_set_u8(const OD_entry_t *entry, uint8_t subIndex,
  738:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                               uint8_t val, bool_t odOrig)
  739:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** {
@@ -1089,830 +1918,198 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 1
  742:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** 
  743:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** /** Set uint16_t variable in Object Dictionary, see @ref OD_set_value */
  744:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** static inline ODR_t OD_set_u16(const OD_entry_t *entry, uint8_t subIndex,
- 133              		.loc 2 744 21 is_stmt 1 view .LVU34
- 134              	.LBB7:
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 33
+
+
+ 374              		.loc 3 744 21 is_stmt 1 view .LVU87
+ 375              	.LBB11:
  745:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****                                uint16_t val, bool_t odOrig)
  746:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h **** {
  747:Middlewares/Third_Party/CANopenNode/301/CO_ODinterface.h ****     return OD_set_value(entry, subIndex, &val, sizeof(val), odOrig);
- 135              		.loc 2 747 5 view .LVU35
- 136              		.loc 2 747 12 is_stmt 0 view .LVU36
- 137 007e 0021     		movs	r1, #0
- 138 0080 0091     		str	r1, [sp]
- 139 0082 0223     		movs	r3, #2
- 140              	.LVL11:
- 141              		.loc 2 747 12 view .LVU37
- 142 0084 0DF10E02 		add	r2, sp, #14
- 143              	.LVL12:
- 144              		.loc 2 747 12 view .LVU38
- 145 0088 FFF7FEFF 		bl	OD_set_value
- 146              	.LVL13:
- 147              		.loc 2 747 12 view .LVU39
- 148              	.LBE7:
- 149              	.LBE6:
- 147:Core/Src/freertos.c ****       CO_TPDOsendRequest(&canopenNodeSTM32->canOpenStack->TPDO[0]);
- 150              		.loc 1 147 7 is_stmt 1 view .LVU40
- 151              		.loc 1 147 43 is_stmt 0 view .LVU41
- 152 008c 094B     		ldr	r3, .L8+12
- 153 008e 1B68     		ldr	r3, [r3]
- 154 0090 5B69     		ldr	r3, [r3, #20]
- 155              		.loc 1 147 7 view .LVU42
- 156 0092 5B6B     		ldr	r3, [r3, #52]
- 157              	.LVL14:
- 158              	.LBB8:
- 159              	.LBI8:
- 160              		.file 3 "Middlewares/Third_Party/CANopenNode/301/CO_PDO.h"
-   1:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
-   2:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * CANopen Process Data Object protocol.
-   3:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
-   4:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @file        CO_PDO.h
-   5:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @ingroup     CO_PDO
-   6:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @author      Janez Paternoster
-   7:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @copyright   2021 Janez Paternoster
-   8:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
-   9:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * This file is part of CANopenNode, an opensource CANopen Stack.
-  10:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Project home page is <https://github.com/CANopenNode/CANopenNode>.
-  11:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * For more information on CANopen see <http://www.can-cia.org/>.
-  12:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
-  13:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Licensed under the Apache License, Version 2.0 (the "License");
-  14:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * you may not use this file except in compliance with the License.
-  15:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * You may obtain a copy of the License at
-  16:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
-  17:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *     http://www.apache.org/licenses/LICENSE-2.0
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 20
+ 376              		.loc 3 747 5 view .LVU88
+ 377              		.loc 3 747 12 is_stmt 0 view .LVU89
+ 378 00a0 0024     		movs	r4, #0
+ 379 00a2 0094     		str	r4, [sp]
+ 380 00a4 0223     		movs	r3, #2
+ 381              	.LVL22:
+ 382              		.loc 3 747 12 view .LVU90
+ 383 00a6 0DF10E02 		add	r2, sp, #14
+ 384              	.LVL23:
+ 385              		.loc 3 747 12 view .LVU91
+ 386 00aa 2146     		mov	r1, r4
+ 387 00ac FFF7FEFF 		bl	OD_set_value
+ 388              	.LVL24:
+ 389              		.loc 3 747 12 view .LVU92
+ 390              	.LBE11:
+ 391              	.LBE10:
+ 202:Core/Src/freertos.c ****         TIM2->CNT &= 0x0;
+ 392              		.loc 1 202 9 is_stmt 1 view .LVU93
+ 202:Core/Src/freertos.c ****         TIM2->CNT &= 0x0;
+ 393              		.loc 1 202 23 is_stmt 0 view .LVU94
+ 394 00b0 064B     		ldr	r3, .L30+12
+ 395 00b2 1C60     		str	r4, [r3]
+ 203:Core/Src/freertos.c ****       }
+ 396              		.loc 1 203 9 is_stmt 1 view .LVU95
+ 203:Core/Src/freertos.c ****       }
+ 397              		.loc 1 203 19 is_stmt 0 view .LVU96
+ 398 00b4 4FF08043 		mov	r3, #1073741824
+ 399 00b8 5A6A     		ldr	r2, [r3, #36]
+ 400 00ba 5C62     		str	r4, [r3, #36]
+ 401 00bc B0E7     		b	.L17
+ 402              	.L31:
+ 403 00be 00BF     		.align	2
+ 404              	.L30:
+ 405 00c0 002C0140 		.word	1073818624
+ 406 00c4 00000000 		.word	canopenNodeSTM32
+ 407 00c8 00100040 		.word	1073745920
+ 408 00cc 00000000 		.word	.LANCHOR4
+ 409 00d0 00000000 		.word	.LANCHOR5
+ 410 00d4 80969800 		.word	10000000
+ 411 00d8 00000000 		.word	.LANCHOR6
+ 412 00dc 00000000 		.word	OD_PERSIST_COMM
+ 413 00e0 00000000 		.word	OD
+ 414              		.cfi_endproc
+ 415              	.LFE171:
+ 417              		.global	canopenTask_attributes
+ 418              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 419              		.align	2
+ 420              	.LC0:
+ 421 0000 63616E6F 		.ascii	"canopenTask\000"
+ 421      70656E54 
+ 421      61736B00 
+ 422              		.global	canopenTaskHandle
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 34
 
 
-  18:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
-  19:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Unless required by applicable law or agreed to in writing, software
-  20:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * distributed under the License is distributed on an "AS IS" BASIS,
-  21:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  22:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * See the License for the specific language governing permissions and
-  23:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * limitations under the License.
-  24:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
-  25:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
-  26:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #ifndef CO_PDO_H
-  27:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #define CO_PDO_H
-  28:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
-  29:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #include "301/CO_ODinterface.h"
-  30:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #include "301/CO_Emergency.h"
-  31:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #include "301/CO_SYNC.h"
-  32:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
-  33:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /* default configuration, see CO_config.h */
-  34:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #ifndef CO_CONFIG_PDO
-  35:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #define CO_CONFIG_PDO (CO_CONFIG_RPDO_ENABLE | \
-  36:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_TPDO_ENABLE | \
-  37:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_RPDO_TIMERS_ENABLE | \
-  38:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_TPDO_TIMERS_ENABLE | \
-  39:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_PDO_SYNC_ENABLE | \
-  40:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_PDO_OD_IO_ACCESS | \
-  41:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_GLOBAL_RT_FLAG_CALLBACK_PRE | \
-  42:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_GLOBAL_FLAG_TIMERNEXT | \
-  43:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                        CO_CONFIG_GLOBAL_FLAG_OD_DYNAMIC)
-  44:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
-  45:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
-  46:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & (CO_CONFIG_RPDO_ENABLE | CO_CONFIG_TPDO_ENABLE)) || defined CO_DOXYGEN
-  47:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
-  48:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #ifdef __cplusplus
-  49:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** extern "C" {
-  50:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
-  51:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
-  52:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
-  53:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @defgroup CO_PDO PDO
-  54:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * CANopen Process Data Object protocol.
-  55:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
-  56:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @ingroup CO_CANopen_301
-  57:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @{
-  58:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Process data objects are used for real-time data transfer with no protocol
-  59:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * overhead.
-  60:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
-  61:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * TPDO with specific identifier is transmitted by one device and recieved by
-  62:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * zero or more devices as RPDO. PDO communication parameters(COB-ID,
-  63:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * transmission type, etc.) are in the Object Dictionary at index 0x1400+ and
-  64:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * 0x1800+. PDO mapping parameters (size and contents of the PDO) are in the
-  65:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Object Dictionary at index 0x1600+ and 0x1A00+.
-  66:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
-  67:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Features of the PDO as implemented in CANopenNode:
-  68:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *  - Dynamic PDO mapping.
-  69:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *  - Map granularity of one byte.
-  70:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *  - Data from OD variables are accessed via @ref OD_IO_t read()/write()
-  71:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    functions, which gives a great usefulness to the application.
-  72:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *  - For systems with very low memory and processing capabilities there is a
-  73:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    simplified @ref CO_CONFIG_PDO option, where instead of read()/write()
-  74:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    access, PDO data are copied directly to/from memory locations of
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 21
+ 423              		.global	RPM_CalcuateTas_attributes
+ 424              		.align	2
+ 425              	.LC1:
+ 426 000c 52504D5F 		.ascii	"RPM_CalcuateTas\000"
+ 426      43616C63 
+ 426      75617465 
+ 426      54617300 
+ 427              		.global	RPM_CalcuateTasHandle
+ 428              		.global	encoder_raw_data
+ 429              		.global	timer_counter
+ 430              		.global	rpm
+ 431              		.section	.bss.RPM_CalcuateTasHandle,"aw",%nobits
+ 432              		.align	2
+ 433              		.set	.LANCHOR1,. + 0
+ 436              	RPM_CalcuateTasHandle:
+ 437 0000 00000000 		.space	4
+ 438              		.section	.bss.canopenTaskHandle,"aw",%nobits
+ 439              		.align	2
+ 440              		.set	.LANCHOR3,. + 0
+ 443              	canopenTaskHandle:
+ 444 0000 00000000 		.space	4
+ 445              		.section	.bss.encoder_raw_data,"aw",%nobits
+ 446              		.align	2
+ 447              		.set	.LANCHOR5,. + 0
+ 450              	encoder_raw_data:
+ 451 0000 00000000 		.space	4
+ 452              		.section	.bss.rpm,"aw",%nobits
+ 453              		.align	1
+ 454              		.set	.LANCHOR6,. + 0
+ 457              	rpm:
+ 458 0000 0000     		.space	2
+ 459              		.section	.bss.timer_counter,"aw",%nobits
+ 460              		.align	2
+ 461              		.set	.LANCHOR4,. + 0
+ 464              	timer_counter:
+ 465 0000 00000000 		.space	4
+ 466              		.section	.rodata.RPM_CalcuateTas_attributes,"a"
+ 467              		.align	2
+ 468              		.set	.LANCHOR0,. + 0
+ 471              	RPM_CalcuateTas_attributes:
+ 472 0000 0C000000 		.word	.LC1
+ 473 0004 00000000 		.space	16
+ 473      00000000 
+ 473      00000000 
+ 473      00000000 
+ 474 0014 00020000 		.word	512
+ 475 0018 28000000 		.word	40
+ 476 001c 00000000 		.space	8
+ 476      00000000 
+ 477              		.section	.rodata.canopenTask_attributes,"a"
+ 478              		.align	2
+ 479              		.set	.LANCHOR2,. + 0
+ 482              	canopenTask_attributes:
+ 483 0000 00000000 		.word	.LC0
+ 484 0004 00000000 		.space	16
+ 484      00000000 
+ 484      00000000 
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 35
 
 
-  75:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    OD variables.
-  76:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *  - After RPDO is received from CAN bus, its data are copied to internal
-  77:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    buffer (inside fast CAN receive interrupt). Function CO_RPDO_process()
-  78:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    (called by application) copies data to the mapped objects in the Object
-  79:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    Dictionary. Synchronous RPDOs are processed AFTER reception of the next
-  80:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    SYNC message.
-  81:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *  - Function CO_TPDO_process() (called by application) sends TPDO when
-  82:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    necessary. There are different transmission types possible, controlled by:
-  83:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    SYNC message, event timer, @ref CO_TPDOsendRequest() by application or
-  84:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    @ref OD_requestTPDO(), where application can request TPDO for OD
-  85:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    variable mapped to any of them. In later case application may, for
-  86:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    example, monitor change of state of the OD variable and indicate TPDO
-  87:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *    request on it.
-  88:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
-  89:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @anchor CO_PDO_CAN_ID
-  90:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * ### CAN identifiers for PDO
-  91:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
-  92:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Each PDO can be configured with any valid 11-bit CAN identifier. Lower
-  93:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * numbers have higher priorities on CAN bus. As a general rule, each CAN
-  94:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * message is identified with own CAN-ID, which must be unique and produced by
-  95:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * single source. The same is with PDO objects: Any TPDO produced on the CANopen
-  96:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * network must have unique CAN-ID and there can be zero to many RPDOs (from
-  97:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * different devices) configured to match the CAN-ID of the TPDO of interest.
-  98:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
-  99:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * CANopen standard provides pre-defined connection sets for four RPDOs and four
- 100:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * TPDOs on each device with specific 7-bit Node-ID. These are default values
- 101:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * and are usable in configuration, where CANopen network contains a master
- 102:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * device, which directly communicates with many slaves. In de-centralized
- 103:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * systems, where devices operate without a master, it makes sense to configure
- 104:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * CAN-IDs of the RPDOs to the non-default values.
- 105:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
- 106:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Default CAN identifiers for first four TPDOs on device with specific CANopen
- 107:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Node-Id are: 0x180+NodeId, 0x280+NodeId, 0x380+NodeId and 0x480+NodeId.
- 108:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
- 109:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Default CAN identifiers for first four RPDOs on device with specific CANopen
- 110:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Node-Id are: 0x200+NodeId, 0x300+NodeId, 0x400+NodeId and 0x500+NodeId.
- 111:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
- 112:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * CANopenNode handles default (pre-defined) CAN-IDs. If it is detected, that
- 113:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * PDO is configured with default CAN-ID (when writing to OD variable PDO
- 114:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * communication parameter, COB-ID), then COB-ID is stored without Node-Id to
- 115:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * the Object Dictionary. If Node-ID is changed, then COB-ID will always contain
- 116:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * correct default CAN-ID (default CAN-ID + Node-ID). If PDO is configured with
- 117:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * non-default CAN-ID, then it will be stored to the Object Dictionary as is.
- 118:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
- 119:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * If configuration CO_CONFIG_FLAG_OD_DYNAMIC is enabled in @ref CO_CONFIG_PDO,
- 120:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * then PDOs can be configured dynamically, also in NMT operational state.
- 121:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Otherwise PDOs are configured only in reset communication section and also
- 122:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * default CAN-IDs are always stored to OD as is, no default node-id is handled.
- 123:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
- 124:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Configure PDO by writing to the OD variables in the following procedure:
- 125:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * - Disable the PDO by setting bit-31 to 1 in PDO communication parameter,
- 126:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *   COB-ID
- 127:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * - Node-Id can be configured only when PDO is disabled.
- 128:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * - Disable mapping by setting PDO mapping parameter, sub index 0 to 0
- 129:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * - Configure mapping
- 130:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * - Enable mapping by setting PDO mapping param, sub 0 to number of mapped
- 131:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *   objects
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 22
-
-
- 132:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * - Enable the PDO by setting bit-31 to 0 in PDO communication parameter,
- 133:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *   COB-ID
- 134:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
- 135:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 136:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /** Maximum size of PDO message, 8 for standard CAN */
- 137:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #ifndef CO_PDO_MAX_SIZE
- 138:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #define CO_PDO_MAX_SIZE 8
- 139:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
- 140:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 141:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /** Maximum number of entries, which can be mapped to PDO, 8 for standard CAN,
- 142:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * may be less to preserve RAM usage */
- 143:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #ifndef CO_PDO_MAX_MAPPED_ENTRIES
- 144:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #define CO_PDO_MAX_MAPPED_ENTRIES 8
- 145:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
- 146:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 147:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /** Number of CANopen RPDO objects, which uses default CAN indentifiers.
- 148:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * By default first four RPDOs have pre-defined CAN identifiers, which depends
- 149:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * on node-id. This constant may be set to 0 to disable functionality or set
- 150:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * to any other value. For example, if there are several logical devices inside
- 151:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * single CANopen device, then more than four RPDOs may have pre-defined CAN
- 152:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * identifiers. In that case RPDO5 has CAN_ID=0x200+NodeId+1, RPDO6 has
- 153:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * CAN_ID=0x300+NodeId+1, RPDO9 has CAN_ID=0x200+NodeId+2 and so on. */
- 154:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #ifndef CO_RPDO_DEFAULT_CANID_COUNT
- 155:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #define CO_RPDO_DEFAULT_CANID_COUNT 4
- 156:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
- 157:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 158:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /** Number of CANopen TPDO objects, which uses default CAN indentifiers.
- 159:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * If value is more than four, then pre-defined pre-defined CAN identifiers are:
- 160:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * TPDO5 has CAN_ID=0x180+NodeId+1, TPDO6 has CAN_ID=0x280+NodeId+1,
- 161:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * TPDO9 has CAN_ID=0x180+NodeId+2 and so on.
- 162:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * For description see @ref CO_RPDO_DEFAULT_CANID_COUNT. */
- 163:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #ifndef CO_TPDO_DEFAULT_CANID_COUNT
- 164:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #define CO_TPDO_DEFAULT_CANID_COUNT 4
- 165:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
- 166:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 167:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #ifndef CO_PDO_OWN_TYPES
- 168:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /** Variable of type CO_PDO_size_t contains data length in bytes of PDO */
- 169:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** typedef uint8_t CO_PDO_size_t;
- 170:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
- 171:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 172:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
- 173:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * PDO transmission Types
- 174:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
- 175:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** typedef enum {
- 176:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_PDO_TRANSM_TYPE_SYNC_ACYCLIC = 0, /**< synchronous (acyclic) */
- 177:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_PDO_TRANSM_TYPE_SYNC_1 = 1, /**< synchronous (cyclic every sync) */
- 178:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_PDO_TRANSM_TYPE_SYNC_240 = 0xF0, /**< synchronous (cyclic every 240-th
- 179:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     sync) */
- 180:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_PDO_TRANSM_TYPE_SYNC_EVENT_LO = 0xFE, /**< event-driven, lower value
- 181:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     (manufacturer specific),  */
- 182:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_PDO_TRANSM_TYPE_SYNC_EVENT_HI = 0xFF /**< event-driven, higher value
- 183:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     (device profile and application profile specific) */
- 184:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** } CO_PDO_transmissionTypes_t;
- 185:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 186:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
- 187:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * PDO object, common properties
- 188:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 23
-
-
- 189:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** typedef struct {
- 190:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** From CO_xPDO_init() */
- 191:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_EM_t *em;
- 192:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** From CO_xPDO_init() */
- 193:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_CANmodule_t *CANdev;
- 194:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** True, if PDO is enabled and valid */
- 195:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     bool_t valid;
- 196:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Data length of the received PDO message. Calculated from mapping */
- 197:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_PDO_size_t dataLength;
- 198:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Number of mapped objects in PDO */
- 199:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t mappedObjectsCount;
- 200:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_PDO_OD_IO_ACCESS) || defined CO_DOXYGEN
- 201:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Object dictionary interface for all mapped entries. OD_IO.dataOffset has
- 202:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * special usage with PDO. It stores information about mappedLength of
- 203:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * the variable. mappedLength can be less or equal to the OD_IO.dataLength.
- 204:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * mappedLength greater than OD_IO.dataLength indicates erroneous mapping.
- 205:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * OD_IO.dataOffset is set to 0 before read/write function call and after
- 206:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * the call OD_IO.dataOffset is set back to mappedLength. */
- 207:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     OD_IO_t OD_IO[CO_PDO_MAX_MAPPED_ENTRIES];
- 208:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****   #if OD_FLAGS_PDO_SIZE > 0
- 209:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Pointer to byte, which contains PDO flag bit from @ref OD_extension_t */
- 210:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t *flagPDObyte[CO_PDO_MAX_MAPPED_ENTRIES];
- 211:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Bitmask for the flagPDObyte */
- 212:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t flagPDObitmask[CO_PDO_MAX_MAPPED_ENTRIES];
- 213:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****   #endif
- 214:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #else
- 215:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /* Pointers to data objects inside OD, where PDO will be copied */
- 216:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t *mapPointer[CO_PDO_MAX_SIZE];
- 217:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****   #if OD_FLAGS_PDO_SIZE > 0
- 218:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t *flagPDObyte[CO_PDO_MAX_SIZE];
- 219:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t flagPDObitmask[CO_PDO_MAX_SIZE];
- 220:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****   #endif
- 221:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
- 222:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_FLAG_OD_DYNAMIC) || defined CO_DOXYGEN
- 223:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** True for RPDO, false for TPDO */
- 224:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     bool_t isRPDO;
- 225:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** From CO_xPDO_init() */
- 226:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     OD_t *OD;
- 227:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** From CO_xPDO_init() */
- 228:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint16_t CANdevIdx;
- 229:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** From CO_xPDO_init() */
- 230:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint16_t preDefinedCanId;
- 231:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Currently configured CAN identifier */
- 232:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint16_t configuredCanId;
- 233:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Extension for OD object */
- 234:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     OD_extension_t OD_communicationParam_ext;
- 235:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Extension for OD object */
- 236:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     OD_extension_t OD_mappingParam_extension;
- 237:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
- 238:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** } CO_PDO_common_t;
- 239:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 240:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 241:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /*******************************************************************************
- 242:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *      R P D O
- 243:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  ******************************************************************************/
- 244:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_RPDO_ENABLE) || defined CO_DOXYGEN
- 245:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 24
-
-
- 246:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Number of buffers for received CAN message for RPDO
- 247:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
- 248:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_PDO_SYNC_ENABLE) || defined CO_DOXYGEN
- 249:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #define CO_RPDO_CAN_BUFFERS_COUNT 2
- 250:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #else
- 251:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #define CO_RPDO_CAN_BUFFERS_COUNT 1
- 252:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
- 253:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 254:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 255:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
- 256:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * RPDO object.
- 257:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
- 258:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** typedef struct {
- 259:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** PDO common properties, must be first element in this object */
- 260:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_PDO_common_t PDO_common;
- 261:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Variable indicates, if new PDO message received from CAN bus. */
- 262:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     volatile void *CANrxNew[CO_RPDO_CAN_BUFFERS_COUNT];
- 263:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** CO_PDO_MAX_SIZE data bytes of the received message. */
- 264:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t CANrxData[CO_RPDO_CAN_BUFFERS_COUNT][CO_PDO_MAX_SIZE];
- 265:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Indication of RPDO length errors, use with CO_PDO_receiveErrors_t */
- 266:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t receiveError;
- 267:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_PDO_SYNC_ENABLE) || defined CO_DOXYGEN
- 268:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** From CO_RPDO_init() */
- 269:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_SYNC_t *SYNC;
- 270:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** True if transmissionType <= 240 */
- 271:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     bool_t synchronous;
- 272:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
- 273:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_RPDO_TIMERS_ENABLE) || defined CO_DOXYGEN
- 274:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Maximum timeout time between received PDOs in microseconds. Configurable
- 275:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * by OD variable RPDO communication parameter, event-timer. */
- 276:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint32_t timeoutTime_us;
- 277:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Timeout timer variable in microseconds */
- 278:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint32_t timeoutTimer;
- 279:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
- 280:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_FLAG_CALLBACK_PRE) || defined CO_DOXYGEN
- 281:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** From CO_RPDO_initCallbackPre() or NULL */
- 282:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     void (*pFunctSignalPre)(void *object);
- 283:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** From CO_RPDO_initCallbackPre() or NULL */
- 284:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     void *functSignalObjectPre;
- 285:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
- 286:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** } CO_RPDO_t;
- 287:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 288:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 289:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
- 290:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Initialize RPDO object.
- 291:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
- 292:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Function must be called in the end of the communication reset section, after
- 293:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * all application initialization. Otherwise mapping to application OD variables
- 294:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * will not be correct.
- 295:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
- 296:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param RPDO This object will be initialized.
- 297:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param OD Object Dictionary.
- 298:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param em Emergency object.
- 299:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param SYNC SYNC object, may be NULL.
- 300:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param preDefinedCanId CAN identifier from pre-defined connection set,
- 301:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * including node-id for first four PDOs, or 0 otherwise, see @ref CO_PDO_CAN_ID
- 302:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param OD_14xx_RPDOCommPar OD entry for 0x1400+ - "RPDO communication
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 25
-
-
- 303:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * parameter", entry is required.
- 304:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param OD_16xx_RPDOMapPar OD entry for 0x1600+ - "RPDO mapping parameter",
- 305:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * entry is required.
- 306:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param CANdevRx CAN device for PDO reception.
- 307:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param CANdevRxIdx Index of receive buffer in the above CAN device.
- 308:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param [out] errInfo Additional information in case of error, may be NULL.
- 309:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
- 310:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @return #CO_ReturnError_t CO_ERROR_NO on success.
- 311:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
- 312:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** CO_ReturnError_t CO_RPDO_init(CO_RPDO_t *RPDO,
- 313:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               OD_t *OD,
- 314:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               CO_EM_t *em,
- 315:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_PDO_SYNC_ENABLE) || defined CO_DOXYGEN
- 316:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               CO_SYNC_t *SYNC,
- 317:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
- 318:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               uint16_t preDefinedCanId,
- 319:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               OD_entry_t *OD_14xx_RPDOCommPar,
- 320:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               OD_entry_t *OD_16xx_RPDOMapPar,
- 321:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               CO_CANmodule_t *CANdevRx,
- 322:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               uint16_t CANdevRxIdx,
- 323:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               uint32_t *errInfo);
- 324:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 325:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 326:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_FLAG_CALLBACK_PRE) || defined CO_DOXYGEN
- 327:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
- 328:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Initialize RPDO callback function.
- 329:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
- 330:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Function initializes optional callback function, which should immediately
- 331:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * start processing of CO_RPDO_process() function.
- 332:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Callback is called after RPDO message is received from the CAN bus.
- 333:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
- 334:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param RPDO This object.
- 335:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param object Pointer to object, which will be passed to pFunctSignalPre().
- 336:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param pFunctSignalPre Pointer to the callback function. Not called if NULL.
- 337:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
- 338:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** void CO_RPDO_initCallbackPre(CO_RPDO_t *RPDO,
- 339:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                              void *object,
- 340:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                              void (*pFunctSignalPre)(void *object));
- 341:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
- 342:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 343:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 344:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
- 345:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Process received PDO messages.
- 346:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
- 347:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Function must be called cyclically in any NMT state. It copies data from RPDO
- 348:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * to Object Dictionary variables if: new PDO receives and PDO is valid and NMT
- 349:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * operating state is operational. Synchronous RPDOs are processed after next
- 350:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * SYNC message.
- 351:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
- 352:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param RPDO This object.
- 353:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param timeDifference_us Time difference from previous function call.
- 354:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param [out] timerNext_us info to OS - see CO_process().
- 355:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param NMTisOperational True if this node is in NMT_OPERATIONAL state.
- 356:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param syncWas True, if CANopen SYNC message was just received or
- 357:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * transmitted.
- 358:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
- 359:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** void CO_RPDO_process(CO_RPDO_t *RPDO,
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 26
-
-
- 360:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_RPDO_TIMERS_ENABLE) || defined CO_DOXYGEN
- 361:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                      uint32_t timeDifference_us,
- 362:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                      uint32_t *timerNext_us,
- 363:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
- 364:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                      bool_t NMTisOperational,
- 365:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                      bool_t syncWas);
- 366:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif /* (CO_CONFIG_PDO) & CO_CONFIG_RPDO_ENABLE */
- 367:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 368:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 369:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /*******************************************************************************
- 370:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *      T P D O
- 371:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  ******************************************************************************/
- 372:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_TPDO_ENABLE) || defined CO_DOXYGEN
- 373:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
- 374:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * TPDO object.
- 375:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
- 376:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** typedef struct {
- 377:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** PDO common properties, must be first element in this object */
- 378:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_PDO_common_t PDO_common;
- 379:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** CAN transmit buffer inside CANdev */
- 380:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_CANtx_t *CANtxBuff;
- 381:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Copy of the variable from object dictionary */
- 382:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t transmissionType;
- 383:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** If this flag is set and TPDO is event driven (transmission type is 0,
- 384:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****      * 254 or 255), then PDO will be sent by CO_TPDO_process(). */
- 385:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     bool_t sendRequest;
- 386:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_PDO_SYNC_ENABLE) || defined CO_DOXYGEN
- 387:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** From CO_TPDO_init() */
- 388:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     CO_SYNC_t *SYNC;
- 389:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Copy of the variable from object dictionary */
- 390:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t syncStartValue;
- 391:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** SYNC counter used for PDO sending */
- 392:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint8_t syncCounter;
- 393:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
- 394:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_TPDO_TIMERS_ENABLE) || defined CO_DOXYGEN
- 395:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Inhibit time from object dictionary translated to microseconds */
- 396:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint32_t inhibitTime_us;
- 397:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Event time from object dictionary translated to microseconds */
- 398:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint32_t eventTime_us;
- 399:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Inhibit timer variable in microseconds */
- 400:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint32_t inhibitTimer;
- 401:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     /** Event timer variable in microseconds */
- 402:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     uint32_t eventTimer;
- 403:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
- 404:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** } CO_TPDO_t;
- 405:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 406:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 407:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
- 408:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Initialize TPDO object.
- 409:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
- 410:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Function must be called in the end of the communication reset section, after
- 411:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * all application initialization. Otherwise mapping to application OD variables
- 412:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * will not be correct.
- 413:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
- 414:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param TPDO This object will be initialized.
- 415:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param OD Object Dictionary.
- 416:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param em Emergency object.
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 27
-
-
- 417:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param SYNC SYNC object, may be NULL.
- 418:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param preDefinedCanId CAN identifier from pre-defined connection set,
- 419:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * including node-id for first four PDOs, or 0 otherwise, see @ref CO_PDO_CAN_ID
- 420:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param OD_18xx_TPDOCommPar OD entry for 0x1800+ - "TPDO communication
- 421:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * parameter", entry is required.
- 422:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param OD_1Axx_TPDOMapPar OD entry for 0x1A00+ - "TPDO mapping parameter",
- 423:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * entry is required.
- 424:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param CANdevTx CAN device used for PDO transmission.
- 425:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param CANdevTxIdx Index of transmit buffer in the above CAN device.
- 426:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param [out] errInfo Additional information in case of error, may be NULL.
- 427:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
- 428:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @return #CO_ReturnError_t CO_ERROR_NO on success.
- 429:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
- 430:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** CO_ReturnError_t CO_TPDO_init(CO_TPDO_t *TPDO,
- 431:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               OD_t *OD,
- 432:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               CO_EM_t *em,
- 433:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #if ((CO_CONFIG_PDO) & CO_CONFIG_PDO_SYNC_ENABLE) || defined CO_DOXYGEN
- 434:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               CO_SYNC_t *SYNC,
- 435:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** #endif
- 436:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               uint16_t preDefinedCanId,
- 437:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               OD_entry_t *OD_18xx_TPDOCommPar,
- 438:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               OD_entry_t *OD_1Axx_TPDOMapPar,
- 439:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               CO_CANmodule_t *CANdevTx,
- 440:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               uint16_t CANdevTxIdx,
- 441:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****                               uint32_t *errInfo);
- 442:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 443:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** 
- 444:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** /**
- 445:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * Request transmission of TPDO message.
- 446:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
- 447:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * If TPDO transmission type is 0, 254 or 255, then TPDO will be sent by
- 448:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @ref CO_TPDO_process() after inhibit timer expires. See also
- 449:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @ref OD_requestTPDO() and @ref OD_TPDOtransmitted().
- 450:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  *
- 451:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  * @param TPDO TPDO object.
- 452:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****  */
- 453:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h **** static inline void CO_TPDOsendRequest(CO_TPDO_t *TPDO) {
- 161              		.loc 3 453 20 is_stmt 1 view .LVU43
- 162              	.LBB9:
- 454:Middlewares/Third_Party/CANopenNode/301/CO_PDO.h ****     if (TPDO != NULL) TPDO->sendRequest = true;
- 163              		.loc 3 454 5 view .LVU44
- 164              		.loc 3 454 8 is_stmt 0 view .LVU45
- 165 0094 13B1     		cbz	r3, .L4
- 166              		.loc 3 454 23 is_stmt 1 view .LVU46
- 167              		.loc 3 454 41 is_stmt 0 view .LVU47
- 168 0096 0122     		movs	r2, #1
- 169 0098 C3F85021 		str	r2, [r3, #336]
- 170              	.L4:
- 171              	.LVL15:
- 172              		.loc 3 454 41 view .LVU48
- 173              	.LBE9:
- 174              	.LBE8:
- 148:Core/Src/freertos.c ****       pre_timer = get_timer_counter();
- 175              		.loc 1 148 7 is_stmt 1 view .LVU49
- 176              		.loc 1 148 19 is_stmt 0 view .LVU50
- 177 009c FFF7FEFF 		bl	get_timer_counter
- 178              	.LVL16:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 28
-
-
- 179              		.loc 1 148 17 view .LVU51
- 180 00a0 00B2     		sxth	r0, r0
- 181 00a2 ADF81000 		strh	r0, [sp, #16]	@ movhi
- 182 00a6 C2E7     		b	.L3
- 183              	.L9:
- 184              		.align	2
- 185              	.L8:
- 186 00a8 67666666 		.word	1717986919
- 187 00ac 00000000 		.word	OD_PERSIST_COMM
- 188 00b0 00000000 		.word	OD
- 189 00b4 00000000 		.word	canopenNodeSTM32
- 190              		.cfi_endproc
- 191              	.LFE169:
- 193              		.section	.text.canopen_task,"ax",%progbits
- 194              		.align	1
- 195              		.global	canopen_task
- 196              		.syntax unified
- 197              		.thumb
- 198              		.thumb_func
- 200              	canopen_task:
- 201              	.LVL17:
- 202              	.LFB170:
- 149:Core/Src/freertos.c ****     }
- 150:Core/Src/freertos.c ****   }
- 151:Core/Src/freertos.c ****   /* USER CODE END StartRPM_Calcuate */
- 152:Core/Src/freertos.c **** }
- 153:Core/Src/freertos.c **** 
- 154:Core/Src/freertos.c **** /* USER CODE BEGIN Header_canopen_task */
- 155:Core/Src/freertos.c **** /**
- 156:Core/Src/freertos.c ****  * @brief Function implementing the canopenTask thread.
- 157:Core/Src/freertos.c ****  * @param argument: Not used
- 158:Core/Src/freertos.c ****  * @retval None
- 159:Core/Src/freertos.c ****  */
- 160:Core/Src/freertos.c **** /* USER CODE END Header_canopen_task */
- 161:Core/Src/freertos.c **** void canopen_task(void *argument)
- 162:Core/Src/freertos.c **** {
- 203              		.loc 1 162 1 is_stmt 1 view -0
- 204              		.cfi_startproc
- 205              		@ Volatile: function does not return.
- 206              		@ args = 0, pretend = 0, frame = 24
- 207              		@ frame_needed = 0, uses_anonymous_args = 0
- 208              		.loc 1 162 1 is_stmt 0 view .LVU53
- 209 0000 00B5     		push	{lr}
- 210              	.LCFI2:
- 211              		.cfi_def_cfa_offset 4
- 212              		.cfi_offset 14, -4
- 213 0002 87B0     		sub	sp, sp, #28
- 214              	.LCFI3:
- 215              		.cfi_def_cfa_offset 32
- 163:Core/Src/freertos.c ****   /* USER CODE BEGIN canopen_task */
- 164:Core/Src/freertos.c ****   CANopenNodeSTM32 canOpenNodeSTM32;
- 216              		.loc 1 164 3 is_stmt 1 view .LVU54
- 165:Core/Src/freertos.c ****   canOpenNodeSTM32.CANHandle = &hcan;
- 217              		.loc 1 165 3 view .LVU55
- 218              		.loc 1 165 30 is_stmt 0 view .LVU56
- 219 0004 0A4B     		ldr	r3, .L13
- 220 0006 0293     		str	r3, [sp, #8]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 29
-
-
- 166:Core/Src/freertos.c ****   canOpenNodeSTM32.HWInitFunction = MX_CAN_Init;
- 221              		.loc 1 166 3 is_stmt 1 view .LVU57
- 222              		.loc 1 166 35 is_stmt 0 view .LVU58
- 223 0008 0A4B     		ldr	r3, .L13+4
- 224 000a 0393     		str	r3, [sp, #12]
- 167:Core/Src/freertos.c ****   canOpenNodeSTM32.timerHandle = &htim17;
- 225              		.loc 1 167 3 is_stmt 1 view .LVU59
- 226              		.loc 1 167 32 is_stmt 0 view .LVU60
- 227 000c 0A4B     		ldr	r3, .L13+8
- 228 000e 0193     		str	r3, [sp, #4]
- 168:Core/Src/freertos.c ****   canOpenNodeSTM32.desiredNodeID = 18;
- 229              		.loc 1 168 3 is_stmt 1 view .LVU61
- 230              		.loc 1 168 34 is_stmt 0 view .LVU62
- 231 0010 1223     		movs	r3, #18
- 232 0012 8DF80030 		strb	r3, [sp]
- 169:Core/Src/freertos.c ****   canOpenNodeSTM32.baudrate = 125;
- 233              		.loc 1 169 3 is_stmt 1 view .LVU63
- 234              		.loc 1 169 29 is_stmt 0 view .LVU64
- 235 0016 7D23     		movs	r3, #125
- 236 0018 8DF80230 		strb	r3, [sp, #2]
- 170:Core/Src/freertos.c ****   canopen_app_init(&canOpenNodeSTM32);
- 237              		.loc 1 170 3 is_stmt 1 view .LVU65
- 238 001c 6846     		mov	r0, sp
- 239              	.LVL18:
- 240              		.loc 1 170 3 is_stmt 0 view .LVU66
- 241 001e FFF7FEFF 		bl	canopen_app_init
- 242              	.LVL19:
- 243              	.L11:
- 171:Core/Src/freertos.c ****   /* Infinite loop */
- 172:Core/Src/freertos.c ****   for (;;)
- 244              		.loc 1 172 3 is_stmt 1 discriminator 1 view .LVU67
- 173:Core/Src/freertos.c ****   {
- 174:Core/Src/freertos.c ****     canopen_app_process();
- 245              		.loc 1 174 5 discriminator 1 view .LVU68
- 246 0022 FFF7FEFF 		bl	canopen_app_process
- 247              	.LVL20:
- 175:Core/Src/freertos.c ****     vTaskDelay(1);
- 248              		.loc 1 175 5 discriminator 1 view .LVU69
- 249 0026 0120     		movs	r0, #1
- 250 0028 FFF7FEFF 		bl	vTaskDelay
- 251              	.LVL21:
- 172:Core/Src/freertos.c ****   {
- 252              		.loc 1 172 9 discriminator 1 view .LVU70
- 253 002c F9E7     		b	.L11
- 254              	.L14:
- 255 002e 00BF     		.align	2
- 256              	.L13:
- 257 0030 00000000 		.word	hcan
- 258 0034 00000000 		.word	MX_CAN_Init
- 259 0038 00000000 		.word	htim17
- 260              		.cfi_endproc
- 261              	.LFE170:
- 263              		.section	.text.MX_FREERTOS_Init,"ax",%progbits
- 264              		.align	1
- 265              		.global	MX_FREERTOS_Init
- 266              		.syntax unified
- 267              		.thumb
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 30
-
-
- 268              		.thumb_func
- 270              	MX_FREERTOS_Init:
- 271              	.LFB168:
-  84:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
- 272              		.loc 1 84 1 view -0
- 273              		.cfi_startproc
- 274              		@ args = 0, pretend = 0, frame = 0
- 275              		@ frame_needed = 0, uses_anonymous_args = 0
- 276 0000 08B5     		push	{r3, lr}
- 277              	.LCFI4:
- 278              		.cfi_def_cfa_offset 8
- 279              		.cfi_offset 3, -8
- 280              		.cfi_offset 14, -4
- 107:Core/Src/freertos.c **** 
- 281              		.loc 1 107 3 view .LVU72
- 107:Core/Src/freertos.c **** 
- 282              		.loc 1 107 27 is_stmt 0 view .LVU73
- 283 0002 074A     		ldr	r2, .L17
- 284 0004 0021     		movs	r1, #0
- 285 0006 0748     		ldr	r0, .L17+4
- 286 0008 FFF7FEFF 		bl	osThreadNew
- 287              	.LVL22:
- 107:Core/Src/freertos.c **** 
- 288              		.loc 1 107 25 view .LVU74
- 289 000c 064B     		ldr	r3, .L17+8
- 290 000e 1860     		str	r0, [r3]
- 110:Core/Src/freertos.c **** 
- 291              		.loc 1 110 3 is_stmt 1 view .LVU75
- 110:Core/Src/freertos.c **** 
- 292              		.loc 1 110 23 is_stmt 0 view .LVU76
- 293 0010 064A     		ldr	r2, .L17+12
- 294 0012 0021     		movs	r1, #0
- 295 0014 0648     		ldr	r0, .L17+16
- 296 0016 FFF7FEFF 		bl	osThreadNew
- 297              	.LVL23:
- 110:Core/Src/freertos.c **** 
- 298              		.loc 1 110 21 view .LVU77
- 299 001a 064B     		ldr	r3, .L17+20
- 300 001c 1860     		str	r0, [r3]
- 119:Core/Src/freertos.c **** 
- 301              		.loc 1 119 1 view .LVU78
- 302 001e 08BD     		pop	{r3, pc}
- 303              	.L18:
- 304              		.align	2
- 305              	.L17:
- 306 0020 00000000 		.word	.LANCHOR0
- 307 0024 00000000 		.word	StartRPM_Calcuate
- 308 0028 00000000 		.word	.LANCHOR1
- 309 002c 00000000 		.word	.LANCHOR2
- 310 0030 00000000 		.word	canopen_task
- 311 0034 00000000 		.word	.LANCHOR3
- 312              		.cfi_endproc
- 313              	.LFE168:
- 315              		.global	canopenTask_attributes
- 316              		.section	.rodata.str1.4,"aMS",%progbits,1
- 317              		.align	2
- 318              	.LC0:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 31
-
-
- 319 0000 63616E6F 		.ascii	"canopenTask\000"
- 319      70656E54 
- 319      61736B00 
- 320              		.global	canopenTaskHandle
- 321              		.global	RPM_CalcuateTas_attributes
- 322              		.align	2
- 323              	.LC1:
- 324 000c 52504D5F 		.ascii	"RPM_CalcuateTas\000"
- 324      43616C63 
- 324      75617465 
- 324      54617300 
- 325              		.global	RPM_CalcuateTasHandle
- 326              		.section	.bss.RPM_CalcuateTasHandle,"aw",%nobits
- 327              		.align	2
- 328              		.set	.LANCHOR1,. + 0
- 331              	RPM_CalcuateTasHandle:
- 332 0000 00000000 		.space	4
- 333              		.section	.bss.canopenTaskHandle,"aw",%nobits
- 334              		.align	2
- 335              		.set	.LANCHOR3,. + 0
- 338              	canopenTaskHandle:
- 339 0000 00000000 		.space	4
- 340              		.section	.rodata.RPM_CalcuateTas_attributes,"a"
- 341              		.align	2
- 342              		.set	.LANCHOR0,. + 0
- 345              	RPM_CalcuateTas_attributes:
- 346 0000 0C000000 		.word	.LC1
- 347 0004 00000000 		.space	16
- 347      00000000 
- 347      00000000 
- 347      00000000 
- 348 0014 00020000 		.word	512
- 349 0018 28000000 		.word	40
- 350 001c 00000000 		.space	8
- 350      00000000 
- 351              		.section	.rodata.canopenTask_attributes,"a"
- 352              		.align	2
- 353              		.set	.LANCHOR2,. + 0
- 356              	canopenTask_attributes:
- 357 0000 00000000 		.word	.LC0
- 358 0004 00000000 		.space	16
- 358      00000000 
- 358      00000000 
- 358      00000000 
- 359 0014 00020000 		.word	512
- 360 0018 30000000 		.word	48
- 361 001c 00000000 		.space	8
- 361      00000000 
- 362              		.text
- 363              	.Letext0:
- 364              		.file 4 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 365              		.file 5 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 366              		.file 6 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 367              		.file 7 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h"
- 368              		.file 8 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f3xx.h"
- 369              		.file 9 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
- 370              		.file 10 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 32
-
-
- 371              		.file 11 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_can.h"
- 372              		.file 12 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h"
- 373              		.file 13 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
- 374              		.file 14 "Middlewares/Third_Party/CANopenNode_STM32/CO_driver_target.h"
- 375              		.file 15 "Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h"
- 376              		.file 16 "Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h"
- 377              		.file 17 "Middlewares/Third_Party/CANopenNode/301/CO_HBconsumer.h"
- 378              		.file 18 "Middlewares/Third_Party/CANopenNode/301/CO_SDOserver.h"
- 379              		.file 19 "Middlewares/Third_Party/CANopenNode/301/CO_SYNC.h"
- 380              		.file 20 "Middlewares/Third_Party/CANopenNode/301/CO_TIME.h"
- 381              		.file 21 "Middlewares/Third_Party/CANopenNode/303/CO_LEDs.h"
- 382              		.file 22 "Middlewares/Third_Party/CANopenNode/305/CO_LSS.h"
- 383              		.file 23 "Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h"
- 384              		.file 24 "Middlewares/Third_Party/CANopenNode/CANopen.h"
- 385              		.file 25 "Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.h"
- 386              		.file 26 "Middlewares/Third_Party/CANopenNode_STM32/OD.h"
- 387              		.file 27 "Core/Inc/tim.h"
- 388              		.file 28 "Core/Inc/can.h"
- 389              		.file 29 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
- 390              		.file 30 "Core/Inc/main.h"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccihy12e.s 			page 33
+ 484      00000000 
+ 485 0014 00020000 		.word	512
+ 486 0018 30000000 		.word	48
+ 487 001c 00000000 		.space	8
+ 487      00000000 
+ 488              		.text
+ 489              	.Letext0:
+ 490              		.file 4 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 491              		.file 5 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 492              		.file 6 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 493              		.file 7 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h"
+ 494              		.file 8 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f3xx.h"
+ 495              		.file 9 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
+ 496              		.file 10 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h"
+ 497              		.file 11 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_can.h"
+ 498              		.file 12 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h"
+ 499              		.file 13 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
+ 500              		.file 14 "Middlewares/Third_Party/CANopenNode_STM32/CO_driver_target.h"
+ 501              		.file 15 "Middlewares/Third_Party/CANopenNode/301/CO_Emergency.h"
+ 502              		.file 16 "Middlewares/Third_Party/CANopenNode/301/CO_NMT_Heartbeat.h"
+ 503              		.file 17 "Middlewares/Third_Party/CANopenNode/301/CO_HBconsumer.h"
+ 504              		.file 18 "Middlewares/Third_Party/CANopenNode/301/CO_SDOserver.h"
+ 505              		.file 19 "Middlewares/Third_Party/CANopenNode/301/CO_SYNC.h"
+ 506              		.file 20 "Middlewares/Third_Party/CANopenNode/301/CO_TIME.h"
+ 507              		.file 21 "Middlewares/Third_Party/CANopenNode/303/CO_LEDs.h"
+ 508              		.file 22 "Middlewares/Third_Party/CANopenNode/305/CO_LSS.h"
+ 509              		.file 23 "Middlewares/Third_Party/CANopenNode/305/CO_LSSslave.h"
+ 510              		.file 24 "Middlewares/Third_Party/CANopenNode/CANopen.h"
+ 511              		.file 25 "Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.h"
+ 512              		.file 26 "Middlewares/Third_Party/CANopenNode_STM32/OD.h"
+ 513              		.file 27 "Core/Inc/tim.h"
+ 514              		.file 28 "Core/Inc/can.h"
+ 515              		.file 29 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h"
+ 516              		.file 30 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ARM GAS  C:\Users\walker\AppData\Local\Temp\ccse6KTp.s 			page 36
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 freertos.c
-C:\Users\walker\AppData\Local\Temp\ccihy12e.s:20     .text.StartRPM_Calcuate:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccihy12e.s:26     .text.StartRPM_Calcuate:00000000 StartRPM_Calcuate
-C:\Users\walker\AppData\Local\Temp\ccihy12e.s:186    .text.StartRPM_Calcuate:000000a8 $d
-C:\Users\walker\AppData\Local\Temp\ccihy12e.s:194    .text.canopen_task:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccihy12e.s:200    .text.canopen_task:00000000 canopen_task
-C:\Users\walker\AppData\Local\Temp\ccihy12e.s:257    .text.canopen_task:00000030 $d
-C:\Users\walker\AppData\Local\Temp\ccihy12e.s:264    .text.MX_FREERTOS_Init:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccihy12e.s:270    .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
-C:\Users\walker\AppData\Local\Temp\ccihy12e.s:306    .text.MX_FREERTOS_Init:00000020 $d
-C:\Users\walker\AppData\Local\Temp\ccihy12e.s:356    .rodata.canopenTask_attributes:00000000 canopenTask_attributes
-C:\Users\walker\AppData\Local\Temp\ccihy12e.s:317    .rodata.str1.4:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccihy12e.s:338    .bss.canopenTaskHandle:00000000 canopenTaskHandle
-C:\Users\walker\AppData\Local\Temp\ccihy12e.s:345    .rodata.RPM_CalcuateTas_attributes:00000000 RPM_CalcuateTas_attributes
-C:\Users\walker\AppData\Local\Temp\ccihy12e.s:331    .bss.RPM_CalcuateTasHandle:00000000 RPM_CalcuateTasHandle
-C:\Users\walker\AppData\Local\Temp\ccihy12e.s:327    .bss.RPM_CalcuateTasHandle:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccihy12e.s:334    .bss.canopenTaskHandle:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccihy12e.s:341    .rodata.RPM_CalcuateTas_attributes:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccihy12e.s:352    .rodata.canopenTask_attributes:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:20     .text.StartRPM_Calcuate:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:26     .text.StartRPM_Calcuate:00000000 StartRPM_Calcuate
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:83     .text.StartRPM_Calcuate:00000020 $d
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:90     .text.canopen_task:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:96     .text.canopen_task:00000000 canopen_task
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:153    .text.canopen_task:00000030 $d
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:160    .text.MX_FREERTOS_Init:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:166    .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:202    .text.MX_FREERTOS_Init:00000020 $d
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:212    .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:218    .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:405    .text.HAL_TIM_PeriodElapsedCallback:000000c0 $d
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:482    .rodata.canopenTask_attributes:00000000 canopenTask_attributes
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:419    .rodata.str1.4:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:443    .bss.canopenTaskHandle:00000000 canopenTaskHandle
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:471    .rodata.RPM_CalcuateTas_attributes:00000000 RPM_CalcuateTas_attributes
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:436    .bss.RPM_CalcuateTasHandle:00000000 RPM_CalcuateTasHandle
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:450    .bss.encoder_raw_data:00000000 encoder_raw_data
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:464    .bss.timer_counter:00000000 timer_counter
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:457    .bss.rpm:00000000 rpm
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:432    .bss.RPM_CalcuateTasHandle:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:439    .bss.canopenTaskHandle:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:446    .bss.encoder_raw_data:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:453    .bss.rpm:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:460    .bss.timer_counter:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:467    .rodata.RPM_CalcuateTas_attributes:00000000 $d
+C:\Users\walker\AppData\Local\Temp\ccse6KTp.s:478    .rodata.canopenTask_attributes:00000000 $d
 
 UNDEFINED SYMBOLS
-get_counter
-get_timer_counter
-set_timer_counter
-OD_find
-OD_set_value
-OD_PERSIST_COMM
-OD
+osDelay
 canopenNodeSTM32
 canopen_app_init
 canopen_app_process
@@ -1921,3 +2118,9 @@ hcan
 MX_CAN_Init
 htim17
 osThreadNew
+HAL_IncTick
+canopen_app_interrupt
+OD_find
+OD_set_value
+OD_PERSIST_COMM
+OD

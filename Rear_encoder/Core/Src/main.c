@@ -54,8 +54,7 @@ void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
 uint32_t get_NodeID(void);
 uint32_t NodeID[1];
-int16_t counter = 0;
-uint32_t timer_counter = 0;
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -99,6 +98,7 @@ int main(void)
   Flash_Read_Data(0x0800FFFC, NodeID, 1);
   HAL_FLASH_Lock();
   HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL);
+  //HAL_TIM_Encoder_Start_IT(&htim2,TIM_CHANNEL_ALL);
   HAL_TIM_Base_Start_IT(&htim6);
   /* USER CODE END 2 */
 
@@ -166,21 +166,6 @@ uint32_t get_NodeID(void)
   return NodeID[0];
 }
 
-int get_counter(void)
-{
-  counter = ((TIM2->CNT) >> 2);
-  return counter;
-}
-
-uint32_t get_timer_counter(void)
-{
-  return timer_counter;
-}
-
-void set_timer_counter(uint16_t time_variable)
-{
-  timer_counter = time_variable;
-}
 
 /* USER CODE END 4 */
 
@@ -192,26 +177,7 @@ void set_timer_counter(uint16_t time_variable)
   * @param  htim : TIM handle
   * @retval None
   */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-  /* USER CODE BEGIN Callback 0 */
 
-  /* USER CODE END Callback 0 */
-  if (htim->Instance == TIM1) {
-    HAL_IncTick();
-  }
-  /* USER CODE BEGIN Callback 1 */
-  if (htim == canopenNodeSTM32->timerHandle)
-  {
-    canopen_app_interrupt();
-  }
-
-  if (htim->Instance == TIM6)
-  {
-    timer_counter += 1;
-  }
-  /* USER CODE END Callback 1 */
-}
 
 /**
   * @brief  This function is executed in case of error occurrence.

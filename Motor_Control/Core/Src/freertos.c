@@ -165,7 +165,14 @@ void StartPIDTask(void *argument)
     PID_protection();
     if (PID_safe_lock == false)
     {
-      TIM2->CCR2 = ((int)CCR_value * 10);
+      if (abs(current_angle - db_target_angle) < 2)
+      {
+        TIM2->CCR2 = 0;
+      }
+      else
+      {
+        TIM2->CCR2 = ((int)CCR_value * 10);
+      }
     }
     else
     {
@@ -253,16 +260,16 @@ void analyze_voltage(void)
   voltage_counter = (voltage_counter + 1) % Timer_ARR;
   if (current_angle >= 0)
   {
-    OD_PERSIST_COMM.x6005_current_CW_CCW = 1;
+    OD_PERSIST_COMM.x6005_current_CW_CCW = 0;
   }
   else
   {
-    OD_PERSIST_COMM.x6005_current_CW_CCW = 0;
+    OD_PERSIST_COMM.x6005_current_CW_CCW = 1;
   }
 }
 void PID_protection(void)
 {
-  if (current_angle > 40 || current_voltage < -25) // outof voltage range 4.4v ~ 1.6v
+  if (current_angle > 40 || current_voltage < -40) // outof voltage range 4.4v ~ 1.6v
   {
     PID_Error_handler();
     TPDO_tarnsmit(2, 99); // 2.reach limit
@@ -292,7 +299,7 @@ void PID_init(void)
   osDelay(500);
   analyze_voltage();
   // db_target_angle = Virtual_target_angle;
-  PID(&TPID, &current_angle, &CCR_value, &db_target_angle, 0.3, 0.02, 0, _PID_P_ON_E, _PID_CD_DIRECT); // input output target
+  PID(&TPID, &current_angle, &CCR_value, &db_target_angle, 0.3, 0, 0, _PID_P_ON_E, _PID_CD_DIRECT); // input output target
   PID_SetMode(&TPID, _PID_MODE_AUTOMATIC);
   PID_SetSampleTime(&TPID, 50);
   PID_SetOutputLimits(&TPID, -10, 10);
