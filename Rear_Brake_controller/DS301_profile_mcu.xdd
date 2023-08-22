@@ -15,7 +15,7 @@
         <ProfileTechnology>CANopen</ProfileTechnology>
       </ISO15745Reference>
     </ProfileHeader>
-    <ProfileBody xmlns:q1="http://www.canopen.org/xml/1.1" xsi:type="q1:ProfileBody_Device_CANopen" formatName="CANopen" formatVersion="1.0" fileName="DS301_profile_mcu.xdd" fileCreator="Justin Zhang" fileCreationDate="2020-11-23" fileCreationTime="13:00:00.0000000+08:00" fileModifiedBy="" fileModificationDate="2023-08-14" fileModificationTime="16:08:56.3310996+08:00" fileVersion="1" supportedLanguages="en" xmlns="">
+    <ProfileBody xmlns:q1="http://www.canopen.org/xml/1.1" xsi:type="q1:ProfileBody_Device_CANopen" formatName="CANopen" formatVersion="1.0" fileName="DS301_profile_mcu.xdd" fileCreator="Justin Zhang" fileCreationDate="2020-11-23" fileCreationTime="13:00:00.0000000+08:00" fileModifiedBy="" fileModificationDate="2023-08-21" fileModificationTime="11:05:07.4041393+08:00" fileVersion="1" supportedLanguages="en" xmlns="">
       <q1:DeviceIdentity>
         <q1:vendorName>Taipei Tech</q1:vendorName>
         <q1:vendorID>0</q1:vendorID>
@@ -547,15 +547,9 @@
             <UDINT />
             <q1:defaultValue value="0x00000000" />
           </q1:parameter>
-          <q1:parameter uniqueID="UID_OBJ_6000" access="readWriteInput">
-            <label lang="en">proximity_data</label>
-            <UINT />
-            <q1:defaultValue value="0" />
-            <q1:property name="CO_storageGroup" value="PERSIST_COMM" />
-          </q1:parameter>
           <q1:parameter uniqueID="UID_OBJ_6001" access="readWrite">
             <label lang="en">angle_data</label>
-            <UINT />
+            <USINT />
             <q1:defaultValue value="0" />
             <q1:property name="CO_storageGroup" value="PERSIST_COMM" />
           </q1:parameter>
@@ -576,7 +570,7 @@
         <ProfileTechnology>CANopen</ProfileTechnology>
       </ISO15745Reference>
     </ProfileHeader>
-    <ProfileBody xmlns:q2="http://www.canopen.org/xml/1.1" xsi:type="q2:ProfileBody_CommunicationNetwork_CANopen" formatName="CANopen" formatVersion="1.0" fileName="DS301_profile_mcu.xdd" fileCreator="Justin Zhang" fileCreationDate="2020-11-23" fileCreationTime="13:00:00.0000000+08:00" fileModificationDate="2023-08-14" fileModificationTime="16:08:56.3310996+08:00" fileVersion="1" supportedLanguages="en" xmlns="">
+    <ProfileBody xmlns:q2="http://www.canopen.org/xml/1.1" xsi:type="q2:ProfileBody_CommunicationNetwork_CANopen" formatName="CANopen" formatVersion="1.0" fileName="DS301_profile_mcu.xdd" fileCreator="Justin Zhang" fileCreationDate="2020-11-23" fileCreationTime="13:00:00.0000000+08:00" fileModificationDate="2023-08-21" fileModificationTime="11:05:07.4041393+08:00" fileVersion="1" supportedLanguages="en" xmlns="">
       <ApplicationLayers>
         <q2:CANopenObjectList>
           <CANopenObject index="1000" name="Device type" objectType="7" PDOmapping="no" uniqueIDRef="UID_OBJ_1000" />
@@ -668,7 +662,6 @@
             <CANopenSubObject subIndex="07" name="Application object 7" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_160007" />
             <CANopenSubObject subIndex="08" name="Application object 8" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_160008" />
           </CANopenObject>
-          <CANopenObject index="6000" name="proximity_data" objectType="7" PDOmapping="optional" uniqueIDRef="UID_OBJ_6000" />
           <CANopenObject index="6001" name="angle_data" objectType="7" PDOmapping="optional" uniqueIDRef="UID_OBJ_6001" />
         </q2:CANopenObjectList>
         <dummyUsage>

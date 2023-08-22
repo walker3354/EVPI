@@ -16,7 +16,7 @@
 
         Created:      2020/11/23 下午 01:00:00
         Created By:   Justin Zhang
-        Modified:     2023/8/14 下午 04:08:56
+        Modified:     2023/8/21 上午 11:05:07
         Modified By:  
 
     Device Info:
@@ -101,8 +101,7 @@ typedef struct {
         uint32_t applicationObject7;
         uint32_t applicationObject8;
     } x1600_RPDOMappingParameter;
-    uint16_t x6000_proximity_data;
-    uint16_t x6001_angle_data;
+    uint8_t x6001_angle_data;
 } OD_PERSIST_COMM_t;
 
 typedef struct {
@@ -156,8 +155,7 @@ extern OD_ATTR_OD OD_t *OD;
 #define OD_ENTRY_H1280 &OD->list[16]
 #define OD_ENTRY_H1400 &OD->list[17]
 #define OD_ENTRY_H1600 &OD->list[18]
-#define OD_ENTRY_H6000 &OD->list[19]
-#define OD_ENTRY_H6001 &OD->list[20]
+#define OD_ENTRY_H6001 &OD->list[19]
 
 
 /*******************************************************************************
@@ -182,8 +180,7 @@ extern OD_ATTR_OD OD_t *OD;
 #define OD_ENTRY_H1280_SDOClientParameter &OD->list[16]
 #define OD_ENTRY_H1400_RPDOCommunicationParameter &OD->list[17]
 #define OD_ENTRY_H1600_RPDOMappingParameter &OD->list[18]
-#define OD_ENTRY_H6000_proximity_data &OD->list[19]
-#define OD_ENTRY_H6001_angle_data &OD->list[20]
+#define OD_ENTRY_H6001_angle_data &OD->list[19]
 
 
 /*******************************************************************************
