@@ -62,8 +62,7 @@ OD_ATTR_PERSIST_COMM OD_PERSIST_COMM_t OD_PERSIST_COMM = {
         .applicationObject7 = 0x00000000,
         .applicationObject8 = 0x00000000
     },
-    .x6000_proximity_data = 0x0000,
-    .x6001_angle_data = 0x0000
+    .x6001_angle_data = 0x00
 };
 
 OD_ATTR_RAM OD_RAM_t OD_RAM = {
@@ -104,7 +103,6 @@ typedef struct {
     OD_obj_record_t o_1280_SDOClientParameter[4];
     OD_obj_record_t o_1400_RPDOCommunicationParameter[4];
     OD_obj_record_t o_1600_RPDOMappingParameter[9];
-    OD_obj_var_t o_6000_proximity_data;
     OD_obj_var_t o_6001_angle_data;
 } ODObjs_t;
 
@@ -351,15 +349,10 @@ static CO_PROGMEM ODObjs_t ODObjs = {
             .dataLength = 4
         }
     },
-    .o_6000_proximity_data = {
-        .dataOrig = &OD_PERSIST_COMM.x6000_proximity_data,
-        .attribute = ODA_SDO_RW | ODA_TPDO | ODA_MB,
-        .dataLength = 2
-    },
     .o_6001_angle_data = {
         .dataOrig = &OD_PERSIST_COMM.x6001_angle_data,
-        .attribute = ODA_SDO_RW | ODA_TRPDO | ODA_MB,
-        .dataLength = 2
+        .attribute = ODA_SDO_RW | ODA_TRPDO,
+        .dataLength = 1
     }
 };
 
@@ -387,7 +380,6 @@ static OD_ATTR_OD OD_entry_t ODList[] = {
     {0x1280, 0x04, ODT_REC, &ODObjs.o_1280_SDOClientParameter, NULL},
     {0x1400, 0x04, ODT_REC, &ODObjs.o_1400_RPDOCommunicationParameter, NULL},
     {0x1600, 0x09, ODT_REC, &ODObjs.o_1600_RPDOMappingParameter, NULL},
-    {0x6000, 0x01, ODT_VAR, &ODObjs.o_6000_proximity_data, NULL},
     {0x6001, 0x01, ODT_VAR, &ODObjs.o_6001_angle_data, NULL},
     {0x0000, 0x00, 0, NULL, NULL}
 };

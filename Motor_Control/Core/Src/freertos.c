@@ -274,18 +274,6 @@ void PID_protection(void)
     PID_Error_handler();
     TPDO_tarnsmit(2, 99); // 2.reach limit
   }
-  /*
-  if ((abs(current_voltage - previous_voltage) > 1 || abs(current_voltage - previous_voltage) < 0.03) && abs(current_angle - db_target_angle) > 5 && previous_voltage != 0 && protection_lock) // voltage difference too hight and static voltage
-  {
-    PID_Error_handler();
-    TPDO_tarnsmit(3, 99); // 3. Angle reader abnormal
-  }
-  if (abs((current_angle - db_target_angle) - previos_error) < 2 && abs(current_angle - db_target_angle) > 5 && previos_error != 0 && protection_lock) // angle error
-  {
-    PID_Error_handler();
-    TPDO_tarnsmit(4, 99); // 4. Error not decrease
-  }
-  */
   else
   {
     TPDO_tarnsmit(0, abs(current_angle)); // 0.normal output

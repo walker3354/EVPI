@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
   35 00ce 0000     		.align	2
   36              	.LC5:
   37 00d0 4572726F 		.ascii	"Error: PDO initialization failed: %d\012\000"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 2
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 2
 
 
   37      723A2050 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
   28:Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.c **** #include "CANopen.h"
   29:Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.c **** #include "main.h"
   30:Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.c **** #include <stdio.h>
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 3
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 3
 
 
   31:Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.c **** 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
   85:Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.c **** #endif /* CO_MULTIPLE_OD */
   86:Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.c **** 
   87:Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.c ****     uint32_t heapMemoryUsed;
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 4
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 4
 
 
   88:Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.c ****     CO = CO_new(config_ptr, &heapMemoryUsed);
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
   76 000e 5B68     		ldr	r3, [r3, #4]
   77              		.loc 1 119 30 view .LVU4
   78 0010 0026     		movs	r6, #0
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 5
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 5
 
 
   79 0012 5E61     		str	r6, [r3, #20]
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  117 0040 DA6C     		ldr	r2, [r3, #76]
  132:Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.c ****                                                 .productCode = OD_PERSIST_COMM.x1018_identity.produ
  118              		.loc 1 132 22 view .LVU20
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 6
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 6
 
 
  119 0042 0C92     		str	r2, [sp, #48]
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  153:Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.c ****                          SDO_CLI_TIMEOUT_TIME, /* SDOclientTimeoutTime_ms */
  154:Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.c ****                          SDO_CLI_BLOCK,        /* SDOclientBlockTransfer */
  155:Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.c ****                          canopenNodeSTM32->activeNodeID, &errInfo);
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 7
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 7
 
 
  154              		.loc 1 155 42 is_stmt 0 view .LVU35
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  196 00b2 C169     		ldr	r1, [r0, #28]
  197 00b4 09AA     		add	r2, sp, #36
  198 00b6 0092     		str	r2, [sp]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 8
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 8
 
 
  199 00b8 2E4A     		ldr	r2, .L20+20
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  192:Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.c ****     /* start CAN */
  193:Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.c ****     CO_CANsetNormalMode(CO->CANmodule);
  227              		.loc 1 193 5 is_stmt 1 view .LVU54
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 9
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 9
 
 
  228              		.loc 1 193 27 is_stmt 0 view .LVU55
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  273              	.LCFI2:
  274              		.cfi_remember_state
  275              		.cfi_def_cfa_offset 16
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 10
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 10
 
 
  276              		@ sp needed
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  318 0142 0146     		mov	r1, r0
  319 0144 1448     		ldr	r0, .L20+56
  320 0146 FFF7FEFF 		bl	printf
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 11
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 11
 
 
  321              	.LVL16:
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  368 0020 416C6C6F 		.ascii	"Allocated %u bytes for CANopen objects\012\000"
  368      63617465 
  368      64202575 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 12
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 12
 
 
  368      20627974 
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  410              		.loc 1 89 8 is_stmt 0 view .LVU98
  411 0014 70B1     		cbz	r0, .L26
   93:Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.c ****     }
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 13
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 13
 
 
  412              		.loc 1 93 9 is_stmt 1 view .LVU99
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  456 004c 00000000 		.word	.LC8
  457              		.cfi_endproc
  458              	.LFE167:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 14
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 14
 
 
  460              		.section	.rodata.canopen_app_process.str1.4,"aMS",%progbits,1
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  499 0012 00D8     		bhi	.L33
  500              	.L29:
  208:Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.c ****         /* CANopen process */
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 15
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 15
 
 
  209:Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.c ****         CO_NMT_reset_cmd_t reset_status;
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  527 0030 5B7A     		ldrb	r3, [r3, #9]	@ zero_extendqisi2
  213:Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.c ****         canopenNodeSTM32->outStatusLEDGreen = CO_LED_GREEN(CO->LEDs, CO_LED_CANopen);
  528              		.loc 1 213 25 view .LVU127
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 16
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 16
 
 
  529 0032 124A     		ldr	r2, .L35+12
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  569 0058 FFF7FEFF 		bl	CO_CANsetConfigurationMode
  570              	.LVL35:
  219:Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.c ****             log_printf("CANopenNode Reset Communication request\n");
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 17
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 17
 
 
  571              		.loc 1 219 13 is_stmt 1 view .LVU143
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  620 0006 5268     		ldr	r2, [r2, #4]
  621              	.LBB11:
  622              	.LBI11:
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 18
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 18
 
 
  623              		.file 2 "Drivers/CMSIS/Include/cmsis_gcc.h"
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
   54:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   55:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __USED
   56:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __USED                                 __attribute__((used))
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 19
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 19
 
 
   57:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  111:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ALIGNED(x)                           __attribute__((aligned(x)))
  112:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  113:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __RESTRICT
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 20
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 20
 
 
  114:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __RESTRICT                             __restrict
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  168:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
  169:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  170:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, control_ns" : "=r" (result) );
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 21
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 21
 
 
  171:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  225:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  226:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  227:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 22
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 22
 
 
  228:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  282:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  283:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (defined (__ARM_FEATURE_CMSE ) && (__ARM_FEATURE_CMSE == 3))
  284:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 23
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 23
 
 
  285:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Process Stack Pointer (non-secure)
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  339:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Main Stack Pointer (non-secure)
  340:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Assigns the given value to the non-secure Main Stack Pointer (MSP) when in secure state.
  341:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    topOfMainStack  Main Stack Pointer value to set
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 24
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 24
 
 
  342:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  387:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
  633              		.loc 2 387 3 view .LVU152
  634              		.loc 2 387 3 is_stmt 0 view .LVU153
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 25
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 25
 
 
  635              		.thumb
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  669              		.loc 1 250 5 is_stmt 1 view .LVU165
  670 001c 0E4B     		ldr	r3, .L41
  671 001e 1B68     		ldr	r3, [r3]
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 26
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 26
 
 
  672 0020 5B68     		ldr	r3, [r3, #4]
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  696              		.loc 1 236 9 view .LVU171
  239:Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.c **** #endif
  697              		.loc 1 239 9 view .LVU172
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 27
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 27
 
 
  239:Middlewares/Third_Party/CANopenNode_STM32/CO_app_STM32.c **** #endif
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  755 0000 00       		.space	1
  756              		.section	.bss.time_current,"aw",%nobits
  757              		.align	2
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 28
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 28
 
 
  758              		.set	.LANCHOR3,. + 0
@@ -1664,36 +1664,36 @@ ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 1
  802              		.file 33 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h"
  803              		.file 34 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\
  804              		.file 35 "<built-in>"
-ARM GAS  C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s 			page 29
+ARM GAS  C:\Users\walker\AppData\Local\Temp\cc8ldITv.s 			page 29
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 CO_app_STM32.c
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:20     .rodata.canopen_app_resetCommunication.str1.4:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:45     .text.canopen_app_resetCommunication:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:51     .text.canopen_app_resetCommunication:00000000 canopen_app_resetCommunication
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:343    .text.canopen_app_resetCommunication:00000160 $d
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:363    .rodata.canopen_app_init.str1.4:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:370    .text.canopen_app_init:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:376    .text.canopen_app_init:00000000 canopen_app_init
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:453    .text.canopen_app_init:00000040 $d
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:461    .rodata.canopen_app_process.str1.4:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:468    .text.canopen_app_process:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:474    .text.canopen_app_process:00000000 canopen_app_process
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:586    .text.canopen_app_process:00000070 $d
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:597    .text.canopen_app_interrupt:00000000 $t
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:603    .text.canopen_app_interrupt:00000000 canopen_app_interrupt
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:726    .text.canopen_app_interrupt:00000058 $d
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:754    .bss.err:00000000 err
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:761    .bss.time_current:00000000 time_current
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:768    .bss.time_old:00000000 time_old
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:741    .bss.CO:00000000 CO
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:748    .bss.canopenNodeSTM32:00000000 canopenNodeSTM32
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:737    .bss.CO:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:744    .bss.canopenNodeSTM32:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:755    .bss.err:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:757    .bss.time_current:00000000 $d
-C:\Users\walker\AppData\Local\Temp\ccUydXfJ.s:764    .bss.time_old:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:20     .rodata.canopen_app_resetCommunication.str1.4:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:45     .text.canopen_app_resetCommunication:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:51     .text.canopen_app_resetCommunication:00000000 canopen_app_resetCommunication
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:343    .text.canopen_app_resetCommunication:00000160 $d
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:363    .rodata.canopen_app_init.str1.4:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:370    .text.canopen_app_init:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:376    .text.canopen_app_init:00000000 canopen_app_init
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:453    .text.canopen_app_init:00000040 $d
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:461    .rodata.canopen_app_process.str1.4:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:468    .text.canopen_app_process:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:474    .text.canopen_app_process:00000000 canopen_app_process
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:586    .text.canopen_app_process:00000070 $d
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:597    .text.canopen_app_interrupt:00000000 $t
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:603    .text.canopen_app_interrupt:00000000 canopen_app_interrupt
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:726    .text.canopen_app_interrupt:00000058 $d
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:754    .bss.err:00000000 err
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:761    .bss.time_current:00000000 time_current
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:768    .bss.time_old:00000000 time_old
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:741    .bss.CO:00000000 CO
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:748    .bss.canopenNodeSTM32:00000000 canopenNodeSTM32
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:737    .bss.CO:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:744    .bss.canopenNodeSTM32:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:755    .bss.err:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:757    .bss.time_current:00000000 $d
+C:\Users\walker\AppData\Local\Temp\cc8ldITv.s:764    .bss.time_old:00000000 $d
 
 UNDEFINED SYMBOLS
 puts
